@@ -7,7 +7,6 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
-
 	"github.com/oluwafenyi/jumga/server/db"
 )
 
@@ -30,13 +29,13 @@ func UserRoutes() http.Handler {
 			}
 		})
 
-		r.Post("/", func(w http.ResponseWriter, r *http.Request) {
-			user := db.User{Username: "oluwafenyi", Email: "o.enyioma@gmail.com"}
-			err := user.Insert()
-			if err != nil {
-				log.Panicln(err)
-			}
-		})
+		//r.Post("/", func(w http.ResponseWriter, r *http.Request) {
+		//	user := db.User{Username: "oluwafenyi", Email: "o.enyioma@gmail.com"}
+		//	err := user.Insert()
+		//	if err != nil {
+		//		log.Panicln(err)
+		//	}
+		//})
 	})
 	return r
 }

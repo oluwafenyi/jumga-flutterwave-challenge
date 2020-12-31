@@ -7,7 +7,6 @@ import (
 	"github.com/go-pg/pg/v10/orm"
 )
 
-// DB ...
 var DB *pg.DB
 
 func init() {
@@ -27,7 +26,7 @@ func init() {
 func createTables() error {
 	models := []interface{}{
 		(*User)(nil),
-		(*Publication)(nil),
+		(*MerchantDetails)(nil),
 	}
 	for _, model := range models {
 		err := DB.Model(model).CreateTable(&orm.CreateTableOptions{
