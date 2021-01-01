@@ -46,7 +46,7 @@ func GeneralRoutes() http.Handler {
 
 	r.Post("/transaction-webhook", handleWebHook)
 
-	r.Get("/banks/{countryCode}/", func(w http.ResponseWriter, r *http.Request) {
+	r.Get("/banks/{countryCode}", func(w http.ResponseWriter, r *http.Request) {
 		countryCode := chi.URLParam(r, "countryCode")
 		resp, err := flutterwave.Request("GET", "banks/"+countryCode, nil)
 		if err != nil {
