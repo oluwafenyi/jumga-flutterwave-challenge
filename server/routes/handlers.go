@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"bytes"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -8,7 +9,46 @@ import (
 	"strings"
 
 	"github.com/go-playground/validator/v10"
+	"github.com/oluwafenyi/jumga/server/db"
 )
+
+func MerchantValidatorStructLevelValidation(sl validator.StructLevel) {
+	merchantValidator := sl.Current().Interface().(MerchantValidator)
+
+	data, _ := json.Marshal(map[string]string{
+		"account_number": merchantValidator.AccountNumber,
+		"account_bank":   merchantValidator.AccountBank,
+	})
+
+	b := bytes.NewBuffer(data)
+
+	resp, err := flutterRequest("POST", "accounts/resolve", b)
+	if err != nil {
+		sl.ReportError(merchantValidator.AccountBank, "account_bank", "AccountBank", "account_details", "")
+		sl.ReportError(merchantValidator.AccountNumber, "account_number", "AccountNumber", "account_details", "")
+		return
+	}
+
+	if resp.StatusCode != 200 {
+		sl.ReportError(merchantValidator.AccountBank, "account_bank", "AccountBank", "account_details", "")
+		sl.ReportError(merchantValidator.AccountNumber, "account_number", "AccountNumber", "account_details", "")
+	}
+
+}
+
+func ValidateLoginEmail(fl validator.FieldLevel) bool {
+	email := fl.Field().String()
+	var user db.User
+
+	err := db.DB.Model(&user).Where("email = ?", email).Select()
+	if err != nil {
+		return false
+	}
+	if user.UUID == "" {
+		return false
+	}
+	return true
+}
 
 func validateInput(data interface{}) (bool, map[string][]string) {
 	err := validate.Struct(data)
@@ -37,8 +77,12 @@ func validateInput(data interface{}) (bool, map[string][]string) {
 				errors[name] = append(errors[name], name+" should be a valid email")
 				break
 			case "eqfield":
-				errors[name] = append(errors[name], "The "+name+" should be equal to the "+err.Param())
+				errors[name] = append(errors[name], name+" should be equal to the "+err.Param())
 				break
+			case "account_details":
+				errors["account_details"] = append(errors[name], "account does not exist")
+			case "login-email":
+				errors["email"] = append(errors[name], "user with email does not exist")
 			default:
 				errors[name] = append(errors[name], name+" is invalid")
 				break

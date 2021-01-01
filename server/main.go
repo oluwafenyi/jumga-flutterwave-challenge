@@ -15,6 +15,7 @@ func init() {
 
 func main() {
 	routes.Router.Mount("/", routes.GeneralRoutes())
+	routes.Router.Mount("/auth", routes.AuthRoutes())
 	routes.Router.Mount("/v1/user", routes.UserRoutes())
 	routes.Router.Mount("/v1/merchant", routes.MerchantRoutes())
 

@@ -8,11 +8,13 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/jwtauth"
 	"github.com/go-playground/validator/v10"
 )
 
 var Router *chi.Mux
 var validate *validator.Validate
+var tokenAuth *jwtauth.JWTAuth
 
 func init() {
 	Router = chi.NewRouter()
@@ -24,6 +26,10 @@ func init() {
 	Router.Use(HeadersMiddleware)
 
 	validate = validator.New()
+	_ = validate.RegisterValidation("login-email", ValidateLoginEmail)
+	validate.RegisterStructValidation(MerchantValidatorStructLevelValidation, MerchantValidator{})
+
+	tokenAuth = jwtauth.New("HS256", []byte("secret"), nil)
 }
 
 func flutterRequest(method string, path string, body io.Reader) (*http.Response, error) {
@@ -33,6 +39,7 @@ func flutterRequest(method string, path string, body io.Reader) (*http.Response,
 		return nil, err
 	}
 	req.Header.Add("Authorization", "Bearer FLWSECK_TEST-2b200882a3871d5d4cb57e349ed5fe03-X")
+	req.Header.Add("Content-Type", "application/json")
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
