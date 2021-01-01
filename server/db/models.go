@@ -2,6 +2,7 @@ package db
 
 import (
 	"fmt"
+	"github.com/google/uuid"
 	"log"
 
 	"golang.org/x/crypto/bcrypt"
@@ -28,7 +29,7 @@ func (s *Store) Insert() error {
 
 type User struct {
 	tableName   struct{} `pg:"users"`
-	UUID        string   `pg:"id,pk,default:gen_random_uuid()" json:"uuid"`
+	UUID        string   `pg:"id,pk" json:"uuid"`
 	Email       string   `pg:"email,unique" json:"email" validate:"required,email"`
 	AccountType string   `pg:"account_type" json:"account_type" validate:"oneof=merchant user"`
 	StoreID     int64    `json:"-"`
@@ -44,6 +45,7 @@ func (u User) String() string {
 }
 
 func (u *User) Insert() error {
+	u.UUID = uuid.New().String()
 	if u.Store != nil {
 		_ = u.Store.Insert()
 		u.StoreID = u.Store.ID
