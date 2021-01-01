@@ -8,4 +8,4 @@ RUN go build
 
 EXPOSE 8000
 
-CMD ["./app"]
+CMD ["./server"]
