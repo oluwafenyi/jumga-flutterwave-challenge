@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"bytes"
 	"encoding/json"
+	"github.com/oluwafenyi/jumga/server/flutterwave"
 	"log"
 	"net/http"
 	"reflect"
@@ -14,15 +14,8 @@ import (
 
 func MerchantValidatorStructLevelValidation(sl validator.StructLevel) {
 	merchantValidator := sl.Current().Interface().(MerchantValidator)
+	resp, err := flutterwave.ValidateBankAccountDetails(merchantValidator.AccountBank, merchantValidator.AccountNumber)
 
-	data, _ := json.Marshal(map[string]string{
-		"account_number": merchantValidator.AccountNumber,
-		"account_bank":   merchantValidator.AccountBank,
-	})
-
-	b := bytes.NewBuffer(data)
-
-	resp, err := flutterRequest("POST", "accounts/resolve", b)
 	if err != nil {
 		sl.ReportError(merchantValidator.AccountBank, "account_bank", "AccountBank", "account_details", "")
 		sl.ReportError(merchantValidator.AccountNumber, "account_number", "AccountNumber", "account_details", "")

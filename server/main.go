@@ -19,7 +19,7 @@ func main() {
 	routes.Router.Mount("/v1/user", routes.UserRoutes())
 	routes.Router.Mount("/v1/merchant", routes.MerchantRoutes())
 
-	log.Println("server listening at port 8000")
+	log.Println("server listening on port 8000")
 	err := http.ListenAndServe(":8000", routes.Router)
 	if err != nil {
 		db.DB.Close()

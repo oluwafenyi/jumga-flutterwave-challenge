@@ -26,7 +26,8 @@ func init() {
 func createTables() error {
 	models := []interface{}{
 		(*User)(nil),
-		(*MerchantDetails)(nil),
+		(*Store)(nil),
+		(*Transaction)(nil),
 	}
 	for _, model := range models {
 		err := DB.Model(model).CreateTable(&orm.CreateTableOptions{

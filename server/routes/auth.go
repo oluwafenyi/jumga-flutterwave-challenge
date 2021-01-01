@@ -4,19 +4,12 @@ import (
 	"encoding/json"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
-	"github.com/oluwafenyi/jumga/server/db"
 	"net/http"
 )
 
 type LoginValidator struct {
 	Email    string `validate:"required,email"`
 	Password string `validate:"required"`
-}
-
-func getUser(email string) *db.User {
-	var user db.User
-	_ = db.DB.Model(&user).Where("email = ?", email).Select()
-	return &user
 }
 
 func AuthRoutes() http.Handler {
@@ -37,7 +30,8 @@ func AuthRoutes() http.Handler {
 			return
 		}
 
-		user := getUser(input.Email)
+		user := getUserByEmail(input.Email)
+
 		ok := user.CheckPassword(input.Password)
 		if ok {
 			_, tokenString, _ := tokenAuth.Encode(map[string]interface{}{"uid": user.UUID})
