@@ -2,14 +2,13 @@ package routes
 
 import (
 	"encoding/json"
+	"github.com/go-playground/validator/v10"
+	"github.com/oluwafenyi/jumga/server/db"
 	"github.com/oluwafenyi/jumga/server/flutterwave"
 	"log"
 	"net/http"
 	"reflect"
 	"strings"
-
-	"github.com/go-playground/validator/v10"
-	"github.com/oluwafenyi/jumga/server/db"
 )
 
 func MerchantValidatorStructLevelValidation(sl validator.StructLevel) {
@@ -31,9 +30,8 @@ func MerchantValidatorStructLevelValidation(sl validator.StructLevel) {
 
 func ValidateLoginEmail(fl validator.FieldLevel) bool {
 	email := fl.Field().String()
-	var user db.User
-
-	err := db.DB.Model(&user).Where("email = ?", email).Select()
+	user := &db.User{}
+	err := user.GetByEmail(email)
 	if err != nil {
 		return false
 	}

@@ -3,13 +3,13 @@ package routes
 import (
 	"encoding/json"
 	"errors"
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/jwtauth"
+	"github.com/oluwafenyi/jumga/server/globals"
 	"golang.org/x/net/context"
 	"net/http"
 	"strconv"
-
-	"github.com/go-chi/chi"
-	"github.com/go-chi/chi/middleware"
 
 	"github.com/oluwafenyi/jumga/server/db"
 	"github.com/oluwafenyi/jumga/server/flutterwave"
@@ -88,7 +88,8 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	merchant, ok := ctx.Value("merchant").(*db.User)
 
-	store, _ := getStore(merchant.StoreID)
+	store := &db.Store{}
+	_ = store.GetByID(merchant.StoreID)
 
 	if !ok {
 		ErrorResponse(http.StatusUnprocessableEntity, "cannot process request", w)
@@ -101,23 +102,24 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 	}
 
 	transaction := db.Transaction{
-		Status:    "processing",
-		Customer:  store.BusinessName,
-		Recipient: "jumga",
+		Status:     "processing",
+		CustomerID: merchant.UUID,
+		Type:       "approval",
+		Currency:   "USD",
+		Amount:     "20",
 	}
 
 	_ = transaction.Insert()
 
-	refNum := strconv.FormatInt(transaction.ID, 10)
-
 	form := &flutterwave.PaymentInitiationForm{
-		Reference:      refNum,
+		Reference:      transaction.ID,
 		Amount:         "20",
 		Currency:       "USD",
-		RedirectUrl:    "http://localhost:3000/payment/redirect/",
+		RedirectUrl:    globals.FrontendUrl + "/payment/redirect/",
 		PaymentOptions: "card,account,banktransfer,ussd",
 		Meta: map[string]string{
 			"customer_id": merchant.UUID,
+			"store_id":    strconv.FormatInt(merchant.StoreID, 10),
 		},
 		Customer: flutterwave.Customer{
 			Name:        store.BusinessName,
@@ -126,7 +128,7 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 		},
 		Customizations: flutterwave.Customizations{
 			Title:       "Jumga Approval Payment",
-			Description: "",
+			Description: "This payment finalises the merchant registration process for Jumga",
 			Logo:        "",
 		},
 	}
@@ -134,6 +136,8 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 	link, err := flutterwave.InitiatePayment(form)
 	if err != nil {
 		ErrorResponse(400, "an error occurred while setting up the transaction", w)
+		transaction.Status = "failed"
+		_ = transaction.Update()
 		return
 	}
 	SuccessResponse(http.StatusCreated, map[string]interface{}{"payment_link": link}, w)
@@ -159,7 +163,8 @@ func MerchantRoutes() http.Handler {
 func MerchantCtx(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		_, claims, _ := jwtauth.FromContext(r.Context())
-		user := getUserFromClaims(claims)
+		user := &db.User{}
+		_ = user.GetFromClaims(claims)
 		if user.AccountType != "merchant" {
 			ErrorResponse(http.StatusForbidden, "user not permitted to view this resource", w)
 			return

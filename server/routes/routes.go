@@ -32,9 +32,9 @@ func init() {
 	tokenAuth = jwtauth.New("HS256", []byte("secret"), nil)
 }
 
-func handleWebHook(w http.ResponseWriter, r *http.Request) {
-
-}
+//func handleWebHook(w http.ResponseWriter, r *http.Request) {
+//
+//}
 
 func GeneralRoutes() http.Handler {
 	r := chi.NewRouter()
@@ -44,7 +44,7 @@ func GeneralRoutes() http.Handler {
 		SuccessResponse(http.StatusOK, map[string]interface{}{"message": "OK!"}, w)
 	})
 
-	r.Post("/transaction-webhook", handleWebHook)
+	//r.Post("/transaction-webhook", handleWebHook)
 
 	r.Get("/banks/{countryCode}", func(w http.ResponseWriter, r *http.Request) {
 		countryCode := chi.URLParam(r, "countryCode")

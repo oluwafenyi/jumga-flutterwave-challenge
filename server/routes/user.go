@@ -10,19 +10,6 @@ import (
 	"github.com/oluwafenyi/jumga/server/db"
 )
 
-func getUserByEmail(email string) *db.User {
-	user := new(db.User)
-	_ = db.DB.Model(user).Where("email = ?", email).Select()
-	return user
-}
-
-func getUserFromClaims(claims map[string]interface{}) *db.User {
-	user := new(db.User)
-	uid := claims["uid"].(string)
-	_ = db.DB.Model(user).Where("id = ?", uid).Select()
-	return user
-}
-
 // UserRoutes ...
 func UserRoutes() http.Handler {
 	r := chi.NewRouter()

@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -74,6 +75,18 @@ func InitiatePayment(f *PaymentInitiationForm) (string, error) {
 	data := respObj["data"].(map[string]interface{})
 	link := data["link"].(string)
 	return link, nil
+}
+
+func GetTransactionStatus(transactionId string) (map[string]interface{}, error) {
+	path := fmt.Sprintf("transactions/%s/verify", transactionId)
+	resp, err := Request("GET", path, nil)
+	if err != nil || resp.StatusCode != 200 {
+		log.Printf("error: problem verifying transaction %s\n", transactionId)
+		return nil, err
+	}
+	var respObj map[string]interface{}
+	_ = json.NewDecoder(resp.Body).Decode(&respObj)
+	return respObj, nil
 }
 
 func createFlutterwaveSubAccount() {

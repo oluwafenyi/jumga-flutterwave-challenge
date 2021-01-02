@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/oluwafenyi/jumga/server/globals"
 	"log"
 	"net/http"
 	"os"
@@ -18,14 +19,10 @@ func main() {
 	routes.Router.Mount("/auth", routes.AuthRoutes())
 	routes.Router.Mount("/v1/user", routes.UserRoutes())
 	routes.Router.Mount("/v1/merchant", routes.MerchantRoutes())
+	routes.Router.Mount("/v1/transaction", routes.TransactionRoutes())
 
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8000"
-	}
-	port = ":" + port
-	log.Printf("server listening on port %s\n", port)
-	err := http.ListenAndServe(port, routes.Router)
+	log.Printf("server listening on port %s\n", globals.Port)
+	err := http.ListenAndServe(globals.Port, routes.Router)
 	if err != nil {
 		db.DB.Close()
 		log.Fatalln(err)

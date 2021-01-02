@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/oluwafenyi/jumga/server/db"
 	"net/http"
 )
 
@@ -30,7 +31,8 @@ func AuthRoutes() http.Handler {
 			return
 		}
 
-		user := getUserByEmail(input.Email)
+		user := &db.User{}
+		_ = user.GetByEmail(input.Email)
 
 		ok := user.CheckPassword(input.Password)
 		if ok {
