@@ -26,3 +26,13 @@ services:
     image: postgres:latest
     environment:
       - POSTGRES_PASSWORD=password
+#  pgadmin4:
+#    image: dpage/pgadmin4
+#    environment:
+#      - PGADMIN_DEFAULT_EMAIL=enyioma.osondu@geniesys.co.uk
+#      - PGADMIN_DEFAULT_PASSWORD=password
+#      - PGADMIN_CONFIG_CONSOLE_LOG_LEVEL=100
+#    ports:
+#      - 8080:80
+#    logging:
+#      driver: none

@@ -9,14 +9,22 @@ import (
 )
 
 type Store struct {
-	tableName      struct{} `pg:"stores"`
-	ID             int64    `json:"-"`
-	SubAccountId   int32    `pg:"sub_account_id" json:"sub_account_id"`
-	Rating         float32  `pg:"rating" json:"rating"`
-	BusinessName   string   `pg:"business_name" json:"business_name"`
-	BusinessMobile string   `pg:"business_mobile" json:"business_mobile"`
-	BusinessEmail  string   `pg:"business_email" json:"business_email"`
-	Approved       bool     `pg:"approved" json:"approved"`
+	tableName          struct{} `pg:"stores"`
+	ID                 int64    `json:"-"`
+	SubAccountId       string   `pg:"sub_account_id" json:"sub_account_id"`
+	FlutterwaveStoreId int32    `pg:"flutterwave_store_id" json:"flutterwave_store_id"`
+	Rating             float32  `pg:"rating" json:"rating"`
+	BusinessName       string   `pg:"business_name" json:"business_name"`
+	BusinessMobile     string   `pg:"business_mobile" json:"business_mobile"`
+	BusinessEmail      string   `pg:"business_email" json:"business_email"`
+	Approved           bool     `pg:"approved" json:"approved"`
+	AccountBank        string   `pg:"account_bank" json:"account_bank"`
+	AccountNumber      string   `pg:"account_number" json:"account_number"`
+	Country            string   `pg:"country" json:"country"`
+}
+
+func (s Store) String() string {
+	return fmt.Sprintf("<Store %d>", s.ID)
 }
 
 func (s *Store) Insert() error {
@@ -30,6 +38,12 @@ func (s *Store) Insert() error {
 func (s *Store) GetByID(id int64) error {
 	err := DB.Model(s).Where("id = ?", id).Select()
 	return err
+}
+
+func (s *Store) GetContact() *User {
+	user := &User{}
+	_ = DB.Model(user).Where("\"user\".\"store_id\" = ?", s.ID).Select()
+	return user
 }
 
 func (s *Store) Update() error {
@@ -71,6 +85,11 @@ func (u *User) Insert() error {
 		}
 		return nil
 	}
+}
+
+func (u *User) GetById(uid string) error {
+	err := DB.Model(u).Relation("Store").Where("\"user\".\"id\" = ?", uid).Select()
+	return err
 }
 
 func (u *User) GetByEmail(email string) error {
@@ -124,12 +143,6 @@ func (t *Transaction) GetByID(id string) error {
 	err := DB.Model(t).Where("id = ?", id).Select()
 	return err
 }
-
-//func (t *Transaction) GetCustomer() *User {
-//	user := &User{}
-//	_ = DB.Model(user).Relation("Store").Where("user.id = ?", t.CustomerID).Select()
-//	return user
-//}
 
 func (t *Transaction) Update() error {
 	_, err := DB.Model(t).WherePK().Update()

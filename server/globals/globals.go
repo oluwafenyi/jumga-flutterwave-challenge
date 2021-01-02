@@ -48,7 +48,8 @@ func init() {
 			Addr:     "db:5432",
 		}
 		CreateTableOpts = &orm.CreateTableOptions{
-			Temp: true,
+			Temp:        false,
+			IfNotExists: true,
 		}
 	}
 }

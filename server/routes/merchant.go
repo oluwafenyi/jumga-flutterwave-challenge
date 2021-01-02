@@ -49,6 +49,9 @@ func createMerchantUser(m MerchantValidator) (*db.User, error) {
 			BusinessName:   m.BusinessName,
 			BusinessEmail:  m.BusinessEmail,
 			Approved:       false,
+			AccountBank:    m.AccountBank,
+			AccountNumber:  m.AccountNumber,
+			Country:        m.Country,
 		},
 	}
 

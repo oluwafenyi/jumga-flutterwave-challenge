@@ -10,6 +10,20 @@ import (
 	"net/http"
 )
 
+type SubAccount struct {
+	AccountBank           string                 `json:"account_bank"`
+	AccountNumber         string                 `json:"account_number"`
+	BusinessName          string                 `json:"business_name"`
+	Country               string                 `json:"country"`
+	SplitValue            float64                `json:"split_value"`
+	BusinessMobile        string                 `json:"business_mobile"`
+	BusinessEmail         string                 `json:"business_email"`
+	BusinessContact       string                 `json:"business_contact"`
+	BusinessContactMobile string                 `json:"business_contact_mobile"`
+	SplitType             string                 `json:"split_type"`
+	Meta                  map[string]interface{} `json:"meta,omitempty"`
+}
+
 type Customer struct {
 	Email       string `json:"email"`
 	PhoneNumber string `json:"phonenumber"`
@@ -89,6 +103,18 @@ func GetTransactionStatus(transactionId string) (map[string]interface{}, error) 
 	return respObj, nil
 }
 
-func createFlutterwaveSubAccount() {
-
+func CreateSubAccount(account *SubAccount) (map[string]interface{}, error) {
+	data, _ := json.Marshal(account)
+	resp, err := Request("POST", "subaccounts", bytes.NewBuffer(data))
+	if err != nil {
+		log.Printf("error: problem creating subaccount for <Store %s>", account.BusinessName)
+		return nil, err
+	}
+	if resp.StatusCode != 200 {
+		log.Printf("error: problem creating subaccount for <Store %s>", account.BusinessName)
+		return nil, err
+	}
+	var respObj map[string]interface{}
+	_ = json.NewDecoder(resp.Body).Decode(&respObj)
+	return respObj, nil
 }

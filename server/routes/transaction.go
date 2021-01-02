@@ -16,19 +16,61 @@ type ValidateTransactionValidator struct {
 	TransactionId string `json:"transaction_id" validate:"required"`
 }
 
+func postApprovalTransaction(storeId int64) {
+	store := &db.Store{}
+	_ = store.GetByID(storeId)
+
+	if store.Approved {
+		log.Printf("<Store %d> approval already processed\n", store.ID)
+		return
+	}
+	store.Approved = true
+	err := store.Update()
+	if err != nil {
+		log.Printf("error: failed to update store %d to approved status", store.ID)
+	}
+
+	contact := store.GetContact()
+
+	if contact.UUID == "" {
+		log.Fatalln("error: could not get store contact")
+	}
+
+	sub := &flutterwave.SubAccount{
+		AccountBank:           store.AccountBank,
+		AccountNumber:         store.AccountNumber,
+		BusinessName:          store.BusinessName,
+		Country:               store.Country,
+		SplitValue:            0.975,
+		BusinessMobile:        store.BusinessMobile,
+		BusinessEmail:         store.BusinessEmail,
+		BusinessContact:       contact.Name,
+		BusinessContactMobile: contact.Mobile,
+		SplitType:             "percentage",
+		Meta: map[string]interface{}{
+			"store_id": storeId,
+		},
+	}
+
+	var subAcc map[string]interface{}
+	subAcc, err = flutterwave.CreateSubAccount(sub)
+	if err != nil {
+		log.Fatalln("could not create subaccount")
+	}
+
+	data := subAcc["data"].(map[string]interface{})
+	subAccId := data["subaccount_id"].(string)
+	flwStoreId := data["id"].(float64)
+	log.Println(flwStoreId)
+	store.SubAccountId = subAccId
+	store.FlutterwaveStoreId = int32(flwStoreId)
+	_ = store.Update()
+}
+
 func postSuccessfulTransactionAction(t *db.Transaction, storeId int64) {
 	switch t.Type {
 	case "approval":
-		store := &db.Store{}
-		_ = store.GetByID(storeId)
-		store.Approved = true
-		err := store.Update()
-		if err != nil {
-			log.Printf("error: failed to update store %d to approved status", store.ID)
-		}
-
-		// todo: create subAccount
-
+		postApprovalTransaction(storeId)
 		break
 	default:
 		break
@@ -58,6 +100,7 @@ func validateTransaction(w http.ResponseWriter, r *http.Request) {
 	statusResponse, err := flutterwave.GetTransactionStatus(input.TransactionId)
 
 	if err != nil {
+		log.Printf("error: %s\n", err)
 		ErrorResponse(http.StatusBadRequest, "unable to verify transaction", w)
 		return
 	}
@@ -68,8 +111,12 @@ func validateTransaction(w http.ResponseWriter, r *http.Request) {
 	currency := data["currency"].(string)
 	chargedAmount := data["charged_amount"].(float64)
 	meta := data["meta"].(map[string]interface{})
-	storeIdStr := meta["customer_id"].(string)
-	storeId, _ := strconv.ParseInt(storeIdStr, 10, 64)
+	customerId := meta["customer_id"].(string)
+
+	customer := db.User{}
+	_ = customer.GetById(customerId)
+
+	storeId := customer.Store.ID
 
 	if txRef != transaction.ID {
 		ErrorResponse(http.StatusBadRequest, "unable to verify transaction", w)
