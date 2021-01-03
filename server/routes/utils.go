@@ -11,19 +11,26 @@ import (
 	"strings"
 )
 
-func MerchantValidatorStructLevelValidation(sl validator.StructLevel) {
-	merchantValidator := sl.Current().Interface().(MerchantValidator)
-	resp, err := flutterwave.ValidateBankAccountDetails(merchantValidator.AccountBank, merchantValidator.AccountNumber)
+type BankDetailsGetter interface {
+	GetAccountBank() string
+	GetAccountNumber() string
+}
+
+func BankDetailsStructLevelValidation(sl validator.StructLevel) {
+	v := sl.Current().Interface().(BankDetailsGetter)
+	bank := v.GetAccountBank()
+	number := v.GetAccountNumber()
+	resp, err := flutterwave.ValidateBankAccountDetails(bank, number)
 
 	if err != nil {
-		sl.ReportError(merchantValidator.AccountBank, "account_bank", "AccountBank", "account_details", "")
-		sl.ReportError(merchantValidator.AccountNumber, "account_number", "AccountNumber", "account_details", "")
+		sl.ReportError(bank, "account_bank", "AccountBank", "account_details", "")
+		sl.ReportError(number, "account_number", "AccountNumber", "account_details", "")
 		return
 	}
 
 	if resp.StatusCode != 200 {
-		sl.ReportError(merchantValidator.AccountBank, "account_bank", "AccountBank", "account_details", "")
-		sl.ReportError(merchantValidator.AccountNumber, "account_number", "AccountNumber", "account_details", "")
+		sl.ReportError(bank, "account_bank", "AccountBank", "account_details", "")
+		sl.ReportError(number, "account_number", "AccountNumber", "account_details", "")
 	}
 
 }
@@ -89,6 +96,11 @@ func HeadersMiddleware(next http.Handler) http.Handler {
 		w.Header().Set("Content-Type", "application/json")
 		next.ServeHTTP(w, r)
 	})
+}
+
+func decodeInput(input interface{}, r *http.Request) error {
+	err := json.NewDecoder(r.Body).Decode(input)
+	return err
 }
 
 func SuccessResponse(code int, fields map[string]interface{}, w http.ResponseWriter) {

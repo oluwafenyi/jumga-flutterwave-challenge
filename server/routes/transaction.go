@@ -32,16 +32,12 @@ func postApprovalTransaction(storeId int64) {
 
 	contact := store.GetContact()
 
-	if contact.UUID == "" {
-		log.Fatalln("error: could not get store contact")
-	}
-
 	sub := &flutterwave.SubAccount{
 		AccountBank:           store.AccountBank,
 		AccountNumber:         store.AccountNumber,
 		BusinessName:          store.BusinessName,
 		Country:               store.Country,
-		SplitValue:            0.975,
+		SplitValue:            0.025,
 		BusinessMobile:        store.BusinessMobile,
 		BusinessEmail:         store.BusinessEmail,
 		BusinessContact:       contact.Name,
@@ -53,17 +49,12 @@ func postApprovalTransaction(storeId int64) {
 	}
 
 	var subAcc map[string]interface{}
-	subAcc, err = flutterwave.CreateSubAccount(sub)
-	if err != nil {
-		log.Fatalln("could not create subaccount")
-	}
-
+	subAcc, _ = flutterwave.CreateSubAccount(sub)
 	data := subAcc["data"].(map[string]interface{})
 	subAccId := data["subaccount_id"].(string)
 	flwStoreId := data["id"].(float64)
-	log.Println(flwStoreId)
-	store.SubAccountId = subAccId
-	store.FlutterwaveStoreId = int32(flwStoreId)
+	store.SubAccountID = subAccId
+	store.FlutterwaveAccountID = int32(flwStoreId)
 	_ = store.Update()
 }
 
@@ -114,7 +105,7 @@ func validateTransaction(w http.ResponseWriter, r *http.Request) {
 	customerId := meta["customer_id"].(string)
 
 	customer := db.User{}
-	_ = customer.GetById(customerId)
+	_ = customer.GetByID(customerId)
 
 	storeId := customer.Store.ID
 
