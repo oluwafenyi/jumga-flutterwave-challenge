@@ -37,7 +37,7 @@ func postApprovalTransaction(storeId int64) {
 		AccountNumber:         store.AccountNumber,
 		BusinessName:          store.BusinessName,
 		Country:               store.Country,
-		SplitValue:            0.975,
+		SplitValue:            0.025,
 		BusinessMobile:        store.BusinessMobile,
 		BusinessEmail:         store.BusinessEmail,
 		BusinessContact:       contact.Name,

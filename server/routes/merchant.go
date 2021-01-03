@@ -182,7 +182,7 @@ func updateDispatchRider(w http.ResponseWriter, r *http.Request) {
 		AccountNumber:         input.AccountNumber,
 		BusinessName:          "Dispatch: " + input.Name,
 		Country:               input.Country,
-		SplitValue:            0.75,
+		SplitValue:            0.25,
 		BusinessMobile:        input.Mobile,
 		BusinessEmail:         input.Email,
 		BusinessContact:       input.Name,
