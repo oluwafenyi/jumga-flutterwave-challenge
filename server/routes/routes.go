@@ -2,6 +2,7 @@ package routes
 
 import (
 	"encoding/json"
+	"github.com/oluwafenyi/jumga/server/db"
 	"net/http"
 
 	"github.com/go-chi/chi"
@@ -27,7 +28,8 @@ func init() {
 
 	validate = validator.New()
 	_ = validate.RegisterValidation("login-email", ValidateLoginEmail)
-	validate.RegisterStructValidation(MerchantValidatorStructLevelValidation, MerchantValidator{})
+	validate.RegisterStructValidation(BankDetailsStructLevelValidation, MerchantValidator{})
+	validate.RegisterStructValidation(BankDetailsStructLevelValidation, db.DispatchRider{})
 
 	tokenAuth = jwtauth.New("HS256", []byte("secret"), nil)
 }

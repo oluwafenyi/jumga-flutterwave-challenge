@@ -16,21 +16,24 @@ import (
 )
 
 type MerchantValidator struct {
-	AccountBank           string `json:"account_bank" validate:"required"`
-	AccountNumber         string `json:"account_number" validate:"required"`
-	BusinessName          string `json:"business_name" validate:"required"`
-	Country               string `json:"country" validate:"required"`
-	BusinessMobile        string `json:"business_mobile" validate:"required"`
-	BusinessEmail         string `json:"business_email" validate:"required,email"`
+	db.Store
 	BusinessContact       string `json:"business_contact" validate:"required"`
 	BusinessContactMobile string `json:"business_contact_mobile" validate:"required"`
 	Password              string `json:"password" validate:"required"`
 	ConfirmPassword       string `json:"confirm_password" validate:"required,eqfield=Password"`
 }
 
+func (m MerchantValidator) GetAccountBank() string {
+	return m.AccountBank
+}
+
+func (m MerchantValidator) GetAccountNumber() string {
+	return m.AccountNumber
+}
+
 func createMerchantUser(m MerchantValidator) (*db.User, error) {
-	var exists db.User
-	_ = db.DB.Model(&exists).Where("email = ?", m.BusinessEmail).Select()
+	exists := db.User{}
+	_ = exists.GetByEmail(m.BusinessEmail)
 
 	if exists.UUID != "" {
 		err := errors.New("user with that email already exists")
@@ -65,9 +68,9 @@ func createMerchantUser(m MerchantValidator) (*db.User, error) {
 }
 
 func signUpMerchant(w http.ResponseWriter, r *http.Request) {
-	var input MerchantValidator
+	input := MerchantValidator{}
+	err := decodeInput(&input, r)
 
-	err := json.NewDecoder(r.Body).Decode(&input)
 	if err != nil {
 		ErrorResponse(http.StatusUnprocessableEntity, "invalid post data", w)
 		return
@@ -91,13 +94,12 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	merchant, ok := ctx.Value("merchant").(*db.User)
 
-	store := &db.Store{}
-	_ = store.GetByID(merchant.StoreID)
-
 	if !ok {
 		ErrorResponse(http.StatusUnprocessableEntity, "cannot process request", w)
 		return
 	}
+
+	store := merchant.Store
 
 	if store.Approved {
 		ErrorResponse(http.StatusBadRequest, "store is already approved", w)
@@ -146,6 +148,60 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 	SuccessResponse(http.StatusCreated, map[string]interface{}{"payment_link": link}, w)
 }
 
+func updateDispatchRider(w http.ResponseWriter, r *http.Request) {
+	var input db.DispatchRider
+
+	err := json.NewDecoder(r.Body).Decode(&input)
+	if err != nil {
+		ErrorResponse(http.StatusUnprocessableEntity, "invalid post data", w)
+		return
+	}
+	if ok, errs := validateInput(input); !ok {
+		ValidationErrorResponse(errs, w)
+		return
+	}
+	ctx := r.Context()
+	merchant, ok := ctx.Value("merchant").(*db.User)
+	if !ok {
+		ErrorResponse(http.StatusUnprocessableEntity, "cannot process request", w)
+		return
+	}
+	store := merchant.Store
+	if !store.Approved {
+		ErrorResponse(http.StatusBadRequest, "store has not been approved yet", w)
+		return
+	}
+
+	_ = input.Insert()
+	store.DispatchRiderID = input.ID
+	_ = store.Update()
+
+	var subAcc map[string]interface{}
+	subAcc, err = flutterwave.CreateSubAccount(&flutterwave.SubAccount{
+		AccountBank:           input.AccountBank,
+		AccountNumber:         input.AccountNumber,
+		BusinessName:          "Dispatch: " + input.Name,
+		Country:               input.Country,
+		SplitValue:            0.75,
+		BusinessMobile:        input.Mobile,
+		BusinessEmail:         input.Email,
+		BusinessContact:       input.Name,
+		BusinessContactMobile: input.Mobile,
+		SplitType:             "percentage",
+		Meta: map[string]interface{}{
+			"dispatchrider_id": input.ID,
+		},
+	})
+	data := subAcc["data"].(map[string]interface{})
+	subAccId := data["subaccount_id"].(string)
+	flwStoreId := data["id"].(float64)
+	input.SubAccountID = subAccId
+	input.FlutterwaveAccountID = int32(flwStoreId)
+	_ = input.Update()
+
+	SuccessResponse(http.StatusOK, map[string]interface{}{"data": input}, w)
+}
+
 func MerchantRoutes() http.Handler {
 	r := chi.NewRouter()
 	r.Use(middleware.GetHead)
@@ -158,6 +214,7 @@ func MerchantRoutes() http.Handler {
 			r.Use(MerchantCtx)
 
 			r.Post("/process-approval", processApproval)
+			r.Put("/dispatch", updateDispatchRider)
 		})
 	})
 	return r

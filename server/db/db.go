@@ -23,6 +23,7 @@ func createTables() error {
 		(*User)(nil),
 		(*Store)(nil),
 		(*Transaction)(nil),
+		(*DispatchRider)(nil),
 	}
 	for _, model := range models {
 		err := DB.Model(model).CreateTable(globals.CreateTableOpts)

@@ -8,19 +8,56 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+type DispatchRider struct {
+	tableName            struct{} `pg:"dispatchriders"`
+	ID                   int64
+	SubAccountID         string `pg:"sub_account_id" json:"sub_account_id"`
+	FlutterwaveAccountID int32  `pg:"flutterwave_account_id" json:"flutterwave_account_id"`
+	Name                 string `pg:"name" json:"name" validate:"required"`
+	Mobile               string `pg:"mobile" json:"mobile" validate:"required"`
+	Email                string `pg:"email" json:"email" validate:"required"`
+	AccountBank          string `pg:"account_bank" json:"account_bank" validate:"required"`
+	AccountNumber        string `pg:"account_number" json:"account_number" validate:"required"`
+	Country              string `pg:"country" json:"country" validate:"required"`
+}
+
+func (d DispatchRider) String() string {
+	return fmt.Sprintf("<Dispatch Rider %d>", d.ID)
+}
+
+func (d *DispatchRider) Insert() error {
+	_, err := DB.Model(d).Insert()
+	return err
+}
+
+func (d *DispatchRider) Update() error {
+	_, err := DB.Model(d).WherePK().Update()
+	return err
+}
+
+func (d DispatchRider) GetAccountBank() string {
+	return d.AccountBank
+}
+
+func (d DispatchRider) GetAccountNumber() string {
+	return d.AccountNumber
+}
+
 type Store struct {
-	tableName          struct{} `pg:"stores"`
-	ID                 int64    `json:"-"`
-	SubAccountId       string   `pg:"sub_account_id" json:"sub_account_id"`
-	FlutterwaveStoreId int32    `pg:"flutterwave_store_id" json:"flutterwave_store_id"`
-	Rating             float32  `pg:"rating" json:"rating"`
-	BusinessName       string   `pg:"business_name" json:"business_name"`
-	BusinessMobile     string   `pg:"business_mobile" json:"business_mobile"`
-	BusinessEmail      string   `pg:"business_email" json:"business_email"`
-	Approved           bool     `pg:"approved" json:"approved"`
-	AccountBank        string   `pg:"account_bank" json:"account_bank"`
-	AccountNumber      string   `pg:"account_number" json:"account_number"`
-	Country            string   `pg:"country" json:"country"`
+	tableName            struct{}       `pg:"stores"`
+	ID                   int64          `json:"-"`
+	SubAccountID         string         `pg:"sub_account_id" json:"sub_account_id"`
+	FlutterwaveAccountID int32          `pg:"flutterwave_account_id" json:"flutterwave_account_id"`
+	Rating               float32        `pg:"rating" json:"rating"`
+	BusinessName         string         `pg:"business_name" json:"business_name" validate:"required"`
+	BusinessMobile       string         `pg:"business_mobile" json:"business_mobile" validate:"required"`
+	BusinessEmail        string         `pg:"business_email" json:"business_email" validate:"required"`
+	Approved             bool           `pg:"approved" json:"approved"`
+	AccountBank          string         `pg:"account_bank" json:"account_bank" validate:"required"`
+	AccountNumber        string         `pg:"account_number" json:"account_number" validate:"required"`
+	Country              string         `pg:"country" json:"country" validate:"required"`
+	DispatchRiderID      int64          `json:"-"`
+	DispatchRider        *DispatchRider `pg:"rel:has-one"`
 }
 
 func (s Store) String() string {
@@ -29,10 +66,7 @@ func (s Store) String() string {
 
 func (s *Store) Insert() error {
 	_, err := DB.Model(s).Insert()
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
 }
 
 func (s *Store) GetByID(id int64) error {
@@ -74,20 +108,14 @@ func (u *User) Insert() error {
 		_ = u.Store.Insert()
 		u.StoreID = u.Store.ID
 		_, err := DB.Model(u).Insert()
-		if err != nil {
-			return err
-		}
-		return nil
+		return err
 	} else {
 		_, err := DB.Model(u).Insert()
-		if err != nil {
-			return err
-		}
-		return nil
+		return err
 	}
 }
 
-func (u *User) GetById(uid string) error {
+func (u *User) GetByID(uid string) error {
 	err := DB.Model(u).Relation("Store").Where("\"user\".\"id\" = ?", uid).Select()
 	return err
 }
@@ -99,7 +127,7 @@ func (u *User) GetByEmail(email string) error {
 
 func (u *User) GetFromClaims(claims map[string]interface{}) error {
 	uid := claims["uid"].(string)
-	err := DB.Model(u).Where("id = ?", uid).Select()
+	err := u.GetByID(uid)
 	return err
 }
 
@@ -133,10 +161,7 @@ type Transaction struct {
 func (t *Transaction) Insert() error {
 	t.ID = generateTransactionId()
 	_, err := DB.Model(t).Insert()
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
 }
 
 func (t *Transaction) GetByID(id string) error {
