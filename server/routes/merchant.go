@@ -9,6 +9,7 @@ import (
 	"golang.org/x/net/context"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/oluwafenyi/jumga/server/db"
 	"github.com/oluwafenyi/jumga/server/flutterwave"
@@ -16,9 +17,9 @@ import (
 
 type MerchantValidator struct {
 	db.Store
-	BusinessContact       string `json:"business_contact" validate:"required"`
-	BusinessContactMobile string `json:"business_contact_mobile" validate:"required"`
-	Password              string `json:"password" validate:"required"`
+	BusinessContact       string `json:"business_contact" validate:"required,max=255"`
+	BusinessContactMobile string `json:"business_contact_mobile" validate:"required,max=32"`
+	Password              string `json:"password" validate:"required,min=6"`
 	ConfirmPassword       string `json:"confirm_password" validate:"required,eqfield=Password"`
 }
 
@@ -106,11 +107,12 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 	}
 
 	transaction := db.Transaction{
-		Status:     "processing",
-		CustomerID: merchant.UUID,
-		Type:       "approval",
-		Currency:   "USD",
-		Amount:     "20",
+		Status:        "processing",
+		Customer:      merchant.UUID,
+		Type:          "approval",
+		Currency:      "USD",
+		Amount:        "20",
+		DateInitiated: time.Now(),
 	}
 
 	_ = transaction.Insert()

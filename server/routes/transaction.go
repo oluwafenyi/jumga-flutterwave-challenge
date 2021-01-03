@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 type ValidateTransactionValidator struct {
@@ -116,6 +117,7 @@ func validateTransaction(w http.ResponseWriter, r *http.Request) {
 
 	if status != "successful" {
 		transaction.Status = "failed"
+		transaction.DateResolved = time.Now()
 		_ = transaction.Update()
 		ErrorResponse(http.StatusBadRequest, "transaction unsuccessful", w)
 		return
@@ -134,6 +136,7 @@ func validateTransaction(w http.ResponseWriter, r *http.Request) {
 	}
 
 	transaction.Status = "success"
+	transaction.DateResolved = time.Now()
 	_ = transaction.Update()
 	postSuccessfulTransactionAction(transaction, storeId)
 	SuccessResponse(http.StatusOK, map[string]interface{}{"message": "successful transaction"}, w)
