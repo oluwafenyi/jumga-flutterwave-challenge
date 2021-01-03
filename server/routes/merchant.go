@@ -1,7 +1,6 @@
 package routes
 
 import (
-	"encoding/json"
 	"errors"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
@@ -149,9 +148,9 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 }
 
 func updateDispatchRider(w http.ResponseWriter, r *http.Request) {
-	var input db.DispatchRider
+	input := db.DispatchRider{}
+	err := decodeInput(&input, r)
 
-	err := json.NewDecoder(r.Body).Decode(&input)
 	if err != nil {
 		ErrorResponse(http.StatusUnprocessableEntity, "invalid post data", w)
 		return
