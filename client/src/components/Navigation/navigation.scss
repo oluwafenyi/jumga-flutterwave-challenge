@@ -1,0 +1,57 @@
+.navigation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-family: 'Poppins', sans-serif;
+    padding: 1rem 0.5rem;
+    width: 100%;
+    
+
+    .logo{
+        align-self: center;
+        margin: 0 6.5rem;
+        text-decoration: none;
+
+        h1{
+            font-family: 'Shrikhand', cursive;
+            color:#fff;
+            font-size: 48px;
+            line-height: 73px;
+            text-align: center;
+            padding: 0 0.5rem;
+        }
+    }
+
+    .desktop-menu{
+        display:flex;
+        flex-direction:row;
+        padding: 0.5rem 0.7rem;
+        align-self: center;
+
+        li{
+            margin: 0 1.5rem;
+        }
+
+        .menu-item{
+            padding: 0.4rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 300;
+            font-size: 18px;
+            line-height: 27px;
+            transition: 0.2s;
+
+            &:hover{
+                color: rgba(255, 255, 255, 0.596);
+            }
+        }
+    }
+
+    .mobile-menu-container{
+        display: none;
+    }
+}
+
+ul{
+    list-style-type:none;
+}

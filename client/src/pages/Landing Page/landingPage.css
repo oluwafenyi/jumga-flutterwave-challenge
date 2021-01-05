@@ -1,0 +1,340 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+.landing-page {
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.landing-page .landing-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.74)), to(rgba(0, 0, 0, 0.74))), url("https://res.cloudinary.com/dkow6vfth/image/upload/v1609805142/jumga-images/mock%20images/BojAdpN4n1M_iegwqs.png");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.74)), url("https://res.cloudinary.com/dkow6vfth/image/upload/v1609805142/jumga-images/mock%20images/BojAdpN4n1M_iegwqs.png");
+  background-size: cover;
+  border-radius: 0 0 30px 30px;
+  background-attachment: fixed;
+  width: 100%;
+}
+
+.landing-page .landing-header nav {
+  margin: 0 auto;
+}
+
+.landing-page .landing-header .hero {
+  padding: 3rem 3rem 7rem 3rem;
+  margin: 1rem 2rem;
+}
+
+.landing-page .landing-header .hero-image {
+  display: none;
+  max-width: 300px;
+}
+
+.landing-page .landing-header .hero-image img {
+  width: 100%;
+}
+
+.landing-page .landing-header .hero-text {
+  color: #fff;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 43px;
+  padding: 1rem 1.8rem;
+}
+
+.landing-page .landing-header .hero-text .hero-main-text {
+  width: 100%;
+  max-width: 600px;
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.landing-page .landing-header .hero-text .shop-btn {
+  margin: 0.5rem 0.6rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  color: #000;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 76px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  opacity: 0;
+}
+
+.landing-page .landing-header .hero-text .shop-btn:hover {
+  color: #fff;
+  background-color: #000;
+  border-color: #fff;
+}
+
+.landing-page main {
+  margin: 2rem 1.5rem;
+  padding: 2rem 1rem;
+}
+
+.landing-page .top-offers .top-offers-title {
+  font-weight: 600;
+  font-size: 45px;
+  line-height: 60px;
+}
+
+.landing-page .top-offers .offers-tiles {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(250px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 10px;
+  width: 100%;
+  background: #F2F2F2;
+  border-radius: 36px;
+  padding: 1rem;
+  margin: 0.8rem 0;
+}
+
+.landing-page .top-offers .offer-tile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.landing-page .top-offers .offer-tile .offer-title {
+  color: #fff;
+  font-weight: bold;
+  font-size: 45px;
+  line-height: 80px;
+  color: #FFFFFF;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  text-transform: uppercase;
+}
+
+.landing-page .top-offers .offer-tile .offer-subtitle {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 36px;
+  color: #FFFFFF;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.landing-page .top-offers .tile-1 {
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.34)), to(rgba(0, 0, 0, 0.34))), url("https://res.cloudinary.com/dkow6vfth/image/upload/v1609805147/jumga-images/mock%20images/QHha7JOJYnw_snalmk.png");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.34)), url("https://res.cloudinary.com/dkow6vfth/image/upload/v1609805147/jumga-images/mock%20images/QHha7JOJYnw_snalmk.png");
+  background-size: 100%;
+  -webkit-transition: all 6s;
+  transition: all 6s;
+}
+
+.landing-page .top-offers .tile-1:hover {
+  background-size: 150%;
+  background-position: center;
+}
+
+.landing-page .top-offers .tile-2 {
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.34)), to(rgba(0, 0, 0, 0.34))), url("https://res.cloudinary.com/dkow6vfth/image/upload/v1609805153/jumga-images/mock%20images/TpXoTb1uR5A_vv46mz.png");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.34)), url("https://res.cloudinary.com/dkow6vfth/image/upload/v1609805153/jumga-images/mock%20images/TpXoTb1uR5A_vv46mz.png");
+  background-size: 100%;
+  -webkit-transition: all 6s;
+  transition: all 6s;
+}
+
+.landing-page .top-offers .tile-2:hover {
+  background-size: 150%;
+  background-position: center;
+}
+
+.landing-page .top-offers .tile-3 {
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.34)), to(rgba(0, 0, 0, 0.34))), url("https://res.cloudinary.com/dkow6vfth/image/upload/v1609805154/jumga-images/mock%20images/s285sDw5Ikc_j3m4uf.png");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.34)), url("https://res.cloudinary.com/dkow6vfth/image/upload/v1609805154/jumga-images/mock%20images/s285sDw5Ikc_j3m4uf.png");
+  background-size: 100%;
+  -webkit-transition: all 6s;
+  transition: all 6s;
+}
+
+.landing-page .top-offers .tile-3:hover {
+  background-size: 150%;
+  background-position: center;
+}
+
+.landing-page .top-offers .tile-4 {
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.34)), to(rgba(0, 0, 0, 0.34))), url("https://res.cloudinary.com/dkow6vfth/image/upload/v1609805151/jumga-images/mock%20images/nUL_PP69IPA_cdrk8f.png");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.34)), url("https://res.cloudinary.com/dkow6vfth/image/upload/v1609805151/jumga-images/mock%20images/nUL_PP69IPA_cdrk8f.png");
+  background-size: 100%;
+  -webkit-transition: all 6s;
+  transition: all 6s;
+}
+
+.landing-page .top-offers .tile-4:hover {
+  background-size: 150%;
+  background-position: center;
+}
+
+.landing-page .top-offers .tile-5 {
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.34)), to(rgba(0, 0, 0, 0.34))), url("https://res.cloudinary.com/dkow6vfth/image/upload/v1609805154/jumga-images/mock%20images/ugZxwLQuZec_fomnjo.png");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.34)), url("https://res.cloudinary.com/dkow6vfth/image/upload/v1609805154/jumga-images/mock%20images/ugZxwLQuZec_fomnjo.png");
+  background-size: 100%;
+  -webkit-transition: all 6s;
+  transition: all 6s;
+}
+
+.landing-page .top-offers .tile-5:hover {
+  background-size: 150%;
+  background-position: center;
+}
+
+.landing-page .top-offers .tile-6 {
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.34)), to(rgba(0, 0, 0, 0.34))), url("https://res.cloudinary.com/dkow6vfth/image/upload/v1609805151/jumga-images/mock%20images/EU-xyudgHPc_jnhzpy.png");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.34)), url("https://res.cloudinary.com/dkow6vfth/image/upload/v1609805151/jumga-images/mock%20images/EU-xyudgHPc_jnhzpy.png");
+  background-size: 100%;
+  -webkit-transition: all 6s;
+  transition: all 6s;
+}
+
+.landing-page .top-offers .tile-6:hover {
+  background-size: 150%;
+  background-position: center;
+}
+
+.landing-page .top-offers .tile-6 .offer-title {
+  max-width: 380px;
+  font-size: 35px;
+  line-height: 80px;
+}
+
+.landing-page .homepage-categories {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1rem;
+  margin: 2rem 0;
+}
+
+.landing-page .homepage-categories .homepage-categories-title {
+  font-weight: 600;
+  font-size: 45px;
+  line-height: 60px;
+  color: #000000;
+}
+
+.landing-page .homepage-categories .categories-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 1rem 2rem;
+}
+
+.landing-page .homepage-categories .category {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 2rem 0;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.landing-page .homepage-categories .category:nth-child(even) {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+.landing-page .homepage-categories .category:nth-child(odd) {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.landing-page .homepage-categories .category .category-img {
+  max-width: 550px;
+  max-height: 400px;
+  border-radius: 30px;
+  border: 2px solid #000;
+}
+
+.landing-page .homepage-categories .category .category-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.landing-page .homepage-categories .category .category-details {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin: 0 5%;
+}
+
+.landing-page .homepage-categories .category .category-details .category-title {
+  font-weight: normal;
+  font-size: 38px;
+  line-height: 30px;
+}
+
+.landing-page .homepage-categories .category .category-details .category-description {
+  font-weight: lighter;
+  font-size: 18px;
+  line-height: 30px;
+  margin: 2rem 0;
+  max-width: 450px;
+}
+
+.landing-page .homepage-categories .category .category-details .shop-btn {
+  margin: 0.5rem 0;
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  color: #000;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 76px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.landing-page .homepage-categories .category .category-details .shop-btn:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+.landing-page .other-categories-text {
+  margin: 4rem 2rem;
+}
+
+.landing-page .other-categories-text .other-categories-link {
+  color: #000;
+  text-decoration: none;
+  padding: 0.15rem;
+  border: none;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.landing-page .other-categories-text .other-categories-link:hover {
+  border-bottom: 1px solid #000;
+}
