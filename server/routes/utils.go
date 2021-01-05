@@ -16,6 +16,11 @@ type BankDetailsGetter interface {
 	GetAccountNumber() string
 }
 
+type ProductContext struct {
+	product  *db.Product
+	merchant *db.User
+}
+
 func BankDetailsStructLevelValidation(sl validator.StructLevel) {
 	v := sl.Current().Interface().(BankDetailsGetter)
 	bank := v.GetAccountBank()

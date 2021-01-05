@@ -43,7 +43,7 @@ func GeneralRoutes() http.Handler {
 	r.Use(middleware.GetHead)
 
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		SuccessResponse(http.StatusOK, map[string]interface{}{"message": "OK!"}, w)
+		SuccessResponse(http.StatusOK, map[string]interface{}{"message": "pong!"}, w)
 	})
 
 	//r.Post("/transaction-webhook", handleWebHook)

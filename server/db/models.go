@@ -47,8 +47,8 @@ func (d DispatchRider) GetAccountNumber() string {
 type Store struct {
 	tableName            struct{}       `pg:"stores"`
 	ID                   int64          `json:"-"`
-	SubAccountID         string         `pg:"sub_account_id,type:varchar(255)" json:"sub_account_id"`
-	FlutterwaveAccountID int32          `pg:"flutterwave_account_id" json:"flutterwave_account_id"`
+	SubAccountID         string         `pg:"sub_account_id,type:varchar(255)" json:"sub_account_id,omitempty"`
+	FlutterwaveAccountID int32          `pg:"flutterwave_account_id" json:"flutterwave_account_id,omitempty"`
 	Rating               float32        `pg:"rating" json:"rating"`
 	BusinessName         string         `pg:"business_name,type:varchar(255)" json:"business_name" validate:"required,max=255"`
 	BusinessMobile       string         `pg:"business_mobile,type:varchar(32)" json:"business_mobile" validate:"required,max=32"`
@@ -57,6 +57,8 @@ type Store struct {
 	AccountBank          string         `pg:"account_bank,type:varchar(8)" json:"account_bank" validate:"required,max=3"`
 	AccountNumber        string         `pg:"account_number,type:varchar(32)" json:"account_number" validate:"required,max=32"`
 	Country              string         `pg:"country,type:varchar(4)" json:"country" validate:"required,max=2"`
+	LogoID               int64          `json:"-"`
+	Logo                 *Image         `pg:"rel:has-one" json:"logo"`
 	DispatchRiderID      int64          `json:"-"`
 	DispatchRider        *DispatchRider `pg:"rel:has-one" json:"dispatch_rider,omitempty"`
 }
@@ -95,6 +97,7 @@ type User struct {
 	Store       *Store   `pg:"rel:has-one" json:"store"`
 	Name        string   `pg:"name" json:"name" validate:"required"`
 	Country     string   `pg:"country,type:varchar(4)" json:"country" validate:"required,max=4"`
+	Address     string   `validate:"required"`
 	Mobile      string   `pg:"mobile,type:varchar(32)" json:"mobile"`
 	Password    []byte   `pg:"password" json:"-"`
 }
@@ -147,18 +150,20 @@ func (u *User) CheckPassword(pwd string) bool {
 }
 
 type Transaction struct {
-	tableName struct{} `pg:"transactions"`
-	ID        string   `pg:"id,pk"`
-	Status    string   `pg:"status,type:varchar(16)"`
-	Type      string   `pg:"type,type:varchar(16)"`
-	//Order
-	Customer      string `pg:"customer,type:varchar(255)"`
+	tableName     struct{} `pg:"transactions"`
+	ID            string   `pg:"id,pk"`
+	Status        string   `pg:"status,type:varchar(16)"`
+	Type          string   `pg:"type,type:varchar(16)"`
+	CustomerID    string
+	Customer      *User  `pg:"rel:has-one"`
 	Currency      string `pg:"currency,type:varchar(8)"`
 	Amount        string `pg:"amount"`
 	StoreID       int64
 	Store         *Store    `pg:"rel:has-one"`
 	DateInitiated time.Time `pg:"date_initiated"`
 	DateResolved  time.Time `pg:"date_resolved"`
+	OrderID       int64
+	Order         *Order `pg:"rel:has-one"`
 }
 
 func (t *Transaction) Insert() error {
@@ -175,4 +180,113 @@ func (t *Transaction) GetByID(id string) error {
 func (t *Transaction) Update() error {
 	_, err := DB.Model(t).WherePK().Update()
 	return err
+}
+
+//type ProductReview struct {
+//
+//}
+
+// create at startup
+type ProductCategory struct {
+	ID   int32  `json:"id"`
+	Name string `pg:",type:varchar(255)" json:"name"`
+	Slug string `pg:",unique,type:varchar(16)" json:"slug"`
+}
+
+func (p ProductCategory) String() string {
+	return fmt.Sprintf("<Product Category %s>", p.Slug)
+}
+
+func (p *ProductCategory) GetBySlug(slug string) error {
+	err := DB.Model(p).Where("slug = ?", slug).Select()
+	return err
+}
+
+func (p *ProductCategory) Insert() error {
+	check := new(ProductCategory)
+	_ = check.GetBySlug(p.Slug)
+
+	if check.ID == 0 {
+		_, err := DB.Model(p).Insert()
+		return err
+	}
+	return nil
+}
+
+type Image struct {
+	ID   int64  `json:"id"`
+	Link string `pg:",type:varchar(320)" json:"link" validate:"required"`
+}
+
+func (i *Image) String() string {
+	return fmt.Sprintf("<Image %d>", i.ID)
+}
+
+func (i *Image) Insert() error {
+	_, err := DB.Model(i).Insert()
+	return err
+}
+
+func (i *Image) Update() error {
+	_, err := DB.Model(i).WherePK().Update()
+	return err
+}
+
+type Product struct {
+	tableName      struct{}         `pg:"products"`
+	ID             int64            `json:"id"`
+	Title          string           `pg:",type:varchar(255)" validate:"required,max=255" json:"title"`
+	Stock          int32            `json:"stock" validate:"required"`
+	Description    string           `json:"description" validate:"required"`
+	Price          float64          `json:"price" validate:"required"`
+	DeliveryFee    float64          `json:"delivery_fee" validate:"required"`
+	DisplayImageID int64            `json:"-"`
+	DisplayImage   *Image           `pg:"rel:has-one" json:"display_image"`
+	Rating         float32          `json:"rating"`
+	CategoryID     int32            `json:"-"`
+	Category       *ProductCategory `pg:"rel:has-one" json:"category"`
+	StoreID        int64            `json:"-"`
+	Store          *Store           `pg:"rel:has-one" json:"store"`
+}
+
+func (p *Product) String() string {
+	return fmt.Sprintf("<Product %d>", p.ID)
+}
+
+func (p *Product) GetAll() ([]Product, error) {
+	products := make([]Product, 0)
+	err := DB.Model(&products).Select()
+	return products, err
+}
+
+func (p *Product) GetByID(id int64) error {
+	err := DB.Model(p).Relation("Category").Relation("DisplayImage").Relation("Store").Where("\"product\".\"id\" = ?", id).Select()
+	return err
+}
+
+func (p *Product) Insert() error {
+	_, err := DB.Model(p).Insert()
+	return err
+}
+
+func (p *Product) Update() error {
+	_, err := DB.Model(p).WherePK().Update()
+	return err
+}
+
+func (p *Product) Delete() error {
+	_, err := DB.Model(p).WherePK().Delete()
+	return err
+}
+
+type Order struct {
+	ID               int64
+	ProductID        int64
+	Product          *Product `pg:"rel:has-one"`
+	Status           string
+	DeliveryLocation string
+}
+
+func (o *Order) String() string {
+	return fmt.Sprintf("<Order %d>", o.ID)
 }

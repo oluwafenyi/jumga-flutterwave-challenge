@@ -12,11 +12,6 @@ import (
 	"time"
 )
 
-type ValidateTransactionValidator struct {
-	TxRef         string `json:"tx_ref" validate:"required"`
-	TransactionId string `json:"transaction_id" validate:"required"`
-}
-
 func postApprovalTransaction(storeId int64) {
 	store := &db.Store{}
 	_ = store.GetByID(storeId)

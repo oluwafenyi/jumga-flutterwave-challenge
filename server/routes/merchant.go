@@ -15,14 +15,6 @@ import (
 	"github.com/oluwafenyi/jumga/server/flutterwave"
 )
 
-type MerchantValidator struct {
-	db.Store
-	BusinessContact       string `json:"business_contact" validate:"required,max=255"`
-	BusinessContactMobile string `json:"business_contact_mobile" validate:"required,max=32"`
-	Password              string `json:"password" validate:"required,min=6"`
-	ConfirmPassword       string `json:"confirm_password" validate:"required,eqfield=Password"`
-}
-
 func (m MerchantValidator) GetAccountBank() string {
 	return m.AccountBank
 }
@@ -108,7 +100,7 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 
 	transaction := db.Transaction{
 		Status:        "processing",
-		Customer:      merchant.UUID,
+		CustomerID:    merchant.UUID,
 		Type:          "approval",
 		Currency:      "USD",
 		Amount:        "20",
@@ -203,6 +195,37 @@ func updateDispatchRider(w http.ResponseWriter, r *http.Request) {
 	SuccessResponse(http.StatusOK, map[string]interface{}{"data": input}, w)
 }
 
+func updateMerchantLogo(w http.ResponseWriter, r *http.Request) {
+	var input db.Image
+	err := decodeInput(&input, r)
+
+	if err != nil {
+		ErrorResponse(http.StatusUnprocessableEntity, "invalid post data", w)
+		return
+	}
+	if ok, errs := validateInput(input); !ok {
+		ValidationErrorResponse(errs, w)
+		return
+	}
+
+	ctx := r.Context()
+	merchant, ok := ctx.Value("merchant").(*db.User)
+	if !ok {
+		ErrorResponse(http.StatusUnprocessableEntity, "cannot process request", w)
+		return
+	}
+	store := merchant.Store
+	if store.Logo == nil {
+		_ = input.Insert()
+		store.LogoID = input.ID
+		_ = store.Update()
+	} else {
+		store.Logo.Link = input.Link
+		_ = store.Logo.Update()
+	}
+	SuccessResponse(http.StatusOK, map[string]interface{}{"message": "logo updated"}, w)
+}
+
 func MerchantRoutes() http.Handler {
 	r := chi.NewRouter()
 	r.Use(middleware.GetHead)
@@ -216,6 +239,7 @@ func MerchantRoutes() http.Handler {
 
 			r.Post("/process-approval", processApproval)
 			r.Put("/dispatch", updateDispatchRider)
+			r.Put("/logo", updateMerchantLogo)
 		})
 	})
 	return r

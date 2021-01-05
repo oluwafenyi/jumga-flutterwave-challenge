@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Electronics",
+    "slug": "electronics"
+  },
+  {
+    "id": 2,
+    "name": "Fashion",
+    "slug": "fashion"
+  },
+  {
+    "id": 3,
+    "name": "Food Stuff",
+    "slug": "foodstuff"
+  },
+  {
+    "id": 4,
+    "name": "Cosmetics",
+    "slug": "cosmetics"
+  },
+  {
+    "id": 5,
+    "name": "Sports & Fitness",
+    "slug": "fitfam"
+  }
+]

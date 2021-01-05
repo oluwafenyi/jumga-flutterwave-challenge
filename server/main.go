@@ -20,6 +20,7 @@ func main() {
 	routes.Router.Mount("/v1/user", routes.UserRoutes())
 	routes.Router.Mount("/v1/merchant", routes.MerchantRoutes())
 	routes.Router.Mount("/v1/transaction", routes.TransactionRoutes())
+	routes.Router.Mount("/v1/product", routes.ProductRoutes())
 
 	log.Printf("server listening on port %s\n", globals.Port)
 	err := http.ListenAndServe(globals.Port, routes.Router)
