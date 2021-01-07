@@ -15,14 +15,6 @@ import (
 	"github.com/oluwafenyi/jumga/server/flutterwave"
 )
 
-func (m MerchantValidator) GetAccountBank() string {
-	return m.AccountBank
-}
-
-func (m MerchantValidator) GetAccountNumber() string {
-	return m.AccountNumber
-}
-
 func createMerchantUser(m MerchantValidator) (*db.User, error) {
 	exists := db.User{}
 	_ = exists.GetByEmail(m.BusinessEmail)
@@ -38,6 +30,7 @@ func createMerchantUser(m MerchantValidator) (*db.User, error) {
 		Name:        m.BusinessContact,
 		Country:     m.Country,
 		Mobile:      m.BusinessContactMobile,
+		Address:     m.Address,
 		Store: &db.Store{
 			Rating:         0.,
 			BusinessMobile: m.BusinessMobile,

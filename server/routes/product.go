@@ -37,8 +37,12 @@ func createProduct(w http.ResponseWriter, r *http.Request) {
 	}
 
 	store := merchant.Store
+	if store.DispatchRiderID == 0 {
+		ErrorResponse(http.StatusForbidden, "store must assign a dispatch ride before listing products", w)
+		return
+	}
 
-	category := &db.ProductCategory{}
+	category := db.ProductCategory{}
 	_ = category.GetBySlug(input.Category)
 
 	product := &db.Product{
@@ -46,12 +50,12 @@ func createProduct(w http.ResponseWriter, r *http.Request) {
 		Stock:       input.Stock,
 		Description: input.Description,
 		Price:       input.Price,
+		Discount:    input.Discount,
 		DeliveryFee: input.DeliveryFee,
-		Category:    category,
+		CategoryID:  category.ID,
 		StoreID:     store.ID,
 	}
 
-	log.Println("id", product.CategoryID)
 	_ = product.Insert()
 	SuccessResponse(http.StatusCreated, map[string]interface{}{"data": product}, w)
 }

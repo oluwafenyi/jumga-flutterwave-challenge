@@ -28,6 +28,7 @@ func init() {
 
 	validate = validator.New()
 	_ = validate.RegisterValidation("login-email", ValidateLoginEmail)
+	_ = validate.RegisterValidation("product-exists", ValidateProductExists)
 	validate.RegisterStructValidation(BankDetailsStructLevelValidation, MerchantValidator{})
 	validate.RegisterStructValidation(BankDetailsStructLevelValidation, db.DispatchRider{})
 

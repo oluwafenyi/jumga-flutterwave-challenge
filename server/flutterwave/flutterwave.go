@@ -36,6 +36,13 @@ type Customizations struct {
 	Logo        string `json:"logo"`
 }
 
+type SubAccountForm struct {
+	ID                    string `json:"id"`
+	TransactionSplitRatio int32  `json:"transaction_split_ratio,omitempty"`
+	TransactionChargeType string `json:"transaction_charge_type,omitempty"`
+	TransactionCharge     string `json:"transaction_charge,omitempty"`
+}
+
 type PaymentInitiationForm struct {
 	Reference      string            `json:"tx_ref"`
 	Amount         string            `json:"amount"`
@@ -45,6 +52,7 @@ type PaymentInitiationForm struct {
 	Meta           map[string]string `json:"meta"`
 	Customer       `json:"customer"`
 	Customizations `json:"customizations"`
+	SubAccounts    []SubAccountForm `json:"subaccounts,omitempty"`
 }
 
 func Request(method string, path string, body io.Reader) (*http.Response, error) {

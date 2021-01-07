@@ -1,6 +1,7 @@
 package db
 
 import (
+	"errors"
 	"fmt"
 	"github.com/google/uuid"
 	"log"
@@ -11,19 +12,28 @@ import (
 
 type DispatchRider struct {
 	tableName            struct{} `pg:"dispatchriders"`
-	ID                   int64
-	SubAccountID         string `pg:"sub_account_id,type:varchar(255)" json:"sub_account_id"`
-	FlutterwaveAccountID int32  `pg:"flutterwave_account_id" json:"flutterwave_account_id"`
-	Name                 string `pg:"name,type:varchar(255)" json:"name" validate:"required"`
-	Mobile               string `pg:"mobile,type:varchar(32)" json:"mobile" validate:"required"`
-	Email                string `pg:"email,type:varchar(320)" json:"email" validate:"required"`
-	AccountBank          string `pg:"account_bank,type:varchar(8)" json:"account_bank" validate:"required,max=3"`
-	AccountNumber        string `pg:"account_number,type:varchar(32)" json:"account_number" validate:"required,max=32"`
-	Country              string `pg:"country,type:varchar(4)" json:"country" validate:"required,max=2"`
+	ID                   int64    `json:"id"`
+	SubAccountID         string   `pg:"sub_account_id,type:varchar(255)" json:"sub_account_id"`
+	FlutterwaveAccountID int32    `pg:"flutterwave_account_id" json:"flutterwave_account_id"`
+	Name                 string   `pg:"name,type:varchar(255)" json:"name" validate:"required"`
+	Mobile               string   `pg:"mobile,type:varchar(32)" json:"mobile" validate:"required"`
+	Email                string   `pg:"email,type:varchar(320)" json:"email" validate:"required"`
+	AccountBank          string   `pg:"account_bank,type:varchar(8)" json:"account_bank" validate:"required,max=3"`
+	AccountNumber        string   `pg:"account_number,type:varchar(32)" json:"account_number" validate:"required,max=32"`
+	Country              string   `pg:"country,type:varchar(4)" json:"country" validate:"required,max=2"`
 }
 
 func (d DispatchRider) String() string {
 	return fmt.Sprintf("<Dispatch Rider %d>", d.ID)
+}
+
+func GetRiderByStoreID(id int64) (*DispatchRider, error) {
+	store := new(Store)
+	err := store.GetByID(id)
+	if store.ID == 0 {
+		return nil, errors.New("no store with that id found")
+	}
+	return store.DispatchRider, err
 }
 
 func (d *DispatchRider) Insert() error {
@@ -73,7 +83,7 @@ func (s *Store) Insert() error {
 }
 
 func (s *Store) GetByID(id int64) error {
-	err := DB.Model(s).Where("id = ?", id).Select()
+	err := DB.Model(s).Relation("DispatchRider").Where("\"store\".\"id\" = ?", id).Select()
 	return err
 }
 
@@ -92,13 +102,13 @@ type User struct {
 	tableName   struct{} `pg:"users"`
 	UUID        string   `pg:"id,pk" json:"uuid"`
 	Email       string   `pg:"email,unique,type:varchar(320)" json:"email" validate:"required,email,max=320"`
-	AccountType string   `pg:"account_type,type:varchar(16)" json:"account_type" validate:"oneof=merchant user"`
+	AccountType string   `pg:"account_type,type:varchar(16)" json:"account_type" validate:"oneof=merchant user,required"`
 	StoreID     int64    `json:"-"`
 	Store       *Store   `pg:"rel:has-one" json:"store"`
 	Name        string   `pg:"name" json:"name" validate:"required"`
 	Country     string   `pg:"country,type:varchar(4)" json:"country" validate:"required,max=4"`
-	Address     string   `validate:"required"`
-	Mobile      string   `pg:"mobile,type:varchar(32)" json:"mobile"`
+	Address     string   `pg:",type:varchar(500)" json:"address" validate:"required"`
+	Mobile      string   `pg:"mobile,type:varchar(32)" json:"mobile" validate:"required"`
 	Password    []byte   `pg:"password" json:"-"`
 }
 
@@ -111,12 +121,9 @@ func (u *User) Insert() error {
 	if u.Store != nil {
 		_ = u.Store.Insert()
 		u.StoreID = u.Store.ID
-		_, err := DB.Model(u).Insert()
-		return err
-	} else {
-		_, err := DB.Model(u).Insert()
-		return err
 	}
+	_, err := DB.Model(u).Insert()
+	return err
 }
 
 func (u *User) GetByID(uid string) error {
@@ -168,12 +175,16 @@ type Transaction struct {
 
 func (t *Transaction) Insert() error {
 	t.ID = generateTransactionId()
+	if t.Order != nil {
+		_ = t.Order.Insert()
+		t.OrderID = t.Order.ID
+	}
 	_, err := DB.Model(t).Insert()
 	return err
 }
 
 func (t *Transaction) GetByID(id string) error {
-	err := DB.Model(t).Where("id = ?", id).Select()
+	err := DB.Model(t).Relation("Order").Where("\"transaction\".\"id\" = ?", id).Select()
 	return err
 }
 
@@ -239,6 +250,7 @@ type Product struct {
 	Stock          int32            `json:"stock" validate:"required"`
 	Description    string           `json:"description" validate:"required"`
 	Price          float64          `json:"price" validate:"required"`
+	Discount       float32          `pg:"default:0" json:"discount_percentage" validate:"lte=100.0,gte=0"`
 	DeliveryFee    float64          `json:"delivery_fee" validate:"required"`
 	DisplayImageID int64            `json:"-"`
 	DisplayImage   *Image           `pg:"rel:has-one" json:"display_image"`
@@ -281,12 +293,23 @@ func (p *Product) Delete() error {
 
 type Order struct {
 	ID               int64
-	ProductID        int64
+	ProductID        int64    `json:"-"`
 	Product          *Product `pg:"rel:has-one"`
-	Status           string
-	DeliveryLocation string
+	Status           string   `json:"status"`
+	DeliveryLocation string   `json:"delivery_location"`
+	DeliveryMobile   string   `json:"delivery_mobile"`
 }
 
-func (o *Order) String() string {
+func (o Order) String() string {
 	return fmt.Sprintf("<Order %d>", o.ID)
+}
+
+func (o *Order) Insert() error {
+	_, err := DB.Model(o).Insert()
+	return err
+}
+
+func (o *Order) Update() error {
+	_, err := DB.Model(o).WherePK().Update()
+	return err
 }
