@@ -70,3 +70,85 @@
 ul {
   list-style-type: none;
 }
+
+.alt-navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  font-family: 'Poppins', sans-serif;
+  padding: 0.7rem 0.5rem;
+  width: 100%;
+}
+
+.alt-navigation .desktop-menu-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.alt-navigation .desktop-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.alt-navigation .desktop-menu li {
+  margin: 0 1.5rem;
+  cursor: pointer;
+}
+
+.alt-navigation .desktop-menu .menu-item {
+  padding: 0.4rem;
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  margin: 0 2rem;
+}
+
+.alt-navigation .desktop-menu .menu-item:hover {
+  color: rgba(0, 0, 0, 0.596);
+}
+
+.alt-navigation .logo {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin: 0 6.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.alt-navigation .logo h1 {
+  font-family: 'Shrikhand', cursive;
+  color: #000;
+  font-size: 48px;
+  line-height: 73px;
+  text-align: center;
+  padding: 0 0.5rem;
+}

@@ -1,1 +1,227 @@
-/* No CSS */
+.merchant-sign-up {
+  font-family: 'Poppins', sans-serif;
+}
+
+.merchant-sign-up main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1rem;
+  margin: 1.5rem 0 5rem 0;
+}
+
+.merchant-sign-up .merchant-sign-up-title {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 36px;
+  margin: 0 10%;
+}
+
+.merchant-sign-up .merchant-sign-up-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 1rem;
+  margin: 0.8rem 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.merchant-sign-up .merchant-sign-up-form .form-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.merchant-sign-up .merchant-sign-up-form .form-details .business-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.merchant-sign-up .merchant-sign-up-form .form-input {
+  background: #FFFFFF;
+  border: 1px solid #00000036;
+  border-radius: 36px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 36px;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  max-width: 400px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.merchant-sign-up .merchant-sign-up-form .form-input:hover {
+  border: 1px solid #000000;
+}
+
+.merchant-sign-up .merchant-sign-up-form .form-input:focus {
+  outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+  border: 1px solid #000000;
+}
+
+.merchant-sign-up .merchant-sign-up-form .form-input-select {
+  background: #FFFFFF;
+  border: 1px solid #00000036;
+  border-radius: 36px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 36px;
+  padding: 0.6rem 0.8rem;
+  margin: 1rem 0;
+  max-width: 400px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.merchant-sign-up .merchant-sign-up-form .form-input-select:hover {
+  border: 1px solid #000000;
+}
+
+.merchant-sign-up .merchant-sign-up-form .form-input-select:focus {
+  outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+  border: 1px solid #000000;
+}
+
+.merchant-sign-up .merchant-sign-up-form .account {
+  padding: 0.5rem 0.3rem;
+  max-width: 450px;
+}
+
+.merchant-sign-up .merchant-sign-up-form .account .account-title {
+  padding: 0.2rem;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 36px;
+}
+
+.merchant-sign-up .merchant-sign-up-form .account .account-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: #F0F0F0;
+  border-radius: 36px;
+  padding: 0.6rem;
+  margin: 0.7rem 0;
+}
+
+.merchant-sign-up .merchant-sign-up-form .account .account-details .form-input {
+  max-width: 400px;
+  margin: 0.6rem 1rem;
+}
+
+.merchant-sign-up .merchant-sign-up-form .account .account-info {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.merchant-sign-up .merchant-sign-up-form .account .account-info span {
+  color: #ff0000;
+}
+
+.merchant-sign-up .merchant-sign-up-form .register-btn {
+  background: #56903B;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 36px;
+  border: none;
+  padding: 1rem 1.1rem;
+  max-width: 250px;
+  font-size: 20px;
+  color: #fff;
+  margin: 1.5rem 0;
+  font-style: normal;
+  font-weight: 300;
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.merchant-sign-up .merchant-sign-up-form .register-btn:hover {
+  background: #3c632a;
+}
+
+.merchant-sign-up .merchant-sign-up-form .merchant-login-link {
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.merchant-sign-up .merchant-sign-up-form .merchant-login-link span {
+  padding: 0 0.2rem;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.merchant-sign-up .merchant-sign-up-form .merchant-login-link span:hover {
+  border-bottom: 1px solid #000;
+}
+
+.merchant-sign-up .merchant-sign-up-form .merchant-login-link span a {
+  font-weight: 500;
+  color: #000000;
+  text-decoration: none;
+}
+
+.merchant-sign-up .merchant-sign-up-form .business-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  max-width: 300px;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  padding: 0.5rem;
+  border-radius: 30px;
+  border: 1px solid #00000036;
+}
+
+.merchant-sign-up .merchant-sign-up-form .business-logo:hover {
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.219);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.219);
+}
+
+.merchant-sign-up .merchant-sign-up-form .business-logo .business-logo-img {
+  width: 100%;
+  cursor: pointer;
+}
+
+.merchant-sign-up .merchant-sign-up-form .business-logo p {
+  text-align: center;
+}
+
+.merchant-sign-up .merchant-sign-up-form .business-logo input {
+  opacity: 0;
+}

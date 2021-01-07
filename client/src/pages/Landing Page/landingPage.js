@@ -3,6 +3,7 @@ import { TweenMax, Power3 } from 'gsap';
 import {Link} from 'react-router-dom';
 import Navigation from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
+import Arrow from '../../assets/Arrow.svg';
 import './landingPage.css';
 
 function LandingPage() {
@@ -10,8 +11,8 @@ function LandingPage() {
     let heroBtn = useRef(null);
 
     useEffect(()=>{
-        TweenMax.to(hero, 3,{opacity:1, x:+20, ease:Power3.easeOut});
-        TweenMax.to(heroBtn,3,{opacity:1, y:-5 ,ease:Power3.easeOut,delay:.2});
+        TweenMax.to(hero, .7,{opacity:1, x:+20, ease:Power3.easeOut});
+        TweenMax.to(heroBtn,.7,{opacity:1, y:-5 ,ease:Power3.easeOut,delay:.7});
     },[])
 
 
@@ -61,6 +62,9 @@ function LandingPage() {
                         <div className="offer-tile tile-6">
                             <h3 className="offer-title">Buy one, get one free</h3>
                         </div>
+                        <div className="offer-tile tile-6">
+                            <h3 className="offer-title">Buy one, get one free</h3>
+                        </div>
                     </div>
                 </section>
                 <section className="homepage-categories">
@@ -101,7 +105,12 @@ function LandingPage() {
                             </div>
                         </div>
                     </div>
-                    <h4 className="other-categories-text">Want to check out other products? <Link to="/" className="other-categories-link">Click here</Link></h4>
+                    <Link to="/products" className="products-homepage-link">
+                       <p>Check out other products</p>
+                        <div className="arrow">
+                            <img className="other-products-arrow" src={Arrow} alt="arrow" />
+                        </div> 
+                    </Link>
                 </section>
             </main>
             <Footer/>

@@ -12,13 +12,13 @@ function Navigation() {
                 <div className="bar bar-3"></div>
             </div>
             <ul className="desktop-menu">
-                <li><Link className="menu-item">Home</Link></li>
+                <li><Link className="menu-item" to="/">Home</Link></li>
                 <li><Link className="menu-item">All Products</Link></li>
                 <li><Link className="menu-item">Stores</Link></li>
                 <li><Link className="menu-item">Login</Link></li>
             </ul>
             <Link to="/" className="logo">
-                <h1>jugma.</h1>
+                <h1>jumga.</h1>
             </Link>
             <Search/>
             <div className="mobile-menu-container">
@@ -27,11 +27,11 @@ function Navigation() {
                     <div className="bar bar-2"></div>
                 </div>
                 <div className="logo">
-                    <h1>jugma.</h1>
+                    <h1>jumga.</h1>
                 </div>
                 
                 <ul className="mobile-menu">
-                    <li><Link className="menu-item">Home</Link></li>
+                    <li><Link className="menu-item" to="/">Home</Link></li>
                     <li><Link className="menu-item">All Products</Link></li>
                     <li><Link className="menu-item">Stores</Link></li>
                     <li><Link className="menu-item">Login</Link></li>
@@ -41,7 +41,7 @@ function Navigation() {
     )
 }
 
-export function altNavigation() {
+export function AltNavigation() {
     
     return(
         <div className="alt-navigation">
@@ -52,15 +52,15 @@ export function altNavigation() {
                     <div className="bar bar-3"></div>
                 </div>
                 <ul className="desktop-menu">
-                    <li className="menu-item">Home</li>
-                    <li className="menu-item">All Products</li>
+                    <li><Link to="/" className="menu-item">Home</Link></li>
+                    <li><Link className="menu-item">All Products</Link> </li>
                 </ul>
-                <div className="logo">
-                    <h1>jugma.</h1>
-                </div>
+                <Link to="/" className="logo">
+                    <h1>jumga.</h1>
+                </Link>
                 <ul className="desktop-menu">
-                    <li className="menu-item">Stores</li>
-                    <li className="menu-item">Become a merchant</li>
+                    <li><Link className="menu-item">Stores</Link></li>
+                    <li><Link className="menu-item">Become a merchant</Link></li>
                 </ul>
             </div>
         </div>

@@ -1,0 +1,113 @@
+.merchant-login-page{
+    font-family: 'Poppins', sans-serif;
+
+    main{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1rem;
+        margin: 3rem 0 3rem 0;
+    }
+
+    .merchant-login-img{
+        max-width: 490px;
+
+        img{
+            width: 100%;
+            padding: 0.4rem;
+            margin: 0.4rem;
+        }
+    }
+
+    .merchant-login{
+
+        .merchant-login-header{
+            padding: 1rem;
+
+            .merchant-login-title{
+                font-style: normal;
+                font-weight: 500;
+                font-size: 40px;
+                line-height: 62px;
+            }
+
+            .merchant-login-subtitle{
+                font-style: normal;
+                font-weight: 300;
+                font-size: 18px;
+                line-height: 50px;
+            }
+        }
+        
+
+        .merchant-login-form{
+            display: flex;
+            flex-direction:column ;
+            .form-input{
+                background: #FFFFFF;
+                border: 1px solid #00000036;
+                border-radius: 36px;
+                font-weight:400;
+                font-size: 18px;
+                line-height: 36px;
+                padding: 0.5rem 1rem;
+                margin: 1rem 0;
+                max-width: 400px;
+                transition: 0.2s;
+    
+                &:hover{
+                    border: 1px solid #000000;
+                }
+    
+                &:focus{
+                    outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+                    border: 1px solid #000000;
+                }
+            }
+
+            .login-btn{
+                background: #56903B;
+                font-family: 'Poppins', sans-serif;
+                border-radius: 36px;
+                border: none;
+                padding: 0.7rem ;
+                max-width: 250px;
+                font-size: 22px;
+                color: #fff;
+                margin: 1rem 0;
+                font-style: normal;
+                font-weight: 300;
+                cursor: pointer;
+                transition: 0.2s;
+    
+                &:hover{
+                    background: #3c632a;
+                }
+                
+            }
+    
+        }
+    }
+
+    .merchant-signup-link{
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 27px;
+        margin: 1rem 0;
+        span{
+            padding: 0 0.2rem;
+            transition: 0.3s;
+        
+            &:hover{
+                border-bottom: 1px solid #000;
+            }
+
+            a{
+                font-weight: 500;
+                color: #000000;
+                text-decoration: none;
+            }
+        }
+    }
+    
+}

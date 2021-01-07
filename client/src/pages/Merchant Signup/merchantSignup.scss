@@ -1,0 +1,186 @@
+.merchant-sign-up{
+    font-family: 'Poppins', sans-serif;
+
+    main{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        margin: 1.5rem 0 5rem 0;
+    }
+
+    .merchant-sign-up-title{
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 36px;
+        margin: 0 10%;
+    }
+
+    .merchant-sign-up-form{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1rem;
+        margin: 0.8rem 0;
+        font-family: 'Poppins', sans-serif;
+
+        .form-details{
+            display: flex;
+            flex-direction: column;
+            .business-details{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        .form-input{
+            background: #FFFFFF;
+            border: 1px solid #00000036;
+            border-radius: 36px;
+            font-weight:400;
+            font-size: 18px;
+            line-height: 36px;
+            padding: 0.5rem 1rem;
+            margin: 1rem 0;
+            max-width: 400px;
+            transition: 0.2s;
+
+            &:hover{
+                border: 1px solid #000000;
+            }
+
+            &:focus{
+                outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+                border: 1px solid #000000;
+            }
+        }
+
+        .form-input-select{
+            background: #FFFFFF;
+            border: 1px solid #00000036;
+            border-radius: 36px;
+            font-weight:400;
+            font-size: 18px;
+            line-height: 36px;
+            padding: 0.6rem 0.8rem;
+            margin: 1rem 0;
+            max-width: 400px;
+            transition: 0.2s;
+
+            &:hover{
+                border: 1px solid #000000;
+            }
+
+            &:focus{
+                outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+                border: 1px solid #000000;
+            }
+        }
+
+        .account{
+            padding: 0.5rem 0.3rem;
+            max-width: 450px;
+
+            .account-title{
+                padding: 0.2rem;
+                font-weight: normal;
+                font-size: 20px;
+                line-height: 36px;
+            }
+
+            .account-details{
+                display: flex;
+                flex-direction: column;
+                background: #F0F0F0;
+                border-radius: 36px;
+                padding: 0.6rem;
+                margin: 0.7rem 0;
+
+                .form-input{
+                    max-width: 400px;
+                    margin: 0.6rem 1rem;
+                }
+            }
+
+            .account-info{
+                font-weight: 300;
+                font-size: 16px;
+                line-height: 25px;
+                span{
+                    color: #ff0000;
+                }
+            }
+
+            
+        }
+
+        .register-btn{
+            background: #56903B;
+            font-family: 'Poppins', sans-serif;
+            border-radius: 36px;
+            border: none;
+            padding: 1rem 1.1rem;
+            max-width: 250px;
+            font-size: 20px;
+            color: #fff;
+            margin: 1.5rem 0;
+            font-style: normal;
+            font-weight: 300;
+            cursor: pointer;
+            transition: 0.2s;
+
+            &:hover{
+                background: #3c632a;
+            }
+            
+        }
+
+        .merchant-login-link{
+            font-weight: 300;
+            font-size: 18px;
+            line-height: 27px;
+            span{
+                padding: 0 0.2rem;
+                transition: 0.3s;
+            
+                &:hover{
+                    border-bottom: 1px solid #000;
+                }
+
+                a{
+                    font-weight: 500;
+                    color: #000000;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .business-logo{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            align-self: flex-start;
+            max-width: 300px;
+            cursor: pointer;
+            transition: 0.3s;
+            padding: 0.5rem;
+            border-radius: 30px;
+            border: 1px solid #00000036;
+
+            &:hover{
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.219) ;
+            }
+
+
+            .business-logo-img{
+                width: 100%;
+                cursor: pointer;
+            }
+            p{
+                text-align: center;
+            }
+            input{
+                opacity: 0;
+            }
+        }
+    }
+}

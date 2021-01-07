@@ -54,6 +54,7 @@ footer {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin: 0 1rem;
 }
 
 .desktop-footer .footer-menu-title {
@@ -114,7 +115,11 @@ footer {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  max-width: 24px;
+  max-width: 20px;
+}
+
+.desktop-footer .socials .social img {
+  width: 100%;
 }
 
 .desktop-footer .socials .social:nth-child(2) {

@@ -37,6 +37,7 @@ footer{
     .footer-menu{
         display:flex;
         flex-direction:column;
+        margin: 0 1rem;
     }
 
     .footer-menu-title{
@@ -84,7 +85,10 @@ footer{
 
         .social{
             align-self: center;
-            max-width: 24px;
+            max-width: 20px;
+            img{
+               width:100%;
+            }
         }
 
         .social:nth-child(2){
