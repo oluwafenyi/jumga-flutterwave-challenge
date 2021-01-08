@@ -16,15 +16,24 @@ import (
 func getProducts(w http.ResponseWriter, r *http.Request) {
 	pagination := r.Context().Value("pagination").(paginationParams)
 
-	products, next := db.GetProductsPage(pagination.startAt, pagination.limit)
+	category, ok := r.URL.Query()["category"]
+	if !ok || len(category) < 1 {
+		category = []string{"all"}
+	}
+	categorySlug := category[0]
+
+	products, total, next := db.GetProductsPage(pagination.startAt, pagination.limit, categorySlug)
 
 	responseData := map[string]interface{}{"data": products}
 	responseData["startAt"] = pagination.startAt
 	responseData["limit"] = pagination.limit
-	responseData["total"] = len(products)
+	responseData["total"] = total
 	if next {
-		log.Println(r.URL.String())
-		responseData["next"] = r.URL.String() + fmt.Sprintf("?startAt=%d&limit=%d", pagination.startAt+pagination.limit+1, pagination.limit)
+		if categorySlug == "all" {
+			responseData["next"] = r.URL.String() + fmt.Sprintf("?startAt=%d&limit=%d", pagination.startAt+pagination.limit+1, pagination.limit)
+		} else {
+			responseData["next"] = r.URL.String() + fmt.Sprintf("?category=%s&startAt=%d&limit=%d", categorySlug, pagination.startAt+pagination.limit+1, pagination.limit)
+		}
 	}
 
 	SuccessResponse(http.StatusOK, responseData, w)

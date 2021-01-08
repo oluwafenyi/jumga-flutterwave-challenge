@@ -292,15 +292,22 @@ func (p *Product) Delete() error {
 	return err
 }
 
-func GetProductsPage(start, limit int) ([]Product, bool) {
+func GetProductsPage(start, limit int, category string) ([]Product, int, bool) {
 	var products []Product
-	_ = DB.Model(&products).Relation("Category").Relation("DisplayImage").Order("id DESC").Offset(start).Limit(limit).Select()
+
+	if category == "all" {
+		_ = DB.Model(&products).Relation("Category").Relation("DisplayImage").Order("id DESC").Offset(start).Limit(limit).Select()
+	} else {
+		_ = DB.Model(&products).Relation("Category").Relation("DisplayImage").Where("category.slug = ?", category).Order("id DESC").Offset(start).Limit(limit).Select()
+	}
+
 	var next []Product
 	_ = DB.Model(&next).Order("id DESC").Offset(limit + start + 1).Limit(1).Select()
 	if len(products) == 0 {
-		return make([]Product, 0), false
+		return make([]Product, 0), 0, false
 	}
-	return products, len(next) > 0
+	total, _ := DB.Model(&products).Count()
+	return products, total, len(next) > 0
 }
 
 type Order struct {
