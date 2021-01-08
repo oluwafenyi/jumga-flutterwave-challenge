@@ -1,11 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import {AltNavigation} from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
 import Shopping from '../../assets/web_shopping.svg';
 import './merchantLogin.css';
+import {jumga} from "../../axios";
 
 function MerchantLogin() {
+    const [ form, updateForm ] = useState({ "email": "", "password": "" });
+
+    const handleFormChange = (e) => {
+        updateForm(prev => {
+            return {
+                ...prev,
+                [e.target.name]: e.target.value,
+            }
+        });
+    }
+
+    const submitForm = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await jumga.post("/auth/token", form);
+            console.log(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     return (
         <div className="merchant-login-page">
             <nav>
@@ -21,9 +43,9 @@ function MerchantLogin() {
                         <p className="merchant-login-subtitle">Let's see how your products are doing</p>
                     </div>
                     <form className="merchant-login-form">
-                        <input type='email' placeholder="Business Email" className="form-input"/>
-                        <input type='password' placeholder="Password" className="form-input"/>
-                        <input type='submit' value="Login" className="login-btn"/>
+                        <input type='email' name="email" placeholder="Business Email" className="form-input" onChange={handleFormChange} required/>
+                        <input type='password' name="password" placeholder="Password" className="form-input" onChange={handleFormChange} required/>
+                        <input type='submit' value="Login" className="login-btn" onClick={submitForm} />
                     </form>
                     <p className="merchant-signup-link">
                         Don't have an account? 

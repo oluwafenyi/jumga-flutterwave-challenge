@@ -1,10 +1,47 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import {AltNavigation} from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
 import './userSignup.css';
 
-const UserSignup = () =>{
+import { jumga } from "../../axios";
+
+const UserSignup = () => {
+    const [ country, setCountry ] = useState("");
+    const [ form, updateForm ] = useState({
+        "email": "",
+        "name": "",
+        "address": "",
+        "mobile": "",
+        "password": "",
+        "confirm_password": "",
+    });
+
+    const handleCountrySelection = (e) => {
+        setCountry(e.target.value);
+    };
+
+    const handleFormChange = (e) => {
+        updateForm((prev) => {
+            return {
+                ...prev,
+                [e.target.name]: e.target.value,
+            }
+        });
+    }
+
+    const submitSignUpForm = async (e) => {
+        e.preventDefault();
+        const payload = {...form, country};
+        console.log(payload);
+        // try {
+        //     const response = await jumga.post("/v1/user", payload);
+        //     console.log(response)
+        // } catch (err) {
+        //     console.log(err);
+        // }
+    }
+
     return(
         <div className="user-signup-page">
             <nav>
@@ -19,21 +56,20 @@ const UserSignup = () =>{
                 <section className="main-sign-up">
                     <div className="form-details">
                         <form className="user-sign-up-form">
-                            <input type="text" name="first_name" className="form-input" placeholder="First Name" required/>
-                            <input type="text" name="last_name" className="form-input" placeholder="Last Name" required/>
-                            <input type="text" name="mobile_numbebr" className="form-input" placeholder="Mobile Number" required/>
-                            <input type="email" name="email" className="form-input" placeholder="Email" required/>
-                            <input type="text" name="address" className="form-input" placeholder="Address" required/>
-                            <select name="Country" className="form-input-select">
-                                <option selected>Select Country</option>
-                                <option>Nigeria</option>
-                                <option>Ghana</option>
-                                <option>Kenya</option>
-                                <option>United Kingdom</option>
+                            <input type="text" name="name" className="form-input" placeholder="Name" onChange={handleFormChange} required/>
+                            <input type="text" name="mobile" className="form-input" placeholder="Mobile Number" onChange={handleFormChange} required/>
+                            <input type="email" name="email" className="form-input" placeholder="Email" onChange={handleFormChange} required/>
+                            <input type="text" name="address" className="form-input" placeholder="Address" onChange={handleFormChange} required/>
+                            <select name="Country" className="form-input-select" value={country} onChange={handleCountrySelection}>
+                                <option value="" disabled>Select Country</option>
+                                <option value="NG">Nigeria</option>
+                                <option value="GH">Ghana</option>
+                                <option value="KE">Kenya</option>
+                                <option value="UK">United Kingdom</option>
                             </select>
-                            <input type="password" name="password" className="form-input" placeholder="Password" required/>
-                            <input type="password" name="confirm_password" className="form-input" placeholder="Confirm Password" required/>  
-                            <input type="submit" value="Register" className="submit-btn user-register"/>
+                            <input type="password" name="password" className="form-input" placeholder="Password" onChange={handleFormChange} required/>
+                            <input type="password" name="confirm_password" className="form-input" placeholder="Confirm Password" onChange={handleFormChange} required/>
+                            <input type="submit" value="Register" className="submit-btn user-register" onClick={submitSignUpForm} />
                         </form>
                         <p className="user-login-link">
                             Already have an account? 

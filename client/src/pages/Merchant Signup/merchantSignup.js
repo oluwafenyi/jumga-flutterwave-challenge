@@ -67,22 +67,22 @@ function MerchantSignup() {
         ))
     }
 
-    const submitSignUpForm = (e) => {
+    const submitSignUpForm = async (e) => {
         e.preventDefault();
         const payload = {
             ...form,
-            country: country,
+            country,
             "account_bank": bank,
             "business_contact_mobile": form.business_mobile,
         }
         console.log(payload)
-        jumga.post("/v1/merchant", payload).then((res) => {
-            if (res.status === 201) {
-                // merchant successfully signed up
-            }
-        }).catch((err) => {
-            // an error occurred
-        });
+        // try {
+        //     const response = await jumga.post("/v1/merchant", payload);
+        //     console.log(response.data);
+        //
+        // } catch (err) {
+        //     console.log(err)
+        // }
     }
 
 
@@ -119,7 +119,7 @@ function MerchantSignup() {
                                         <option value="" disabled>Bank</option>
                                         {bankOptions()}
                                     </select>
-                                    <input type="text" name="account_number" className="form-input" placeholder="Account Number" onChange={handleFormChange} />
+                                    <input type="text" name="account_number" className="form-input" placeholder="Account Number" onChange={handleFormChange} required />
                                 </div>
                                 <p className="account-info">
                                     <span>*</span> Jumga requires a service charge of $20 to register a shop.
