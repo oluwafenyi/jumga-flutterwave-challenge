@@ -3,13 +3,58 @@ package routes
 import (
 	"encoding/json"
 	"github.com/oluwafenyi/jumga/server/db"
+	"golang.org/x/net/context"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 type ProductContext struct {
 	product  *db.Product
 	merchant *db.User
+}
+
+type paginationParams struct {
+	startAt int
+	limit   int
+}
+
+func paginate(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		params := r.URL.Query()
+		startAt, ok := params["startAt"]
+
+		if !ok || len(startAt) < 1 {
+			startAt = []string{"0"}
+		}
+
+		limit, ok := params["limit"]
+
+		if !ok || len(startAt) < 1 {
+			limit = []string{"50"}
+		}
+
+		iStartAt, err := strconv.Atoi(startAt[0])
+		if err != nil {
+			iStartAt = 0
+		}
+
+		iLimit, err := strconv.Atoi(limit[0])
+		if err != nil {
+			iLimit = 50
+		}
+		if iLimit > 50 {
+			iLimit = 50
+		}
+
+		pParams := paginationParams{
+			startAt: iStartAt,
+			limit:   iLimit,
+		}
+
+		ctx := context.WithValue(r.Context(), "pagination", pParams)
+		next.ServeHTTP(w, r.WithContext(ctx))
+	})
 }
 
 func HeadersMiddleware(next http.Handler) http.Handler {

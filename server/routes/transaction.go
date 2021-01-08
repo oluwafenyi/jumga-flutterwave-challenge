@@ -168,7 +168,7 @@ func validateTransaction(w http.ResponseWriter, r *http.Request) {
 		SuccessResponse(http.StatusOK, map[string]interface{}{"message": "successful transaction", "orderID": transaction.OrderID}, w)
 		return
 	}
-	SuccessResponse(http.StatusOK, map[string]interface{}{"message": "successful transaction"}, w)
+	SuccessResponse(http.StatusOK, map[string]interface{}{"message": "user approved"}, w)
 }
 
 func makeOrder(w http.ResponseWriter, r *http.Request) {

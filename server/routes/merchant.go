@@ -166,7 +166,7 @@ func updateDispatchRider(w http.ResponseWriter, r *http.Request) {
 	subAcc, err = flutterwave.CreateSubAccount(&flutterwave.SubAccount{
 		AccountBank:           input.AccountBank,
 		AccountNumber:         input.AccountNumber,
-		BusinessName:          "Dispatch: " + input.Name,
+		BusinessName:          store.BusinessName + " dispatch",
 		Country:               input.Country,
 		SplitValue:            0.25,
 		BusinessMobile:        input.Mobile,

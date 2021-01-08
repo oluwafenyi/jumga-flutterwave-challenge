@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"fmt"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/jwtauth"
@@ -9,12 +10,24 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 func getProducts(w http.ResponseWriter, r *http.Request) {
-	product := new(db.Product)
-	products, _ := product.GetAll()
-	SuccessResponse(http.StatusOK, map[string]interface{}{"data": products}, w)
+	pagination := r.Context().Value("pagination").(paginationParams)
+
+	products, next := db.GetProductsPage(pagination.startAt, pagination.limit)
+
+	responseData := map[string]interface{}{"data": products}
+	responseData["startAt"] = pagination.startAt
+	responseData["limit"] = pagination.limit
+	responseData["total"] = len(products)
+	if next {
+		log.Println(r.URL.String())
+		responseData["next"] = r.URL.String() + fmt.Sprintf("?startAt=%d&limit=%d", pagination.startAt+pagination.limit+1, pagination.limit)
+	}
+
+	SuccessResponse(http.StatusOK, responseData, w)
 }
 
 func createProduct(w http.ResponseWriter, r *http.Request) {
@@ -52,12 +65,15 @@ func createProduct(w http.ResponseWriter, r *http.Request) {
 		Price:       input.Price,
 		Discount:    input.Discount,
 		DeliveryFee: input.DeliveryFee,
+		DateListed:  time.Now(),
 		CategoryID:  category.ID,
 		StoreID:     store.ID,
 	}
 
 	_ = product.Insert()
-	SuccessResponse(http.StatusCreated, map[string]interface{}{"data": product}, w)
+	newProduct := db.Product{}
+	_ = newProduct.GetByID(product.ID)
+	SuccessResponse(http.StatusCreated, map[string]interface{}{"data": newProduct}, w)
 }
 
 func getProduct(w http.ResponseWriter, r *http.Request) {
@@ -117,7 +133,7 @@ func ProductRoutes() http.Handler {
 	r.Use(middleware.GetHead)
 
 	r.Route("/", func(r chi.Router) {
-		r.Get("/", getProducts)
+		r.With(paginate).Get("/", getProducts)
 		r.Route("/", func(r chi.Router) {
 			r.Use(jwtauth.Verifier(tokenAuth))
 			r.Use(jwtauth.Authenticator)

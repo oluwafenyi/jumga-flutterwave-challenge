@@ -16,6 +16,8 @@ type ValidateTransactionValidator struct {
 
 type MerchantValidator struct {
 	db.Store
+	AccountBank           string `json:"account_bank" validate:"required,max=3"`
+	AccountNumber         string `json:"account_number" validate:"required,max=32"`
 	Address               string `json:"address" validate:"required"`
 	BusinessContact       string `json:"business_contact" validate:"required,max=255"`
 	BusinessContactMobile string `json:"business_contact_mobile" validate:"required,max=32"`

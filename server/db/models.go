@@ -13,13 +13,13 @@ import (
 type DispatchRider struct {
 	tableName            struct{} `pg:"dispatchriders"`
 	ID                   int64    `json:"id"`
-	SubAccountID         string   `pg:"sub_account_id,type:varchar(255)" json:"sub_account_id"`
-	FlutterwaveAccountID int32    `pg:"flutterwave_account_id" json:"flutterwave_account_id"`
+	SubAccountID         string   `pg:"sub_account_id,type:varchar(255)" json:"-"`
+	FlutterwaveAccountID int32    `pg:"flutterwave_account_id" json:"-"`
 	Name                 string   `pg:"name,type:varchar(255)" json:"name" validate:"required"`
 	Mobile               string   `pg:"mobile,type:varchar(32)" json:"mobile" validate:"required"`
 	Email                string   `pg:"email,type:varchar(320)" json:"email" validate:"required"`
-	AccountBank          string   `pg:"account_bank,type:varchar(8)" json:"account_bank" validate:"required,max=3"`
-	AccountNumber        string   `pg:"account_number,type:varchar(32)" json:"account_number" validate:"required,max=32"`
+	AccountBank          string   `pg:"account_bank,type:varchar(8)" json:"-" validate:"required,max=3"`
+	AccountNumber        string   `pg:"account_number,type:varchar(32)" json:"-" validate:"required,max=32"`
 	Country              string   `pg:"country,type:varchar(4)" json:"country" validate:"required,max=2"`
 }
 
@@ -57,15 +57,15 @@ func (d DispatchRider) GetAccountNumber() string {
 type Store struct {
 	tableName            struct{}       `pg:"stores"`
 	ID                   int64          `json:"-"`
-	SubAccountID         string         `pg:"sub_account_id,type:varchar(255)" json:"sub_account_id,omitempty"`
-	FlutterwaveAccountID int32          `pg:"flutterwave_account_id" json:"flutterwave_account_id,omitempty"`
+	SubAccountID         string         `pg:"sub_account_id,type:varchar(255)" json:"-"`
+	FlutterwaveAccountID int32          `pg:"flutterwave_account_id" json:"-"`
 	Rating               float32        `pg:"rating" json:"rating"`
 	BusinessName         string         `pg:"business_name,type:varchar(255)" json:"business_name" validate:"required,max=255"`
 	BusinessMobile       string         `pg:"business_mobile,type:varchar(32)" json:"business_mobile" validate:"required,max=32"`
 	BusinessEmail        string         `pg:"business_email,type:varchar(320)" json:"business_email" validate:"required,email"`
 	Approved             bool           `pg:"approved" json:"approved"`
-	AccountBank          string         `pg:"account_bank,type:varchar(8)" json:"account_bank" validate:"required,max=3"`
-	AccountNumber        string         `pg:"account_number,type:varchar(32)" json:"account_number" validate:"required,max=32"`
+	AccountBank          string         `pg:"account_bank,type:varchar(8)" json:"-"`
+	AccountNumber        string         `pg:"account_number,type:varchar(32)" json:"-"`
 	Country              string         `pg:"country,type:varchar(4)" json:"country" validate:"required,max=2"`
 	LogoID               int64          `json:"-"`
 	Logo                 *Image         `pg:"rel:has-one" json:"logo"`
@@ -225,7 +225,7 @@ func (p *ProductCategory) Insert() error {
 }
 
 type Image struct {
-	ID   int64  `json:"id"`
+	ID   int64  `json:"-"`
 	Link string `pg:",type:varchar(320)" json:"link" validate:"required"`
 }
 
@@ -258,7 +258,8 @@ type Product struct {
 	CategoryID     int32            `json:"-"`
 	Category       *ProductCategory `pg:"rel:has-one" json:"category"`
 	StoreID        int64            `json:"-"`
-	Store          *Store           `pg:"rel:has-one" json:"store"`
+	DateListed     time.Time        `json:"-"`
+	Store          *Store           `pg:"rel:has-one" json:"store,omitempty"`
 }
 
 func (p *Product) String() string {
@@ -267,7 +268,7 @@ func (p *Product) String() string {
 
 func (p *Product) GetAll() ([]Product, error) {
 	products := make([]Product, 0)
-	err := DB.Model(&products).Select()
+	err := DB.Model(&products).Relation("Category").Relation("DisplayImage").Relation("Store").Relation("Store.Logo").Select()
 	return products, err
 }
 
@@ -289,6 +290,17 @@ func (p *Product) Update() error {
 func (p *Product) Delete() error {
 	_, err := DB.Model(p).WherePK().Delete()
 	return err
+}
+
+func GetProductsPage(start, limit int) ([]Product, bool) {
+	var products []Product
+	_ = DB.Model(&products).Relation("Category").Relation("DisplayImage").Order("id DESC").Offset(start).Limit(limit).Select()
+	var next []Product
+	_ = DB.Model(&next).Order("id DESC").Offset(limit + start + 1).Limit(1).Select()
+	if len(products) == 0 {
+		return make([]Product, 0), false
+	}
+	return products, len(next) > 0
 }
 
 type Order struct {
