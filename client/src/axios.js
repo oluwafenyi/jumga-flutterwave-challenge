@@ -1,12 +1,12 @@
 import axios from "axios";
 
 function getConfig() {
-    const config = {  baseURL: "http://localhost:8000", headers: {"Content-Type":"application/json"} };
+    const config = { headers: {"Content-Type":"application/json"} };
 
     if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-        config["baseUrl"] = "http://localhost:8000";
+        config["baseURL"] = "http://localhost:8000";
     } else {
-        config["baseUrl"] = "https://apex-jumga.herokuapp.com";
+        config["baseURL"] = "https://apex-jumga.herokuapp.com";
     }
 
     return config;
