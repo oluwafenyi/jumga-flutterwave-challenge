@@ -17,8 +17,8 @@ function App() {
     <Router>
       <Switch>
         <Route path="/" exact component={ LandingPage }/>
-        <Route path="/admin-signup" exact component={ MerchantSignup }/>
-        <Route path="/admin-login" exact component={ MerchantLogin }/>
+        <Route path="/merchant/signup" exact component={ MerchantSignup }/>
+        <Route path="/merchant/login" exact component={ MerchantLogin }/>
         <Route path="/login" exact component={ UserLogin }/>
         <Route path="/signup" exact component={ UserSignup }/>
         <Route path="/products" exact component={ ViewProducts }/>

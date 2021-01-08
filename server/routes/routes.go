@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/cors"
 	"github.com/go-chi/jwtauth"
 	"github.com/go-playground/validator/v10"
 
@@ -25,7 +26,14 @@ func init() {
 	Router.Use(middleware.Recoverer)
 	Router.Use(middleware.AllowContentType("application/json"))
 	Router.Use(HeadersMiddleware)
-
+	Router.Use(cors.Handler(cors.Options{
+		AllowedOrigins:   []string{"*"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
+		ExposedHeaders:   []string{"Link"},
+		AllowCredentials: false,
+		MaxAge:           300,
+	}))
 	validate = validator.New()
 	_ = validate.RegisterValidation("login-email", ValidateLoginEmail)
 	_ = validate.RegisterValidation("product-exists", ValidateProductExists)

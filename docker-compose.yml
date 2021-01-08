@@ -10,18 +10,18 @@ services:
       - ./server/:/usr/app/
     depends_on:
       - db
-  # client:
-  #   build:
-  #     context: ./client/
-  #     dockerfile: dev.Dockerfile
-  #   tty: true
-  #   ports:
-  #     - 8080:3000
-  #   volumes:
-  #   - ./client/:/usr/app/
-  #   - /usr/app/node_modules/
-  #   environment:
-  #     - NODE_ENV=development
+  client:
+    build:
+      context: ./client/
+      dockerfile: dev.Dockerfile
+    tty: true
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client/:/usr/app/
+      - /usr/app/node_modules/
+    environment:
+      - NODE_ENV=development
   db:
     image: postgres:latest
     environment:
