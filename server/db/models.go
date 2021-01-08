@@ -102,9 +102,9 @@ type User struct {
 	tableName   struct{} `pg:"users"`
 	UUID        string   `pg:"id,pk" json:"uuid"`
 	Email       string   `pg:"email,unique,type:varchar(320)" json:"email" validate:"required,email,max=320"`
-	AccountType string   `pg:"account_type,type:varchar(16)" json:"account_type" validate:"oneof=merchant user,required"`
+	AccountType string   `pg:"account_type,type:varchar(16)" json:"account_type"`
 	StoreID     int64    `json:"-"`
-	Store       *Store   `pg:"rel:has-one" json:"store"`
+	Store       *Store   `pg:"rel:has-one" json:"store,omitempty"`
 	Name        string   `pg:"name" json:"name" validate:"required"`
 	Country     string   `pg:"country,type:varchar(4)" json:"country" validate:"required,max=4"`
 	Address     string   `pg:",type:varchar(500)" json:"address" validate:"required"`
