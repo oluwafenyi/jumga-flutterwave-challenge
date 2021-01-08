@@ -1,0 +1,67 @@
+.view-products-page{
+    font-family: 'Poppins', sans-serif;
+
+    main{
+        padding: 0.5rem 1rem;
+        margin: 0.5rem 0.5rem 9rem 0.5rem ;
+    }
+
+    .view-product-header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        // background: #f0f0f05b;
+        border-radius: 36px;
+        padding: 1rem 0;
+        position: relative;
+
+        .filter{
+            padding: 0.3rem;
+            align-self: center;
+            cursor: pointer;
+
+            .filter-icon{
+                padding: 0.5rem 0;
+                margin: 0.3rem;
+            }
+
+            .filter-menu{
+                position: absolute;
+                // top: 10px;
+                display: none;
+                flex-direction: column;
+                background: #fff;
+                box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.09);
+                width: 100%;
+                max-width: 130px;
+
+               .filter-menu-item{
+                    padding: 0.15rem 0.3rem;
+                    cursor: pointer;
+                    min-height: 36.6px;
+                    transition: 0.2s;
+
+                    &:hover{
+                        border: 1px solid #000;
+                    }
+
+                    &:nth-child(2){
+                        margin: 0.4rem 0;
+                    }
+               }
+            }
+
+            .open-filter-menu{
+                display: flex;
+            }
+        }
+    }
+
+    .products-gallery{
+        margin: 1rem ;
+        padding: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+}

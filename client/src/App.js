@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import LandingPage from './pages/Landing Page/landingPage';
+import MerchantSignup from './pages/Merchant Signup/merchantSignup';
+import MerchantLogin from './pages/Merchant Login/merchantLogin';
+import UserLogin from './pages/User Login/userLogin';
+import UserSignup from './pages/User Signup/userSignup';
+import ViewProducts from './pages/View Products/viewProducts';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={ LandingPage }/>
+        <Route path="/admin-signup" exact component={ MerchantSignup }/>
+        <Route path="/admin-login" exact component={ MerchantLogin }/>
+        <Route path="/login" exact component={ UserLogin }/>
+        <Route path="/signup" exact component={ UserSignup }/>
+        <Route path="/products" exact component={ ViewProducts }/>
+      </Switch>
+    </Router>
   );
 }
 
