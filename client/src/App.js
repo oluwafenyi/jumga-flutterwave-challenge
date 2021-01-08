@@ -10,6 +10,8 @@ import MerchantLogin from './pages/Merchant Login/merchantLogin';
 import UserLogin from './pages/User Login/userLogin';
 import UserSignup from './pages/User Signup/userSignup';
 import ViewProducts from './pages/View Products/viewProducts';
+import ProductPreview from './pages/Product Preview/productPreview';
+import Stores from './pages/Stores/stores';
 import './App.css';
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
         <Route path="/login" exact component={ UserLogin }/>
         <Route path="/signup" exact component={ UserSignup }/>
         <Route path="/products" exact component={ ViewProducts }/>
+        <Route path="/preview" exact component={ ProductPreview }/>
+        <Route path="/stores" exact component={ Stores }/>
       </Switch>
     </Router>
   );

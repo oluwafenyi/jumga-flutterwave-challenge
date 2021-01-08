@@ -1,1 +1,49 @@
-/* No CSS */
+.stores-page .stores-header .stores-search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  background-color: #fff;
+  border-radius: 75px;
+  padding: 0.6rem;
+  max-width: 600px;
+  -webkit-box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.09);
+          box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.09);
+}
+
+.stores-page .stores-header .stores-search img {
+  padding: 0.2rem;
+  max-width: 30px;
+}
+
+.stores-page .stores-header .stores-search .search-input {
+  border: none;
+  font-size: 18px;
+  margin: 0 0.2rem 0 0.7rem;
+  padding: 0.2rem;
+}
+
+.stores-page .stores-header .stores-search .search-input::-webkit-input-placeholder {
+  font-family: 'Poppins', sans-serif;
+}
+
+.stores-page .stores-header .stores-search .search-input:-ms-input-placeholder {
+  font-family: 'Poppins', sans-serif;
+}
+
+.stores-page .stores-header .stores-search .search-input::-ms-input-placeholder {
+  font-family: 'Poppins', sans-serif;
+}
+
+.stores-page .stores-header .stores-search .search-input::placeholder {
+  font-family: 'Poppins', sans-serif;
+}
+
+.stores-page .stores-header .stores-search .search-input:focus {
+  outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+}

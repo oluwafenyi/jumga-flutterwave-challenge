@@ -16,7 +16,7 @@ function Navigation() {
             <ul className="desktop-menu">
                 <li><Link to="/" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} >Home</Link></li>
                 <li><Link to="/products" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>All Products</Link></li>
-                <li><Link className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Stores</Link></li>
+                <li><Link to="/stores" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Stores</Link></li>
                 <li><Link to="/login" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link></li>
             </ul>
             <Link to="/" className="logo">
@@ -35,7 +35,7 @@ function Navigation() {
                 <ul className="mobile-menu">
                     <li><Link to="/" className="menu-item" >Home</Link></li>
                     <li><Link to="/products" className="menu-item">All Products</Link></li>
-                    <li><Link className="menu-item">Stores</Link></li>
+                    <li><Link to="/stores" className="menu-item">Stores</Link></li>
                     <li><Link to="/login" className="menu-item">Login</Link></li>
                 </ul>
             </div>
@@ -61,7 +61,7 @@ export function AltNavigation() {
                     <h1>jumga.</h1>
                 </Link>
                 <ul className="desktop-menu">
-                    <li><Link className="menu-item">Stores</Link></li>
+                    <li><Link to="/stores" className="menu-item">Stores</Link></li>
                     <li><Link to="/admin-signup" className="menu-item">Become a merchant</Link></li>
                 </ul>
             </div>
