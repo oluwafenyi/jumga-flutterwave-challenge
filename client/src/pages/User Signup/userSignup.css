@@ -1,1 +1,90 @@
-/* No CSS */
+.user-signup-page {
+  font-family: 'Poppins', sans-serif;
+}
+
+.user-signup-page main {
+  padding: 0.5rem;
+  margin: 3rem 0 9rem 0;
+}
+
+.user-signup-page main .user-sign-up-header {
+  margin: 0 5%;
+}
+
+.user-signup-page main .user-sign-up-header .user-sign-up-title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 62px;
+}
+
+.user-signup-page main .user-sign-up-header .user-sign-up-subtitle {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 27px;
+}
+
+.user-signup-page main .main-sign-up {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 1rem;
+}
+
+.user-signup-page main .form-details {
+  max-width: 500px;
+  width: 100%;
+}
+
+.user-signup-page main .user-sign-up-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 1rem 0.5rem;
+  padding: 0.5rem;
+}
+
+.user-signup-page main .user-login-link {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 27px;
+}
+
+.user-signup-page main .user-login-link span {
+  padding: 0 0.2rem;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.user-signup-page main .user-login-link span:hover {
+  border-bottom: 1px solid #000;
+}
+
+.user-signup-page main .user-login-link span a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+}
+
+.user-signup-page main .user-signup-img {
+  max-width: 600px;
+  margin: 1.5rem 0.5rem;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  padding: 1.5rem 0.7rem;
+}
+
+.user-signup-page main .user-signup-img img {
+  width: 100%;
+}

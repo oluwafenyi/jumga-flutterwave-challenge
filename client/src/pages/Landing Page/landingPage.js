@@ -31,7 +31,7 @@ function LandingPage() {
                         <p className="hero-main-text" ref={ el=> hero=el }>
                             Jumga is an online store that allows merchants get their products to the customers across Nigeria, Ghana, Kenya and the UK in realtime. 
                         </p>
-                        <Link to="/" className="shop-btn" ref={ el=> heroBtn=el }>Shop now</Link>
+                        <Link to="/products" className="shop-btn" ref={ el=> heroBtn=el }>Shop now</Link>
                     </div>
                 </div>
             </header>
@@ -60,9 +60,9 @@ function LandingPage() {
                             <h6 className="offer-subtitle">female footwears</h6>
                         </div>
                         <div className="offer-tile tile-6">
-                            <h3 className="offer-title">Buy one, get one free</h3>
+                            <h3 className="offer-title"> Get 10 with 2% off </h3>
                         </div>
-                        <div className="offer-tile tile-6">
+                        <div className="offer-tile tile-7">
                             <h3 className="offer-title">Buy one, get one free</h3>
                         </div>
                     </div>

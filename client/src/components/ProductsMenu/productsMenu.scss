@@ -1,0 +1,44 @@
+.products-menu{
+    font-family: 'Poppins', sans-serif;
+    
+
+    .products-list{
+        display: flex;
+        flex-direction: row;
+        // background: #f0f0f05b;
+        border-radius: 36px;
+        padding: 0.5rem;
+        min-height: 70px;
+    }
+
+    .product{
+        padding: 0.4rem;
+        margin: 0 1rem ;
+        cursor: pointer;
+        font-size: 18px;
+        line-height: 36px;
+        color: rgba(0, 0, 0, 0.53);
+        transition: 0.3s;
+
+        &::after{
+            content: '';
+            transition: 0.3s;
+        }
+
+        &:hover{
+            color: #000;
+
+            &::after{
+                display: block;
+                background-color: #000;
+                height: 5px;
+                width: 5px;
+                margin: 0 auto;
+                border-radius: 50%;
+            }
+
+        }
+
+       
+    }
+}

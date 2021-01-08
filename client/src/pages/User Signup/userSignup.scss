@@ -1,0 +1,78 @@
+.user-signup-page{
+    font-family: 'Poppins', sans-serif;
+
+    main{
+        padding: 0.5rem;
+        margin: 3rem 0 9rem 0 ;
+        .user-sign-up-header{
+            margin: 0 5%;
+
+            .user-sign-up-title{
+                font-style: normal;
+                font-weight: normal;
+                font-size: 40px;
+                line-height: 62px;
+            }
+
+            .user-sign-up-subtitle{
+                font-style: normal;
+                font-weight: 300;
+                font-size: 16px;
+                line-height: 27px;
+            }
+        }
+
+        .main-sign-up{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            padding: 1rem;
+        }
+
+        .form-details{
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .user-sign-up-form{
+            display: flex;
+            flex-direction: column;
+            margin: 1rem 0.5rem;
+            padding: 0.5rem;
+            
+        }
+
+        .user-login-link{
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 27px;
+
+            span{
+                padding: 0 0.2rem;
+                transition: 0.3s;
+        
+            &:hover{
+                border-bottom: 1px solid #000;
+            }
+
+                a{
+                    text-decoration: none;
+                    color: #000;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .user-signup-img{
+            max-width: 600px;
+            margin: 1.5rem 0.5rem;
+            align-self: flex-start;
+            padding: 1.5rem 0.7rem;
+
+            img{
+                width: 100%;
+            }
+        }
+        
+    }
+}

@@ -7,8 +7,78 @@ html{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 main{
   min-height: 100vh;
+}
+
+.form-input{
+  background: #FFFFFF;
+  border: 1px solid #00000036;
+  border-radius: 36px;
+  font-weight:400;
+  font-size: 18px;
+  line-height: 36px;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  max-width: 400px;
+  transition: 0.2s;
+}
+  .form-input:hover{
+      border: 1px solid #000000;
+  }
+
+  .form-input:focus{
+      outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+      border: 1px solid #000000;
+  }
+
+
+.submit-btn{
+  background: #56903B;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 36px;
+  border: none;
+  padding: 0.5rem 1rem;
+  max-width: 250px;
+  font-size: 22px;
+  color: #fff;
+  margin: 1rem 0;
+  font-style: normal;
+  font-weight: 300;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submit-btn:hover{
+    background: #3c632a;
+}
+
+.form-input-select{
+  background: #FFFFFF;
+  border: 1px solid #00000036;
+  border-radius: 36px;
+  font-weight:400;
+  font-size: 18px;
+  line-height: 36px;
+  padding: 0.6rem 0.8rem;
+  margin: 1rem 0;
+  max-width: 400px;
+  transition: 0.2s;
+  appearance: none;
+}
+
+.form-input-select::-ms-expand {
+  display: none;
+}
+
+.form-input-select:hover{
+  border: 1px solid #000000;
+}
+
+.form-input-select:focus{
+  outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+  border: 1px solid #000000;
 }

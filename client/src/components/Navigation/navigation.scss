@@ -47,6 +47,10 @@
         }
     }
 
+    .dark{
+        color:#000 !important;
+    }
+
     .mobile-menu-container{
         display: none;
     }
@@ -97,9 +101,11 @@ ul{
             &:hover{
                 color: rgba(0, 0, 0, 0.596);
             }
-            
+
         }
     }
+
+    
 
     .logo{
         align-self: center;

@@ -1,9 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Search from '../Search/search';
 import './navigation.css';
 
 function Navigation() {
+    const location = useLocation();
+    console.log(location);
     return (
         <div className="navigation">
             <div className="mobile-menu-btn">
@@ -12,13 +14,13 @@ function Navigation() {
                 <div className="bar bar-3"></div>
             </div>
             <ul className="desktop-menu">
-                <li><Link className="menu-item" to="/">Home</Link></li>
-                <li><Link className="menu-item">All Products</Link></li>
-                <li><Link className="menu-item">Stores</Link></li>
-                <li><Link className="menu-item">Login</Link></li>
+                <li><Link to="/" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} >Home</Link></li>
+                <li><Link to="/products" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>All Products</Link></li>
+                <li><Link className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Stores</Link></li>
+                <li><Link to="/login" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link></li>
             </ul>
             <Link to="/" className="logo">
-                <h1>jumga.</h1>
+                <h1 className={`${location.pathname !== '/' ? 'dark' : '' }`}>jumga.</h1>
             </Link>
             <Search/>
             <div className="mobile-menu-container">
@@ -31,10 +33,10 @@ function Navigation() {
                 </div>
                 
                 <ul className="mobile-menu">
-                    <li><Link className="menu-item" to="/">Home</Link></li>
-                    <li><Link className="menu-item">All Products</Link></li>
+                    <li><Link to="/" className="menu-item" >Home</Link></li>
+                    <li><Link to="/products" className="menu-item">All Products</Link></li>
                     <li><Link className="menu-item">Stores</Link></li>
-                    <li><Link className="menu-item">Login</Link></li>
+                    <li><Link to="/login" className="menu-item">Login</Link></li>
                 </ul>
             </div>
         </div>
@@ -53,14 +55,14 @@ export function AltNavigation() {
                 </div>
                 <ul className="desktop-menu">
                     <li><Link to="/" className="menu-item">Home</Link></li>
-                    <li><Link className="menu-item">All Products</Link> </li>
+                    <li><Link to="/products" className="menu-item">All Products</Link> </li>
                 </ul>
                 <Link to="/" className="logo">
                     <h1>jumga.</h1>
                 </Link>
                 <ul className="desktop-menu">
                     <li><Link className="menu-item">Stores</Link></li>
-                    <li><Link className="menu-item">Become a merchant</Link></li>
+                    <li><Link to="/admin-signup" className="menu-item">Become a merchant</Link></li>
                 </ul>
             </div>
         </div>

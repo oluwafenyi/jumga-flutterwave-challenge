@@ -211,6 +211,26 @@
                 line-height: 80px;
             }
         }
+
+        .tile-7{
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.34)), url('https://res.cloudinary.com/dkow6vfth/image/upload/v1610044990/jumga-images/mock%20images/R9SnQTDzQNw_kjlmrz.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: all 6s;
+
+            &:hover{
+                background-size: 150%;
+                background-position: center;
+                
+            }
+
+            .offer-title{
+                max-width:380px ;
+                font-size: 35px;
+                line-height: 80px;
+            }
+        }
+
     }
 
     .homepage-categories{
@@ -254,7 +274,7 @@
                     width: 100%;
                     height: 100%;
                     border-radius: 30px;
-                    border: 2px solid #000;
+                    border: 2px solid #00000036;
                     object-fit: cover;
                 }
             }
@@ -313,7 +333,7 @@
                 
             }
             img{
-                transform: translateX(8px);
+                transform: translateX(5px);
             }
         }
 

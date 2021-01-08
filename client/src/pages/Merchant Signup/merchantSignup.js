@@ -12,7 +12,10 @@ function MerchantSignup() {
                 <AltNavigation/>
             </nav>
             <main>
-                <h3 className="merchant-sign-up-title">Register your store</h3>
+                <div className="merchant-sign-up-header">
+                    <h3 className="merchant-sign-up-title">Become a merchant</h3>
+                    <p className="merchant-sign-up-subtitle">Register your store and showcase your products</p>
+                </div>
                 <form className="merchant-sign-up-form">
                     <div className="form-details">
                         <div className="business-details">

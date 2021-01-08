@@ -8,12 +8,25 @@
         margin: 1.5rem 0 5rem 0;
     }
 
-    .merchant-sign-up-title{
-        font-weight: 500;
-        font-size: 30px;
-        line-height: 36px;
-        margin: 0 10%;
+    .merchant-sign-up-header{
+        padding: 1rem;
+        margin-left: 5%;
+
+            .merchant-sign-up-title{
+                font-style: normal;
+                font-weight: 500;
+                font-size: 40px;
+                line-height: 62px;
+            }
+
+            .merchant-sign-up-subtitle{
+                font-style: normal;
+                font-weight: 300;
+                font-size: 16px;
+                line-height: 50px;
+            }
     }
+
 
     .merchant-sign-up-form{
         display: flex;
