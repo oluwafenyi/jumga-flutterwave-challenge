@@ -41,7 +41,7 @@ function Footer() {
                     <ul className="footer-list">
                         <li className="footer-menu-item"><Link>All Products</Link></li>
                         <li className="footer-menu-item"><Link>Stores</Link></li>
-                        <li className="footer-menu-item"><Link to="/admin-signup">Become a Merchant</Link></li>
+                        <li className="footer-menu-item"><Link to="/merchant/signup">Become a Merchant</Link></li>
                     </ul>
                 </div>
             </div>

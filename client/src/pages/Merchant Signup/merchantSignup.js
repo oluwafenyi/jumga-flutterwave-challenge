@@ -76,13 +76,13 @@ function MerchantSignup() {
             "business_contact_mobile": form.business_mobile,
         }
         console.log(payload)
-        // jumga.post("/v1/merchant", payload).then((res) => {
-        //     if (res.status === 201) {
-        //         // merchant successfully signed up
-        //     }
-        // }).catch((err) => {
-        //     // an error occurred
-        // });
+        jumga.post("/v1/merchant", payload).then((res) => {
+            if (res.status === 201) {
+                // merchant successfully signed up
+            }
+        }).catch((err) => {
+            // an error occurred
+        });
     }
 
 
