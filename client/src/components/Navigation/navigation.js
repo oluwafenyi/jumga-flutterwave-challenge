@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import Search from '../Search/search';
 import './navigation.css';
 
@@ -8,6 +8,12 @@ import { jumgaState} from "../../store/store";
 
 function Navigation() {
     const location = useLocation();
+    const history = useHistory();
+
+    const logoutUser = () => {
+        jumgaState.clearAccessToken();
+        history.push("/");
+    }
 
     const getAuthStatusButton = () => {
         if (!jumgaState.isAuthenticated()) {
@@ -16,7 +22,7 @@ function Navigation() {
             )
         }
         return (
-            <li><Link to="/login" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Logout</Link></li>
+            <li><a className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} onClick={logoutUser} >Logout</a></li>
         )
     }
 
