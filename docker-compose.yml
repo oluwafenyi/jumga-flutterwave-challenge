@@ -38,3 +38,4 @@ services:
     image: postgres:latest
     environment:
       - POSTGRES_PASSWORD=password
+#    command: ["postgres", "-c", "log_statement=all"]
