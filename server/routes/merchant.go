@@ -135,6 +135,8 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 }
 
 func updateDispatchRider(w http.ResponseWriter, r *http.Request) {
+	// todo delete old rider and subaccount before new one is added
+
 	input := db.DispatchRider{}
 	err := decodeInput(&input, r)
 

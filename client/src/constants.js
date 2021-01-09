@@ -1,4 +1,17 @@
 
+function getMerchantLink() {
+    switch (process.env.NODE_ENV) {
+        case "development":
+            return "http://localhost:8080";
+        case "production":
+            return "";
+        default:
+            return "";
+    }
+}
+
+export const merchantLink = getMerchantLink();
+
 export const countryCodes = {
     Nigeria: "NG",
     Ghana: "GH",

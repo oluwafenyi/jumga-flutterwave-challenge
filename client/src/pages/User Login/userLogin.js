@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {AltNavigation} from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
 import User from '../../assets/online_shopping.svg';
 import './userLogin.css';
 
+// import { observer } from "mobx-react-lite";
+
 import { jumga } from "../../axios";
+import { jumgaState } from "../../store/store";
 
 
 const UserLogin = () => {
     const [ form, updateForm ] = useState({ "email": "", "password": "" });
+    const history = useHistory();
 
     const handleFormChange = (e) => {
         updateForm(prev => {
@@ -25,6 +29,8 @@ const UserLogin = () => {
         try {
             const response = await jumga.post("/auth/token", form);
             console.log(response.data);
+            jumgaState.setAccessToken(response.data.access_token);
+            history.push("/");
         } catch (err) {
             console.log(err);
         }

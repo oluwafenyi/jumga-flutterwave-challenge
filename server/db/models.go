@@ -18,8 +18,8 @@ type DispatchRider struct {
 	Name                 string   `pg:"name,type:varchar(255)" json:"name" validate:"required"`
 	Mobile               string   `pg:"mobile,type:varchar(32)" json:"mobile" validate:"required"`
 	Email                string   `pg:"email,type:varchar(320)" json:"email" validate:"required"`
-	AccountBank          string   `pg:"account_bank,type:varchar(8)" json:"-" validate:"required,max=3"`
-	AccountNumber        string   `pg:"account_number,type:varchar(32)" json:"-" validate:"required,max=32"`
+	AccountBank          string   `pg:"account_bank,type:varchar(8)" json:"account_bank" validate:"required,max=3"`
+	AccountNumber        string   `pg:"account_number,type:varchar(32)" json:"account_number" validate:"required,max=32"`
 	Country              string   `pg:"country,type:varchar(4)" json:"country" validate:"required,max=2"`
 }
 

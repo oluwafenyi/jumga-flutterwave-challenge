@@ -22,17 +22,19 @@ services:
       - /usr/app/node_modules/
     environment:
       - NODE_ENV=development
+  merchant-client:
+    build:
+      context: ./merchant-client/
+      dockerfile: dev.Dockerfile
+    tty: true
+    ports:
+      - 8080:3000
+    volumes:
+      - ./merchant-client/:/usr/app/
+      - /usr/app/node_modules/
+    environment:
+      - NODE_ENV=development
   db:
     image: postgres:latest
     environment:
       - POSTGRES_PASSWORD=password
-#  pgadmin4:
-#    image: dpage/pgadmin4
-#    environment:
-#      - PGADMIN_DEFAULT_EMAIL=enyioma.osondu@geniesys.co.uk
-#      - PGADMIN_DEFAULT_PASSWORD=password
-#      - PGADMIN_CONFIG_CONSOLE_LOG_LEVEL=100
-#    ports:
-#      - 8080:80
-#    logging:
-#      driver: none

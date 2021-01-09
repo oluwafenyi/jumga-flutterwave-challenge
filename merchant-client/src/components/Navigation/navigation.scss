@@ -1,0 +1,125 @@
+.navigation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-family: 'Poppins', sans-serif;
+    padding: 1rem 0.5rem;
+    width: 100%;
+    
+
+    .logo{
+        align-self: center;
+        margin: 0 6.5rem;
+        text-decoration: none;
+
+        h1{
+            font-family: 'Shrikhand', cursive;
+            color:#fff;
+            font-size: 48px;
+            line-height: 73px;
+            text-align: center;
+            padding: 0 0.5rem;
+        }
+    }
+
+    .desktop-menu{
+        display:flex;
+        flex-direction:row;
+        padding: 0.5rem 0.7rem;
+        align-self: center;
+
+        li{
+            margin: 0 1.5rem;
+        }
+
+        .menu-item{
+            padding: 0.4rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 300;
+            font-size: 18px;
+            line-height: 27px;
+            transition: 0.2s;
+
+            &:hover{
+                color: rgba(255, 255, 255, 0.596);
+            }
+        }
+    }
+
+    .dark{
+        color:#000 !important;
+    }
+
+    .mobile-menu-container{
+        display: none;
+    }
+}
+
+ul{
+    list-style-type:none;
+}
+
+
+// Alternate Navigation
+
+.alt-navigation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-family: 'Poppins', sans-serif;
+    padding: 0.7rem 0.5rem;
+    width: 100%;
+
+    .desktop-menu-container{
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+    }
+
+    .desktop-menu{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-self: center;
+
+        li{
+            margin: 0 1.5rem;
+            cursor: pointer;
+        }
+
+        .menu-item{
+            padding: 0.4rem;
+            text-decoration: none;
+            color: #000;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 27px;
+            transition: 0.2s;
+            margin: 0 2rem ;
+
+            &:hover{
+                color: rgba(0, 0, 0, 0.596);
+            }
+
+        }
+    }
+
+    
+
+    .logo{
+        align-self: center;
+        margin: 0 6.5rem;
+        text-decoration: none;
+        cursor: pointer;
+
+        h1{
+            font-family: 'Shrikhand', cursive;
+            color:#000;
+            font-size: 48px;
+            line-height: 73px;
+            text-align: center;
+            padding: 0 0.5rem;
+        }
+    }
+}

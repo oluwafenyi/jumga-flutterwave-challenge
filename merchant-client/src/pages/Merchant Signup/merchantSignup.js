@@ -131,7 +131,7 @@ function MerchantSignup() {
                         <p className="merchant-login-link">
                             Already have an account? 
                             <span>
-                                <Link to="/admin-login">Click here</Link>
+                                <Link to="/">Click here</Link>
                             </span>
                         </p>
                     </div>

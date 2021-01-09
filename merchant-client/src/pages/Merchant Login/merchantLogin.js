@@ -23,6 +23,7 @@ function MerchantLogin() {
         try {
             const response = await jumga.post("/auth/token", form);
             console.log(response.data);
+            // dont log in if response.data.account_type !== merchant
         } catch (err) {
             console.log(err);
         }
@@ -50,7 +51,7 @@ function MerchantLogin() {
                     <p className="merchant-signup-link">
                         Don't have an account? 
                         <span>
-                            <Link to="/admin-signup">Click here</Link>
+                            <Link to="/signup">Click here</Link>
                         </span>
                     </p>
                 </div>
