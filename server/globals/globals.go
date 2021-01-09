@@ -2,7 +2,6 @@ package globals
 
 import (
 	"github.com/go-pg/pg/v10"
-	"github.com/go-pg/pg/v10/orm"
 	"log"
 	"os"
 )
@@ -10,7 +9,6 @@ import (
 var FrontendUrl string
 var Port string
 var DBOpts *pg.Options
-var CreateTableOpts *orm.CreateTableOptions
 
 func init() {
 	switch os.Getenv("ENV") {
@@ -34,10 +32,6 @@ func init() {
 			log.Fatalf("error: could not parse database url '%s'\n", dbUrl)
 		}
 
-		CreateTableOpts = &orm.CreateTableOptions{
-			Temp:        false,
-			IfNotExists: true,
-		}
 	default:
 		FrontendUrl = "http://localhost:3000"
 		Port = ":8000"
@@ -46,10 +40,6 @@ func init() {
 			Password: "password",
 			Database: "postgres",
 			Addr:     "db:5432",
-		}
-		CreateTableOpts = &orm.CreateTableOptions{
-			Temp:        false,
-			IfNotExists: true,
 		}
 	}
 }

@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/oluwafenyi/jumga/server/db"
+	_ "github.com/oluwafenyi/jumga/server/db/migrations"
 	"github.com/oluwafenyi/jumga/server/routes"
 )
 

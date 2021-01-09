@@ -30,14 +30,14 @@ func init() {
 		log.Println(err)
 		return
 	}
-	migrations.MustRegisterTx(func(db migrations.DB) error {
+	collection.MustRegisterTx(func(db migrations.DB) error {
 		for _, category := range categories {
-			_, _ = db.Model(category).Insert()
+			_, _ = db.Model(&category).Insert()
 		}
 		return nil
 	}, func(db migrations.DB) error {
 		for _, category := range categories {
-			_, _ = db.Model(category).Delete()
+			_, _ = db.Model(&category).Delete()
 		}
 		return nil
 	})
