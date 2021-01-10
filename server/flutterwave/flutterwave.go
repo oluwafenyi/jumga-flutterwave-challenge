@@ -126,3 +126,13 @@ func CreateSubAccount(account *SubAccount) (map[string]interface{}, error) {
 	_ = json.NewDecoder(resp.Body).Decode(&respObj)
 	return respObj, nil
 }
+
+func DeleteSubAccount(account int32) bool {
+	path := fmt.Sprintf("subaccounts/%d", account)
+	resp, err := Request("DELETE", path, nil)
+	if err != nil || resp.StatusCode != 200 {
+		log.Printf("error deleting subaccount %d", account)
+		return false
+	}
+	return true
+}

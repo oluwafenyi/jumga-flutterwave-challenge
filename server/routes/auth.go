@@ -37,6 +37,10 @@ func AuthRoutes() http.Handler {
 		ok := user.CheckPassword(input.Password)
 		if ok {
 			_, tokenString, _ := tokenAuth.Encode(map[string]interface{}{"uid": user.UUID})
+			if user.Store != nil {
+				SuccessResponse(http.StatusOK, map[string]interface{}{"access_token": tokenString, "type": "bearer", "account_type": user.AccountType, "approved": user.Store.Approved}, w)
+				return
+			}
 			SuccessResponse(http.StatusOK, map[string]interface{}{"access_token": tokenString, "type": "bearer", "account_type": user.AccountType}, w)
 			return
 		}

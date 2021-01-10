@@ -2,6 +2,7 @@ package routes
 
 import (
 	"errors"
+	"fmt"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/jwtauth"
@@ -135,8 +136,6 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 }
 
 func updateDispatchRider(w http.ResponseWriter, r *http.Request) {
-	// todo delete old rider and subaccount before new one is added
-
 	input := db.DispatchRider{}
 	err := decodeInput(&input, r)
 
@@ -168,7 +167,7 @@ func updateDispatchRider(w http.ResponseWriter, r *http.Request) {
 	subAcc, err = flutterwave.CreateSubAccount(&flutterwave.SubAccount{
 		AccountBank:           input.AccountBank,
 		AccountNumber:         input.AccountNumber,
-		BusinessName:          store.BusinessName + " dispatch",
+		BusinessName:          fmt.Sprintf("%s - %s (Dispatch Rider)", store.BusinessName, input.Name),
 		Country:               input.Country,
 		SplitValue:            0.25,
 		BusinessMobile:        input.Mobile,
@@ -188,6 +187,35 @@ func updateDispatchRider(w http.ResponseWriter, r *http.Request) {
 	_ = input.Update()
 
 	SuccessResponse(http.StatusOK, map[string]interface{}{"data": input}, w)
+}
+
+func deleteDispatchRider(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	merchant, ok := ctx.Value("merchant").(*db.User)
+	if !ok {
+		ErrorResponse(http.StatusUnprocessableEntity, "cannot process request", w)
+		return
+	}
+	store := merchant.Store
+	if !store.Approved {
+		ErrorResponse(http.StatusBadRequest, "store has not been approved yet", w)
+		return
+	}
+
+	rider := store.DispatchRider
+	if rider == nil {
+		ErrorResponse(http.StatusBadRequest, "rider does not exist for this store", w)
+		return
+	}
+
+	ok = flutterwave.DeleteSubAccount(rider.FlutterwaveAccountID)
+	if !ok {
+		ErrorResponse(http.StatusInternalServerError, "an error occurred while trying to delete the dispatch rider account", w)
+		return
+	}
+	_ = rider.Delete()
+
+	SuccessResponse(http.StatusNoContent, map[string]interface{}{"message": "rider deleted"}, w)
 }
 
 func updateMerchantLogo(w http.ResponseWriter, r *http.Request) {
@@ -234,6 +262,7 @@ func MerchantRoutes() http.Handler {
 
 			r.Post("/process-approval", processApproval)
 			r.Put("/dispatch", updateDispatchRider)
+			r.Delete("/dispatch", deleteDispatchRider)
 			r.Put("/logo", updateMerchantLogo)
 		})
 	})

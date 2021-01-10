@@ -46,6 +46,11 @@ func (d *DispatchRider) Update() error {
 	return err
 }
 
+func (d *DispatchRider) Delete() error {
+	_, err := DB.Model(d).WherePK().Delete()
+	return err
+}
+
 func (d DispatchRider) GetAccountBank() string {
 	return d.AccountBank
 }
@@ -83,13 +88,13 @@ func (s *Store) Insert() error {
 }
 
 func (s *Store) GetByID(id int64) error {
-	err := DB.Model(s).Relation("DispatchRider").Where("\"store\".\"id\" = ?", id).Select()
+	err := DB.Model(s).Relation("DispatchRider").Where(`"store"."id" = ?`, id).Select()
 	return err
 }
 
 func (s *Store) GetContact() *User {
 	user := &User{}
-	_ = DB.Model(user).Where("\"user\".\"store_id\" = ?", s.ID).Select()
+	_ = DB.Model(user).Where(`"user"."store_id" = ?`, s.ID).Select()
 	return user
 }
 
@@ -127,12 +132,12 @@ func (u *User) Insert() error {
 }
 
 func (u *User) GetByID(uid string) error {
-	err := DB.Model(u).Relation("Store").Where("\"user\".\"id\" = ?", uid).Select()
+	err := DB.Model(u).Relation("Store").Relation("Store.DispatchRider").Where(`"user"."id" = ?`, uid).Select()
 	return err
 }
 
 func (u *User) GetByEmail(email string) error {
-	err := DB.Model(u).Where("email = ?", email).Select()
+	err := DB.Model(u).Relation("Store").Where(`"user"."email" = ?`, email).Select()
 	return err
 }
 
@@ -184,7 +189,7 @@ func (t *Transaction) Insert() error {
 }
 
 func (t *Transaction) GetByID(id string) error {
-	err := DB.Model(t).Relation("Order").Where("\"transaction\".\"id\" = ?", id).Select()
+	err := DB.Model(t).Relation("Order").Where(`"transaction"."id" = ?`, id).Select()
 	return err
 }
 
@@ -197,7 +202,6 @@ func (t *Transaction) Update() error {
 //
 //}
 
-// create at startup
 type ProductCategory struct {
 	ID   int32  `json:"id"`
 	Name string `pg:",type:varchar(255)" json:"name"`
@@ -273,7 +277,7 @@ func (p *Product) GetAll() ([]Product, error) {
 }
 
 func (p *Product) GetByID(id int64) error {
-	err := DB.Model(p).Relation("Category").Relation("DisplayImage").Relation("Store").Where("\"product\".\"id\" = ?", id).Select()
+	err := DB.Model(p).Relation("Category").Relation("DisplayImage").Relation("Store").Where(`"product"."id" = ?`, id).Select()
 	return err
 }
 
