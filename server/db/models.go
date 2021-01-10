@@ -59,6 +59,15 @@ func (d DispatchRider) GetAccountNumber() string {
 	return d.AccountNumber
 }
 
+func (d DispatchRider) BankDetailsExist() bool {
+	rider := new(DispatchRider)
+	_ = DB.Model(rider).Where(`account_bank = ? and account_number = ?`, d.GetAccountBank(), d.GetAccountNumber()).Select()
+	if rider.ID != 0 {
+		return true
+	}
+	return false
+}
+
 type Store struct {
 	tableName            struct{}       `pg:"stores"`
 	ID                   int64          `json:"-"`

@@ -33,6 +33,15 @@ func (m MerchantValidator) GetAccountNumber() string {
 	return m.AccountNumber
 }
 
+func (m MerchantValidator) BankDetailsExist() bool {
+	store := new(db.Store)
+	_ = db.DB.Model(store).Where(`account_bank = ? and account_number = ?`, m.GetAccountBank(), m.GetAccountNumber()).Select()
+	if store.ID != 0 {
+		return true
+	}
+	return false
+}
+
 type UserValidator struct {
 	db.User
 	Password        string `json:"password" validate:"required,min=6"`
@@ -51,25 +60,27 @@ type OrderValidator struct {
 type BankDetailsGetter interface {
 	GetAccountBank() string
 	GetAccountNumber() string
+	BankDetailsExist() bool
 }
 
 func BankDetailsStructLevelValidation(sl validator.StructLevel) {
 	v := sl.Current().Interface().(BankDetailsGetter)
 	bank := v.GetAccountBank()
 	number := v.GetAccountNumber()
-	resp, err := flutterwave.ValidateBankAccountDetails(bank, number)
 
-	if err != nil {
-		sl.ReportError(bank, "account_bank", "AccountBank", "account_details", "")
-		sl.ReportError(number, "account_number", "AccountNumber", "account_details", "")
+	if v.BankDetailsExist() {
+		sl.ReportError(bank, "account_bank", "AccountBank", "account_details", "user with these account details already exists")
+		sl.ReportError(number, "account_number", "AccountNumber", "account_details", "user with these account details already exists")
 		return
 	}
 
-	if resp.StatusCode != 200 {
-		sl.ReportError(bank, "account_bank", "AccountBank", "account_details", "")
-		sl.ReportError(number, "account_number", "AccountNumber", "account_details", "")
-	}
+	resp, err := flutterwave.ValidateBankAccountDetails(bank, number)
 
+	if err != nil || resp.StatusCode != 200 {
+		sl.ReportError(bank, "account_bank", "AccountBank", "account_details", "account with these details does not exist")
+		sl.ReportError(number, "account_number", "AccountNumber", "account_details", "account with these details does not exist")
+		return
+	}
 }
 
 func ValidateLoginEmail(fl validator.FieldLevel) bool {
@@ -128,7 +139,7 @@ func validateInput(data interface{}) (bool, map[string][]string) {
 				errors[name] = append(errors[name], name+" should be equal to the "+err.Param())
 				break
 			case "account_details":
-				errors["account_details"] = append(errors[name], "account does not exist")
+				errors["account_details"] = append(errors[name], err.Param())
 			case "login-email":
 				errors["email"] = append(errors[name], "user with email does not exist")
 				break
