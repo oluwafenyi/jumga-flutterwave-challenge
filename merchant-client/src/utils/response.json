@@ -1,3 +1,0 @@
-{"data":
-    [{"id":2,"title":"100KG Dumbells","stock":20,"description":"100KG dumbells for your fitness routine","price":80,"discount_percentage":0,"delivery_fee":20,"display_image":null,"rating":0,"category":{"id":5,"name":"Sports \u0026 Fitness","slug":"fitfam"}},{"id":1,"title":"Adidas Yeezy Somethings","stock":3,"description":"Limited stock for the ultra-rare Yeezy Somethings","price":499.99,"discount_percentage":0,"delivery_fee":20,"display_image":null,"rating":0,"category":{"id":2,"name":"Fashion","slug":"fashion"}}]
-    ,"limit":50,"startAt":0,"status":"success","total":2}
