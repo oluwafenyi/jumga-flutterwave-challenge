@@ -4,7 +4,12 @@ import {AltNavigation} from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
 import Shopping from '../../assets/web_shopping.svg';
 import './merchantLogin.css';
-import {jumga} from "../../axios";
+import { jumga } from "../../axios";
+
+import { jumgaState, notification } from "../../store/store";
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function MerchantLogin() {
     const [ form, updateForm ] = useState({ "email": "", "password": "" });
@@ -22,10 +27,15 @@ function MerchantLogin() {
         e.preventDefault();
         try {
             const response = await jumga.post("/auth/token", form);
+            if (response.data.account_type === "user") {
+                throw new Error("invalid merchant credentials");
+            }
             console.log(response.data);
-            // dont log in if response.data.account_type !== merchant
+            jumgaState.setAccessToken(response.data.access_token);
         } catch (err) {
+            notification.setValues({ status: "failed", message: "Invalid login credentials", location: "login" })
             console.log(err);
+            notification.display();
         }
     }
 
@@ -35,6 +45,7 @@ function MerchantLogin() {
                 <AltNavigation/>
             </nav>
             <main>
+                <ToastContainer/>
                 <div className="merchant-login-img">
                     <img src={Shopping} alt="merchant" />
                 </div>

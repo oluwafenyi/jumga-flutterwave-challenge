@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {AltNavigation} from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
+import { jumga } from "../../axios";
+import { jumgaState, notification } from "../../store/store";
 import User from '../../assets/online_shopping.svg';
 import './userLogin.css';
-
-// import { observer } from "mobx-react-lite";
-
-import { jumga } from "../../axios";
-import { jumgaState } from "../../store/store";
 
 
 const UserLogin = () => {
     const [ form, updateForm ] = useState({ "email": "", "password": "" });
     const history = useHistory();
+
+    useEffect(() => {
+        if (!notification.displayed() && notification.location === "home") {
+            notification.display();
+        }
+    }, [])
 
     const handleFormChange = (e) => {
         updateForm(prev => {
@@ -32,7 +38,9 @@ const UserLogin = () => {
             jumgaState.setAccessToken(response.data.access_token);
             history.push("/");
         } catch (err) {
+            notification.setValues({ status: "failed", message: "Invalid login credentials", location: "login" })
             console.log(err);
+            notification.display();
         }
     }
 
@@ -42,6 +50,7 @@ const UserLogin = () => {
                 <AltNavigation/>
             </nav>
             <main>
+                <ToastContainer/>
                 <div className="user-login-img">
                     <img src={User} alt="user" />
                 </div>

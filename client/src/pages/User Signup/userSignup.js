@@ -5,6 +5,7 @@ import Footer from '../../components/Footer/footer';
 import './userSignup.css';
 
 import { jumga } from "../../axios";
+import { notification } from "../../store/store";
 
 const UserSignup = () => {
     const [ country, setCountry ] = useState("");
@@ -38,6 +39,7 @@ const UserSignup = () => {
         try {
             const response = await jumga.post("/v1/user", payload);
             if (response.status === 201) {
+                notification.setValues({ status: "success", message: "Sign up successful! Login to your account.", location: "home" });
                 history.push("/login")
             }
             console.log(response)
