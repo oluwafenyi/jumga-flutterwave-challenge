@@ -16,8 +16,11 @@ function getConfig() {
 
 const jumga = axios.create(getConfig());
 jumga.interceptors.response.use(response => {
-    return response
+    return response;
 }, err => {
+    if (!jumgaState.isAuthenticated()) {
+        return err;
+    }
     if (err.response.status === 401) {
         jumgaState.clearAccessToken();
         window.location.replace("/login");
