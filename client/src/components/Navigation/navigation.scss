@@ -22,6 +22,10 @@
         }
     }
 
+    .dark{
+        color: #000 !important;
+    }
+
     .desktop-menu{
         display:flex;
         flex-direction:row;
@@ -47,8 +51,18 @@
         }
     }
 
-    .dark{
-        color:#000 !important;
+    .dark-menu-item{
+        padding: 0.4rem;
+        text-decoration: none;
+        color:#000;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 27px;
+        transition: 0.2s;
+
+        &:hover{
+            color: rgba(0, 0, 0, 0.685);
+        }
     }
 
     .mobile-menu-container{

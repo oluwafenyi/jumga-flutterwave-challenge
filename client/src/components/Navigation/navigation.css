@@ -31,6 +31,10 @@
   padding: 0 0.5rem;
 }
 
+.navigation .dark {
+  color: #000 !important;
+}
+
 .navigation .desktop-menu {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -63,8 +67,19 @@
   color: rgba(255, 255, 255, 0.596);
 }
 
-.navigation .dark {
-  color: #000 !important;
+.navigation .dark-menu-item {
+  padding: 0.4rem;
+  text-decoration: none;
+  color: #000;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 27px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.navigation .dark-menu-item:hover {
+  color: rgba(0, 0, 0, 0.685);
 }
 
 .navigation .mobile-menu-container {

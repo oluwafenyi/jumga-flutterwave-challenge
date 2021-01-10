@@ -1,0 +1,7 @@
+.merchant-product-card {
+  margin: 0.4rem;
+}
+
+.merchant-product-card .hide-delete {
+  display: none;
+}

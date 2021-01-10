@@ -1,0 +1,26 @@
+.store-card {
+  font-family: 'Poppins', sans-serif;
+  border: 1px solid #00000036;
+  cursor: pointer;
+  border-radius: 15px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 1rem;
+  margin: 0.7rem;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.store-card:hover {
+  -webkit-box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.09);
+          box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.09);
+}
+
+.store-card .categories-available {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}

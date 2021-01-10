@@ -1,6 +1,8 @@
 import React from 'react';
 import SearchIcon from '../../assets/search.svg';
-import AltNavigation from '../../components/Navigation/navigation';
+import {AltNavigation} from '../../components/Navigation/navigation';
+import StoreCard from '../../components/StoreCard/storeCard';
+import Footer from '../../components/Footer/footer';
 import './stores.css'
 
 const Stores = () =>{
@@ -15,12 +17,16 @@ const Stores = () =>{
                     <img src={SearchIcon} alt="search icon"/>
                     <input type="text" placeholder="Search for stores" className="search-input"/>
                 </div>
-
             </header>
-            
-            <main>
-
+            <main >
+                <section className="stores-gallery">
+                    <StoreCard/>
+                    <StoreCard/>
+                    <StoreCard/>
+                </section>
+                
             </main>
+            <Footer/>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react';
-import './productIcon.css';
+import './productCard.css';
 
-const ProductIcon = () =>{
+const ProductCard = () =>{
     return(
         <div className="product-icon">
             <div className="product-type">
@@ -15,4 +15,4 @@ const ProductIcon = () =>{
     )
 }
 
-export default ProductIcon;
+export default ProductCard;

@@ -14,10 +14,10 @@ function Navigation() {
                 <div className="bar bar-3"></div>
             </div>
             <ul className="desktop-menu">
-                <li><Link to="/" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} >Home</Link></li>
-                <li><Link to="/products" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>All Products</Link></li>
-                <li><Link to="/stores" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Stores</Link></li>
-                <li><Link to="/login" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link></li>
+                <li><Link to="/" className={`${location.pathname !== '/' ? 'dark-menu-item' : 'menu-item' }`} >Home</Link></li>
+                <li><Link to="/products" className={`${location.pathname !== '/' ? 'dark-menu-item' : 'menu-item' }`}>All Products</Link></li>
+                <li><Link to="/stores" className={`${location.pathname !== '/' ? 'dark-menu-item' : 'menu-item' }`}>Stores</Link></li>
+                <li><Link to="/login" className={`${location.pathname !== '/' ? 'dark-menu-item' : 'menu-item' }`}>Login</Link></li>
             </ul>
             <Link to="/" className="logo">
                 <h1 className={`${location.pathname !== '/' ? 'dark' : '' }`}>jumga.</h1>

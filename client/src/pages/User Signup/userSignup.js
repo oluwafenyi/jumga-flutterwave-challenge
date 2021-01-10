@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {AltNavigation} from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
-import './userSignup.css';
+import './userSignup.scss';
 
 const UserSignup = () =>{
     return(

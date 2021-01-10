@@ -1,0 +1,19 @@
+.store-card{
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid #00000036;
+    cursor: pointer;
+    border-radius: 15px;
+    width: fit-content;
+    padding: 1rem;
+    margin: 0.7rem;
+    transition: 0.2s;
+
+    &:hover{
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.09);
+    }
+
+    .categories-available{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

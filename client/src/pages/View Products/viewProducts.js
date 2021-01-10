@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from '../../components/Navigation/navigation';
 import ProductMenu from '../../components/ProductsMenu/productsMenu';
-import ProductIcon from '../../components/ProductIcon/productIcon';
+import ProductCard from '../../components/ProductCard/productCard';
 import FilterIcon from '../../assets/Filter Icon.svg';
 import Footer from '../../components/Footer/footer';
 import './viewProducts.css';
@@ -27,9 +27,9 @@ function ViewProducts() {
                     <ProductMenu/>
                 </section>
                 <section className="products-gallery">
-                    <ProductIcon/>
-                    <ProductIcon/>
-                    <ProductIcon/>
+                    <ProductCard/>
+                    <ProductCard/>
+                    <ProductCard/>
                 </section>
             </main>
             <Footer/>

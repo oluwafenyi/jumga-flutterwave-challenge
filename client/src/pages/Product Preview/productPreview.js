@@ -1,6 +1,6 @@
 import React from 'react';
 import Navigation from '../../components/Navigation/navigation';
-import ProductIcon from '../../components/ProductIcon/productIcon';
+import ProductIcon from '../../components/ProductCard/productCard';
 import Footer from '../../components/Footer/footer'; 
 
 const ProductPreview = ()=>{
