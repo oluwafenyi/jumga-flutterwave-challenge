@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
-import {AltNavigation} from '../../components/Navigation/navigation';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { AltNavigation } from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
 import './userSignup.css';
 
@@ -16,6 +16,7 @@ const UserSignup = () => {
         "password": "",
         "confirm_password": "",
     });
+    const history = useHistory();
 
     const handleCountrySelection = (e) => {
         setCountry(e.target.value);
@@ -34,12 +35,15 @@ const UserSignup = () => {
         e.preventDefault();
         const payload = {...form, country};
         console.log(payload);
-        // try {
-        //     const response = await jumga.post("/v1/user", payload);
-        //     console.log(response)
-        // } catch (err) {
-        //     console.log(err);
-        // }
+        try {
+            const response = await jumga.post("/v1/user", payload);
+            if (response.status === 201) {
+                history.push("/login")
+            }
+            console.log(response)
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return(

@@ -22,7 +22,7 @@ function Navigation() {
             )
         }
         return (
-            <li><a className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} onClick={logoutUser} >Logout</a></li>
+            <li><button className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} onClick={logoutUser} >Logout</button></li>
         )
     }
 

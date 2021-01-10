@@ -45,7 +45,7 @@ function ViewProducts(props) {
         (async function() {
             await getProducts();
         })();
-    }, [])
+    }, [ props.location.search ])
 
     const productListing = () => {
         return products.map(product => {

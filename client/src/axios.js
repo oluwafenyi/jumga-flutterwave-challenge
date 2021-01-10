@@ -1,4 +1,6 @@
 import axios from "axios";
+import { jumgaState } from "./store/store";
+
 
 function getConfig() {
     const config = { headers: {"Content-Type":"application/json"} };
@@ -12,6 +14,17 @@ function getConfig() {
     return config;
 }
 
-export const jumga = axios.create(getConfig());
+const jumga = axios.create(getConfig());
+jumga.interceptors.response.use(response => {
+    return response
+}, err => {
+    if (err.response.status === 401) {
+        jumgaState.clearAccessToken();
+        window.location.replace("/login");
+    }
+});
 
-export const flutterwave = axios.create({baseURL: "https://api.flutterwave.com/v3", headers: {Authorization: "FLWPUBK_TEST-5c51665ef164bbdade0aa2ba50c9e8b2-X"}});
+
+const flutterwave = axios.create({baseURL: "https://api.flutterwave.com/v3", headers: {Authorization: "FLWPUBK_TEST-5c51665ef164bbdade0aa2ba50c9e8b2-X"}});
+
+export { jumga, flutterwave }
