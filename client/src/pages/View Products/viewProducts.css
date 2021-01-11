@@ -3,6 +3,13 @@
 }
 
 .view-products-page main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   padding: 0.5rem 1rem;
   margin: 0.5rem 0.5rem 9rem 0.5rem;
 }

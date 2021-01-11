@@ -3,13 +3,17 @@
     flex-direction: row;
     justify-content: space-evenly;
     font-family: 'Poppins', sans-serif;
-    padding: 1rem 0.5rem;
+    padding: 1rem 0;
     width: 100%;
+
+    .mobile-menu-btn{
+        display: none;
+    }
     
 
     .logo{
         align-self: center;
-        margin: 0 6.5rem;
+        // margin: 0 6.5rem;
         text-decoration: none;
 
         h1{
@@ -18,7 +22,7 @@
             font-size: 48px;
             line-height: 73px;
             text-align: center;
-            padding: 0 0.5rem;
+            padding: 0 1rem;
         }
     }
 
@@ -29,7 +33,7 @@
     .desktop-menu{
         display:flex;
         flex-direction:row;
-        padding: 0.5rem 0.7rem;
+        padding: 0.5rem;
         align-self: center;
 
         li{

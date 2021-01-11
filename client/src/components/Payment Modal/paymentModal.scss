@@ -1,0 +1,134 @@
+.payment-modal-page{
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    
+
+    .payment-modal{
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        z-index: 2;
+        background: #fff;
+        border-radius:25px;
+        padding: 0.8rem;
+        top: 20%;
+        left: 30%;
+        right: 30%;
+        width: 100%;
+        max-width: 500px;
+
+        .close-btn{
+            cursor: pointer;
+            max-width: 35px;
+            align-self: flex-end;
+            svg{
+                width: 100%;
+            }
+        }
+
+        .product-summary{
+            display: flex;
+            flex-direction: row;
+            padding: 0.6rem;
+            
+
+            .payment-summary{
+                margin: 0 1rem;
+                padding: 0.5rem;
+                max-width: 280px;
+            }
+
+            .payment-details{
+                
+                .product-amount,
+                .delivery-amount,
+                .total-amount{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+
+                .product,
+                .delivery,
+                .total{
+                    font-weight: 300;
+                    font-size: 16px;
+                    line-height: 27px;
+                }
+
+                .amount{
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 27px;
+                }
+
+            }
+
+            .flutterwave-redirect{
+                background: #F5A623;
+                border-radius: 36px;
+                box-shadow: none;
+                border: none;
+                max-width: 240px;
+                color: #fff;
+                font-weight: 500;
+                font-size: 17px;
+                line-height: 33px;
+                cursor: pointer;
+                padding: 0.5rem 1rem;
+                margin: 1rem 0;
+                transition: 0.2s;
+
+                &:hover{
+                    background: #bd801d;
+                }
+
+                &:focus{
+                    outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+                    border: 1px solid #000000;
+                }
+            }
+
+            .charges-text{
+                font-size: 12px;
+                padding: 0.1rem;
+                span{
+                    color: red;
+                }
+
+            }
+
+            .product-img{
+                max-width: 200px;
+
+                img{
+                    width: 100%;
+                    border-radius: 16px;
+                }
+            }
+        }
+
+        .acceptable-payments{
+            padding: 0.3rem;
+            width: fit-content;
+            img{
+                max-width: 55px;
+                padding: 0.2rem;
+                margin: 0 0.3rem;
+            }
+        }
+    }
+
+    .modal-mask{
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.699);
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}

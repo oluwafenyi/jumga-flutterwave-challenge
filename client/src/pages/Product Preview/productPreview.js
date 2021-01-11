@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Navigation from '../../components/Navigation/navigation';
 import ProductIcon from '../../components/ProductCard/productCard';
-import Footer from '../../components/Footer/footer'; 
+import Footer from '../../components/Footer/footer';
+import Arrow from '../../assets/LeftArrow.svg';
+import PaymentModal from '../../components/Payment Modal/paymentModal';
+import './productPreview.scss';
+
 
 const ProductPreview = ()=>{
+    const [paymentModal,setPaymentModal] = useState(false);
     return(
         <div className="product-preview">
             <nav>
@@ -11,10 +17,12 @@ const ProductPreview = ()=>{
             </nav>
             <main>
                 <section className="back-option">
-                    <div className="back-option-btn">
-                        <img src={''} alt="back" />
-                        <p>Back</p>
-                    </div>
+                    <Link to="/products" className="back-option-btn">
+                        <div className="arrow">
+                            <img className="other-products-arrow" src={Arrow} alt="arrow" />
+                        </div> 
+                       <p>Products</p>
+                    </Link>
                 </section>
                 <section className="product-info">
                     <div className="product-details">
@@ -39,22 +47,22 @@ const ProductPreview = ()=>{
                                 <option>XL</option>
                                 <option>XXL</option>
                             </select>
-                            <input type="text" placeholder="Quantity" required/>
+                            <input type="text" className="form-input quantity-input" placeholder="Quantity" required/>
                         </div>
                         <div className="product-gallery">
-                            <div className="product-other-image">
+                            {/* <div className="product-other-image">
                                 <img src={""} alt="more pictures"/>
                             </div>
                             <div className="product-other-image">
                                 <img src={""} alt="more pictures"/>
-                            </div>
+                            </div> */}
                         </div>
-                        <button className="purchase-btn">
+                        <button className="purchase-btn" onClick={()=>setPaymentModal(true)}>
                             Buy Now
                         </button>
                     </div>
                     <div className="display-picture">
-                        <img src={''} alt="Product Display"/>
+                        <img src={'https://res.cloudinary.com/dkow6vfth/image/upload/v1609805142/jumga-images/mock%20images/BojAdpN4n1M_iegwqs.png'} alt="Product Display"/>
                     </div>
                 </section>
                 <section className="other-products">
@@ -67,6 +75,13 @@ const ProductPreview = ()=>{
                 </section>
             </main>
             <Footer/>
+            { paymentModal ? 
+                <PaymentModal 
+                    setPaymentModal={setPaymentModal} 
+                    paymentModal={ paymentModal } 
+                /> 
+                : null 
+            }
         </div>
     )
 }

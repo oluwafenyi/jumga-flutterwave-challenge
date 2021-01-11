@@ -9,6 +9,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  background: #f0f2f4;
 }
 
 .merchant-dashboard-page aside {

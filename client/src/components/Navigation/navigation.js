@@ -62,7 +62,7 @@ export function AltNavigation() {
                 </Link>
                 <ul className="desktop-menu">
                     <li><Link to="/stores" className="menu-item">Stores</Link></li>
-                    <li><Link to="/admin-signup" className="menu-item">Become a merchant</Link></li>
+                    <li><Link to="/login" className="menu-item">Login</Link></li>
                 </ul>
             </div>
         </div>

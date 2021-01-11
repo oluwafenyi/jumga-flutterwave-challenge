@@ -1,0 +1,63 @@
+.pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  font-family: 'Poppins', sans-serif;
+  padding: 0.5rem;
+  margin: 2rem auto;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.pagination .previous-btn,
+.pagination .next-btn {
+  padding: 0.2rem 0.6rem;
+  text-transform: uppercase;
+  border: 2px solid #000;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  border-radius: 40px;
+  cursor: pointer;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.pagination .previous-btn:hover,
+.pagination .next-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+.pagination .pages {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 0 0.4rem;
+  cursor: pointer;
+}
+
+.pagination .pages .page-number {
+  padding: 0.4rem 0.8rem;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  border-radius: 50px;
+  margin: 0 0.3rem;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  min-width: 33.6px;
+}
+
+.pagination .pages .page-number:hover {
+  background: #000;
+  color: #fff;
+}
