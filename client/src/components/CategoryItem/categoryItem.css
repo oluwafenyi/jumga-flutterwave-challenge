@@ -1,0 +1,13 @@
+.category-item {
+  font-family: 'Poppins', sans-serif;
+  padding: 0.1rem 0.3rem;
+  margin: 0.2rem;
+  color: #fff;
+  background-color: #000;
+  border-radius: 36px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 10px;
+  font-weight: normal;
+}

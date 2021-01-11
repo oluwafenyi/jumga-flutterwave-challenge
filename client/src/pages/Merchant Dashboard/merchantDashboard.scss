@@ -1,0 +1,10 @@
+.merchant-dashboard-page{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: #f0f2f4;
+
+    aside{
+        align-self: flex-start;
+    }
+}

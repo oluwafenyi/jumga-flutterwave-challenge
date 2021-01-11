@@ -1,9 +1,12 @@
 import React from 'react';
-import './productIcon.css';
+import { Link } from 'react-router-dom';
+import './productCard.css';
 
-const ProductIcon = (props) =>{
+const ProductCard = () =>{
+    let bg_link = '';
+    //Passing in background from here
     return(
-        <div className="product-icon">
+        <Link to="/preview" className="product-icon" style={{background:`url(${bg_link})`}}>
             <div className="product-type">
                 <p>{ props.category }</p>
             </div>
@@ -11,8 +14,8 @@ const ProductIcon = (props) =>{
                 <h3 className="product-name">{ props.name }</h3>
                 <p className="product-price">${ props.price }</p>
             </div>
-        </div>
+        </Link>
     )
 }
 
-export default ProductIcon;
+export default ProductCard;

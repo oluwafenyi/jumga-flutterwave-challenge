@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import queryString from "query-string";
 import Navigation from '../../components/Navigation/navigation';
 import ProductMenu from '../../components/ProductsMenu/productsMenu';
-import ProductIcon from '../../components/ProductIcon/productIcon';
+import ProductCard from '../../components/ProductCard/productCard';
 import FilterIcon from '../../assets/Filter Icon.svg';
 import Footer from '../../components/Footer/footer';
 import './viewProducts.css';
+import Pagination from '../../components/Pagination/pagination';
 
 import {jumga} from "../../axios";
 
@@ -13,6 +14,8 @@ function ViewProducts(props) {
     const [ products, setProducts ] = useState([]);
     const [ nextPage, setNextPage ] = useState(false);
     const [ prevPage, setPrevPage ] = useState(false);
+    const [ filterMenu, showFilterMenu ] = useState(false);
+    const [ category, setCategory ] = useState('all');
 
     useEffect(() => {
         const getProducts = async () => {
@@ -63,23 +66,24 @@ function ViewProducts(props) {
             <main>
                 <section className="view-product-header">
                     <div className="filter">
-                        <div className="filter-icon">
+                        <div onClick={ ()=>showFilterMenu(!filterMenu) } className="filter-icon">
                             <img src={FilterIcon} alt="filter"/>
                         </div>
-                        <ul className="filter-menu">
+                        <ul className={`filter-menu ${ filterMenu ? "open-filter-menu" : "" }`}>
                             <li className="filter-menu-item">A-Z</li>
                             <li className="filter-menu-item">Prices</li>
                             <li className="filter-menu-item">Ratings</li>
                         </ul>
                     </div>
-                    <ProductMenu/>
+                    <ProductMenu category={ category } setCategory={ setCategory } />
                 </section>
                 <section className="products-gallery">
-                    <ProductIcon category="Fashion" name="Adidas" price="500"/>
-                    <ProductIcon category="Fashion" name="Adidas" price="500"/>
-                    <ProductIcon category="Fashion" name="Adidas" price="500"/>
+                    <ProductCard category="Fashion" name="Adidas" price="500"/>
+                    <ProductCard category="Fashion" name="Adidas" price="500"/>
+                    <ProductCard category="Fashion" name="Adidas" price="500"/>
                     { productListing() }
                 </section>
+                <Pagination/>
             </main>
             <Footer/>
         </div>

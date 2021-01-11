@@ -36,7 +36,7 @@ function Navigation() {
             <ul className="desktop-menu">
                 <li><Link to="/" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} >Home</Link></li>
                 <li><Link to="/products" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>All Products</Link></li>
-                <li><Link className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Stores</Link></li>
+                <li><Link to="/stores" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Stores</Link></li>
                 { getAuthStatusButton() }
             </ul>
             <Link to="/" className="logo">
@@ -51,12 +51,12 @@ function Navigation() {
                 <div className="logo">
                     <h1>jumga.</h1>
                 </div>
-                
+
                 <ul className="mobile-menu">
                     <li><Link to="/" className="menu-item" >Home</Link></li>
                     <li><Link to="/products" className="menu-item">All Products</Link></li>
-                    <li><Link className="menu-item">Stores</Link></li>
-                    <li><Link to="/login" className="menu-item">Logins</Link></li>
+                    <li><Link to="/stores" className="menu-item">Stores</Link></li>
+                    <li><Link to="/login" className="menu-item">Login</Link></li>
                 </ul>
             </div>
         </div>
@@ -64,7 +64,7 @@ function Navigation() {
 }
 
 export function AltNavigation() {
-    
+
     return(
         <div className="alt-navigation">
             <div className="desktop-menu-container">
@@ -81,8 +81,8 @@ export function AltNavigation() {
                     <h1>jumga.</h1>
                 </Link>
                 <ul className="desktop-menu">
-                    <li><Link className="menu-item">Stores</Link></li>
-                    <li><a href={ merchantLink + "/signup" } className="menu-item">Become a merchant</a></li>
+                    <li><Link to="/stores" className="menu-item">Stores</Link></li>
+                    <li><Link to="/login" className="menu-item">Login</Link></li>
                 </ul>
             </div>
         </div>

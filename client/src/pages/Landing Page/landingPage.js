@@ -3,7 +3,7 @@ import { TweenMax, Power3 } from 'gsap';
 import {Link} from 'react-router-dom';
 import Navigation from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
-import Arrow from '../../assets/Arrow.svg';
+import Arrow from '../../assets/RightArrow.svg';
 import './landingPage.css';
 
 function LandingPage() {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { AltNavigation } from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
-import './userSignup.css';
+import './userSignup.scss';
 
 import { jumga } from "../../axios";
 import { notification } from "../../store/store";

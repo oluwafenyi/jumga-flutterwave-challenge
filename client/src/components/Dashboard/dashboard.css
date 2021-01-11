@@ -1,0 +1,101 @@
+.dashboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-family: 'Poppins', sans-serif;
+  background: rgba(0, 5, 23, 0.99);
+  height: 100vh;
+  min-height: 600px;
+  padding: 1rem;
+  max-width: 280px;
+  -webkit-box-shadow: 0px 8px 24px rgba(0, 5, 23, 0.42);
+          box-shadow: 0px 8px 24px rgba(0, 5, 23, 0.42);
+  border-radius: 0px 40px 40px 0px;
+}
+
+.dashboard .dashboard-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.dashboard .dashboard-logo img {
+  max-width: 140px;
+}
+
+.dashboard .dashboard-logo p {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 36px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  color: #fff;
+}
+
+.dashboard .dashboard-menu {
+  margin: 0 0.2rem;
+}
+
+.dashboard .dashboard-menu .dashboard-menu-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 1rem 0;
+  padding: 0.4rem;
+  cursor: pointer;
+}
+
+.dashboard .dashboard-menu .dashboard-menu-item img {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  max-width: 38px;
+}
+
+.dashboard .dashboard-menu .dashboard-menu-item span {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  color: #fff;
+  margin: 0 0.4rem;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.dashboard .dashboard-menu .dashboard-menu-item span:hover {
+  color: rgba(255, 255, 255, 0.438);
+}
+
+.dashboard .logout-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  color: rgba(0, 5, 23, 0.99);
+  border-radius: 36px;
+  font-size: 22px;
+  line-height: 20px;
+  max-width: 240px;
+  background: #fff;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.dashboard .logout-btn:hover {
+  background: rgba(255, 255, 255, 0.575);
+}

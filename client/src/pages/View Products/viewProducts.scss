@@ -2,6 +2,8 @@
     font-family: 'Poppins', sans-serif;
 
     main{
+        display: flex;
+        flex-direction: column;
         padding: 0.5rem 1rem;
         margin: 0.5rem 0.5rem 9rem 0.5rem ;
     }
