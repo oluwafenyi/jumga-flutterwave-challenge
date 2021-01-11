@@ -1,15 +1,49 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Navigation from '../../components/Navigation/navigation';
 import ProductIcon from '../../components/ProductCard/productCard';
 import Footer from '../../components/Footer/footer';
 import Arrow from '../../assets/LeftArrow.svg';
 import PaymentModal from '../../components/Payment Modal/paymentModal';
 import './productPreview.scss';
-
+import {jumga} from "../../axios";
 
 const ProductPreview = ()=>{
-    const [paymentModal,setPaymentModal] = useState(false);
+    const [ paymentModal, setPaymentModal ] = useState(false);
+    const [ quantity, setQuantity ] = useState(1);
+    const [ productData, setProductData ] = useState({
+        "title": "",
+        "price": "",
+        "delivery_fee": "",
+        "description": "",
+        "store": {
+            "business_name": ""
+        },
+        "category": {
+            "name": ""
+        },
+        "display_image": {
+            "link": ""
+        }
+    });
+    const { productId } = useParams();
+
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const response = await jumga.get(`/v1/product/${productId}`);
+                console.log(response.data);
+                setProductData(response.data.data);
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        (async function() {
+            await getProduct();
+        })();
+    }, [productId])
+
     return(
         <div className="product-preview">
             <nav>
@@ -27,15 +61,14 @@ const ProductPreview = ()=>{
                 <section className="product-info">
                     <div className="product-details">
                         <div className="product-specifics">   
-                            <h3 className="product-source">Uchemba Stores/<span>Fashion</span></h3>
-                            <h1 className="product-name">Adidas Sneakers</h1>
-                            <h2 className="product-price">$500</h2>
+                            <h3 className="product-source">{ productData.store.business_name }/<span>{ productData.category.name }</span></h3>
+                            <h1 className="product-name">{ productData.title }</h1>
+                            <h2 className="product-price">{ `$${productData.price}` }</h2>
                         </div>
                         <div className="product-description">
                             <h4 className="description-title">Description</h4>
                             <p className="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod aliquet eget fermentum elementum fusce interdum nibh. 
-                            Sed elit vel blandit urna ipsum convallis. Mi dui, eu dignissim nisi, cursus eu fringilla. Ornare in ut pellentesque ut.
+                                { productData.description }
                             </p>
                         </div>
                         <div className="product-size-quantity">
@@ -47,7 +80,7 @@ const ProductPreview = ()=>{
                                 <option>XL</option>
                                 <option>XXL</option>
                             </select>
-                            <input type="text" className="form-input quantity-input" placeholder="Quantity" required/>
+                            <input type="number" className="form-input quantity-input" placeholder="Quantity" onChange={ (e) => { setQuantity(Number(e.target.value)) } } required/>
                         </div>
                         <div className="product-gallery">
                             {/* <div className="product-other-image">
@@ -62,11 +95,11 @@ const ProductPreview = ()=>{
                         </button>
                     </div>
                     <div className="display-picture">
-                        <img src={'https://res.cloudinary.com/dkow6vfth/image/upload/v1609805142/jumga-images/mock%20images/BojAdpN4n1M_iegwqs.png'} alt="Product Display"/>
+                        <img src={ productData.display_image.link } alt="Product Display"/>
                     </div>
                 </section>
                 <section className="other-products">
-                    <h3 className="other-products-title">More from Uchemba Stores</h3>
+                    <h3 className="other-products-title">More from { productData.store.business_name }</h3>
                     <div className="products">
                         <ProductIcon/>
                         <ProductIcon/>
@@ -78,7 +111,10 @@ const ProductPreview = ()=>{
             { paymentModal ? 
                 <PaymentModal 
                     setPaymentModal={setPaymentModal} 
-                    paymentModal={ paymentModal } 
+                    productPrice = { productData.price }
+                    quantity = { quantity }
+                    deliveryFee = { productData.delivery_fee }
+                    imageLink = { productData.display_image.link }
                 /> 
                 : null 
             }

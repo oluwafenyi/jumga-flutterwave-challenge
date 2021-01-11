@@ -16,9 +16,11 @@ function ViewProducts(props) {
     const [ prevPage, setPrevPage ] = useState(false);
     const [ filterMenu, showFilterMenu ] = useState(false);
     const [ category, setCategory ] = useState('all');
+    const [ numberOfPages, setNumberOfPages ] = useState(0);
 
     useEffect(() => {
         const getProducts = async () => {
+            const productsPP = 24;
             const params = queryString.parse(props.location.search);
             let pageNumber = Number(params.page);
 
@@ -32,14 +34,16 @@ function ViewProducts(props) {
                 setPrevPage(true);
             }
 
-            let limit = 12 * pageNumber;
+            let limit = productsPP * pageNumber;
             try {
-                const response = await jumga.get(`/v1/product?startAt=${limit - 12}&limit=${limit}`);
+                const response = await jumga.get(`/v1/product?startAt=${limit - productsPP}&limit=${limit}&category=${category}`);
                 console.log(response.data);
                 setProducts(response.data.data);
                 if (response.data.next) {
                     setNextPage(true);
                 }
+                const pages = Math.ceil( response.data.total / productsPP);
+                setNumberOfPages(pages);
             } catch (err) {
                 console.log(err)
             }
@@ -48,12 +52,12 @@ function ViewProducts(props) {
         (async function() {
             await getProducts();
         })();
-    }, [ props.location.search ])
+    }, [ props.location.search, category ])
 
     const productListing = () => {
         return products.map(product => {
             return (
-                <ProductIcon key={ product.id } category={ product.category.name } name={ product.title } price={ product.price } imageLink={ product.display_image.link } />
+                <ProductCard key={ product.id } productId={product.id} category={ product.category.name } name={ product.title } price={ product.price } imageLink={ product.display_image.link } />
             )
         })
     }
@@ -83,7 +87,7 @@ function ViewProducts(props) {
                     <ProductCard category="Fashion" name="Adidas" price="500"/>
                     { productListing() }
                 </section>
-                <Pagination/>
+                <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages} />
             </main>
             <Footer/>
         </div>

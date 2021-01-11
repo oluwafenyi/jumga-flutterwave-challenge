@@ -6,6 +6,8 @@ import Instagram from '../../assets/socials/instagram.svg';
 import Twitter from '../../assets/socials/twitter.svg';
 import './footer.css';
 
+import { merchantLink } from "../../constants";
+
 function Footer() {
     return (
         <footer>
@@ -41,7 +43,7 @@ function Footer() {
                     <ul className="footer-list">
                         <li className="footer-menu-item"><Link>All Products</Link></li>
                         <li className="footer-menu-item"><Link>Stores</Link></li>
-                        <li className="footer-menu-item"><Link to="/merchant/signup">Become a Merchant</Link></li>
+                        <li className="footer-menu-item"><a href={ merchantLink + "/signup" }>Become a Merchant</a></li>
                     </ul>
                 </div>
             </div>

@@ -9,8 +9,8 @@ function ProductsMenu({ category, setCategory }) {
                 <li className={`product ${category === 'electronics' ? "selected-category" : '' }`} onClick={ ()=>setCategory('electronics') }>Electronics</li>
                 <li className={`product ${category === 'fashion' ? "selected-category" : '' }`} onClick={ ()=>setCategory('fashion') }>Fashion</li>
                 <li className={`product ${category === 'cosmetics' ? "selected-category" : '' }`} onClick={ ()=>setCategory('cosmetics') }>Cosmetics</li>
-                <li className={`product ${category === 'food' ? "selected-category" : '' }`} onClick={ ()=>setCategory('food') }>Food Stuff</li>
-                <li className={`product ${category === 'sports' ? "selected-category" : '' }`} onClick={ ()=>setCategory('sports') }>Sport and Fitness</li>
+                <li className={`product ${category === 'food' ? "selected-category" : '' }`} onClick={ ()=>setCategory('foodstuff') }>Food Stuff</li>
+                <li className={`product ${category === 'sports' ? "selected-category" : '' }`} onClick={ ()=>setCategory('fitfam') }>Sport and Fitness</li>
             </ul>
         </div>
     )

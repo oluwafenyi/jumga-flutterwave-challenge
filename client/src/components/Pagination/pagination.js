@@ -1,18 +1,39 @@
 import React from 'react';
 import './pagination.scss';
 
-function Pagination() {
+function Pagination(props) {
+
+    const nextPage = () => {
+        if (props.next) {
+            return (
+                <h5 className="next-btn">next</h5>
+            )
+        }
+    }
+
+    const prevPage = () => {
+        if (props.prev) {
+            return (
+                <h5 className="previous-btn">prev</h5>
+            )
+        }
+    }
+
+    const pages = () => {
+        return Array(props.numberOfPages).map((it, index) => {
+           return (
+               <h5 className="page-number" key={index + 1}>{ index + 1 }</h5>
+           )
+        });
+    }
+
     return (
         <div className="pagination">
-            <h5 className="previous-btn">prev</h5>
+            { prevPage() }
             <div className="pages">
-                <h5 className="page-number">1</h5>
-                <h5 className="page-number">2</h5>
-                <h5 className="page-number">3</h5>
-                <h5 className="page-number">4</h5>
-                <h5 className="page-number">5</h5>
+                { pages() }
             </div>
-            <h5 className="next-btn">next</h5>
+            { nextPage() }
         </div>
     )
 }

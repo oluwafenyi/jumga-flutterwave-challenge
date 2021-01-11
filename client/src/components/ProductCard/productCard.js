@@ -2,11 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './productCard.css';
 
-const ProductCard = () =>{
-    let bg_link = '';
-    //Passing in background from here
+const ProductCard = (props) =>{
     return(
-        <Link to="/preview" className="product-icon" style={{background:`url(${bg_link})`}}>
+        <Link to={"/products/" + props.productId} className="product-icon" style={{background:`url(${props.imageLink})`}}>
             <div className="product-type">
                 <p>{ props.category }</p>
             </div>

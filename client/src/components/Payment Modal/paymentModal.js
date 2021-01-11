@@ -4,7 +4,12 @@ import Visa from '../../assets/visa.svg';
 import Mastercard from '../../assets/mastercard.svg';
 import './paymentModal.scss';
 
-const PaymentModal = ({ setPaymentModal, paymentModal }) =>{
+const PaymentModal = ({ setPaymentModal, quantity, productPrice, deliveryFee, imageLink }) =>{
+
+    const getTotal = () => {
+        return ((Number(productPrice) * Number(quantity)) + Number(deliveryFee)).toFixed(2);
+    }
+
     return(
         <div className="payment-modal-page">
             <div className="payment-modal">
@@ -20,23 +25,23 @@ const PaymentModal = ({ setPaymentModal, paymentModal }) =>{
                     <div className="payment-summary">
                         <div className="payment-details">
                             <div className="product-amount">
-                                <p className="product">Adidas Sneakers <span>x 1</span>:</p>
-                                <p className="amount">$500</p>
+                                <p className="product">Adidas Sneakers <span>x { quantity }</span>:</p>
+                                <p className="amount">${ productPrice }</p>
                             </div>
                             <div className="delivery-amount">
                                 <p className="delivery">Delivery :</p>
-                                <p className="amount">$10</p>
+                                <p className="amount">${ deliveryFee }</p>
                             </div>
                             <div className="total-amount">
                                 <p className="total">Total :</p>
-                                <p className="amount">$500</p>
+                                <p className="amount">${ getTotal() }</p>
                             </div>
                         </div>
                         <button className="flutterwave-redirect">Pay with Flutterwave</button>
                         <p className="charges-text"><span>*</span>Additional transaction fees may apply</p>
                     </div>
                     <div className="product-img">
-                        <img src={'https://res.cloudinary.com/dkow6vfth/image/upload/v1609805142/jumga-images/mock%20images/BojAdpN4n1M_iegwqs.png'} alt="Product display"/>
+                        <img src={ imageLink } alt="Product display"/>
                     </div>
                 </div>
                 <div className="acceptable-payments">

@@ -22,7 +22,7 @@ function App() {
         <Route path="/login" exact component={ UserLogin }/>
         <Route path="/signup" exact component={ UserSignup }/>
         <Route path="/products" exact component={ ViewProducts }/>
-        <Route path="/preview" exact component={ ProductPreview }/>
+        <Route path="/products/:productId" exact component={ ProductPreview }/>
         <Route path="/stores" exact component={ Stores }/>
         <Route path="/store" exact component={ Store }/>
         <Route path="/dashboard" exact component={ MerchantDashboard }/>
