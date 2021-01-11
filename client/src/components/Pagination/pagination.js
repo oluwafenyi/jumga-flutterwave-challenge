@@ -20,9 +20,10 @@ function Pagination(props) {
     }
 
     const pages = () => {
-        return Array(props.numberOfPages).map((it, index) => {
+        console.log(props.numberOfPages)
+        return Array.from(Array(props.numberOfPages).keys()).map(key => {
            return (
-               <h5 className="page-number" key={index + 1}>{ index + 1 }</h5>
+               <h5 className="page-number" key={ key + 1 }>{ key + 1 }</h5>
            )
         });
     }

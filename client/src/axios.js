@@ -15,6 +15,16 @@ function getConfig() {
 }
 
 const jumga = axios.create(getConfig());
+
+jumga.interceptors.request.use(config => {
+    if (jumgaState.isAuthenticated()) {
+        config.headers["Authorization"] = "Bearer " + jumgaState.access_token;
+    }
+    return config;
+}, err => {
+    return Promise.reject(err);
+})
+
 jumga.interceptors.response.use(response => {
     return response;
 }, err => {

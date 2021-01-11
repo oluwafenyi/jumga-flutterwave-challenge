@@ -178,6 +178,8 @@ func makeOrder(w http.ResponseWriter, r *http.Request) {
 		ErrorResponse(http.StatusUnprocessableEntity, "cannot process request", w)
 		return
 	}
+	// todo quantity
+
 	input := OrderValidator{}
 	err := decodeInput(&input, r)
 	if err != nil {
@@ -191,16 +193,12 @@ func makeOrder(w http.ResponseWriter, r *http.Request) {
 	}
 	product := db.Product{}
 	err = product.GetByID(input.Product)
-	if err != nil {
-		ErrorResponse(http.StatusBadRequest, "product does not exists", w)
-		return
-	}
-	if product.ID == 0 {
+	if err != nil || product.ID == 0 {
 		ErrorResponse(http.StatusBadRequest, "product does not exists", w)
 		return
 	}
 
-	productPrice := product.Price - (product.Price * float64(product.Discount))
+	productPrice := (product.Price - (product.Price * float64(product.Discount))) * float64(input.Quantity)
 	merchantCut := fmt.Sprintf("%.2f", product.Price*0.975)
 	dispatchCut := fmt.Sprintf("%.2f", product.DeliveryFee*0.75)
 	totalPrice := productPrice + product.DeliveryFee
@@ -219,6 +217,7 @@ func makeOrder(w http.ResponseWriter, r *http.Request) {
 			Status:           "processing payment",
 			DeliveryLocation: user.Address,
 			DeliveryMobile:   user.Mobile,
+			Quantity:         input.Quantity,
 		},
 	}
 
@@ -235,7 +234,7 @@ func makeOrder(w http.ResponseWriter, r *http.Request) {
 		Reference:      transaction.ID,
 		Amount:         transaction.Amount,
 		Currency:       "USD",
-		RedirectUrl:    globals.FrontendUrl + "/payment/redirect/",
+		RedirectUrl:    globals.ClientUrl + fmt.Sprintf("/products/%d", product.ID),
 		PaymentOptions: "card,account,banktransfer,ussd",
 		Meta: map[string]string{
 			"customer_id": user.UUID,

@@ -54,7 +54,8 @@ type ProductValidator struct {
 }
 
 type OrderValidator struct {
-	Product int64 `json:"product" validate:"required"`
+	Product  int64 `json:"product" validate:"required"`
+	Quantity int   `json:"quantity" validate:"required"`
 }
 
 type BankDetailsGetter interface {

@@ -115,6 +115,7 @@ const ProductPreview = ()=>{
                     quantity = { quantity }
                     deliveryFee = { productData.delivery_fee }
                     imageLink = { productData.display_image.link }
+                    productId = { productId }
                 /> 
                 : null 
             }

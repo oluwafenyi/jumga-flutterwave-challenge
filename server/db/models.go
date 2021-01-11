@@ -330,6 +330,7 @@ type Order struct {
 	Status           string   `json:"status"`
 	DeliveryLocation string   `json:"delivery_location"`
 	DeliveryMobile   string   `json:"delivery_mobile"`
+	Quantity         int      `json:"quantity"`
 }
 
 func (o Order) String() string {
