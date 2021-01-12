@@ -19,9 +19,9 @@ const PaymentModal = ({ setPaymentModal, quantity, productPrice, deliveryFee, im
         if (!jumgaState.isAuthenticated()) {
             history.push("/login");
         }
-        const response = await jumga.post("/v1/transaction/order", { product: productId, quantity });
-        if (response.statusCode === 201) {
-            window.location = response.payment_link;
+        const response = await jumga.post("/v1/transaction/order", { product: Number(productId), quantity });
+        if (response.status === 201) {
+            window.open(response.data.payment_link);
         }
     }
 

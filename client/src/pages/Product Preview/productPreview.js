@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
+import { jumga } from "../../axios";
+import { notification } from "../../store/store";
+import queryString from "query-string";
+
 import Navigation from '../../components/Navigation/navigation';
 import ProductIcon from '../../components/ProductCard/productCard';
 import Footer from '../../components/Footer/footer';
 import Arrow from '../../assets/LeftArrow.svg';
 import PaymentModal from '../../components/Payment Modal/paymentModal';
 import './productPreview.scss';
-import {jumga} from "../../axios";
 
-const ProductPreview = ()=>{
+
+const ProductPreview = (props) =>{
     const [ paymentModal, setPaymentModal ] = useState(false);
     const [ quantity, setQuantity ] = useState(1);
     const [ productData, setProductData ] = useState({
@@ -29,6 +35,32 @@ const ProductPreview = ()=>{
     const { productId } = useParams();
 
     useEffect(() => {
+        const params = queryString.parse(props.location.search);
+        const tx_ref = params.tx_ref
+        const transaction_id = params.transaction_id
+
+        const verifyTransaction = async () => {
+            try {
+                const response = await jumga.post("/v1/transaction/verify", { "tx_ref": tx_ref, "transaction_id": transaction_id })
+                console.log(response.data)
+                if (response.status === 200) {
+                    notification.setValues({status: "success", message: `Order #${response.data.orderID} confirmed`, location: "productPreview"})
+                    notification.display()
+                }
+            } catch (err) {
+                console.log(err)
+                notification.setValues({status: "failed", message: `Error confirming order for transaction ref:${tx_ref}`, location: "productPreview"})
+                notification.display()
+            }
+        }
+
+        if ( tx_ref && transaction_id ) {
+            (async function() {
+                await verifyTransaction();
+            })();
+        }
+
+
         const getProduct = async () => {
             try {
                 const response = await jumga.get(`/v1/product/${productId}`);
@@ -50,6 +82,7 @@ const ProductPreview = ()=>{
                 <Navigation/>
             </nav>
             <main>
+                <ToastContainer/>
                 <section className="back-option">
                     <Link to="/products" className="back-option-btn">
                         <div className="arrow">
