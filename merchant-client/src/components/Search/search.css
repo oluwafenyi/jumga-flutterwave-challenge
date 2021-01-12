@@ -20,7 +20,14 @@
   background-color: #fff;
   border-radius: 75px;
   padding: 0.6rem;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   border: 1px solid #00000036;
+}
+
+.search .desktop-search:hover {
+  -webkit-box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.09);
+          box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.09);
 }
 
 .search .desktop-search img {

@@ -11,7 +11,6 @@ import ViewProducts from './pages/View Products/viewProducts';
 import ProductPreview from './pages/Product Preview/productPreview';
 import Stores from './pages/Stores/stores';
 import Store from './pages/Store/store';
-import MerchantDashboard from './pages/Merchant Dashboard/merchantDashboard';
 // import ScrollToTop from './components/ScrollToTop/scrollToTop';
 import {createBrowserHistory} from "history";
 import './App.css';
@@ -32,7 +31,6 @@ function App() {
         <Route path="/products/:productId" exact component={ ProductPreview }/>
         <Route path="/stores" exact component={ Stores }/>
         <Route path="/store" exact component={ Store }/>
-        <Route path="/dashboard" exact component={ MerchantDashboard }/>
       </Switch>
     </Router>
   );

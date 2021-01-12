@@ -1,0 +1,25 @@
+.merchant-view-products{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    padding: 0.5rem;
+
+    .merchant-view-products-title{
+        font-weight: 500;
+        font-size: 50px;
+        line-height: 67px; 
+    }
+
+    .view-products{
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem;
+        margin: 1rem;
+    }
+
+    .products-list{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

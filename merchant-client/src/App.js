@@ -6,14 +6,16 @@ import {
 } from "react-router-dom";
 import MerchantSignup from './pages/Merchant Signup/merchantSignup';
 import MerchantLogin from './pages/Merchant Login/merchantLogin';
+import MerchantDashboard from "./pages/Merchant Dashboard/merchantDashboard";
 import './App.css';
 
 function App() {
   return (
       <Router>
         <Switch>
-          <Route path="/signup" exact component={ MerchantSignup }/>
-          <Route path="/" exact component={ MerchantLogin }/>
+            <Route path="/" exact component={ MerchantDashboard }/>
+            <Route path="/signup" exact component={ MerchantSignup }/>
+            <Route path="/login" exact component={ MerchantLogin }/>
         </Switch>
       </Router>
   );

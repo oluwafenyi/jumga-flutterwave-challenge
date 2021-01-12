@@ -22,23 +22,32 @@
 
         &::after{
             content: '';
-            transition: 0.3s;
+            transition: 0.2s;
+            height: 2px;
+            width: 0;
+            color: rgba(0, 0, 0, 0.911);
+            background-color: rgba(0, 0, 0, 0.911);
+            border-radius: 40px;
         }
 
         &:hover{
-            color: #000;
+            color: rgba(0, 0, 0, 0.849);
 
             &::after{
                 display: block;
-                background-color: #000;
-                height: 5px;
-                width: 5px;
+                width: 100%;
                 margin: 0 auto;
-                border-radius: 50%;
             }
 
         }
+    }
 
-       
+    .selected-category{
+        color: #000;
+        &::after{
+            display: block;
+            width: 100%;
+            margin: 0 auto;
+        }
     }
 }

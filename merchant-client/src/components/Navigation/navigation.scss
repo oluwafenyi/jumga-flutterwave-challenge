@@ -3,13 +3,17 @@
     flex-direction: row;
     justify-content: space-evenly;
     font-family: 'Poppins', sans-serif;
-    padding: 1rem 0.5rem;
+    padding: 1rem 0;
     width: 100%;
+
+    .mobile-menu-btn{
+        display: none;
+    }
     
 
     .logo{
         align-self: center;
-        margin: 0 6.5rem;
+        // margin: 0 6.5rem;
         text-decoration: none;
 
         h1{
@@ -18,14 +22,18 @@
             font-size: 48px;
             line-height: 73px;
             text-align: center;
-            padding: 0 0.5rem;
+            padding: 0 1rem;
         }
+    }
+
+    .dark{
+        color: #000 !important;
     }
 
     .desktop-menu{
         display:flex;
         flex-direction:row;
-        padding: 0.5rem 0.7rem;
+        padding: 0.5rem;
         align-self: center;
 
         li{
@@ -47,8 +55,18 @@
         }
     }
 
-    .dark{
-        color:#000 !important;
+    .dark-menu-item{
+        padding: 0.4rem;
+        text-decoration: none;
+        color:#000;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 27px;
+        transition: 0.2s;
+
+        &:hover{
+            color: rgba(0, 0, 0, 0.685);
+        }
     }
 
     .mobile-menu-container{

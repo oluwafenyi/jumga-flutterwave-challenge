@@ -1,0 +1,152 @@
+.payment-modal-page {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+}
+
+.payment-modal-page .payment-modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: fixed;
+  z-index: 2;
+  background: #fff;
+  border-radius: 25px;
+  padding: 0.8rem;
+  top: 20%;
+  left: 30%;
+  right: 30%;
+  width: 100%;
+  max-width: 500px;
+}
+
+.payment-modal-page .payment-modal .close-btn {
+  cursor: pointer;
+  max-width: 35px;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+.payment-modal-page .payment-modal .close-btn svg {
+  width: 100%;
+}
+
+.payment-modal-page .payment-modal .product-summary {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 0.6rem;
+}
+
+.payment-modal-page .payment-modal .product-summary .payment-summary {
+  margin: 0 1rem;
+  padding: 0.5rem;
+  max-width: 280px;
+}
+
+.payment-modal-page .payment-modal .product-summary .payment-details .product-amount,
+.payment-modal-page .payment-modal .product-summary .payment-details .delivery-amount,
+.payment-modal-page .payment-modal .product-summary .payment-details .total-amount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.payment-modal-page .payment-modal .product-summary .payment-details .product,
+.payment-modal-page .payment-modal .product-summary .payment-details .delivery,
+.payment-modal-page .payment-modal .product-summary .payment-details .total {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 27px;
+}
+
+.payment-modal-page .payment-modal .product-summary .payment-details .amount {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 27px;
+}
+
+.payment-modal-page .payment-modal .product-summary .flutterwave-redirect {
+  background: #F5A623;
+  border-radius: 36px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  max-width: 240px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 33px;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.payment-modal-page .payment-modal .product-summary .flutterwave-redirect:hover {
+  background: #bd801d;
+}
+
+.payment-modal-page .payment-modal .product-summary .flutterwave-redirect:focus {
+  outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+  border: 1px solid #000000;
+}
+
+.payment-modal-page .payment-modal .product-summary .charges-text {
+  font-size: 12px;
+  padding: 0.1rem;
+}
+
+.payment-modal-page .payment-modal .product-summary .charges-text span {
+  color: red;
+}
+
+.payment-modal-page .payment-modal .product-summary .product-img {
+  max-width: 200px;
+}
+
+.payment-modal-page .payment-modal .product-summary .product-img img {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.payment-modal-page .payment-modal .acceptable-payments {
+  padding: 0.3rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.payment-modal-page .payment-modal .acceptable-payments img {
+  max-width: 55px;
+  padding: 0.2rem;
+  margin: 0 0.3rem;
+}
+
+.payment-modal-page .modal-mask {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.699);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

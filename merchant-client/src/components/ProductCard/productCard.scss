@@ -1,0 +1,67 @@
+.product-icon{
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    background: #cfcfcfcb;
+    border: 1px solid #00000036;
+    border-radius: 36px;
+    margin: 1rem;
+    min-width: 225px;
+    min-height: 280px;
+    text-decoration: none;
+    color: #000000;
+    transition: 0.3s;
+
+    &:hover{
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.116);
+        
+        .product-name{
+            text-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+            transform: translateY(-2px);
+        }
+    
+    }
+
+    .product-type{
+        align-self: flex-end;
+
+        &::after{
+            display: block;
+            content: '';
+            width: 35px;
+            height: 2px;
+            background: #000000;
+            border-radius: 40px;
+            margin: 0 auto;
+
+        }
+        
+
+        p{
+            font-size: 14px;
+            line-height: 18px;
+            color: rgba(0, 0, 0, 0.64);
+            
+        }
+    }
+
+    .product-details{
+        .product-name{
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 27px;
+            transition: 0.25s;
+        }
+
+        .product-price{
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 24px;
+            color: #000000;
+
+        }
+       
+    }
+}

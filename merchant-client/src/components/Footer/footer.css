@@ -129,3 +129,36 @@ footer {
 .mobile-footer {
   display: none;
 }
+
+.alt-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: none;
+  margin-top: 10rem;
+}
+
+.alt-footer p, .alt-footer a {
+  text-align: center;
+  color: rgba(0, 5, 23, 0.99);
+}
+
+.alt-footer p {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.alt-footer a {
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 0.5rem 0;
+}
+
+.alt-footer a:hover {
+  text-decoration: underline;
+}

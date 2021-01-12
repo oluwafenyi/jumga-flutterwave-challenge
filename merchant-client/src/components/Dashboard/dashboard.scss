@@ -1,0 +1,80 @@
+.dashboard{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Poppins', sans-serif;
+    background: rgba(0, 5, 23, 0.99);
+    height: 100vh;
+    min-height: 600px;
+    padding: 1rem;
+    max-width: 280px;
+    box-shadow: 0px 8px 24px rgba(0, 5, 23, 0.42);
+    border-radius: 0px 40px 40px 0px;
+
+    .dashboard-logo{
+        display: flex;
+        flex-direction: row;
+        padding: 1rem 0;
+
+
+        img{
+            max-width: 150px;
+        }
+
+        p{
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 36px;
+            align-self: flex-end;
+            color: #fff;
+        }
+    }
+
+    .dashboard-menu{
+        margin: 0 0.2rem;
+        .dashboard-menu-item{
+            display: flex;
+            flex-direction: row;
+            margin: 2rem 0 ;
+            padding: 0.4rem;
+            cursor: pointer;
+
+            img{
+                align-self: center;
+                max-width: 30px;
+            }
+            span{
+                align-self: center;
+                color: #fff;
+                margin: 0 0.4rem;
+                transition: 0.3s;
+
+                &:hover{
+                    color: rgba(255, 255, 255, 0.438);
+                }
+            }
+
+        }
+
+    }
+
+    .logout-btn{
+        padding: 0.6rem 1.2rem;
+        border: none;
+        color: rgba(0, 5, 23, 0.99);
+        border-radius: 36px;
+        font-size: 18px;
+        line-height: 20px;
+        max-width: 240px;
+        background: #fff;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover{
+            background: rgba(255, 255, 255, 0.575);
+            color: #fff;
+        }
+
+
+    }
+}
