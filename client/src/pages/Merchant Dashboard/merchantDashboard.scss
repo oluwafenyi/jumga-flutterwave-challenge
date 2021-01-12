@@ -1,10 +1,58 @@
 .merchant-dashboard-page{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     background: #f0f2f4;
+    font-family: 'Poppins', sans-serif;
 
     aside{
         align-self: flex-start;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    .merchant-dashboard-main{
+        display: flex;
+        flex-direction: column;
+        margin-left: 280px;
+        width: 100%;
+
+        .merchant-summary{
+            display: flex;
+            flex-direction: row-reverse;
+            align-self: flex-end;
+            margin: 0.5rem 1rem;
+            padding: 0.5rem;
+
+            .store-logo{
+                max-width:60px;
+                margin:0.5rem;
+                align-self:center;
+                img{
+                    width:100%;
+                    border-radius: 10px;
+                }
+            }
+        }
+
+        .store-summary{
+            align-self:center;
+            .store-name{
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 27px;
+            }
+
+            .store-email{
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 27px;
+                color: rgba(0, 0, 0, 0.692);
+                margin: 0.2rem;
+            }
+        }
+
     }
 }

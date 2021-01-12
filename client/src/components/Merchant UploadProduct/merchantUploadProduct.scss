@@ -1,0 +1,150 @@
+.merchant-upload-product{
+    display: flex;
+    flex-direction: column;
+    padding: 0.6rem;
+    .merchant-upload-product-header{
+        display: flex;
+        flex-direction: column;
+
+        .merchant-upload-product-title{
+            font-weight: 500;
+            font-size: 50px;
+            line-height: 67px;
+        }
+
+        .merchant-upload-product-subtitle{
+            font-weight: 300;
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.753);
+            line-height: 37px;
+        }
+    }
+
+    .upload-form{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0.5rem;
+        margin: 2rem 0;
+        max-width: 900px;
+
+        .product-img{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            align-self: flex-start;
+            max-width: 250px;
+            cursor: pointer;
+            transition: 0.3s;
+            background: #ffffff;
+            padding: 0.5rem;
+            border-radius: 30px;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+
+            .product{
+                width: 100%;
+                cursor: pointer;
+            }
+            p{
+                text-align: center;
+            }
+            input{
+                opacity: 0;
+            }
+        }
+
+        .product-details{
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+        }
+
+        .merchant-form-input{
+            padding: 0.5rem 0.8rem;
+            border-radius: 36px;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+            border: none;
+            margin: 0.7rem 0;
+            background: #ffffff;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 36px;
+            max-width: 400px;
+            &:focus{
+                outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+            }
+        }
+
+        textarea{
+            resize: none;
+            font-family: 'Poppins', sans-serif;
+            max-width: 450px;
+            height: 200px;
+            padding: 0.5rem 0.8rem;
+            border-radius: 20px;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+            border: none;
+            margin: 0.7rem 0;
+            background: #ffffff;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 30px;
+            max-width: 400px;
+
+            &:focus{
+                outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+            }
+        }
+
+        .merchant-form-select{
+            background: #FFFFFF;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 36px;
+            border: none;
+            font-weight:400;
+            font-size: 18px;
+            line-height: 36px;
+            padding: 0.5rem 0.8rem;
+            margin: 1rem 0;
+            max-width: 400px;
+            transition: 0.2s;
+            appearance: none;
+
+
+              
+            &::-ms-expand {
+                display: none;
+            }
+            
+            &:hover{
+                box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.041);
+            }
+            
+            &:focus{
+                outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+            }
+        }
+
+        .merchant-form-submit{
+            background: #56903B;
+            font-family: 'Poppins', sans-serif;
+            border-radius: 36px;
+            border: none;
+            padding: 0.6rem 1rem;
+            max-width: 220px;
+            font-size: 18px;
+            color: #fff;
+            margin: 2rem 0;
+            font-style: normal;
+            font-weight: 300;
+            cursor: pointer;
+            transition: 0.2s;
+            
+            &:hover{
+            background: #3c632a;
+            }
+              
+        }
+            
+    }
+}

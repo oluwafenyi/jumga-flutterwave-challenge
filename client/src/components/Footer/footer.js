@@ -60,4 +60,13 @@ function Footer() {
     )
 }
 
+export const AltFooter = () =>{
+    return(
+        <footer className="alt-footer">
+            <p>© 2021 Jumga. All rights reserved.</p>
+            <a href="www.google.com">Jumga Shopping</a>
+        </footer>
+    )
+}
+
 export default Footer

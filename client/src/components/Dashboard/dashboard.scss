@@ -14,16 +14,18 @@
     .dashboard-logo{
         display: flex;
         flex-direction: row;
+        padding: 1rem 0;
+
 
         img{
-            max-width: 140px;
+            max-width: 150px;
         }
 
         p{
             font-weight: 500;
-            font-size: 18px;
+            font-size: 14px;
             line-height: 36px;
-            align-self: center;
+            align-self: flex-end;
             color: #fff;
         }
     }
@@ -33,13 +35,13 @@
         .dashboard-menu-item{
             display: flex;
             flex-direction: row;
-            margin: 1rem 0 ;
+            margin: 2rem 0 ;
             padding: 0.4rem;
             cursor: pointer;
 
             img{
                 align-self: center;
-                max-width: 38px;
+                max-width: 30px;
             }
             span{
                 align-self: center;
@@ -61,7 +63,7 @@
         border: none;
         color: rgba(0, 5, 23, 0.99);
         border-radius: 36px;
-        font-size: 22px;
+        font-size: 18px;
         line-height: 20px;
         max-width: 240px;
         background: #fff;
@@ -70,6 +72,7 @@
 
         &:hover{
             background: rgba(255, 255, 255, 0.575);
+            color: #fff;
         }
 
 

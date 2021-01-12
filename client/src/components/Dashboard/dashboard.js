@@ -6,7 +6,7 @@ import ProductsIcon from '../../assets/dashboard-icons/your_products.svg';
 import Logo from '../../assets/logos/Footer Logo.svg';
 import './dashboard.css';
 
-const Dashboard = () =>{
+const Dashboard = ({dashboardOption,setDashboardOption}) =>{
     return(
         <div className="dashboard">
             <div className="dashboard-logo">
@@ -14,10 +14,10 @@ const Dashboard = () =>{
                 <p>Merchant</p>
             </div>
             <ul className="dashboard-menu">
-                <li className="dashboard-menu-item"><img src={ OverviewIcon } alt="Overview" /><span>Overview</span></li>
-                <li className="dashboard-menu-item"><img src={ ProductsIcon } alt="Your products" /><span>Your Products</span></li>
-                <li className="dashboard-menu-item"><img src={ AddProductIcon } alt="Add products" /><span>Add Product</span></li>
-                <li className="dashboard-menu-item"><img src={ DispatchIcon } alt="Dispatch" /><span>Dispatch Service</span></li>
+                <li onClick={ ()=>setDashboardOption('overview') } className="dashboard-menu-item"><img src={ OverviewIcon } alt="Overview" /><span>Overview</span></li>
+                <li onClick={ ()=>setDashboardOption('myProducts') } className="dashboard-menu-item"><img src={ ProductsIcon } alt="Your products" /><span>Your Products</span></li>
+                <li onClick={ ()=>setDashboardOption('upload') } className="dashboard-menu-item"><img src={ AddProductIcon } alt="Add products" /><span>Add Product</span></li>
+                <li onClick={ ()=>setDashboardOption('dispatch') } className="dashboard-menu-item"><img src={ DispatchIcon } alt="Dispatch" /><span>Dispatch Service</span></li>
             </ul>
             <button className="logout-btn">Logout</button>
         </div>

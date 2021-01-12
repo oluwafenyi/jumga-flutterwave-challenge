@@ -1,7 +1,9 @@
 import React from 'react';
+import DispatchRider from '../../assets/test-dispatch.png';
+import './merchantDispatchService.scss';
 
 const MerchantDispatchService = () =>{
-
+    window.scrollTo(0,0);
     return(
         <div className="merchant-dispatch-service">
             <h2 className="merchant-dispatch-service-title">Dispatch Service</h2>
@@ -9,7 +11,7 @@ const MerchantDispatchService = () =>{
                 <h3 className="current-dispatch-rider-title">Current Dispatch Rider</h3>
                 <div className="current-dispatch-rider-info">
                     <div className="dispatch-rider-passport">
-                        <img src={ "" } alt="Dispacth Rider" />
+                        <img src={ DispatchRider } alt="Dispatch Rider" />
                     </div>
                     <div className="dispatch-rider-details">
                         <h3 className="name">Wasiu Mutiu</h3>
@@ -23,7 +25,11 @@ const MerchantDispatchService = () =>{
             </div>
             <div className="new-rider">
                 <div className="new-rider-header">
-                    <img src={ ""} className="chevron" alt="Chevron" />
+                    <div className="chevron">
+                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.5 27L22.5 18L13.5 9" stroke="#20263C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     <h3 className="new-rider-title">Register new dispatch rider</h3>
                 </div>
                 <div className="new-rider-form-body">
