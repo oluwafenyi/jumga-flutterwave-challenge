@@ -43,3 +43,50 @@
         }
     }
 }
+
+
+.alt-pagination{
+    display: flex;
+    flex-direction: row;
+    font-family: 'Poppins', sans-serif;
+    padding: 0.5rem;
+    margin: 2rem auto;
+    align-self: center;
+
+    .previous-btn,
+    .next-btn{
+        padding: 0.2rem 0.6rem;
+        text-transform: uppercase;
+        border: 2px solid rgba(0, 5, 23, 0.99);
+        transition: 0.2s;
+        border-radius: 40px ;
+        cursor: pointer;
+        align-self: center;
+
+        &:hover{
+            background: rgba(0, 5, 23, 0.99);
+            color: #fff;
+        }
+    }
+
+    .pages{
+        display: flex;
+        flex-direction: row;
+        margin: 0 0.4rem;
+        cursor: pointer;
+
+        .page-number{
+            padding: 0.4rem 0.8rem;
+            transition: 0.2s;
+            border-radius: 50px;
+            margin: 0 0.3rem;
+            align-self: center;
+            min-width: 33.6px;
+
+            &:hover{
+                background: rgba(0, 5, 23, 0.99);
+                color: #fff;
+            }
+        }
+    }
+}

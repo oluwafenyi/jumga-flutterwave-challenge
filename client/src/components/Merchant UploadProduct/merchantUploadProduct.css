@@ -1,1 +1,189 @@
-/* No CSS */
+.merchant-upload-product {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0.6rem;
+}
+
+.merchant-upload-product .merchant-upload-product-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.merchant-upload-product .merchant-upload-product-header .merchant-upload-product-title {
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 67px;
+}
+
+.merchant-upload-product .merchant-upload-product-header .merchant-upload-product-subtitle {
+  font-weight: 300;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.753);
+  line-height: 37px;
+}
+
+.merchant-upload-product .upload-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 0.5rem;
+  margin: 2rem 0;
+  max-width: 900px;
+}
+
+.merchant-upload-product .upload-form .product-img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  max-width: 250px;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  background: #ffffff;
+  padding: 0.5rem;
+  border-radius: 30px;
+  -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.merchant-upload-product .upload-form .product-img .product {
+  width: 100%;
+  cursor: pointer;
+}
+
+.merchant-upload-product .upload-form .product-img p {
+  text-align: center;
+}
+
+.merchant-upload-product .upload-form .product-img input {
+  opacity: 0;
+}
+
+.merchant-upload-product .upload-form .product-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 60%;
+}
+
+.merchant-upload-product .upload-form .merchant-form-input {
+  padding: 0.5rem 0.8rem;
+  border-radius: 36px;
+  -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  margin: 0.7rem 0;
+  background: #ffffff;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 36px;
+  max-width: 400px;
+}
+
+.merchant-upload-product .upload-form .merchant-form-input:focus {
+  outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+}
+
+.merchant-upload-product .upload-form textarea {
+  resize: none;
+  font-family: 'Poppins', sans-serif;
+  max-width: 450px;
+  height: 200px;
+  padding: 0.5rem 0.8rem;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  margin: 0.7rem 0;
+  background: #ffffff;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 30px;
+  max-width: 400px;
+}
+
+.merchant-upload-product .upload-form textarea:focus {
+  outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+}
+
+.merchant-upload-product .upload-form .merchant-form-select {
+  background: #FFFFFF;
+  -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 36px;
+  border: none;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 36px;
+  padding: 0.5rem 0.8rem;
+  margin: 1rem 0;
+  max-width: 400px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.merchant-upload-product .upload-form .merchant-form-select::-ms-expand {
+  display: none;
+}
+
+.merchant-upload-product .upload-form .merchant-form-select:hover {
+  -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.041);
+          box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.041);
+}
+
+.merchant-upload-product .upload-form .merchant-form-select:focus {
+  outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+}
+
+.merchant-upload-product .upload-form .merchant-form-submit {
+  background: #56903B;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 36px;
+  border: none;
+  padding: 0.6rem 1rem;
+  max-width: 220px;
+  font-size: 18px;
+  color: #fff;
+  margin: 2rem 0;
+  font-style: normal;
+  font-weight: 300;
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.merchant-upload-product .upload-form .merchant-form-submit:hover {
+  background: #3c632a;
+}

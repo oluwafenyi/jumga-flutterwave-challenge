@@ -34,7 +34,7 @@
   color: rgba(0, 0, 0, 0.644);
 }
 
-.product-preview main .back-option .back-option-btn:hover img {
+.product-preview main .back-option .back-option-btn:hover svg {
   -webkit-transform: translateX(-5px);
           transform: translateX(-5px);
 }
@@ -57,7 +57,7 @@
   border-radius: 50%;
 }
 
-.product-preview main .back-option .back-option-btn .arrow img {
+.product-preview main .back-option .back-option-btn .arrow svg {
   -webkit-transition: 0.2s;
   transition: 0.2s;
 }

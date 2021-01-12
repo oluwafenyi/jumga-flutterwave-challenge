@@ -102,3 +102,33 @@ footer{
 .mobile-footer{
     display: none;
 }
+
+.alt-footer{
+    display: flex;
+    flex-direction: column;
+    background: none;
+    margin-top: 10rem ;
+
+    p,a{
+        text-align: center;
+        color: rgba(0, 5, 23, 0.99);
+    }
+    
+    p{
+        font-size: 14px;
+        font-weight: 400;
+       
+    }
+
+    a{
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 500;
+        margin: 0.5rem 0;
+
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+    
+}

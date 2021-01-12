@@ -1,0 +1,163 @@
+.merchant-dispatch-service{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+
+    .merchant-dispatch-service-title{
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    .current-dispatch-rider{
+        padding: 0.5rem;
+        margin: 1rem 2rem;
+
+        .current-dispatch-rider-title{
+            font-weight: normal;
+            font-size: 25px;
+            line-height: 25px;
+            padding: 0.5rem;
+        }
+
+        .current-dispatch-rider-info{
+            display: flex;
+            flex-direction: row;
+            padding: 0.5rem;
+        }
+
+        .dispatch-rider-passport{
+            max-width: 200px;
+            border-radius: 30px;
+
+            img{
+                width: 100%;
+                border-radius: 30px;
+            }
+        }
+
+        .dispatch-rider-details{
+            align-self: center;
+            margin: 0 1rem;
+
+
+            .name{
+                font-size: 20px;
+                line-height: 27px;
+                font-weight: 400;
+            }
+
+            .contact-details-title{
+                font-size: 16px;
+                line-height: 27px;
+                color: rgba(0, 0, 0, 0.62);
+                font-weight: 300px;
+            }
+        }
+    }
+
+    .new-rider{
+        margin: 3rem 2rem;
+
+        .new-rider-header{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .chevron{
+                margin-top: 0.32rem;
+            }
+
+            .new-rider-title{
+                margin: 0.6rem 0;
+                font-weight: normal;
+                font-size: 25px;
+                line-height: 25px;
+                padding: 0.5rem;
+            }
+
+        }
+
+        .new-rider-form-body{
+            padding: 1rem 2rem;
+
+            .new-rider-subtitle{
+                font-style: italic;
+                font-weight: 300;
+                font-size: 15px;
+                line-height: 24px;
+            }
+
+            .new-rider-form{
+                display: flex;
+                flex-direction: column;
+
+                .merchant-form-input{
+                    padding: 0.5rem 0.8rem;
+                    border-radius: 36px;
+                    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+                    border: none;
+                    margin: 0.7rem 0;
+                    background: #ffffff;
+                    font-weight: normal;
+                    font-size: 18px;
+                    line-height: 36px;
+                    max-width: 400px;
+                    &:focus{
+                        outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+                    }
+                }
+              
+                .merchant-form-select{
+                    background: #FFFFFF;
+                    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+                    border-radius: 36px;
+                    border: none;
+                    font-weight:400;
+                    font-size: 18px;
+                    line-height: 36px;
+                    padding: 0.5rem 0.8rem;
+                    margin: 1rem 0;
+                    max-width: 400px;
+                    transition: 0.2s;
+                    appearance: none;
+        
+        
+                      
+                    &::-ms-expand {
+                        display: none;
+                    }
+                    
+                    &:hover{
+                        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.041);
+                    }
+                    
+                    &:focus{
+                        outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+                    }
+                }
+        
+                .merchant-form-submit{
+                    background: #56903B;
+                    font-family: 'Poppins', sans-serif;
+                    border-radius: 36px;
+                    border: none;
+                    padding: 0.6rem 1rem;
+                    max-width: 220px;
+                    font-size: 18px;
+                    color: #fff;
+                    margin: 2rem 0;
+                    font-style: normal;
+                    font-weight: 300;
+                    cursor: pointer;
+                    transition: 0.2s;
+                    
+                    &:hover{
+                    background: #3c632a;
+                    }
+                      
+                }
+            }
+        }
+    }
+}

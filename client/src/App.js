@@ -2,7 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
 } from "react-router-dom";
 import LandingPage from './pages/Landing Page/landingPage';
 import UserLogin from './pages/User Login/userLogin';
@@ -12,11 +12,18 @@ import ProductPreview from './pages/Product Preview/productPreview';
 import Stores from './pages/Stores/stores';
 import Store from './pages/Store/store';
 import MerchantDashboard from './pages/Merchant Dashboard/merchantDashboard';
+// import ScrollToTop from './components/ScrollToTop/scrollToTop';
+import {createBrowserHistory} from "history";
 import './App.css';
 
 function App() {
+  let history = createBrowserHistory();
+  history.listen(({location,action})=>{
+    window.scrollTo(0,0)
+  })
   return (
     <Router>
+      {/* <ScrollToTop/> */}
       <Switch>
         <Route path="/" exact component={ LandingPage }/>
         <Route path="/login" exact component={ UserLogin }/>

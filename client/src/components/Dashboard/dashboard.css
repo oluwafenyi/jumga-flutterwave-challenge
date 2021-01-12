@@ -28,19 +28,19 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  padding: 1rem 0;
 }
 
 .dashboard .dashboard-logo img {
-  max-width: 140px;
+  max-width: 150px;
 }
 
 .dashboard .dashboard-logo p {
   font-weight: 500;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 36px;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
   color: #fff;
 }
 
@@ -56,7 +56,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  margin: 1rem 0;
+  margin: 2rem 0;
   padding: 0.4rem;
   cursor: pointer;
 }
@@ -65,7 +65,7 @@
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  max-width: 38px;
+  max-width: 30px;
 }
 
 .dashboard .dashboard-menu .dashboard-menu-item span {
@@ -87,7 +87,7 @@
   border: none;
   color: rgba(0, 5, 23, 0.99);
   border-radius: 36px;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 20px;
   max-width: 240px;
   background: #fff;
@@ -98,4 +98,5 @@
 
 .dashboard .logout-btn:hover {
   background: rgba(255, 255, 255, 0.575);
+  color: #fff;
 }

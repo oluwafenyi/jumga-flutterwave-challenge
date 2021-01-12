@@ -379,7 +379,7 @@
   color: rgba(0, 0, 0, 0.644);
 }
 
-.landing-page .products-homepage-link:hover img {
+.landing-page .products-homepage-link:hover svg {
   -webkit-transform: translateX(5px);
           transform: translateX(5px);
 }
@@ -402,7 +402,7 @@
   border-radius: 50%;
 }
 
-.landing-page .products-homepage-link .arrow img {
+.landing-page .products-homepage-link .arrow svg {
   -webkit-transition: 0.2s;
   transition: 0.2s;
 }

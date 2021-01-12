@@ -9,7 +9,6 @@ import queryString from "query-string";
 import Navigation from '../../components/Navigation/navigation';
 import ProductIcon from '../../components/ProductCard/productCard';
 import Footer from '../../components/Footer/footer';
-import Arrow from '../../assets/LeftArrow.svg';
 import PaymentModal from '../../components/Payment Modal/paymentModal';
 import './productPreview.scss';
 
@@ -86,7 +85,11 @@ const ProductPreview = (props) =>{
                 <section className="back-option">
                     <Link to="/products" className="back-option-btn">
                         <div className="arrow">
-                            <img className="other-products-arrow" src={Arrow} alt="arrow" />
+                            <svg width="31" height="16" viewBox="0 0 31 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.292406 7.29277C-0.0981179 7.6833 -0.0981179 8.31646 0.292406 8.70698L6.65637 15.0709C7.04689 15.4615 7.68006 15.4615 8.07058 15.0709C8.4611 14.6804 8.4611 14.0473 8.07058 13.6567L2.41373 7.99988L8.07058 2.34302C8.4611 1.9525 8.4611 1.31934 8.07058 0.928811C7.68006 0.538287 7.04689 0.538287 6.65637 0.928811L0.292406 7.29277ZM30.9995 6.99988L0.999513 6.99988V8.99988L30.9995 8.99988V6.99988Z" fill="black"/>
+                            </svg>
+
+                            {/* <img className="other-products-arrow" src={Arrow} alt="arrow" /> */}
                         </div> 
                        <p>Products</p>
                     </Link>
