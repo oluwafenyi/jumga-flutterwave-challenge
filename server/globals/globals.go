@@ -16,8 +16,8 @@ func init() {
 	switch os.Getenv("ENV") {
 	case "staging":
 		FrontendUrl = "http://localhost:3000"
-		ClientUrl = "http://localhost:3000"
-		MerchantUrl = "http://localhost:8080"
+		ClientUrl = "https://jumga-client.netlify.app"
+		MerchantUrl = "https://jumga-merchant.netlify.app"
 
 		Port = os.Getenv("PORT")
 		if Port == "" {
