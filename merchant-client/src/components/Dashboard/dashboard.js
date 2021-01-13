@@ -1,5 +1,6 @@
 import React from 'react';
 import { observer } from "mobx-react-lite";
+import { useHistory } from "react-router-dom";
 import OverviewIcon from '../../assets/dashboard-icons/overview.svg';
 import DispatchIcon from '../../assets/dashboard-icons/dispatch.svg';
 import AddProductIcon from '../../assets/dashboard-icons/add-product.svg';
@@ -11,6 +12,7 @@ import { jumga } from "../../axios";
 import {jumgaState} from "../../store/store";
 
 const Dashboard = ({dashboardOption,setDashboardOption, approved}) =>{
+    const history = useHistory();
 
     const ApprovalButtonView = observer(({ state }) => {
         if (!state.approved) {
@@ -30,6 +32,11 @@ const Dashboard = ({dashboardOption,setDashboardOption, approved}) =>{
         }
     }
 
+    const logout = async () => {
+        jumgaState.clearAccessToken();
+        history.replace("/login");
+    }
+
     return(
         <div className="dashboard">
             <div className="dashboard-logo">
@@ -43,7 +50,7 @@ const Dashboard = ({dashboardOption,setDashboardOption, approved}) =>{
                 <li onClick={ ()=>setDashboardOption('dispatch') } className="dashboard-menu-item"><img src={ DispatchIcon } alt="Dispatch" /><span>Dispatch Service</span></li>
             </ul>
             <ApprovalButtonView state={ jumgaState } />
-            <button className="logout-btn">Logout</button>
+            <button className="logout-btn" onClick={logout}>Logout</button>
         </div>
     )
 }
