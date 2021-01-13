@@ -8,6 +8,7 @@ import (
 
 var FrontendUrl string
 var ClientUrl string
+var MerchantUrl string
 var Port string
 var DBOpts *pg.Options
 
@@ -16,6 +17,7 @@ func init() {
 	case "staging":
 		FrontendUrl = "http://localhost:3000"
 		ClientUrl = "http://localhost:3000"
+		MerchantUrl = "http://localhost:8080"
 
 		Port = os.Getenv("PORT")
 		if Port == "" {
@@ -37,6 +39,7 @@ func init() {
 	default:
 		FrontendUrl = "http://localhost:3000"
 		ClientUrl = "http://localhost:3000"
+		MerchantUrl = "http://localhost:8080"
 		Port = ":8000"
 		DBOpts = &pg.Options{
 			User:     "postgres",

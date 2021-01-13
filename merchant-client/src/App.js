@@ -1,12 +1,9 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MerchantSignup from './pages/Merchant Signup/merchantSignup';
 import MerchantLogin from './pages/Merchant Login/merchantLogin';
 import MerchantDashboard from "./pages/Merchant Dashboard/merchantDashboard";
+import { jumgaState } from "./store/store";
 import './App.css';
 
 function App() {

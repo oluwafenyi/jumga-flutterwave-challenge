@@ -107,7 +107,7 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 		Reference:      transaction.ID,
 		Amount:         "20",
 		Currency:       "USD",
-		RedirectUrl:    globals.FrontendUrl + "/payment/redirect/",
+		RedirectUrl:    globals.MerchantUrl + "/",
 		PaymentOptions: "card,account,banktransfer,ussd",
 		Meta: map[string]string{
 			"customer_id": merchant.UUID,

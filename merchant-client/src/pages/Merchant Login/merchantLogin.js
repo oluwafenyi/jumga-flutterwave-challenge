@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import {AltNavigation} from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
 import Shopping from '../../assets/web_shopping.svg';
@@ -13,6 +13,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function MerchantLogin() {
     const [ form, updateForm ] = useState({ "email": "", "password": "" });
+    const history = useHistory();
+
+    useEffect(() => {
+        if (!notification.displayed() && notification.location === "login") {
+            notification.display();
+        }
+    }, [])
 
     const handleFormChange = (e) => {
         updateForm(prev => {
@@ -32,6 +39,9 @@ function MerchantLogin() {
             }
             console.log(response.data);
             jumgaState.setAccessToken(response.data.access_token);
+            jumgaState.setApprovalStatus(response.data.approved);
+            history.push("/");
+
         } catch (err) {
             notification.setValues({ status: "failed", message: "Invalid login credentials", location: "login" })
             console.log(err);

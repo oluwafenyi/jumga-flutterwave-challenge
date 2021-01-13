@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { AltNavigation } from '../../components/Navigation/navigation';
 import PlusSign from '../../assets/plus.svg';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer/footer';
 import './merchantSignup.css';
+import { ToastContainer } from 'react-toastify';
 
 import { jumga } from "../../axios";
 import utils from "../../utils/utils";
+import {notification} from "../../store/store";
 
 function MerchantSignup() {
     const [ country, setCountry ] = useState("");
@@ -22,6 +24,9 @@ function MerchantSignup() {
         "password": "",
         "confirm_password": "",
     });
+    const [ merchantLogoLink, setMerchantLogoLink ] = useState("");
+    const history = useHistory();
+    let uploadWidget = null;
 
     const handleCountrySelection = (e) => {
         setCountry(e.target.value);
@@ -39,6 +44,39 @@ function MerchantSignup() {
             }
         });
     }
+
+    const cloudinaryUpload = () => {
+      if (uploadWidget === null) {
+          return
+      }
+      uploadWidget.open();
+    };
+
+    const onLoadCloudinaryScript = () => {
+        uploadWidget = window.cloudinary.createUploadWidget({
+            cloudName: 'dkow6vfth',
+            upload_preset: 'jumgapreset',
+            folder: 'jumga-images',
+            cropping: true,
+        }, (error, result) => { if (result.event === "success") {
+            // console.log(result.info)
+            setMerchantLogoLink(result.info.secure_url);
+            notification.setValues({status: "success", message: "Image upload successful", location:"here"})
+            notification.display()
+        }
+        })
+    }
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
+        script.type = "text/javascript";
+        script.async = true;
+        script.onload = () => onLoadCloudinaryScript();
+
+        document.body.appendChild(script);
+        // return () => document.removeChild(script);
+    }, [])
 
     useEffect(() => {
         const getBankData = async () => {
@@ -69,20 +107,31 @@ function MerchantSignup() {
 
     const submitSignUpForm = async (e) => {
         e.preventDefault();
+        if (merchantLogoLink === "") {
+            notification.setValues({ status: "failed", message: "Please upload your logo", location: "here" });
+            notification.display()
+            return
+        }
         const payload = {
             ...form,
             country,
             "account_bank": bank,
             "business_contact_mobile": form.business_mobile,
         }
-        console.log(payload)
-        // try {
-        //     const response = await jumga.post("/v1/merchant", payload);
-        //     console.log(response.data);
-        //
-        // } catch (err) {
-        //     console.log(err)
-        // }
+        try {
+            const response = await jumga.post("/v1/merchant", payload);
+            console.log(response.data);
+            if (response.status === 201) {
+                const authResponse = await jumga.post("/auth/token", { email: form.business_email, password: form.password })
+                const token = authResponse.data.access_token;
+                await jumga.put("/v1/merchant/logo", {link: merchantLogoLink}, {headers: {Authorization: `Bearer ${token}`}});
+                notification.setValues({ status: "success", message: "Sign up successful! Login to your account.", location: "login" });
+                history.push("/login")
+            }
+        } catch (err) {
+            notification.setValues({ status: "failed", message: await err.response.data.message, location: "merchant-sign-up" })
+            notification.display()
+        }
     }
 
 
@@ -92,6 +141,7 @@ function MerchantSignup() {
                 <AltNavigation/>
             </nav>
             <main>
+                <ToastContainer/>
                 <div className="merchant-sign-up-header">
                     <h3 className="merchant-sign-up-title">Become a merchant</h3>
                     <p className="merchant-sign-up-subtitle">Register your store and showcase your products</p>
@@ -136,11 +186,11 @@ function MerchantSignup() {
                         </p>
                     </div>
                     <div className="business-logo">
-                        <label htmlFor="business-logo">
+                        <label onClick={cloudinaryUpload}>
                             <img src={PlusSign} className="business-logo-img" alt="Business Logo"/>
                             <p>Add Business Logo</p>
                         </label>   
-                        <input type="file" id="business-logo" accept="image/png,image/jpeg" multiple={false}/>
+                        <input type="file" accept="image/png,image/jpeg" multiple={false}/>
                     </div>
                 </form>
             </main>
