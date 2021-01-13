@@ -135,6 +135,17 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 	SuccessResponse(http.StatusCreated, map[string]interface{}{"payment_link": link}, w)
 }
 
+func getDispatchRider(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	merchant, ok := ctx.Value("merchant").(*db.User)
+	if !ok {
+		ErrorResponse(http.StatusUnprocessableEntity, "cannot process request", w)
+		return
+	}
+	rider := merchant.Store.DispatchRider
+	SuccessResponse(http.StatusOK, map[string]interface{}{"data": rider}, w)
+}
+
 func updateDispatchRider(w http.ResponseWriter, r *http.Request) {
 	input := db.DispatchRider{}
 	err := decodeInput(&input, r)
@@ -261,6 +272,7 @@ func MerchantRoutes() http.Handler {
 			r.Use(MerchantCtx)
 
 			r.Post("/process-approval", processApproval)
+			r.Get("/dispatch", getDispatchRider)
 			r.Put("/dispatch", updateDispatchRider)
 			r.Delete("/dispatch", deleteDispatchRider)
 			r.Put("/logo", updateMerchantLogo)

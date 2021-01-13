@@ -56,7 +56,7 @@ class ToastNotification {
             case "failed":
                 return toast.error(this.message);
             case "info":
-                return toast.info(this.message, { autoClose: false, position: "top-center", closeOnClick: false })
+                return toast.info(this.message, { autoClose: false, position: "top-center", closeOnClick: false, toastId: "unique" })
             default:
                 return toast(this.message);
         }

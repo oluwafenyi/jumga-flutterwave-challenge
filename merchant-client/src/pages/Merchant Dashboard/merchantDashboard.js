@@ -16,6 +16,10 @@ import { jumga } from "../../axios";
 
 const MerchantDashboard = (props) =>{
     const [ dashboardOption, setDashboardOption ] = useState('overview');
+    const [ store, setStore ] = useState({
+        "business_name": "",
+        "business_email": "",
+    })
     const history = useHistory();
 
     useEffect(() => {
@@ -26,6 +30,20 @@ const MerchantDashboard = (props) =>{
         const params = queryString.parse(props.location.search);
         const tx_ref = params.tx_ref
         const transaction_id = params.transaction_id
+
+        const getMerchant = async () => {
+            try {
+                const response = await jumga.get("/auth/merchant")
+                console.log(response.data.data)
+                setStore(response.data.data.store)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        (async function() {
+            await getMerchant();
+        })();
 
         const verifyTransaction = async () => {
             try {
@@ -69,8 +87,8 @@ const MerchantDashboard = (props) =>{
                         <img src={Logo} alt="Store Logo"/>
                     </div>
                     <div className="store-summary">
-                        <h3 className="store-name">Uncle Ignatius and sons online stores</h3>
-                        <h3 className="store-email">Ignatius_sons@yahoo.com</h3>
+                        <h3 className="store-name">{ store.business_name }</h3>
+                        <h3 className="store-email">{ store.business_email }</h3>
                     </div>
                 </section>
                 <section className="dashboard-display">
