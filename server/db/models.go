@@ -70,7 +70,7 @@ func (d DispatchRider) BankDetailsExist() bool {
 
 type Store struct {
 	tableName            struct{}       `pg:"stores"`
-	ID                   int64          `json:"-"`
+	ID                   int64          `json:"id"`
 	SubAccountID         string         `pg:"sub_account_id,type:varchar(255)" json:"-"`
 	FlutterwaveAccountID int32          `pg:"flutterwave_account_id" json:"-"`
 	Rating               float32        `pg:"rating" json:"rating"`
@@ -97,7 +97,7 @@ func (s *Store) Insert() error {
 }
 
 func (s *Store) GetByID(id int64) error {
-	err := DB.Model(s).Relation("DispatchRider").Where(`"store"."id" = ?`, id).Select()
+	err := DB.Model(s).Relation("DispatchRider").Relation("Logo").Where(`"store"."id" = ?`, id).Select()
 	return err
 }
 
@@ -110,6 +110,35 @@ func (s *Store) GetContact() *User {
 func (s *Store) Update() error {
 	_, err := DB.Model(s).WherePK().Update()
 	return err
+}
+
+func GetStoreProductsPage(start, limit int, category string, storeID int64) ([]Product, int, bool) {
+	var products []Product
+
+	if category == "all" {
+		_ = DB.Model(&products).Relation("DisplayImage").Relation("Category").Where(`store.id = ?`, storeID).Order("id ASC").Offset(start).Limit(limit).Select()
+	} else {
+		_ = DB.Model(&products).Relation("DisplayImage").Relation("Category").Where(`store.id = ? AND category.slug = ?`, storeID, category).Order("id ASC").Offset(start).Limit(limit).Select()
+	}
+
+	if len(products) == 0 {
+		return make([]Product, 0), 0, false
+	}
+
+	var next []Product
+	if category == "all" {
+		_ = DB.Model(&next).Where(`store.id = ?`, storeID).Order("id ASC").Offset(limit + start + 1).Limit(1).Select()
+	} else {
+		_ = DB.Model(&next).Where(`store.id = ? AND category.slug = ?`, storeID, category).Order("id ASC").Offset(limit + start + 1).Limit(1).Select()
+	}
+
+	if category == "all" {
+		total, _ := DB.Model(&products).Where(`store.id = ?`, storeID).Count()
+		return products, total, len(next) > 0
+	} else {
+		total, _ := DB.Model(&products).Where(`store.id = ? AND category.slug = ?`, storeID, category).Count()
+		return products, total, len(next) > 0
+	}
 }
 
 type User struct {
@@ -145,6 +174,11 @@ func (u *User) GetByID(uid string) error {
 	return err
 }
 
+func (u *User) GetByStoreID(id int64) error {
+	err := DB.Model(u).Relation("Store").Relation("Store.Logo").Where(`"user"."store_id" = ?`, id).Select()
+	return err
+}
+
 func (u *User) GetByEmail(email string) error {
 	err := DB.Model(u).Relation("Store").Where(`"user"."email" = ?`, email).Select()
 	return err
@@ -168,6 +202,20 @@ func (u *User) SetPassword(pwd string) {
 func (u *User) CheckPassword(pwd string) bool {
 	err := bcrypt.CompareHashAndPassword(u.Password, []byte(pwd))
 	return err == nil
+}
+
+func GetMerchantsPage(start, limit int) ([]User, int, bool) {
+	var merchants []User
+
+	_ = DB.Model(&merchants).Relation("Store").Relation("Store.Logo").Where(`"user"."store_id" IS NOT NULL`).Order("id ASC").Offset(start).Limit(limit).Select()
+
+	var next []User
+	_ = DB.Model(&next).Where(`"user"."store_id" IS NOT NULL`).Order("id ASC").Offset(limit + start + 1).Limit(1).Select()
+	if len(merchants) == 0 {
+		return make([]User, 0), 0, false
+	}
+	total, _ := DB.Model(&merchants).Where(`"user"."store_id" IS NOT NULL`).Count()
+	return merchants, total, len(next) > 0
 }
 
 type Transaction struct {
@@ -270,8 +318,8 @@ type Product struct {
 	Rating         float32          `json:"rating"`
 	CategoryID     int32            `json:"-"`
 	Category       *ProductCategory `pg:"rel:has-one" json:"category"`
-	StoreID        int64            `json:"-"`
 	DateListed     time.Time        `json:"-"`
+	StoreID        int64            `json:"-"`
 	Store          *Store           `pg:"rel:has-one" json:"store,omitempty"`
 }
 
@@ -314,13 +362,25 @@ func GetProductsPage(start, limit int, category string) ([]Product, int, bool) {
 		_ = DB.Model(&products).Relation("Category").Relation("DisplayImage").Where("category.slug = ?", category).Order("id DESC").Offset(start).Limit(limit).Select()
 	}
 
-	var next []Product
-	_ = DB.Model(&next).Order("id DESC").Offset(limit + start + 1).Limit(1).Select()
 	if len(products) == 0 {
 		return make([]Product, 0), 0, false
 	}
-	total, _ := DB.Model(&products).Count()
-	return products, total, len(next) > 0
+
+	var next []Product
+	if category == "all" {
+		_ = DB.Model(&next).Order("id DESC").Offset(limit + start + 1).Limit(1).Select()
+	} else {
+		_ = DB.Model(&next).Where("category.slug = ?", category).Order("id DESC").Offset(limit + start + 1).Limit(1).Select()
+	}
+
+	if category == "all" {
+		total, _ := DB.Model(&products).Count()
+		return products, total, len(next) > 0
+
+	} else {
+		total, _ := DB.Model(&products).Where("category.slug = ?", category).Count()
+		return products, total, len(next) > 0
+	}
 }
 
 type Order struct {
@@ -345,4 +405,14 @@ func (o *Order) Insert() error {
 func (o *Order) Update() error {
 	_, err := DB.Model(o).WherePK().Update()
 	return err
+}
+
+func GetDistinctStoreProductCategories(storeId int64) []string {
+	var products []Product
+	var categories []string
+	_ = DB.Model(&products).ColumnExpr("DISTINCT category").Where("product.store_id = ?", storeId).Select()
+	for _, product := range products {
+		categories = append(categories, product.Category.Name)
+	}
+	return categories
 }

@@ -68,7 +68,7 @@ const MerchantDashboard = (props) =>{
             return
         }
 
-        if (!jumgaState.approved) {
+        if (!jumgaState.approved && jumgaState.isAuthenticated()) {
             notification.setValues({ status: "info", message: "All actions are disabled until you process your approval", location: "here" })
             notification.display()
         }

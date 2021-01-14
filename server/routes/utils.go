@@ -19,6 +19,44 @@ type paginationParams struct {
 	limit   int
 }
 
+type StoreOut struct {
+	ID              int64     `json:"id"`
+	Rating          float32   `json:"rating"`
+	BusinessName    string    `json:"business_name" validate:"required,max=255"`
+	BusinessMobile  string    `json:"business_mobile" validate:"required,max=32"`
+	BusinessEmail   string    `json:"business_email" validate:"required,email"`
+	Country         string    `json:"country" validate:"required,max=2"`
+	Logo            *db.Image `json:"logo"`
+	BusinessContact string    `json:"business_contact"`
+	Categories      []string  `json:"categories"`
+}
+
+func serializeStore(merchant db.User, categories []string) StoreOut {
+	if len(categories) == 0 {
+		categories = make([]string, 0)
+	}
+	return StoreOut{
+		ID:              merchant.StoreID,
+		Rating:          merchant.Store.Rating,
+		BusinessName:    merchant.Store.BusinessName,
+		BusinessMobile:  merchant.Store.BusinessMobile,
+		BusinessEmail:   merchant.Store.BusinessEmail,
+		Country:         merchant.Store.Country,
+		Logo:            merchant.Store.Logo,
+		BusinessContact: merchant.Name,
+		Categories:      categories,
+	}
+}
+
+func serializeStores(merchants []db.User) []StoreOut {
+	var stores []StoreOut
+	for _, merchant := range merchants {
+		categories := db.GetDistinctStoreProductCategories(merchant.StoreID)
+		stores = append(stores, serializeStore(merchant, categories))
+	}
+	return stores
+}
+
 func paginate(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		params := r.URL.Query()

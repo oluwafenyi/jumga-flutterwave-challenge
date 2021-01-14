@@ -30,7 +30,7 @@ function App() {
         <Route path="/products" exact component={ ViewProducts }/>
         <Route path="/products/:productId" exact component={ ProductPreview }/>
         <Route path="/stores" exact component={ Stores }/>
-        <Route path="/store" exact component={ Store }/>
+        <Route path="/stores/:storeId" exact component={ Store }/>
       </Switch>
     </Router>
   );

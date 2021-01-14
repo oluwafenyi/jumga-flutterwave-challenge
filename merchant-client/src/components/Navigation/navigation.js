@@ -34,7 +34,7 @@ function Navigation() {
                 <div className="bar bar-3"></div>
             </div>
             <ul className="desktop-menu">
-                <li><Link to="/" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} >Home</Link></li>
+                <li><Link to={ clientLink + "/" } className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} >Home</Link></li>
                 <li><Link to={ clientLink + "/products" } className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>All Products</Link></li>
                 <li><Link to={ clientLink + "/stores" } className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Stores</Link></li>
                 { getAuthStatusButton() }
@@ -53,7 +53,7 @@ function Navigation() {
                 </div>
 
                 <ul className="mobile-menu">
-                    <li><Link to="/" className="menu-item" >Home</Link></li>
+                    <li><Link to={ clientLink + "/" } className="menu-item" >Home</Link></li>
                     <li><Link to={ clientLink + "/products" } className="menu-item">All Products</Link></li>
                     <li><Link to={ clientLink + "/stores" } className="menu-item">Stores</Link></li>
                     <li><Link to="/login" className="menu-item">Login</Link></li>
@@ -74,7 +74,7 @@ export function AltNavigation() {
                     <div className="bar bar-3"></div>
                 </div>
                 <ul className="desktop-menu">
-                    <li><Link to="/" className="menu-item">Home</Link></li>
+                    <li><Link to={ clientLink + "/" } className="menu-item">Home</Link></li>
                     <li><Link to={ clientLink + "/products" } className="menu-item">All Products</Link> </li>
                 </ul>
                 <Link to="/" className="logo">
