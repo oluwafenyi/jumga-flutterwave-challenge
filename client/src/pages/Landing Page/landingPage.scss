@@ -5,8 +5,6 @@
     width: 100%;
     transition: 0.3s;
 
-    
-
     .landing-header{
         display: flex;
         flex-direction: column;
@@ -55,10 +53,9 @@
             .shop-btn{
                 margin: 0.5rem 1rem;
                 text-decoration: none;
-                padding: 0.5rem 1rem;
+                padding: 0.5rem 1.5rem;
                 color: #000;
                 background-color: #fff;
-                // border: 1px solid #000;
                 border-radius: 76px;
                 transition:0.2s;
                 opacity: 0;
@@ -97,7 +94,6 @@
             grid-gap: 10px;
             width: 100%;
             max-width: 1270px;
-            background: #F2F2F2;
             border-radius: 36px;
             padding: 1rem;
             margin: 2rem 0;
@@ -119,6 +115,7 @@
                 color: #FFFFFF;
                 text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
                 text-transform: uppercase;
+                
             }
             .offer-subtitle{
                 color: #fff;
@@ -255,6 +252,7 @@
             display: flex;
             flex-direction: column;
             margin: 1rem 2rem;
+            overflow-x: hidden;
         }
 
         .category{

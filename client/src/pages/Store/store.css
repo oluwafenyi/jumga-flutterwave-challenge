@@ -11,6 +11,7 @@
       -ms-flex-direction: row;
           flex-direction: row;
   margin-left: 5%;
+  padding: 1.5rem 0;
 }
 
 .store-page .store-header .store-icon {
@@ -51,8 +52,8 @@
 }
 
 .store-page .store-header .merchant-details .contact-details a {
-  max-width: 35px;
-  padding: 0.2rem;
+  max-width: 30px;
+  padding: 0.3rem;
   margin: 0 0.2rem;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;

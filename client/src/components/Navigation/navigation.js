@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import Search from '../Search/search';
-import './navigation.css';
+import './navigation.scss';
 
 import { merchantLink } from "../../constants";
 import { jumgaState} from "../../store/store";
@@ -22,7 +22,7 @@ function Navigation() {
             )
         }
         return (
-            <li><button className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} onClick={logoutUser} >Logout</button></li>
+            <li><button className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} onClick={logoutUser}>Logout</button></li>
         )
     }
 

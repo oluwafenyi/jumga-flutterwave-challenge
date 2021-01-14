@@ -60,7 +60,7 @@
 .landing-page .landing-header .hero-text .shop-btn {
   margin: 0.5rem 1rem;
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.5rem;
   color: #000;
   background-color: #fff;
   border-radius: 76px;
@@ -95,7 +95,6 @@
   grid-gap: 10px;
   width: 100%;
   max-width: 1270px;
-  background: #F2F2F2;
   border-radius: 36px;
   padding: 1rem;
   margin: 2rem 0;
@@ -278,6 +277,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   margin: 1rem 2rem;
+  overflow-x: hidden;
 }
 
 .landing-page .homepage-categories .category {

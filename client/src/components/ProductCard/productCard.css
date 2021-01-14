@@ -26,6 +26,7 @@
 .product-icon:hover {
   -webkit-box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.116);
           box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.116);
+  border-color: #000000;
 }
 
 .product-icon:hover .product-name {

@@ -1,14 +1,18 @@
 import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 import { TweenMax, Power3 } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {Link} from 'react-router-dom';
 import Navigation from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
-// import Arrow from '../../assets/RightArrow.svg';
 import './landingPage.css';
 
 function LandingPage() {
     let hero = useRef(null);
     let heroBtn = useRef(null);
+    let landingPage = useRef(null);
+    gsap.registerPlugin(ScrollTrigger);
+
 
     useEffect(()=>{
         TweenMax.to(hero, .7,{opacity:1, x:+20, ease:Power3.easeOut});
@@ -16,14 +20,44 @@ function LandingPage() {
     },[])
 
 
+    useEffect(()=>{
+        const categories = landingPage.querySelectorAll('.category');
+        categories.forEach(categoryAmin)
+    },[])
+
+    const categoryAmin = (category)=>{
+        const categoryImg = category.querySelector('.category-img');
+        const categoryDetails = category.querySelector('.category-details');
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: category,
+                start: "center bottom",
+                ease: "power2",
+                toggleActions: "play none none none"
+            }
+        })
+        .from(categoryImg, {
+            x: -200,
+            opacity: 0,
+            duration: 0.5
+          })
+          .from(categoryDetails, {
+            x: 200,
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.2
+        }, "-=0.5"); 
+    }
+
 
     return (
-        <div className="landing-page">
+        <div className="landing-page" ref={ el => landingPage = el }>
             <header className="landing-header">
                 <nav>
                     <Navigation/>
                 </nav>
-                <div className="hero">
+                <div className="hero" >
                     <div className="hero-image">
                         <img src={"https://res.cloudinary.com/dkow6vfth/image/upload/v1609805142/jumga-images/mock%20images/BojAdpN4n1M_iegwqs.png"} alt="hero" />
                     </div>
@@ -35,7 +69,7 @@ function LandingPage() {
                     </div>
                 </div>
             </header>
-            <main>
+            <main >
                 <section className="top-offers">
                     <p className="top-offers-title">Top offers for the week</p>
                     <div className="offers-tiles">
@@ -70,7 +104,7 @@ function LandingPage() {
                 <section className="homepage-categories">
                     <h3 className="homepage-categories-title">Categories</h3>
                     <div className="categories-list">
-                        <div className="category">
+                        <div className="category" >
                             <div className="category-img">
                                 <img src={"https://res.cloudinary.com/dkow6vfth/image/upload/v1609805149/jumga-images/mock%20images/2JrpkyZ2ruQ_qza1vc.png"} alt="Category"/>
                             </div>
