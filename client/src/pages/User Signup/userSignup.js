@@ -39,7 +39,7 @@ const UserSignup = () => {
         try {
             const response = await jumga.post("/v1/user", payload);
             if (response.status === 201) {
-                notification.setValues({ status: "success", message: "Sign up successful! Login to your account.", location: "home" });
+                notification.setValues({ status: "success", message: "Sign up successful! Login to your account.", location: "login" });
                 history.push("/login")
             }
             console.log(response)

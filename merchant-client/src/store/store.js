@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 
 class JumgaState {
     access_token = "";
+    approved = false;
+    store_id = "";
 
     constructor() {
         makeAutoObservable(this);
@@ -15,8 +17,18 @@ class JumgaState {
         this.access_token = access_token;
     }
 
+    setApprovalStatus(status) {
+        this.approved = status;
+    }
+
+    setStoreID(id) {
+        this.store_id = id;
+    }
+
     clearAccessToken() {
         this.access_token = "";
+        this.approved = false;
+        this.store_id = "";
     }
 
     isAuthenticated() {
@@ -49,6 +61,8 @@ class ToastNotification {
                 return toast.success(this.message);
             case "failed":
                 return toast.error(this.message);
+            case "info":
+                return toast.info(this.message, { autoClose: false, position: "top-center", closeOnClick: false, toastId: "unique" })
             default:
                 return toast(this.message);
         }

@@ -1,16 +1,21 @@
 
 function getMerchantLink() {
-    switch (process.env.NODE_ENV) {
-        case "development":
-            return "http://localhost:8080";
-        case "production":
-            return "";
-        default:
-            return "";
+    if (process.env.NODE_ENV === "development") {
+        return "http://localhost:8080";
     }
+    return "https://jumga-merchant.netlify.app"
+}
+
+function getClientLink() {
+    if (process.env.NODE_ENV === "development") {
+        return "http://localhost:3000"
+    }
+    return "https://jumga-client.netlify.app"
 }
 
 export const merchantLink = getMerchantLink();
+
+export const clientLink = getClientLink();
 
 export const countryCodes = {
     Nigeria: "NG",
@@ -40,4 +45,3 @@ export const productCategories = [
         "slug": "fitfam"
     }
 ]
-

@@ -15,7 +15,7 @@ const UserLogin = () => {
     const history = useHistory();
 
     useEffect(() => {
-        if (!notification.displayed() && notification.location === "home") {
+        if (!notification.displayed() && notification.location === "login") {
             notification.display();
         }
     }, [])

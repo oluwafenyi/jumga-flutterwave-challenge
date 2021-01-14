@@ -107,7 +107,7 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 		Reference:      transaction.ID,
 		Amount:         "20",
 		Currency:       "USD",
-		RedirectUrl:    globals.FrontendUrl + "/payment/redirect/",
+		RedirectUrl:    globals.MerchantUrl + "/",
 		PaymentOptions: "card,account,banktransfer,ussd",
 		Meta: map[string]string{
 			"customer_id": merchant.UUID,
@@ -133,6 +133,17 @@ func processApproval(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	SuccessResponse(http.StatusCreated, map[string]interface{}{"payment_link": link}, w)
+}
+
+func getDispatchRider(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	merchant, ok := ctx.Value("merchant").(*db.User)
+	if !ok {
+		ErrorResponse(http.StatusUnprocessableEntity, "cannot process request", w)
+		return
+	}
+	rider := merchant.Store.DispatchRider
+	SuccessResponse(http.StatusOK, map[string]interface{}{"data": rider}, w)
 }
 
 func updateDispatchRider(w http.ResponseWriter, r *http.Request) {
@@ -261,6 +272,7 @@ func MerchantRoutes() http.Handler {
 			r.Use(MerchantCtx)
 
 			r.Post("/process-approval", processApproval)
+			r.Get("/dispatch", getDispatchRider)
 			r.Put("/dispatch", updateDispatchRider)
 			r.Delete("/dispatch", deleteDispatchRider)
 			r.Put("/logo", updateMerchantLogo)
