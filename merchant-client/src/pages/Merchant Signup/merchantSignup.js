@@ -12,6 +12,7 @@ function MerchantSignup() {
     const [ country, setCountry ] = useState("");
     const [ banks, setBanks ] = useState([]);
     const [ bank, setBank ] = useState("");
+
     const [ form, updateForm ] = useState({
         "account_number": "",
         "business_name": "",
@@ -39,6 +40,8 @@ function MerchantSignup() {
             }
         });
     }
+
+    
 
     useEffect(() => {
         const getBankData = async () => {
@@ -126,7 +129,7 @@ function MerchantSignup() {
                                 </p>
                             </div>
                         </div>
-                        <input type="submit" value="Register" className="register-btn" onClick={submitSignUpForm}/>
+                        <input type="submit" disabled value="Register" className="register-btn" onClick={submitSignUpForm}/>
 
                         <p className="merchant-login-link">
                             Already have an account? 
