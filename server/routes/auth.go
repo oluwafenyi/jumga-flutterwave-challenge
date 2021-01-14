@@ -35,7 +35,7 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
 	if ok {
 		_, tokenString, _ := tokenAuth.Encode(map[string]interface{}{"uid": user.UUID})
 		if user.Store != nil {
-			SuccessResponse(http.StatusOK, map[string]interface{}{"access_token": tokenString, "type": "bearer", "account_type": user.AccountType, "approved": user.Store.Approved}, w)
+			SuccessResponse(http.StatusOK, map[string]interface{}{"access_token": tokenString, "type": "bearer", "account_type": user.AccountType, "approved": user.Store.Approved, "store_id": user.StoreID}, w)
 			return
 		}
 		SuccessResponse(http.StatusOK, map[string]interface{}{"access_token": tokenString, "type": "bearer", "account_type": user.AccountType}, w)

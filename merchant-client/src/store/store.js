@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 class JumgaState {
     access_token = "";
     approved = false;
+    store_id = "";
 
     constructor() {
         makeAutoObservable(this);
@@ -20,9 +21,14 @@ class JumgaState {
         this.approved = status;
     }
 
+    setStoreID(id) {
+        this.store_id = id;
+    }
+
     clearAccessToken() {
         this.access_token = "";
         this.approved = false;
+        this.store_id = "";
     }
 
     isAuthenticated() {
