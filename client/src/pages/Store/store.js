@@ -40,6 +40,8 @@ const Store = (props) =>{
                 return "🇬🇭";
             case "KE":
                 return "🇰🇪";
+            default:
+                return "";
         }
     }
 

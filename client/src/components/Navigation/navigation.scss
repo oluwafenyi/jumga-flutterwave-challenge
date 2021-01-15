@@ -48,6 +48,12 @@
 
         li{
             margin: 0 1.5rem;
+            transition: 0.2s;
+            cursor: pointer;
+
+            &:hover{
+                transform: translateY(-2px);
+            }
         }
 
         button{
@@ -55,7 +61,6 @@
             background: none;
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
-            cursor: pointer;
             align-self: flex-start;
         }
 
@@ -68,9 +73,7 @@
             line-height: 27px;
             transition: 0.2s;
 
-            &:hover{
-                color: rgba(255, 255, 255, 0.596);
-            }
+            
         }
     }
 
@@ -129,6 +132,12 @@ ul{
         li{
             margin: 0 1.5rem;
             cursor: pointer;
+
+            transition: 0.2s;
+
+            &:hover{
+                transform: translateY(-2px);
+            }
         }
 
         .menu-item{
@@ -141,9 +150,6 @@ ul{
             transition: 0.2s;
             margin: 0 2rem ;
 
-            &:hover{
-                color: rgba(0, 0, 0, 0.596);
-            }
 
         }
     }
