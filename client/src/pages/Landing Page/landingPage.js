@@ -7,15 +7,17 @@ import Navigation from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
 import './landingPage.css';
 import TopOffersPopup from '../../components/Top Offers/topOffersPopup';
-import ProfileDropdown from '../../components/Profile Dropdown/profileDropdown';
+
 
 function LandingPage() {
     const [ popup, setPopup ] = useState(false);
+
     let hero = useRef(null);
     let heroBtn = useRef(null);
     let heroTitle = useRef(null);
     let landingPage = useRef(null);
     let history = useHistory();
+    
     gsap.registerPlugin(ScrollTrigger);
 
 

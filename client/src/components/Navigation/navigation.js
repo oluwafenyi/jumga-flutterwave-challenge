@@ -1,28 +1,21 @@
 import React, { useState } from 'react'
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Search from '../Search/search';
 import './navigation.scss';
-
-import { merchantLink } from "../../constants";
+// import { merchantLink } from "../../constants";
 import { jumgaState} from "../../store/store";
 import ProfileDropdown from '../Profile Dropdown/profileDropdown';
 
 function Navigation() {
     const location = useLocation();
-    const history = useHistory();
     const [ profileDropdown, displayProfileDropdown ] = useState(false);
 
-    const logoutUser = () => {
-        jumgaState.clearAccessToken();
-        history.push("/");
-    }
-
     const getAuthStatusButton = () => {
-        // if (!jumgaState.isAuthenticated()) {
-        //     return (
-        //         <Link to="/login" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link>
-        //     )
-        // }
+        if (!jumgaState.isAuthenticated()) {
+            return (
+                <Link to="/login" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link>
+            )
+        }
         return (
             <button className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} onClick={ ()=>displayProfileDropdown(true) }>My Profile</button>
         )
@@ -43,7 +36,6 @@ function Navigation() {
                 <ProfileDropdown 
                     profileDropdown={ profileDropdown }  
                     displayProfileDropdown ={ displayProfileDropdown } 
-                    logoutUser = { logoutUser }
                 />
             
             </ul>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import queryString from "query-string";
 import Navigation from '../../components/Navigation/navigation';
 import FilterIcon from '../../assets/Filter Icon.svg';
@@ -11,7 +11,7 @@ import Footer from '../../components/Footer/footer';
 import Pagination from '../../components/Pagination/pagination';
 import './store.css';
 import {jumga} from "../../axios";
-import {notification} from "../../store/store";
+// import {notification} from "../../store/store";
 
 const Store = (props) =>{
     const [ storeCategory, setStoreCategory ] = useState('all');
