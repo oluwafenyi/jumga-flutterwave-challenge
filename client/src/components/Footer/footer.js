@@ -18,13 +18,13 @@ function Footer() {
                 <div className="footer-menu">
                     <h4 className="footer-menu-title">Contact Us</h4>
                     <ul className="footer-list">
-                        <li className="footer-menu-item"><a href={'google.com'}>+123-234566</a></li>
-                        <li className="footer-menu-item"><a href={'google.com'}>+123-234566</a></li>
-                        <li className="footer-menu-item"><a href={'google.com'}>+123-234566</a></li>
+                        <li className="footer-menu-item"><a href={'https://google.com'}>+123-234566</a></li>
+                        <li className="footer-menu-item"><a href={'https://google.com'}>+123-234566</a></li>
+                        <li className="footer-menu-item"><a href={'https://google.com'}>+123-234566</a></li>
                         <li className="footer-menu-item socials">
-                            <a href={'google.com'} className="social"><img src={Facebook} alt="socials"/></a>
-                            <a href={'google.com'} className="social"><img src={Twitter} alt="socials"/></a>
-                            <a href={'google.com'} className="social"><img src={Instagram} alt="socials"/></a>
+                            <a href={'https://google.com'} className="social"><img src={Facebook} alt="socials"/></a>
+                            <a href={'https://google.com'} className="social"><img src={Twitter} alt="socials"/></a>
+                            <a href={'https://google.com'} className="social"><img src={Instagram} alt="socials"/></a>
                         </li>
                     </ul>
                 </div>
@@ -52,9 +52,9 @@ function Footer() {
                     <img src={FooterLogo} alt="footer logo"/>
                 </Link>
                 <div className="socials">
-                    <a href={'google.com'} className="social"><img src={Facebook} alt="socials"/></a>
-                    <a href={'google.com'} className="social"><img src={Twitter} alt="socials"/></a>
-                    <a href={'google.com'} className="social"><img src={Instagram} alt="socials"/></a>
+                    <a href={'https://google.com'} className="social"><img src={Facebook} alt="socials"/></a>
+                    <a href={'https://google.com'} className="social"><img src={Twitter} alt="socials"/></a>
+                    <a href={'https://google.com'} className="social"><img src={Instagram} alt="socials"/></a>
                 </div>
             </div>
             

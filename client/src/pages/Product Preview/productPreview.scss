@@ -1,10 +1,10 @@
-
 .product-preview{
     font-family: 'Poppins', sans-serif;
 
     main{
         margin: 0 1rem 7rem 1rem;
         padding: 0.7rem;
+        
         
 
         .back-option{
@@ -13,7 +13,9 @@
             .back-option-btn{
                 display: flex;
                 flex-direction: row;
-                
+                background: none;
+                border: none;
+                outline: none ;
                 font-weight: 300;
                 font-size: 24px;
                 line-height: 36px;
@@ -55,6 +57,7 @@
             flex-direction: row;
             justify-content: space-around;
             margin: 3rem 0;
+            
 
             .product-details{
                 display: flex;

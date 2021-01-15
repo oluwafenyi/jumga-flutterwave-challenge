@@ -50,6 +50,7 @@ function Navigation() {
                 </div>
                 <div className="logo">
                     <h1>jumga.</h1>
+                    <p>Merchant</p>
                 </div>
 
                 <ul className="mobile-menu">
@@ -79,6 +80,7 @@ export function AltNavigation() {
                 </ul>
                 <Link to="/" className="logo">
                     <h1>jumga.</h1>
+                    <p>Merchant</p>
                 </Link>
                 <ul className="desktop-menu">
                     <li><Link to={ clientLink + "/stores" } className="menu-item">Stores</Link></li>

@@ -68,6 +68,20 @@ function Navigation() {
 
 export function AltNavigation() {
 
+    const location = useLocation();
+    const [ profileDropdown, displayProfileDropdown ] = useState(false);
+
+    const getAuthStatusButton = () => {
+        if (!jumgaState.isAuthenticated()) {
+            return (
+                <Link to="/login" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link>
+            )
+        }
+        return (
+            <button className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} onClick={ ()=>displayProfileDropdown(true) }>My Profile</button>
+        )
+    }
+
     return(
         <div className="alt-navigation">
             <div className="desktop-menu-container">
@@ -78,14 +92,19 @@ export function AltNavigation() {
                 </div>
                 <ul className="desktop-menu">
                     <li><Link to="/" className="menu-item">Home</Link></li>
-                    <li><Link to="/products" className="menu-item">All Products</Link> </li>
+                    <li>{ getAuthStatusButton() }</li>
+                    <ProfileDropdown 
+                        profileDropdown={ profileDropdown }  
+                        displayProfileDropdown ={ displayProfileDropdown } 
+                    />
+                   
                 </ul>
                 <Link to="/" className="logo">
                     <h1>jumga.</h1>
                 </Link>
                 <ul className="desktop-menu">
+                    <li><Link to="/products" className="menu-item">All Products</Link></li>
                     <li><Link to="/stores" className="menu-item">Stores</Link></li>
-                    <li><Link to="/login" className="menu-item">Login</Link></li>
                 </ul>
             </div>
         </div>

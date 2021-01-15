@@ -1,11 +1,12 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useLocation,useHistory } from 'react-router-dom';
 import { jumgaState} from "../../store/store";
 
 import './profileDropdown.scss';
 
 const ProfileDropdown = ({profileDropdown, displayProfileDropdown}) =>{
     const history = useHistory();
+    const location = useLocation();
 
     const logoutUser = () => {
         jumgaState.clearAccessToken();
@@ -14,7 +15,8 @@ const ProfileDropdown = ({profileDropdown, displayProfileDropdown}) =>{
 
 
     return(
-        <div className={`profile-dropdown ${profileDropdown ? "show-profile-dropdown" : ""}`}>
+        <div style={ location.pathname !== "/" || location.pathname !== "/products"  ? {border:"1px solid #00000036",filter:"drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.25))",left:"125px",top:"60px"}: {border:"none"} } 
+            className={`profile-dropdown ${profileDropdown ? "show-profile-dropdown" : ""}`}>
             <button onClick={ ()=>displayProfileDropdown(false) } className="close-btn">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M18 6L6 18" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
