@@ -108,10 +108,12 @@
                 padding: 0.6rem;
                 margin: 0.7rem 0;
 
-                .form-input{
+                .form-input,
+                .form-input-select{
                     max-width: 400px;
                     margin: 0.6rem 1rem;
                 }
+
             }
 
             .account-info{

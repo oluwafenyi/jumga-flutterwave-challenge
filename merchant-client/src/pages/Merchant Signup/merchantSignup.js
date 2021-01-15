@@ -166,7 +166,7 @@ function MerchantSignup() {
                             <div className="account">
                                 <h3 className="account-title">Account Details </h3>
                                 <div className="account-details">
-                                    <select name="bank" className="form-input" value={bank} onChange={handleBankSelection}>
+                                    <select name="bank" className="form-input-select" value={bank} onChange={handleBankSelection}>
                                         <option value="" disabled>Bank</option>
                                         {bankOptions()}
                                     </select>
