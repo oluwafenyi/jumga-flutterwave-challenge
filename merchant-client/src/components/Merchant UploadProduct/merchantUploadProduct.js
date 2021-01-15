@@ -11,10 +11,10 @@ const MerchantUploadProduct = () =>{
     const [ productImageLink, setProductImageLink ] = useState("");
     const [ form, updateForm ] = useState({
         title: "",
-        price: "",
-        "delivery_fee": "",
+        price: 0,
+        "delivery_fee": 0,
         description: "",
-        stock: "",
+        stock: 0,
     });
     let uploadWidget = null;
 
@@ -72,7 +72,7 @@ const MerchantUploadProduct = () =>{
             return
         }
         try {
-            const response = await jumga.post("/v1/product", { ...form, category })
+            const response = await jumga.post("/v1/product", { ...form, category, "delivery_fee": Number(form.delivery_fee), stock: Number(form.stock), price: Number(form.price) })
             if (response.status === 201) {
                 const id = response.data.data.id
                 await jumga.put(`/v1/product/${id}/image`, { link: productImageLink })

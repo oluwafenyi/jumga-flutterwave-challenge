@@ -116,9 +116,9 @@ func GetStoreProductsPage(start, limit int, category string, storeID int64) ([]P
 	var products []Product
 
 	if category == "all" {
-		_ = DB.Model(&products).Relation("DisplayImage").Relation("Category").Where(`store.id = ?`, storeID).Order("id ASC").Offset(start).Limit(limit).Select()
+		_ = DB.Model(&products).Relation("DisplayImage").Relation("Category").Where(`store_id = ?`, storeID).Order("id ASC").Offset(start).Limit(limit).Select()
 	} else {
-		_ = DB.Model(&products).Relation("DisplayImage").Relation("Category").Where(`store.id = ? AND category.slug = ?`, storeID, category).Order("id ASC").Offset(start).Limit(limit).Select()
+		_ = DB.Model(&products).Relation("DisplayImage").Relation("Category").Where(`store_id = ? AND category.slug = ?`, storeID, category).Order("id ASC").Offset(start).Limit(limit).Select()
 	}
 
 	if len(products) == 0 {
@@ -127,16 +127,16 @@ func GetStoreProductsPage(start, limit int, category string, storeID int64) ([]P
 
 	var next []Product
 	if category == "all" {
-		_ = DB.Model(&next).Where(`store.id = ?`, storeID).Order("id ASC").Offset(limit + start + 1).Limit(1).Select()
+		_ = DB.Model(&next).Where(`store_id = ?`, storeID).Order("id ASC").Offset(limit + start + 1).Limit(1).Select()
 	} else {
-		_ = DB.Model(&next).Where(`store.id = ? AND category.slug = ?`, storeID, category).Order("id ASC").Offset(limit + start + 1).Limit(1).Select()
+		_ = DB.Model(&next).Where(`store_id = ? AND category.slug = ?`, storeID, category).Order("id ASC").Offset(limit + start + 1).Limit(1).Select()
 	}
 
 	if category == "all" {
-		total, _ := DB.Model(&products).Where(`store.id = ?`, storeID).Count()
+		total, _ := DB.Model(&products).Where(`store_id = ?`, storeID).Count()
 		return products, total, len(next) > 0
 	} else {
-		total, _ := DB.Model(&products).Where(`store.id = ? AND category.slug = ?`, storeID, category).Count()
+		total, _ := DB.Model(&products).Where(`store_id = ? AND category.slug = ?`, storeID, category).Count()
 		return products, total, len(next) > 0
 	}
 }
