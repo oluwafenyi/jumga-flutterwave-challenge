@@ -1,5 +1,6 @@
 .merchant-sign-up {
   font-family: 'Poppins', sans-serif;
+  background: #f0f2f4;
 }
 
 .merchant-sign-up main {
@@ -12,7 +13,6 @@
           flex-direction: column;
   padding: 1rem;
   margin: 1.5rem 0 5rem 0;
-  background: #f0f2f4;
 }
 
 .merchant-sign-up .merchant-sign-up-header {

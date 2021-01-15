@@ -23,9 +23,9 @@ const MerchantDashboard = (props) =>{
     const history = useHistory();
 
     useEffect(() => {
-        // if (!jumgaState.isAuthenticated()) {
-        //     history.replace("/login");
-        // }
+        if (!jumgaState.isAuthenticated()) {
+            history.replace("/login");
+        }
 
         const params = queryString.parse(props.location.search);
         const tx_ref = params.tx_ref
