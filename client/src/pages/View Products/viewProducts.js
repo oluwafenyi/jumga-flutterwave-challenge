@@ -84,9 +84,6 @@ function ViewProducts(props) {
                     <ProductMenu category={ category } setCategory={ setCategory } />
                 </section>
                 <section className="products-gallery">
-                    <ProductCard category="Fashion" name="Adidas" price="500"/>
-                    <ProductCard category="Fashion" name="Adidas" price="500"/>
-                    <ProductCard category="Fashion" name="Adidas" price="500"/>
                     { productListing() }
                 </section>
                 <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages} />

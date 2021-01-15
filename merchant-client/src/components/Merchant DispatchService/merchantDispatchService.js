@@ -27,11 +27,11 @@ const MerchantDispatchService = () =>{
                             <img src={ DispatchRider } alt="Dispatch Rider" />
                         </div>
                         <div className="dispatch-rider-details">
-                            <h3 className="name">Wasiu Mutiu</h3>
+                            <h3 className="name">{ rider.name }</h3>
                             <h4 className="contact-details-title">Contact Details</h4>
                             <div className="contact-details">
-                                <p className="mobile-number">08012113422</p>
-                                <p className="email">wasiu_mutiu69@yahoo.com</p>
+                                <p className="mobile-number">{ rider.mobile }</p>
+                                <p className="email">{ rider.email }</p>
                             </div>
                         </div>
                     </div>

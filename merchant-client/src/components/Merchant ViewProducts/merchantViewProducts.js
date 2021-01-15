@@ -58,7 +58,7 @@ function MerchantViewProducts() {
     const productListing = () => {
         return products.map(product => {
             return (
-                <MerchantProductCard key={ product.id } productId={product.id} stock={ product.stock } title={ product.title } price={ product.price } imageLink={ product.display_image.link } />
+                <MerchantProductCard key={ product.id } productId={product.id} stock={ product.stock } title={ product.title } price={ product.price } imageLink={ product.display_image } />
             )
         })
     }
@@ -69,7 +69,6 @@ function MerchantViewProducts() {
             <div className="view-products">
                 <StoresSearch/>
                 <div className="products-list">
-                    <MerchantProductCard title={"Adidas"} price={"500"} stock={20}/>
                     { productListing() }
                 </div>
             </div>
