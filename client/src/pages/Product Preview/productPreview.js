@@ -73,7 +73,7 @@ const ProductPreview = (props) =>{
         (async function() {
             await getProduct();
         })();
-    }, [productId])
+    }, [productId,props.location.search])
 
     return(
         <div className="product-preview">

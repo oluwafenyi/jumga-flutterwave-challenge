@@ -1,4 +1,6 @@
 .store-card{
+    display: flex;
+    flex-direction: row;
     font-family: 'Poppins', sans-serif;
     border: 1px solid #00000036;
     cursor: pointer;
@@ -12,16 +14,22 @@
 
     &:hover{
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.09);
+        border-color: #000;
     }
 
     .store-icon{
         padding: 0.5rem 1rem;
-        width: auto;
+        max-width: 100px;
         object-fit: cover;
 
         img{
-            width: min-content;
+            width: 100%;
         }
+    }
+
+    .store-info{
+        align-self: center;
+        margin: 0 0.5rem;
     }
 
     .store-details{
@@ -45,6 +53,23 @@
     .categories-available{
         display: flex;
         flex-wrap: wrap;
-        max-width: 175px;
+        width: 175px;
+        overflow-x: scroll;
+        padding: 0.4rem 0;
+
+        &::-webkit-scrollbar{
+            width: 5px;
+            height: 5px;
+        }
+        
+        &::-webkit-scrollbar-thumb{
+            background: rgba(0, 0, 0, 0.13);
+            border-radius: 10px;
+            box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, .25%);
+        }
+
+        &::-webkit-scrollbar-track{
+            background: #ffffff31;
+        }
     }
 }

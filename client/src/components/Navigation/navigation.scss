@@ -1,9 +1,9 @@
 .navigation{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     font-family: 'Poppins', sans-serif;
-    padding: 1rem 0;
+    padding: 1rem 0.5rem;
     width: 100%;
 
     .mobile-menu-btn{
@@ -13,8 +13,17 @@
 
     .logo{
         align-self: center;
-        // margin: 0 6.5rem;
+        margin: 0 0.5rem;
         text-decoration: none;
+        cursor: pointer;
+        
+
+        &:hover{
+            h1{
+                text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+                transform: translateY(-1px);
+            }
+        }
 
         h1{
             font-family: 'Shrikhand', cursive;
@@ -23,6 +32,7 @@
             line-height: 73px;
             text-align: center;
             padding: 0 1rem;
+            transition: 0.3s;
         }
     }
 
@@ -32,13 +42,38 @@
 
     .desktop-menu{
         display:flex;
+        position: relative;
         flex-direction:row;
-        padding: 0.5rem;
+        padding: 0.5rem ;
         align-self: center;
 
         li{
             margin: 0 1.5rem;
+            transition: 0.2s;
+            cursor: pointer;
+
+            &:hover{
+                transform: translateY(-2px);
+                font-weight: 300;
+                font-size: 18px;
+            }
+
+            button{
+                border: none;
+                background: none;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 300;
+                align-self: flex-start;
+                padding: 0 !important;
+                cursor: pointer;
+
+                &:hover{
+                    outline: none;
+                }
+            }
         }
+
+        
 
         .menu-item{
             padding: 0.4rem;
@@ -49,9 +84,7 @@
             line-height: 27px;
             transition: 0.2s;
 
-            &:hover{
-                color: rgba(255, 255, 255, 0.596);
-            }
+            
         }
     }
 
@@ -89,10 +122,16 @@ ul{
     padding: 0.7rem 0.5rem;
     width: 100%;
 
+    .mobile-menu-btn{
+        display: none;
+    }
+
     .desktop-menu-container{
         display: flex;
         flex-direction: row;
         align-content: center;
+        justify-content: space-between;
+        width:100%;
     }
 
     .desktop-menu{
@@ -104,6 +143,12 @@ ul{
         li{
             margin: 0 1.5rem;
             cursor: pointer;
+
+            transition: 0.2s;
+
+            &:hover{
+                transform: translateY(-2px);
+            }
         }
 
         .menu-item{
@@ -116,9 +161,6 @@ ul{
             transition: 0.2s;
             margin: 0 2rem ;
 
-            &:hover{
-                color: rgba(0, 0, 0, 0.596);
-            }
 
         }
     }
@@ -127,9 +169,17 @@ ul{
 
     .logo{
         align-self: center;
-        margin: 0 6.5rem;
+        margin: 0 0.5rem;
         text-decoration: none;
         cursor: pointer;
+
+
+        &:hover{
+            h1{
+                text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+                transform: translateY(-1px);
+            }
+        }
 
         h1{
             font-family: 'Shrikhand', cursive;
@@ -138,6 +188,7 @@ ul{
             line-height: 73px;
             text-align: center;
             padding: 0 0.5rem;
+            transition: 0.3s;
         }
     }
 }

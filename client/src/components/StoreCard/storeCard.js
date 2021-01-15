@@ -13,6 +13,8 @@ function StoreCard(props) {
                 return "🇬🇭";
             case "KE":
                 return "🇰🇪";
+            default:
+                return "";
         }
     }
 

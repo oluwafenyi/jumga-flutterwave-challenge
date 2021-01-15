@@ -62,8 +62,7 @@ const UserSignup = () => {
                 <section className="main-sign-up">
                     <div className="form-details">
                         <form className="user-sign-up-form">
-                            <input type="text" name="name" className="form-input" placeholder="Name" onChange={handleFormChange} required/>
-                            <input type="text" name="mobile" className="form-input" placeholder="Mobile Number" onChange={handleFormChange} required/>
+                            <input type="text" name="name" className="form-input" placeholder="Full Name" onChange={handleFormChange} required/>                            <input type="text" name="mobile" className="form-input" placeholder="Mobile Number" onChange={handleFormChange} required/>
                             <input type="email" name="email" className="form-input" placeholder="Email" onChange={handleFormChange} required/>
                             <input type="text" name="address" className="form-input" placeholder="Address" onChange={handleFormChange} required/>
                             <select name="Country" className="form-input-select" value={country} onChange={handleCountrySelection}>

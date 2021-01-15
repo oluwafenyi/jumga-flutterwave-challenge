@@ -6,11 +6,11 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   font-family: 'Poppins', sans-serif;
-  padding: 1rem 0;
+  padding: 1rem 0.5rem;
   width: 100%;
 }
 
@@ -22,7 +22,15 @@
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+  margin: 0 0.5rem;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.navigation .logo:hover h1 {
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
 }
 
 .navigation .logo h1 {
@@ -32,6 +40,8 @@
   line-height: 73px;
   text-align: center;
   padding: 0 1rem;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .navigation .dark {
@@ -42,6 +52,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -53,6 +64,31 @@
 
 .navigation .desktop-menu li {
   margin: 0 1.5rem;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.navigation .desktop-menu li:hover {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+  font-weight: 300;
+  font-size: 18px;
+}
+
+.navigation .desktop-menu li button {
+  border: none;
+  background: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  padding: 0 !important;
+  cursor: pointer;
+}
+
+.navigation .desktop-menu li button:hover {
+  outline: none;
 }
 
 .navigation .desktop-menu .menu-item {
@@ -64,10 +100,6 @@
   line-height: 27px;
   -webkit-transition: 0.2s;
   transition: 0.2s;
-}
-
-.navigation .desktop-menu .menu-item:hover {
-  color: rgba(255, 255, 255, 0.596);
 }
 
 .navigation .dark-menu-item {
@@ -109,6 +141,10 @@ ul {
   width: 100%;
 }
 
+.alt-navigation .mobile-menu-btn {
+  display: none;
+}
+
 .alt-navigation .desktop-menu-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -119,6 +155,10 @@ ul {
           flex-direction: row;
   -ms-flex-line-pack: center;
       align-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
 }
 
 .alt-navigation .desktop-menu {
@@ -139,6 +179,13 @@ ul {
 .alt-navigation .desktop-menu li {
   margin: 0 1.5rem;
   cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.alt-navigation .desktop-menu li:hover {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
 }
 
 .alt-navigation .desktop-menu .menu-item {
@@ -153,17 +200,19 @@ ul {
   margin: 0 2rem;
 }
 
-.alt-navigation .desktop-menu .menu-item:hover {
-  color: rgba(0, 0, 0, 0.596);
-}
-
 .alt-navigation .logo {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  margin: 0 6.5rem;
+  margin: 0 0.5rem;
   text-decoration: none;
   cursor: pointer;
+}
+
+.alt-navigation .logo:hover h1 {
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
 }
 
 .alt-navigation .logo h1 {
@@ -173,4 +222,6 @@ ul {
   line-height: 73px;
   text-align: center;
   padding: 0 0.5rem;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }

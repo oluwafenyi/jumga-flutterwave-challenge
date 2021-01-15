@@ -14,6 +14,7 @@ function MerchantSignup() {
     const [ country, setCountry ] = useState("");
     const [ banks, setBanks ] = useState([]);
     const [ bank, setBank ] = useState("");
+
     const [ form, updateForm ] = useState({
         "account_number": "",
         "business_name": "",
@@ -165,7 +166,7 @@ function MerchantSignup() {
                             <div className="account">
                                 <h3 className="account-title">Account Details </h3>
                                 <div className="account-details">
-                                    <select name="bank" className="form-input" value={bank} onChange={handleBankSelection}>
+                                    <select name="bank" className="form-input-select" value={bank} onChange={handleBankSelection}>
                                         <option value="" disabled>Bank</option>
                                         {bankOptions()}
                                     </select>
@@ -176,7 +177,7 @@ function MerchantSignup() {
                                 </p>
                             </div>
                         </div>
-                        <input type="submit" value="Register" className="register-btn" onClick={submitSignUpForm}/>
+                        <input type="submit" disabled value="Register" className="register-btn" onClick={submitSignUpForm}/>
 
                         <p className="merchant-login-link">
                             Already have an account? 

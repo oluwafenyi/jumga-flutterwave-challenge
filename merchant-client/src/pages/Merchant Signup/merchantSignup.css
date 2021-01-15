@@ -140,7 +140,8 @@
   margin: 0.7rem 0;
 }
 
-.merchant-sign-up .merchant-sign-up-form .account .account-details .form-input {
+.merchant-sign-up .merchant-sign-up-form .account .account-details .form-input,
+.merchant-sign-up .merchant-sign-up-form .account .account-details .form-input-select {
   max-width: 400px;
   margin: 0.6rem 1rem;
 }

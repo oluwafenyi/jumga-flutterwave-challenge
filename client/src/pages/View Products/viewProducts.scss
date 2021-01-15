@@ -11,8 +11,8 @@
     .view-product-header{
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
-        // background: #f0f0f05b;
+        // justify-content: space-evenly;
+        justify-content: center;
         border-radius: 36px;
         padding: 1rem 0;
         position: relative;
@@ -23,8 +23,23 @@
             cursor: pointer;
 
             .filter-icon{
+                display: flex;
+                flex-direction: row;
                 padding: 0.5rem 0;
                 margin: 0.3rem;
+
+                svg{
+                    width: 22px;
+                    height: 22px;
+                    align-self: center;
+                }
+
+                p{
+                    font-size: 16px;
+                    line-height: 30px;
+                    align-self: center;
+                    margin: 0 0.2rem;
+                }
             }
 
             .filter-menu{

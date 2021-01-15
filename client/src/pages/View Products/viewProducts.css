@@ -22,9 +22,9 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   border-radius: 36px;
   padding: 1rem 0;
   position: relative;
@@ -39,8 +39,32 @@
 }
 
 .view-products-page .view-product-header .filter .filter-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   padding: 0.5rem 0;
   margin: 0.3rem;
+}
+
+.view-products-page .view-product-header .filter .filter-icon svg {
+  width: 22px;
+  height: 22px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.view-products-page .view-product-header .filter .filter-icon p {
+  font-size: 16px;
+  line-height: 30px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin: 0 0.2rem;
 }
 
 .view-products-page .view-product-header .filter .filter-menu {

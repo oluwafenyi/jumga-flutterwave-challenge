@@ -31,18 +31,18 @@ function Footer() {
                 <div className="footer-menu">
                     <h4 className="footer-menu-title">Categories</h4>
                     <ul className="footer-list">
-                        <li className="footer-menu-item"><Link>Electronics</Link></li>
-                        <li className="footer-menu-item"><Link>Fashion</Link></li>
-                        <li className="footer-menu-item"><Link>Cosmetics</Link></li>
-                        <li className="footer-menu-item"><Link>Food Stuff</Link></li>
-                        <li className="footer-menu-item"><Link>Sports and Fitness</Link></li>
+                        <li className="footer-menu-item"><Link to="/products">Electronics</Link></li>
+                        <li className="footer-menu-item"><Link to="/products">Fashion</Link></li>
+                        <li className="footer-menu-item"><Link to="/products">Cosmetics</Link></li>
+                        <li className="footer-menu-item"><Link to="/products">Food Stuff</Link></li>
+                        <li className="footer-menu-item"><Link to="/products">Sports and Fitness</Link></li>
                     </ul>
                 </div>
                 <div className="footer-menu">
                     <h4 className="footer-menu-title">Menu</h4>
                     <ul className="footer-list">
-                        <li className="footer-menu-item"><Link>All Products</Link></li>
-                        <li className="footer-menu-item"><Link>Stores</Link></li>
+                        <li className="footer-menu-item"><Link to="/products">All Products</Link></li>
+                        <li className="footer-menu-item"><Link to="/stores">Stores</Link></li>
                         <li className="footer-menu-item"><a href={ merchantLink + "/signup" }>Become a Merchant</a></li>
                     </ul>
                 </div>
