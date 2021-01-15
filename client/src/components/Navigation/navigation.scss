@@ -42,6 +42,7 @@
 
     .desktop-menu{
         display:flex;
+        position: relative;
         flex-direction:row;
         padding: 0.5rem ;
         align-self: center;
@@ -53,16 +54,26 @@
 
             &:hover{
                 transform: translateY(-2px);
+                font-weight: 300;
+                font-size: 18px;
+            }
+
+            button{
+                border: none;
+                background: none;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 300;
+                align-self: flex-start;
+                padding: 0 !important;
+                cursor: pointer;
+
+                &:hover{
+                    outline: none;
+                }
             }
         }
 
-        button{
-            border: none;
-            background: none;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-            align-self: flex-start;
-        }
+        
 
         .menu-item{
             padding: 0.4rem;

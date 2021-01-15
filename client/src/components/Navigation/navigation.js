@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import Search from '../Search/search';
 import './navigation.scss';
 
 import { merchantLink } from "../../constants";
 import { jumgaState} from "../../store/store";
+import ProfileDropdown from '../Profile Dropdown/profileDropdown';
 
 function Navigation() {
     const location = useLocation();
     const history = useHistory();
+    const [ profileDropdown, displayProfileDropdown ] = useState(false);
 
     const logoutUser = () => {
         jumgaState.clearAccessToken();
@@ -16,13 +18,13 @@ function Navigation() {
     }
 
     const getAuthStatusButton = () => {
-        if (!jumgaState.isAuthenticated()) {
-            return (
-                <li><Link to="/login" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link></li>
-            )
-        }
+        // if (!jumgaState.isAuthenticated()) {
+        //     return (
+        //         <Link to="/login" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link>
+        //     )
+        // }
         return (
-            <li><button className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} onClick={logoutUser}>Logout</button></li>
+            <button className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} onClick={ ()=>displayProfileDropdown(true) }>My Profile</button>
         )
     }
 
@@ -37,12 +39,21 @@ function Navigation() {
                 <li><Link to="/" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} >Home</Link></li>
                 <li><Link to="/products" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>All Products</Link></li>
                 <li><Link to="/stores" className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Stores</Link></li>
-                { getAuthStatusButton() }
+                <li>{ getAuthStatusButton() }</li>
+                <ProfileDropdown 
+                    profileDropdown={ profileDropdown }  
+                    displayProfileDropdown ={ displayProfileDropdown } 
+                    logoutUser = { logoutUser }
+                />
+            
             </ul>
+            
             <Link to="/" className="logo">
                 <h1 className={`${location.pathname !== '/' ? 'dark' : '' }`}>jumga.</h1>
             </Link>
+            
             <Search/>
+            
             <div className="mobile-menu-container">
                 <div className="close-menu-btn">
                     <div className="bar bar-1"></div>

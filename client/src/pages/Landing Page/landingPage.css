@@ -73,19 +73,19 @@
 .landing-page .landing-header .hero-text .shop-btn {
   margin: 0.5rem 2rem;
   text-decoration: none;
-  padding: 0.6rem 2rem;
+  padding: 0.5rem 2rem;
   color: #000;
   background-color: #fff;
   border-radius: 76px;
   -webkit-transition: 0.2s;
   transition: 0.2s;
   opacity: 0;
+  border: 2px solid #fff;
 }
 
 .landing-page .landing-header .hero-text .shop-btn:hover {
   color: #fff;
   background-color: #000;
-  border: 2px solid #fff;
 }
 
 .landing-page main {
@@ -388,6 +388,7 @@
   width: fit-content;
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 .landing-page .products-homepage-link:hover p {

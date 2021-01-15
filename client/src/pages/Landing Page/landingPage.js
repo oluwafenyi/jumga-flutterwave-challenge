@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef ,useState } from 'react';
 import { gsap } from 'gsap';
 import { TweenMax, Power3 } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -6,8 +6,11 @@ import {Link, useHistory} from 'react-router-dom';
 import Navigation from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
 import './landingPage.css';
+import TopOffersPopup from '../../components/Top Offers/topOffersPopup';
+import ProfileDropdown from '../../components/Profile Dropdown/profileDropdown';
 
 function LandingPage() {
+    const [ popup, setPopup ] = useState(false);
     let hero = useRef(null);
     let heroBtn = useRef(null);
     let heroTitle = useRef(null);
@@ -92,30 +95,30 @@ function LandingPage() {
                     <section className="top-offers">
                         <p className="top-offers-title">Top offers for the week</p>
                         <div className="offers-tiles">
-                            <div className="offer-tile tile-1">
+                            <div onClick={ ()=> setPopup(true) } className="offer-tile tile-1">
                                 <h6 className="offer-subtitle">Save up to</h6>
                                 <h3 className="offer-title">20%</h3>
                             </div>
-                            <div className="offer-tile tile-2">
+                            <div onClick={ ()=> setPopup(true) } className="offer-tile tile-2">
                                 <h3 className="offer-title">Get 2 for 1</h3>
                                 <h6 className="offer-subtitle">limited stock</h6>
                             </div>
-                            <div className="offer-tile tile-3">
+                            <div onClick={ ()=> setPopup(true) } className="offer-tile tile-3">
                                 <h3 className="offer-title">40% off</h3>
                                 <h6 className="offer-subtitle">fresh veggies</h6>
                             </div>
-                            <div className="offer-tile tile-4">
+                            <div onClick={ ()=> setPopup(true) } className="offer-tile tile-4">
                                 <h3 className="offer-title">50% off</h3>
                                 <h6 className="offer-subtitle">washing machines</h6>
                             </div>
-                            <div className="offer-tile tile-5">
+                            <div onClick={ ()=> setPopup(true) } className="offer-tile tile-5">
                                 <h3 className="offer-title">10% off</h3>
                                 <h6 className="offer-subtitle">female footwears</h6>
                             </div>
-                            <div className="offer-tile tile-6">
+                            <div onClick={ ()=> setPopup(true) } className="offer-tile tile-6">
                                 <h3 className="offer-title"> Get 10 with 2% off </h3>
                             </div>
-                            <div className="offer-tile tile-7">
+                            <div onClick={ ()=> setPopup(true) } className="offer-tile tile-7">
                                 <h3 className="offer-title">Buy one, get one free</h3>
                             </div>
                         </div>
@@ -164,13 +167,13 @@ function LandingPage() {
                                 <svg width="31" height="16" viewBox="0 0 31 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M30.7071 8.70711C31.0976 8.31658 31.0976 7.68342 30.7071 7.29289L24.3431 0.928932C23.9526 0.538408 23.3195 0.538408 22.9289 0.928932C22.5384 1.31946 22.5384 1.95262 22.9289 2.34315L28.5858 8L22.9289 13.6569C22.5384 14.0474 22.5384 14.6805 22.9289 15.0711C23.3195 15.4616 23.9526 15.4616 24.3431 15.0711L30.7071 8.70711ZM0 9H30V7H0V9Z" fill="black"/>
                                 </svg>
-                                {/* <img className="other-products-arrow" src={Arrow} alt="arrow" /> */}
                             </div> 
                         </button>
                     </section>
                 </main>
             </div>
-            
+            <TopOffersPopup setPopupStatus={ setPopup } popupStatus={ popup }  />
+            {/* <ProfileDropdown/> */}
             <Footer/>
         </div>
     )

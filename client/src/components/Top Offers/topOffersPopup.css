@@ -1,0 +1,100 @@
+.top-offers-popup {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+  opacity: 1;
+}
+
+.top-offers-popup .popup-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: fixed;
+  background: #fff;
+  z-index: 2;
+  border-radius: 11px;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  max-width: 300px;
+  margin: 1rem 35%;
+  top: 30%;
+}
+
+.top-offers-popup .popup-body .close-btn {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  padding: 0 0.5rem;
+  cursor: pointer;
+  max-width: 35px;
+}
+
+.top-offers-popup .popup-body .popup-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0.2rem;
+}
+
+.top-offers-popup .popup-body .popup-details .popup-title {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.top-offers-popup .popup-body .popup-details .popup-subtitle {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgba(0, 0, 0, 0.616);
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.top-offers-popup .popup-body .popup-details .close-modal {
+  max-width: 200px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding: 0.5rem 0.8rem;
+  background-color: #000;
+  border-radius: 50px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  border: 2px solid #000;
+}
+
+.top-offers-popup .popup-body .popup-details .close-modal:hover {
+  background: #fff;
+  color: #000;
+}
+
+.top-offers-popup .popup-body .popup-details .close-modal:focus {
+  outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+}
+
+.top-offers-popup .top-offers-mask {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.699);
+  height: 100%;
+  width: 100%;
+  top: 0;
+}
+
+.hide-popup {
+  z-index: -100;
+  opacity: 0;
+}

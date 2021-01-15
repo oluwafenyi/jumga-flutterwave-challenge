@@ -95,7 +95,7 @@ const Store = (props) =>{
         (async function() {
             await getProducts();
         })();
-    }, [ props.location.search, storeCategory ])
+    }, [ props.location.search, storeCategory,storeId])
 
     const productListing = () => {
         return products.map(product => {
