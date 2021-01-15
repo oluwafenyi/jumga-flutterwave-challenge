@@ -54,6 +54,9 @@ func serializeStores(merchants []db.User) []StoreOut {
 		categories := db.GetDistinctStoreProductCategories(merchant.StoreID)
 		stores = append(stores, serializeStore(merchant, categories))
 	}
+	if len(stores) == 0 {
+		return make([]StoreOut, 0)
+	}
 	return stores
 }
 
