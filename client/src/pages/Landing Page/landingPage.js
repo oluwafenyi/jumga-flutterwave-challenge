@@ -17,7 +17,7 @@ function LandingPage() {
     let heroTitle = useRef(null);
     let landingPage = useRef(null);
     let history = useHistory();
-    
+
     gsap.registerPlugin(ScrollTrigger);
 
 
@@ -137,7 +137,7 @@ function LandingPage() {
                                     <p className="category-description">
                                         Check out our wide range of electrical applicances from washing machines to . They are also affordable.
                                     </p>
-                                    <Link to="/" className="btn shop-btn" >Shop Electronics</Link>
+                                    <Link to="/products?category=electronics" className="btn shop-btn" >Shop Electronics</Link>
                                 </div>
                             </div>
                             <div className="category">
@@ -148,7 +148,7 @@ function LandingPage() {
                                     <h3 className="category-title">Clothing</h3>
                                     <p className="category-description">
                                         We have something for the kids, men and women. We also have different outfits for different occasions.</p>
-                                    <Link to="/" className="btn shop-btn">Shop Clothing</Link>
+                                    <Link to="/products?category=fashion" className="btn shop-btn">Shop Clothing</Link>
                                 </div>
                             </div>
                             <div className="category">
@@ -159,7 +159,7 @@ function LandingPage() {
                                     <h3 className="category-title">Phones and Accessories</h3>
                                     <p className="category-description">
                                         Get your quality devices at affordable prices. You can also get their accessories too</p>
-                                    <Link to="/" className="btn shop-btn">Shop Phones</Link>
+                                    <Link to="/products?category=electronics" className="btn shop-btn">Shop Phones</Link>
                                 </div>
                             </div>
                         </div>

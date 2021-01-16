@@ -18,7 +18,7 @@ const TopOffersPopup = ({ setPopupStatus, popupStatus }) =>{
                     <button onClick={ ()=> setPopupStatus(false) } className="close-modal">Continue shopping</button>
                 </div>
             </div>
-            <div className="top-offers-mask"></div>
+            <div className="top-offers-mask" onClick={ ()=> setPopupStatus(false) }></div>
         </div>
     )
 }
