@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import LineChart from '../../assets/Line chart.svg';
+import React, { useState, useEffect, useRef } from 'react';
+// import LineChart from '../../assets/Line chart.svg';
+import Graph from '../Graph/graph';
 import MerchantProductCard from '../Merchant ProductCard/merchantProductCard';
 import './merchantOverview.scss';
 import {jumga} from "../../axios";
 
+import { Power3 } from 'gsap';
+import { gsap } from 'gsap';
+
 const MerchantOverview = () =>{
-    // window.scrollTo(0,0);
     const [ dashboard, setDashboard ] = useState({
         "product_count": 0,
         "sales_count": 0,
@@ -19,13 +22,15 @@ const MerchantOverview = () =>{
         "top_products": []
     })
 
+    let overviewPage = useRef(null);
+
     const getAveragePrice = () => {
         return dashboard.average_price.toFixed(2);
     }
 
     const topSelling = () => {
         if (dashboard.top_products.length > 0) {
-            const cards = dashboard.top_products.map(product => {
+            const cards = dashboard.top_products.slice(0,6).map(product => {
                 return (
                     <MerchantProductCard key={ product.id } productId={product.id} stock={ product.stock } hasDeleteBtn={ false } title={ product.title } price={ product.price } imageLink={ product.display_image } />
                 )
@@ -41,6 +46,10 @@ const MerchantOverview = () =>{
             )
         }
     }
+
+    useEffect(()=>{
+        gsap.fromTo(overviewPage, {y:-50}, {opacity: 1, duration: 1, y:0, ease: Power3.easeOut,delay:0.7})
+    },[])
 
     useEffect(() => {
         async function getDashboard() {
@@ -63,14 +72,14 @@ const MerchantOverview = () =>{
 
 
     return(
-        <div className="merchant-overview">
+        <div className="merchant-overview" ref={ el=> overviewPage=el }>
             <p className="merchant-overview-title">Overview</p>
-            <div className="overview-details">
+            <div className="overview-details" >
                 <div className="total-values">
                     <div className="total-ratings">
                         <p className="available-products">Total number of available products: <span>{ dashboard.product_count }</span></p>
                         <p className="ratings">Average product ratings: <span>{ dashboard.average_rating }</span></p>
-                        <p className="buyers">Average product price: <span>S{ getAveragePrice() }</span></p>
+                        <p className="buyers">Average product price: <span>${ getAveragePrice() }</span></p>
                     </div>
                     <div className="total-statistics">
                         <p className="sales">Total number of sales: <span>{ dashboard.sales_count }</span></p>
@@ -82,7 +91,8 @@ const MerchantOverview = () =>{
                     <h3 className="sales-title">Weekly Statistics</h3>
                     <div className="sales-statistics">
                         <div className="sales-graph-img">
-                            <img src={ LineChart } alt="Line Chart"/>
+                            <Graph/>
+                            {/* <img src={ LineChart } alt="Line Chart"/> */}
                         </div>
                         <div className="sales-values">
                             <p className="sales">Number of sales: <span>{ dashboard.sales_past_week }</span></p>

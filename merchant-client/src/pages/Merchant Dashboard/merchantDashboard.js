@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Dashboard from '../../components/Dashboard/dashboard';
 import { useHistory } from  "react-router-dom";
 import { AltFooter } from '../../components/Footer/footer';
@@ -8,10 +8,14 @@ import MerchantUploadProduct from '../../components/Merchant UploadProduct/merch
 import MerchantViewProducts from '../../components/Merchant ViewProducts/merchantViewProducts';
 import MerchantDispatchService from '../../components/Merchant DispatchService/merchantDispatchService';
 import Logo from '../../assets/test-logo.png';
+import ApprovedIcon from '../../assets/verified.svg';
 import './merchantDashboard.scss';
 import {jumgaState, notification} from "../../store/store";
 import queryString from "query-string";
 import { jumga } from "../../axios";
+
+import { Power3 } from 'gsap';
+import { gsap } from 'gsap';
 
 
 const MerchantDashboard = (props) =>{
@@ -24,11 +28,15 @@ const MerchantDashboard = (props) =>{
         }
     })
     const history = useHistory();
+    let MerchantSummary = useRef(null);
+
+    // The Approved bool
+    const approved = false;
 
     useEffect(() => {
-        if (!jumgaState.isAuthenticated()) {
-            history.replace("/login");
-        }
+        // if (!jumgaState.isAuthenticated()) {
+        //     history.replace("/login");
+        // }
 
         const params = queryString.parse(props.location.search);
         const tx_ref = params.tx_ref
@@ -80,7 +88,12 @@ const MerchantDashboard = (props) =>{
             notification.setValues({ status: "info", message: "All actions are disabled until you process your approval", location: "here" })
             notification.display()
         }
-    },[]);
+    },[history,props.location.search]);
+
+    // GSAP
+    useEffect(()=>{
+        gsap.fromTo(MerchantSummary, {x:-20}, {opacity: 1, duration: 1, x:0, ease: Power3.easeOut,delay:2})
+    },[])
 
     const getLogo = () => {
         if (store.logo.link) {
@@ -96,12 +109,18 @@ const MerchantDashboard = (props) =>{
             </aside>
             <main className="merchant-dashboard-main">
                 <ToastContainer/>
-                <section className="merchant-summary">
+                <section className="merchant-summary" ref={ el=>MerchantSummary=el }>
                     <div className="store-logo">
                         <img src={ getLogo() } alt="Store Logo"/>
                     </div>
                     <div className="store-summary">
-                        <h3 className="store-name">{ store.business_name }</h3>
+                        <div className="approved-name">
+                            <h3 className="store-name">{ store.business_name }</h3>
+                            {
+                                approved ? <img src={ ApprovedIcon } alt="approved"/> : null
+                            }
+                        </div>
+                        
                         <h3 className="store-email">{ store.business_email }</h3>
                     </div>
                 </section>

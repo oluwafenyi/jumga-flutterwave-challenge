@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import DispatchRider from '../../assets/test-dispatch.png';
 import './merchantDispatchService.scss';
 import {jumga} from "../../axios";
 import utils from "../../utils/utils";
 
+import { Power3 } from 'gsap';
+import { gsap } from 'gsap';
+
 const MerchantDispatchService = () =>{
-    window.scrollTo(0,0);
     const [ rider, setRider ] = useState({name: ""});
     const [ form, updateForm ] = useState({
         "name": "",
@@ -16,6 +18,7 @@ const MerchantDispatchService = () =>{
     const [ country, setCountry ] = useState("");
     const [ banks, setBanks ] = useState([]);
     const [ bank, setBank ] = useState("");
+    let DispatchPage = useRef(null); 
 
     const currentRider = () => {
         if (rider.name !== "") {
@@ -120,8 +123,12 @@ const MerchantDispatchService = () =>{
         }
     }
 
+    useEffect(()=>{
+        gsap.fromTo(DispatchPage, {y:-50}, {opacity: 1, duration: 1, y:0, ease: Power3.easeOut,delay:0.7})
+    },[])
+
     return(
-        <div className="merchant-dispatch-service">
+        <div className="merchant-dispatch-service" ref={ el=>DispatchPage=el }>
             <h2 className="merchant-dispatch-service-title">Dispatch Service</h2>
             { currentRider() }
             <div className="new-rider">

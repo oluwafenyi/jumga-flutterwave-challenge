@@ -3,6 +3,7 @@
     flex-direction: column;
     padding: 0.5rem;
     font-family: 'Poppins', sans-serif;
+    opacity: 0;
 
     .merchant-overview-title{
         font-weight: 500;
@@ -54,15 +55,13 @@
         .sales-statistics{
             display: flex;
             flex-direction: row;
+            justify-content: space-between;
             max-width: 950px;
             padding: 1rem;
             background: #F9F9F9;
             box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
             border-radius: 13px;
             .sales-graph-img{
-                max-width: 400px;
-                max-height: 300px;
-                margin: 1rem 2rem;
     
                 img{
                     width: 100%;

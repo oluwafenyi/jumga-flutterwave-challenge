@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { observer } from "mobx-react-lite";
 import { useHistory } from "react-router-dom";
 import OverviewIcon from '../../assets/dashboard-icons/overview.svg';
@@ -11,8 +11,12 @@ import './dashboard.css';
 import { jumga } from "../../axios";
 import {jumgaState} from "../../store/store";
 
+import { Power3 } from 'gsap';
+import { gsap } from 'gsap';
+
 const Dashboard = ({dashboardOption,setDashboardOption, approved}) =>{
     const history = useHistory();
+    let Dashboard = useRef(null);
 
     const ApprovalButtonView = observer(({ state }) => {
         if (!state.approved) {
@@ -37,8 +41,13 @@ const Dashboard = ({dashboardOption,setDashboardOption, approved}) =>{
         history.replace("/login");
     }
 
+    // GSAP
+    useEffect(() => {
+        gsap.fromTo(Dashboard, {opacity: 0, x:-20}, {opacity: 1, duration: 1, x:0, ease: Power3.easeOut})
+    }, []);
+
     return(
-        <div className="dashboard">
+        <div className="dashboard" ref={ el=> Dashboard=el }>
             <div className="dashboard-logo">
                 <img src={ Logo } alt="Logo" />
                 <p>Merchant</p>

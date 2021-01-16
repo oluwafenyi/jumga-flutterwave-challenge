@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import queryString from "query-string";
 import Navigation from '../../components/Navigation/navigation';
 import ProductMenu from '../../components/ProductsMenu/productsMenu';
@@ -9,6 +9,8 @@ import Pagination from '../../components/Pagination/pagination';
 
 import {jumga} from "../../axios";
 
+import { gsap } from 'gsap';
+
 function ViewProducts(props) {
     const [ products, setProducts ] = useState([]);
     const [ nextPage, setNextPage ] = useState(false);
@@ -17,6 +19,8 @@ function ViewProducts(props) {
     const [ category, setCategory ] = useState('all');
     const [ numberOfPages, setNumberOfPages ] = useState(0);
     const [ page, setPage ] = useState(1);
+
+    let productGallery = useRef(null)
 
     useEffect(() => {
         const getProducts = async () => {
@@ -70,6 +74,16 @@ function ViewProducts(props) {
         })
     }
 
+    // GSAP
+    useEffect(()=>{
+        const products = productGallery.querySelectorAll('.product-card');
+        products.forEach(productAnimate);
+    },[])
+
+    const productAnimate = (product) =>{
+        gsap.to(product, {duration: 0.7, opacity:1, y:15, stagger: 0.5});
+    }
+
     return (
         <div className="view-products-page">
             <nav>
@@ -92,7 +106,7 @@ function ViewProducts(props) {
                     </div> */}
                     <ProductMenu category={ category } />
                 </section>
-                <section className="products-gallery">
+                <section className="products-gallery" ref={ el => productGallery = el }>
                     { productListing() }
                 </section>
                 <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages} category={category} page={page} />

@@ -17,8 +17,7 @@
         cursor: pointer;
         font-size: 18px;
         line-height: 36px;
-        color: rgba(0, 0, 0, 0.53);
-        transition: 0.3s;
+       
 
         &::after{
             content: '';
@@ -38,12 +37,23 @@
                 width: 100%;
                 margin: 0 auto;
             }
+        }
 
+        a{
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.53);
+            transition: 0.3s;
+            &:hover{
+                color: rgba(0, 0, 0, 0.849);
+            }
+            
         }
     }
 
     .selected-category{
-        color: #000;
+        a{
+            color: #000;
+        }
         &::after{
             display: block;
             width: 100%;

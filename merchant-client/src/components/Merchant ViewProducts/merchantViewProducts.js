@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from "react-router-dom";
 import queryString from "query-string";
 import {AltPagination} from '../Pagination/pagination';
@@ -8,6 +8,9 @@ import './merchantViewProducts.scss';
 import {jumga} from "../../axios";
 import {jumgaState} from "../../store/store";
 
+import { Power3 } from 'gsap';
+import { gsap } from 'gsap';
+
 function MerchantViewProducts() {
     window.scrollTo(0,0);
     const [ products, setProducts ] = useState([])
@@ -15,6 +18,7 @@ function MerchantViewProducts() {
     const [ nextPage, setNextPage ] = useState(false);
     const [ numberOfPages, setNumberOfPages ] = useState(0);
     const location = useLocation();
+    let ViewProductsPage = useRef(null);
 
     useEffect(() => {
         const getProducts = async () => {
@@ -63,8 +67,13 @@ function MerchantViewProducts() {
         })
     }
 
+    // GSAP
+    useEffect(()=>{
+        gsap.fromTo(ViewProductsPage, {y:-50}, {opacity: 1, duration: 1, y:0, ease: Power3.easeOut,delay:0.7})
+    },[])
+
     return (
-        <div className="merchant-view-products">
+        <div className="merchant-view-products" ref={ el=> ViewProductsPage=el }>
             <h2 className="merchant-view-products-title">My Products</h2>
             <div className="view-products">
                 <StoresSearch/>

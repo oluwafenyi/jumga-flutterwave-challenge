@@ -7,7 +7,7 @@
     border-radius: 15px;
     width: fit-content;
     padding: 1rem;
-    margin: 0.7rem;
+    margin: 0.7rem 1rem;
     transition: 0.2s;
     text-decoration: none;
     color: #000;
@@ -20,14 +20,16 @@
     .store-icon{
         padding: 0.5rem 1rem;
         max-width: 100px;
-        object-fit: cover;
-
+        
         img{
             width: 100%;
+            object-fit: cover;
         }
     }
 
     .store-info{
+        display:flex;
+        flex-direction: column;
         align-self: center;
         margin: 0 0.5rem;
     }
