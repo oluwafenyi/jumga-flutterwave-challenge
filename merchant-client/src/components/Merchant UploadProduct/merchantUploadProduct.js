@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PlusSign from '../../assets/plus.svg';
 import './merchantUploadProduct.scss';
 import { ToastContainer } from 'react-toastify';
-import {notification} from "../../store/store";
+import {jumgaState, notification} from "../../store/store";
 import {jumga} from "../../axios";
 
 const MerchantUploadProduct = () =>{
@@ -66,6 +66,11 @@ const MerchantUploadProduct = () =>{
 
     const createProduct = async (e) => {
         e.preventDefault();
+        if (!jumgaState.riderRegistered) {
+            notification.setValues({ status: "info", message: "Product upload disabled until a rider is registered", location: "here" })
+            notification.display()
+            return
+        }
         if (productImageLink === "") {
             notification.setValues({ status: "failed", message: "Please upload product image", location: "here" });
             notification.display()

@@ -180,7 +180,7 @@ func (u *User) GetByStoreID(id int64) error {
 }
 
 func (u *User) GetByEmail(email string) error {
-	err := DB.Model(u).Relation("Store").Where(`"user"."email" = ?`, email).Select()
+	err := DB.Model(u).Relation("Store").Relation("Store.DispatchRider").Where(`"user"."email" = ?`, email).Select()
 	return err
 }
 

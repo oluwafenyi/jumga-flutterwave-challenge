@@ -68,6 +68,11 @@ const MerchantDashboard = (props) =>{
             return
         }
 
+        if (!jumgaState.riderRegistered && jumgaState.isAuthenticated()) {
+            notification.setValues({ status: "info", message: "Product upload disabled until a rider is registered", location: "here" })
+            notification.display()
+        }
+
         if (!jumgaState.approved && jumgaState.isAuthenticated()) {
             notification.setValues({ status: "info", message: "All actions are disabled until you process your approval", location: "here" })
             notification.display()

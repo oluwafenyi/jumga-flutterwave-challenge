@@ -76,6 +76,19 @@ func signUpMerchant(w http.ResponseWriter, r *http.Request) {
 	SuccessResponse(http.StatusCreated, data, w)
 }
 
+func getMerchantDashboard(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	merchant, ok := ctx.Value("merchant").(*db.User)
+
+	if !ok {
+		ErrorResponse(http.StatusUnprocessableEntity, "cannot process request", w)
+		return
+	}
+
+	dashboard := db.GetMerchantDashboard(merchant)
+	SuccessResponse(http.StatusOK, map[string]interface{}{"data": dashboard}, w)
+}
+
 func processApproval(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	merchant, ok := ctx.Value("merchant").(*db.User)
@@ -271,6 +284,7 @@ func MerchantRoutes() http.Handler {
 			r.Use(jwtauth.Authenticator)
 			r.Use(MerchantCtx)
 
+			r.Get("/dashboard", getMerchantDashboard)
 			r.Post("/process-approval", processApproval)
 			r.Get("/dispatch", getDispatchRider)
 			r.Put("/dispatch", updateDispatchRider)

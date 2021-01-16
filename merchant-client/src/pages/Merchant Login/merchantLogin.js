@@ -40,6 +40,7 @@ function MerchantLogin() {
             console.log(response.data);
             jumgaState.setAccessToken(response.data.access_token);
             jumgaState.setApprovalStatus(response.data.approved);
+            jumgaState.setRiderRegistered(response.data.rider);
             jumgaState.setStoreID(response.data.store_id);
             history.push("/");
 

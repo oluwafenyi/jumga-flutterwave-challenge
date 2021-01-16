@@ -34,9 +34,9 @@ function Navigation() {
                 <div className="bar bar-3"></div>
             </div>
             <ul className="desktop-menu">
-                <li><Link to={ clientLink + "/" } className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} >Home</Link></li>
-                <li><Link to={ clientLink + "/products" } className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>All Products</Link></li>
-                <li><Link to={ clientLink + "/stores" } className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Stores</Link></li>
+                <li><a href={ clientLink + "/" } className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`} >Home</a></li>
+                <li><a href={ clientLink + "/products" } className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>All Products</a></li>
+                <li><a href={ clientLink + "/stores" } className={`menu-item ${location.pathname !== '/' ? 'dark' : '' }`}>Stores</a></li>
                 { getAuthStatusButton() }
             </ul>
             <Link to="/" className="logo">
@@ -53,9 +53,9 @@ function Navigation() {
                 </div>
 
                 <ul className="mobile-menu">
-                    <li><Link to={ clientLink + "/" } className="menu-item" >Home</Link></li>
-                    <li><Link to={ clientLink + "/products" } className="menu-item">All Products</Link></li>
-                    <li><Link to={ clientLink + "/stores" } className="menu-item">Stores</Link></li>
+                    <li><a href={ clientLink + "/" } className="menu-item" >Home</a></li>
+                    <li><a href={ clientLink + "/products" } className="menu-item">All Products</a></li>
+                    <li><a href={ clientLink + "/stores" } className="menu-item">Stores</a></li>
                     <li><Link to="/login" className="menu-item">Login</Link></li>
                 </ul>
             </div>
@@ -74,14 +74,14 @@ export function AltNavigation() {
                     <div className="bar bar-3"></div>
                 </div>
                 <ul className="desktop-menu">
-                    <li><Link to={ clientLink + "/" } className="menu-item">Home</Link></li>
-                    <li><Link to={ clientLink + "/products" } className="menu-item">All Products</Link> </li>
+                    <li><a href={ clientLink + "/" } className="menu-item">Home</a></li>
+                    <li><a href={ clientLink + "/products" } className="menu-item">All Products</a> </li>
                 </ul>
                 <Link to="/" className="logo">
                     <h1>jumga.</h1>
                 </Link>
                 <ul className="desktop-menu">
-                    <li><Link to={ clientLink + "/stores" } className="menu-item">Stores</Link></li>
+                    <li><a href={ clientLink + "/stores" } className="menu-item">Stores</a></li>
                     <li><Link to="/login" className="menu-item">Login</Link></li>
                 </ul>
             </div>

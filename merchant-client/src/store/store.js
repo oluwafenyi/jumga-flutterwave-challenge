@@ -7,6 +7,7 @@ class JumgaState {
     access_token = "";
     approved = false;
     store_id = "";
+    riderRegistered = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -25,10 +26,15 @@ class JumgaState {
         this.store_id = id;
     }
 
+    setRiderRegistered(status) {
+        this.riderRegistered = status;
+    }
+
     clearAccessToken() {
         this.access_token = "";
         this.approved = false;
         this.store_id = "";
+        this.riderRegistered = false;
     }
 
     isAuthenticated() {

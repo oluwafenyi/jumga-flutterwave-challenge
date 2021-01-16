@@ -20,6 +20,9 @@ jumga.interceptors.request.use(config => {
     if (jumgaState.isAuthenticated()) {
         config.headers["Authorization"] = "Bearer " + jumgaState.access_token;
     }
+    if (!jumgaState.approved && jumgaState.isAuthenticated()) {
+        return false;
+    }
     return config;
 }, err => {
     return Promise.reject(err);
