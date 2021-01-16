@@ -19,6 +19,9 @@ const MerchantDashboard = (props) =>{
     const [ store, setStore ] = useState({
         "business_name": "",
         "business_email": "",
+        "logo": {
+            "link": "",
+        }
     })
     const history = useHistory();
 
@@ -79,6 +82,12 @@ const MerchantDashboard = (props) =>{
         }
     },[]);
 
+    const getLogo = () => {
+        if (store.logo.link) {
+            return store.logo.link;
+        }
+        return Logo
+    }
 
     return(
         <div className="merchant-dashboard-page">
@@ -89,7 +98,7 @@ const MerchantDashboard = (props) =>{
                 <ToastContainer/>
                 <section className="merchant-summary">
                     <div className="store-logo">
-                        <img src={Logo} alt="Store Logo"/>
+                        <img src={ getLogo() } alt="Store Logo"/>
                     </div>
                     <div className="store-summary">
                         <h3 className="store-name">{ store.business_name }</h3>

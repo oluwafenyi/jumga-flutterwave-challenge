@@ -32,7 +32,7 @@ const Stores = (props) =>{
 
             let limit = storesPP * pageNumber;
             try {
-                const response = await jumga.get(`/v1/store?startAt=${limit - storesPP}&limit=${limit}`);
+                const response = await jumga.get(`/v1/store?approved=true&startAt=${limit - storesPP}&limit=${limit}`);
                 console.log(response.data);
                 setStores(response.data.data);
                 if (response.data.next) {

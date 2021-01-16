@@ -12,7 +12,21 @@ import (
 func getStores(w http.ResponseWriter, r *http.Request) {
 	pagination := r.Context().Value("pagination").(paginationParams)
 
-	merchants, total, next := db.GetMerchantsPage(pagination.startAt, pagination.limit)
+	approved, ok := r.URL.Query()["approved"]
+	if !ok || len(approved) < 1 {
+		approved = []string{"false"}
+	}
+	a := approved[0]
+
+	var merchants []db.User
+	var total int
+	var next bool
+
+	if a == "true" {
+		merchants, total, next = db.GetApprovedMerchantsPage(pagination.startAt, pagination.limit)
+	} else {
+		merchants, total, next = db.GetMerchantsPage(pagination.startAt, pagination.limit)
+	}
 
 	stores := serializeStores(merchants)
 
@@ -21,7 +35,7 @@ func getStores(w http.ResponseWriter, r *http.Request) {
 	responseData["limit"] = pagination.limit
 	responseData["total"] = total
 	if next {
-		responseData["next"] = r.URL.String() + fmt.Sprintf("?startAt=%d&limit=%d", pagination.startAt+pagination.limit+1, pagination.limit)
+		responseData["next"] = r.URL.String() + fmt.Sprintf("?startAt=%d&limit=%d&approved=%s", pagination.startAt+pagination.limit+1, pagination.limit, a)
 	}
 	SuccessResponse(http.StatusOK, responseData, w)
 }

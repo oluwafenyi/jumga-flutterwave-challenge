@@ -170,7 +170,7 @@ func (u *User) Insert() error {
 }
 
 func (u *User) GetByID(uid string) error {
-	err := DB.Model(u).Relation("Store").Relation("Store.DispatchRider").Where(`"user"."id" = ?`, uid).Select()
+	err := DB.Model(u).Relation("Store").Relation("Store.DispatchRider").Relation("Store.Logo").Where(`"user"."id" = ?`, uid).Select()
 	return err
 }
 
@@ -215,6 +215,20 @@ func GetMerchantsPage(start, limit int) ([]User, int, bool) {
 		return make([]User, 0), 0, false
 	}
 	total, _ := DB.Model(&merchants).Where(`"user"."store_id" IS NOT NULL`).Count()
+	return merchants, total, len(next) > 0
+}
+
+func GetApprovedMerchantsPage(start, limit int) ([]User, int, bool) {
+	var merchants []User
+
+	_ = DB.Model(&merchants).Relation("Store").Relation("Store.Logo").Where(`"user"."store_id" IS NOT NULL AND "store"."approved" is True`).Order("id ASC").Offset(start).Limit(limit).Select()
+
+	var next []User
+	_ = DB.Model(&next).Relation("Store").Where(`"user"."store_id" IS NOT NULL AND "store"."approved" is True`).Order("id ASC").Offset(limit + start + 1).Limit(1).Select()
+	if len(merchants) == 0 {
+		return make([]User, 0), 0, false
+	}
+	total, _ := DB.Model(&merchants).Relation("Store").Where(`"user"."store_id" IS NOT NULL AND "store"."approved" is True`).Count()
 	return merchants, total, len(next) > 0
 }
 
@@ -410,7 +424,7 @@ func (o *Order) Update() error {
 func GetDistinctStoreProductCategories(storeId int64) []string {
 	var products []Product
 	var categories []string
-	_ = DB.Model(&products).ColumnExpr("DISTINCT category").Where("product.store_id = ?", storeId).Select()
+	_ = DB.Model(&products).Relation("Category").ColumnExpr("DISTINCT category_id").Where("product.store_id = ?", storeId).Select()
 	for _, product := range products {
 		categories = append(categories, product.Category.Name)
 	}

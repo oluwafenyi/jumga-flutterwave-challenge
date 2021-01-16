@@ -62,8 +62,8 @@ func GetMerchantDashboard(m *User) MerchantDashboard {
 	productCount, _ := DB.Model(&Product{}).Where(`store_id = ?`, m.StoreID).Count()
 	salesCount, _ := DB.Model(&Transaction{}).Where(`store_id = ? AND status = 'success'`, m.StoreID).Count()
 	avgRating := calculateAvgRating(m)
-	quantityShipped, _ := DB.Model(&Transaction{}).Relation("Order").Where(`"transaction"."order_status" = 'shipped' AND "transaction"."store_id" = ?`, m.StoreID).Count()
-	awaitingShipping, _ := DB.Model(&Transaction{}).Relation("Order").Where(`"transaction"."order_status" = 'awaiting delivery' AND "transaction"."store_id" = ?`, m.StoreID).Count()
+	quantityShipped, _ := DB.Model(&Transaction{}).Relation("Order").Where(`"order"."status" = 'shipped' AND "transaction"."store_id" = ?`, m.StoreID).Count()
+	awaitingShipping, _ := DB.Model(&Transaction{}).Relation("Order").Where(`"order"."status" = 'awaiting delivery' AND "transaction"."store_id" = ?`, m.StoreID).Count()
 	avgPrice := calculateAvgPrice(m)
 
 	weekBegan := now.BeginningOfWeek()
@@ -72,8 +72,8 @@ func GetMerchantDashboard(m *User) MerchantDashboard {
 	endStamp := weekEnding.Format("2006-01-02")
 
 	salesInPastWeek, _ := DB.Model(&Transaction{}).Where(`store_id = ? AND status = 'success' AND date_resolved between ? and ?`, m.StoreID, beganStamp, endStamp).Count()
-	shippedThisWeek, _ := DB.Model(&Transaction{}).Relation("Order").Where(`"transaction"."order_status" = 'shipped' AND "transaction"."store_id" = ? AND date_resolved between ? and ?`, m.StoreID, beganStamp, endStamp).Count()
-	awaitingShippingThisWeek, _ := DB.Model(&Transaction{}).Relation("Order").Where(`"transaction"."order_status" = 'awaiting delivery' AND "transaction"."store_id" = ? AND date_initiated between ? and ? `, m.StoreID, beganStamp, endStamp).Count()
+	shippedThisWeek, _ := DB.Model(&Transaction{}).Relation("Order").Where(`"order"."status" = 'shipped' AND "transaction"."store_id" = ? AND date_resolved between ? and ?`, m.StoreID, beganStamp, endStamp).Count()
+	awaitingShippingThisWeek, _ := DB.Model(&Transaction{}).Relation("Order").Where(`"order"."status" = 'awaiting delivery' AND "transaction"."store_id" = ? AND date_initiated between ? and ? `, m.StoreID, beganStamp, endStamp).Count()
 
 	top3Products := getTopProducts()
 
