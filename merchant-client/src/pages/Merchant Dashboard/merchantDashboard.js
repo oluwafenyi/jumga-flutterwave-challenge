@@ -34,9 +34,9 @@ const MerchantDashboard = (props) =>{
     const approved = false;
 
     useEffect(() => {
-        // if (!jumgaState.isAuthenticated()) {
-        //     history.replace("/login");
-        // }
+        if (!jumgaState.isAuthenticated()) {
+            history.replace("/login");
+        }
 
         const params = queryString.parse(props.location.search);
         const tx_ref = params.tx_ref
@@ -92,7 +92,7 @@ const MerchantDashboard = (props) =>{
 
     // GSAP
     useEffect(()=>{
-        gsap.fromTo(MerchantSummary, {x:-20}, {opacity: 1, duration: 1, x:0, ease: Power3.easeOut,delay:2})
+        gsap.fromTo(MerchantSummary, {x:-20, opacity:0}, {opacity: 1, duration: 1, x:0, ease: Power3.easeOut,delay:2})
     },[])
 
     const getLogo = () => {
