@@ -30,12 +30,12 @@
 .store-card .store-icon {
   padding: 0.5rem 1rem;
   max-width: 100px;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 
 .store-card .store-icon img {
   width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .store-card .store-info {

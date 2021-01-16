@@ -8,6 +8,7 @@
           flex-direction: column;
   font-family: 'Poppins', sans-serif;
   padding: 0.5rem;
+  opacity: 0;
 }
 
 .merchant-view-products .merchant-view-products-title {

@@ -18,6 +18,11 @@
   min-width: 400px;
 }
 
+.merchant-product-card a {
+  text-decoration: none;
+  color: #00030f;
+}
+
 .merchant-product-card .product-details {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -35,6 +40,8 @@
 .merchant-product-card .product-details .product-img img {
   width: 100%;
   border-radius: 15px 0px 0px 15px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .merchant-product-card .product-details .name-price {

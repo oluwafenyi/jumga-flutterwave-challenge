@@ -21,9 +21,6 @@
   cursor: pointer;
   font-size: 18px;
   line-height: 36px;
-  color: rgba(0, 0, 0, 0.53);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
 }
 
 .products-menu .product::after {
@@ -47,7 +44,18 @@
   margin: 0 auto;
 }
 
-.products-menu .selected-category {
+.products-menu .product a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.53);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.products-menu .product a:hover {
+  color: rgba(0, 0, 0, 0.849);
+}
+
+.products-menu .selected-category a {
   color: #000;
 }
 

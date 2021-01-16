@@ -9,6 +9,11 @@
     border-radius: 15px;
     min-width: 400px;
 
+    a{
+        text-decoration: none;
+        color: rgb(0, 3, 15);
+    }
+
     .product-details{
         display: flex;
         flex-direction: row;
@@ -19,6 +24,7 @@
             img{
                 width: 100%;
                 border-radius: 15px 0px 0px 15px;
+                object-fit: cover;
             }
         }
         .name-price{

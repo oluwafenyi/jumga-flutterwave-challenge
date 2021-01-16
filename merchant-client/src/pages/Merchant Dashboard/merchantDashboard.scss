@@ -14,7 +14,7 @@
     .merchant-dashboard-main{
         display: flex;
         flex-direction: column;
-        margin-left: 280px;
+        margin-left: 300px;
         width: 100%;
 
         .merchant-summary{
@@ -23,6 +23,7 @@
             align-self: flex-end;
             margin: 0.5rem 1rem;
             padding: 0.5rem;
+            opacity: 0;
 
             .store-logo{
                 max-width:60px;
@@ -31,17 +32,34 @@
                 img{
                     width:100%;
                     border-radius: 10px;
+                    object-fit:cover;
                 }
             }
         }
 
         .store-summary{
             align-self:center;
+
+            .approved-name{
+                display: flex;
+                flex-direction: row;
+
+                img{
+                    max-width: 14px;
+                    margin: 0 0.1rem;
+                }
+            }
+
             .store-name{
                 font-style: normal;
                 font-weight: 500;
                 font-size: 18px;
                 line-height: 27px;
+
+                // The ellipsis
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
 
             .store-email{
@@ -52,6 +70,10 @@
                 color: rgba(0, 0, 0, 0.692);
                 margin: 0.2rem;
             }
+        }
+
+        .dashboard-display{
+            min-height: 100vh;
         }
 
     }

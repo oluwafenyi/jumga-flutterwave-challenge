@@ -26,7 +26,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-left: 280px;
+  margin-left: 300px;
   width: 100%;
 }
 
@@ -42,6 +42,7 @@
       align-self: flex-end;
   margin: 0.5rem 1rem;
   padding: 0.5rem;
+  opacity: 0;
 }
 
 .merchant-dashboard-page .merchant-dashboard-main .merchant-summary .store-logo {
@@ -55,6 +56,8 @@
 .merchant-dashboard-page .merchant-dashboard-main .merchant-summary .store-logo img {
   width: 100%;
   border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .merchant-dashboard-page .merchant-dashboard-main .store-summary {
@@ -63,11 +66,29 @@
       align-self: center;
 }
 
+.merchant-dashboard-page .merchant-dashboard-main .store-summary .approved-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.merchant-dashboard-page .merchant-dashboard-main .store-summary .approved-name img {
+  max-width: 14px;
+  margin: 0 0.1rem;
+}
+
 .merchant-dashboard-page .merchant-dashboard-main .store-summary .store-name {
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 27px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .merchant-dashboard-page .merchant-dashboard-main .store-summary .store-email {
@@ -77,4 +98,8 @@
   line-height: 27px;
   color: rgba(0, 0, 0, 0.692);
   margin: 0.2rem;
+}
+
+.merchant-dashboard-page .merchant-dashboard-main .dashboard-display {
+  min-height: 100vh;
 }

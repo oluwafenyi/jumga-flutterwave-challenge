@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PlusSign from '../../assets/plus.svg';
 import './merchantUploadProduct.scss';
 import { ToastContainer } from 'react-toastify';
 import {jumgaState, notification} from "../../store/store";
 import {jumga} from "../../axios";
 
+import { Power3 } from 'gsap';
+import { gsap } from 'gsap';
+
 const MerchantUploadProduct = () =>{
-    window.scrollTo(0,0);
     const [ category, setCategory ] = useState("");
     const [ productImageLink, setProductImageLink ] = useState("");
     const [ form, updateForm ] = useState({
@@ -17,6 +19,7 @@ const MerchantUploadProduct = () =>{
         stock: 0,
     });
     let uploadWidget = null;
+    let UploadPage = useRef(null);
 
     const onLoadCloudinaryScript = () => {
         uploadWidget = window.cloudinary.createUploadWidget({
@@ -89,8 +92,13 @@ const MerchantUploadProduct = () =>{
         }
     }
 
+    // GSAP
+    useEffect(()=>{
+        gsap.fromTo(UploadPage, {y:-50}, {opacity: 1, duration: 1, y:0, ease: Power3.easeOut,delay:0.7})
+    },[])
+
     return(
-        <div className="merchant-upload-product">
+        <div className="merchant-upload-product" ref={ el=> UploadPage=el  }>
             <ToastContainer/>
             <div className="merchant-upload-product-header">
                 <h3 className="merchant-upload-product-title">Upload Product</h3>

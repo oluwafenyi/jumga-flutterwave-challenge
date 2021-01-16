@@ -11,7 +11,7 @@ const ProductCard = (props) =>{
     }
 
     return(
-        <Link to={"/products/" + props.productId} className="product-icon" style={{background:`url(${props.imageLink})`}}>
+        <Link to={"/products/" + props.productId} className="product-card" style={{background:`url(${props.imageLink})`}}>
             <div className="product-type">
                 <p>{ props.category }</p>
             </div>

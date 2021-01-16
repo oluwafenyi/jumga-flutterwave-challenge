@@ -11,7 +11,6 @@ import { TweenMax, Power3 } from 'gsap';
 import {useHistory} from 'react-router-dom';
 
 import Navigation from '../../components/Navigation/navigation';
-import ProductIcon from '../../components/ProductCard/productCard';
 import Footer from '../../components/Footer/footer';
 import PaymentModal from '../../components/Payment Modal/paymentModal';
 import './productPreview.scss';
