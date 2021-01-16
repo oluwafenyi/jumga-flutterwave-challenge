@@ -81,7 +81,7 @@ function ViewProducts(props) {
     },[])
 
     const productAnimate = (product) =>{
-        gsap.to(product, {duration: 0.7, opacity:1, y:15, stagger: 0.5});
+        gsap.fromTo(product,{y:-10},{duration: 0.7, opacity:1, y:0, stagger: 0.5});
     }
 
     return (
