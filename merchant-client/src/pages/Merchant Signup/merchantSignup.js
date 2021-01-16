@@ -179,7 +179,7 @@ function MerchantSignup() {
                                 </p>
                             </div>
                         </div>
-                        <input type="submit" disabled value="Register" className="register-btn" onClick={submitSignUpForm}/>
+                        <input type="submit" value="Register" className="register-btn" onClick={submitSignUpForm}/>
 
                         <p className="merchant-login-link">
                             Already have an account? 
