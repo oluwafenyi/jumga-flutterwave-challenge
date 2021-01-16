@@ -20,9 +20,17 @@
 
 .navigation .logo {
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
   text-decoration: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  text-decoration: none;
+  color: #000;
 }
 
 .navigation .logo h1 {
@@ -32,6 +40,13 @@
   line-height: 73px;
   text-align: center;
   padding: 0 1rem;
+}
+
+.navigation .logo p {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 36px;
+  color: #000;
 }
 
 .navigation .dark {
@@ -158,8 +173,14 @@ ul {
 }
 
 .alt-navigation .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
   margin: 0 6.5rem;
   text-decoration: none;
@@ -173,4 +194,14 @@ ul {
   line-height: 73px;
   text-align: center;
   padding: 0 0.5rem;
+}
+
+.alt-navigation .logo p {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 36px;
+  color: #000;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }

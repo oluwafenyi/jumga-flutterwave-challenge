@@ -73,10 +73,12 @@ function MerchantSignup() {
         script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
         script.type = "text/javascript";
         script.async = true;
+        
         script.onload = () => onLoadCloudinaryScript();
 
         document.body.appendChild(script);
         // return () => document.removeChild(script);
+        // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
@@ -182,7 +184,7 @@ function MerchantSignup() {
                         <p className="merchant-login-link">
                             Already have an account? 
                             <span>
-                                <Link to="/">Click here</Link>
+                                <Link to="/login">Click here</Link>
                             </span>
                         </p>
                     </div>

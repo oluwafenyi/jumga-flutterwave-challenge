@@ -67,7 +67,7 @@
                 padding: 0 !important;
                 cursor: pointer;
 
-                &:hover{
+                &:focus{
                     outline: none;
                 }
             }
@@ -143,11 +143,25 @@ ul{
         li{
             margin: 0 1.5rem;
             cursor: pointer;
-
             transition: 0.2s;
 
             &:hover{
                 transform: translateY(-2px);
+            }
+
+            button{
+                border: none;
+                background: none;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 300;
+                align-self: flex-start;
+                padding: 0 !important;
+                cursor: pointer;
+
+
+                &:focus{
+                    outline: none;
+                }
             }
         }
 

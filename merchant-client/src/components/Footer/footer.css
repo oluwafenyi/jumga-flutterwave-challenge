@@ -3,6 +3,7 @@ footer {
   font-family: 'Poppins', sans-serif;
   margin-top: 2rem;
   position: relative;
+  z-index: 3;
 }
 
 .desktop-footer {

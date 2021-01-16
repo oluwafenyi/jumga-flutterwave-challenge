@@ -87,7 +87,7 @@
   cursor: pointer;
 }
 
-.navigation .desktop-menu li button:hover {
+.navigation .desktop-menu li button:focus {
   outline: none;
 }
 
@@ -186,6 +186,21 @@ ul {
 .alt-navigation .desktop-menu li:hover {
   -webkit-transform: translateY(-2px);
           transform: translateY(-2px);
+}
+
+.alt-navigation .desktop-menu li button {
+  border: none;
+  background: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  padding: 0 !important;
+  cursor: pointer;
+}
+
+.alt-navigation .desktop-menu li button:focus {
+  outline: none;
 }
 
 .alt-navigation .desktop-menu .menu-item {
