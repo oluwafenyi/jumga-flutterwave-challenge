@@ -14,7 +14,7 @@
   width: -moz-fit-content;
   width: fit-content;
   padding: 1rem;
-  margin: 0.7rem;
+  margin: 0.7rem 1rem;
   -webkit-transition: 0.2s;
   transition: 0.2s;
   text-decoration: none;
@@ -39,8 +39,14 @@
 }
 
 .store-card .store-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
   margin: 0 0.5rem;
 }

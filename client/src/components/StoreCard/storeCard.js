@@ -40,16 +40,19 @@ function StoreCard(props) {
             <div className="store-icon">
                 <img src={getLogo()} alt="Store Icon"/>
             </div>
-            <div className="store-details">
-                <h3 className="store-name">{ props.businessName }</h3>
-                <div className="store-owner">
-                    <div className="location-icon">{ getCountryIcon() }</div>
-                    <p className="store-owner-name">{ props.businessContact }</p>
+            <div className="store-info">
+                <div className="store-details">
+                    <h3 className="store-name">{ props.businessName }</h3>
+                    <div className="store-owner">
+                        <div className="location-icon">{ getCountryIcon() }</div>
+                        <p className="store-owner-name">{ props.businessContact }</p>
+                    </div>
+                </div>
+                <div className="categories-available">
+                    {categoryItems()}
                 </div>
             </div>
-            <div className="categories-available">
-                {categoryItems()}
-            </div>
+            
         </Link>
     )
 }
