@@ -370,7 +370,7 @@ func GetProductsPage(start, limit int, category string) ([]Product, int, bool) {
 	if category == "all" {
 		_ = DB.Model(&next).Order("id DESC").Offset(limit + start + 1).Limit(1).Select()
 	} else {
-		_ = DB.Model(&next).Where("category.slug = ?", category).Order("id DESC").Offset(limit + start + 1).Limit(1).Select()
+		_ = DB.Model(&next).Relation("Category").Where("category.slug = ?", category).Order("id DESC").Offset(limit + start + 1).Limit(1).Select()
 	}
 
 	if category == "all" {
@@ -378,7 +378,7 @@ func GetProductsPage(start, limit int, category string) ([]Product, int, bool) {
 		return products, total, len(next) > 0
 
 	} else {
-		total, _ := DB.Model(&products).Where("category.slug = ?", category).Count()
+		total, _ := DB.Model(&products).Relation("Category").Where("category.slug = ?", category).Count()
 		return products, total, len(next) > 0
 	}
 }

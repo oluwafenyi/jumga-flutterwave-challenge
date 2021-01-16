@@ -16,16 +16,25 @@ function ViewProducts(props) {
     // const [ filterMenu, showFilterMenu ] = useState(false);
     const [ category, setCategory ] = useState('all');
     const [ numberOfPages, setNumberOfPages ] = useState(0);
+    const [ page, setPage ] = useState(1);
 
     useEffect(() => {
         const getProducts = async () => {
             const productsPP = 24;
             const params = queryString.parse(props.location.search);
             let pageNumber = Number(params.page);
+            let categoryParam = params.category;
 
             if (isNaN(pageNumber) || pageNumber < 1) {
                 pageNumber = 1;
             }
+
+            setPage(pageNumber)
+
+            if (!["all", "fitfam", "fashion", "cosmetics", "electronics", "foodstuff"].includes(categoryParam)) {
+                categoryParam = "all"
+            }
+            setCategory(categoryParam);
 
             if (pageNumber === 1) {
                 setPrevPage(false);
@@ -35,7 +44,7 @@ function ViewProducts(props) {
 
             let limit = productsPP * pageNumber;
             try {
-                const response = await jumga.get(`/v1/product?startAt=${limit - productsPP}&limit=${limit}&category=${category}`);
+                const response = await jumga.get(`/v1/product?startAt=${limit - productsPP}&limit=${limit}&category=${categoryParam}`);
                 console.log(response.data);
                 setProducts(response.data.data);
                 if (response.data.next) {
@@ -51,7 +60,7 @@ function ViewProducts(props) {
         (async function() {
             await getProducts();
         })();
-    }, [ props.location.search, category ])
+    }, [ props.location.search ])
 
     const productListing = () => {
         return products.map(product => {
@@ -81,12 +90,12 @@ function ViewProducts(props) {
                             <li className="filter-menu-item">Ratings</li>
                         </ul>
                     </div> */}
-                    <ProductMenu category={ category } setCategory={ setCategory } />
+                    <ProductMenu category={ category } />
                 </section>
                 <section className="products-gallery">
                     { productListing() }
                 </section>
-                <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages} />
+                <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages} category={category} page={page} />
             </main>
             <Footer/>
         </div>

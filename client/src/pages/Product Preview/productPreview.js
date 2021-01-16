@@ -15,6 +15,7 @@ import ProductIcon from '../../components/ProductCard/productCard';
 import Footer from '../../components/Footer/footer';
 import PaymentModal from '../../components/Payment Modal/paymentModal';
 import './productPreview.scss';
+import ProductCard from "../../components/ProductCard/productCard";
 
 
 const ProductPreview = (props) =>{
@@ -28,7 +29,8 @@ const ProductPreview = (props) =>{
         "delivery_fee": "",
         "description": "",
         "store": {
-            "business_name": ""
+            "id": "",
+            "business_name": "",
         },
         "category": {
             "name": ""
@@ -37,6 +39,7 @@ const ProductPreview = (props) =>{
             "link": ""
         }
     });
+    const [ otherProducts, setOtherProducts ] = useState([]);
     const { productId } = useParams();
 
     useEffect(() => {
@@ -65,7 +68,6 @@ const ProductPreview = (props) =>{
             })();
         }
 
-
         const getProduct = async () => {
             try {
                 const response = await jumga.get(`/v1/product/${productId}`);
@@ -81,6 +83,24 @@ const ProductPreview = (props) =>{
         })();
     }, [productId,props.location.search])
 
+    useEffect(() => {
+        const getOtherProducts = async () => {
+            if (!productData.store.id) return;
+            try {
+                const response = await jumga.get(`/v1/store/${productData.store.id}/products?startAt=0&limit=5`)
+                console.log(response)
+                setOtherProducts(response.data.data);
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        (async function() {
+            await getOtherProducts()
+        })();
+
+    }, [productData.store.id])
+
     const toProductPage  = () =>{
         TweenMax.to(
             previewPage.querySelector('.product-preview-content'),
@@ -93,6 +113,27 @@ const ProductPreview = (props) =>{
             history.push('/products')
         },700)
         
+    }
+
+    const displayOtherProducts = () => {
+        if (otherProducts.length > 0) {
+
+            const productIcons = otherProducts.map(product => {
+                if (product.id === Number(productId)) return;
+                return (
+                    <ProductCard key={ product.id } productId={product.id} category={ product.category.name } name={ product.title } price={ product.price } imageLink={ product.display_image.link } />
+                )
+            })
+
+            return (
+                <section className="other-products">
+                    <h3 className="other-products-title">More from { productData.store.business_name }</h3>
+                    <div className="products">
+                        { productIcons }
+                    </div>
+                </section>
+            )
+        }
     }
 
     return(
@@ -155,14 +196,7 @@ const ProductPreview = (props) =>{
                             <img src={ productData.display_image.link } alt="Product Display"/>
                         </div>
                     </section>
-                    <section className="other-products">
-                        <h3 className="other-products-title">More from { productData.store.business_name }</h3>
-                        <div className="products">
-                            <ProductIcon/>
-                            <ProductIcon/>
-                            <ProductIcon/>
-                        </div>
-                    </section>
+                    { displayOtherProducts() }
                 </main>
             </div>
             

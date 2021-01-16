@@ -145,7 +145,7 @@ function LandingPage() {
                                     <img src={"https://res.cloudinary.com/dkow6vfth/image/upload/v1609805155/jumga-images/mock%20images/P3pI6xzovu0_h9fgrc.png"} alt="Category"/>
                                 </div>
                                 <div className="category-details">
-                                    <h3 className="category-title">Clothings</h3>
+                                    <h3 className="category-title">Clothing</h3>
                                     <p className="category-description">
                                         We have something for the kids, men and women. We also have different outfits for different occasions.</p>
                                     <Link to="/" className="btn shop-btn">Shop Clothing</Link>

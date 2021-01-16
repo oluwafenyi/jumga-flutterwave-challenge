@@ -30,6 +30,7 @@ const Store = (props) =>{
     const [ nextPage, setNextPage ] = useState(false);
     const [ products, setProducts ] = useState([]);
     const [ numberOfPages, setNumberOfPages ] = useState(0);
+    const [ page, setPage ] = useState(1);
     const { storeId } = useParams();
 
     const getCountryIcon = () => {
@@ -66,10 +67,19 @@ const Store = (props) =>{
             const productsPP = 24;
             const params = queryString.parse(props.location.search);
             let pageNumber = Number(params.page);
+            let categoryParam = params.category;
 
             if (isNaN(pageNumber) || pageNumber < 1) {
                 pageNumber = 1;
             }
+
+            setPage(pageNumber)
+
+            if (!["all", "fitfam", "fashion", "cosmetics", "electronics", "foodstuff"].includes(categoryParam)) {
+                categoryParam = "all"
+            }
+
+            setStoreCategory(categoryParam);
 
             if (pageNumber === 1) {
                 setPrevPage(false);
@@ -79,7 +89,7 @@ const Store = (props) =>{
 
             let limit = productsPP * pageNumber;
             try {
-                const response = await jumga.get(`/v1/store/${storeId}/products?startAt=${limit - productsPP}&limit=${limit}&category=${storeCategory}`);
+                const response = await jumga.get(`/v1/store/${storeId}/products?startAt=${limit - productsPP}&limit=${limit}&category=${categoryParam}`);
                 console.log(response.data);
                 setProducts(response.data.data);
                 if (response.data.next) {
@@ -128,22 +138,22 @@ const Store = (props) =>{
             
             <main>
                 <section className="view-product-header">
-                    <div className="filter">
-                    <div onClick={ ()=>setStoreFilter(!storeFilter) } className="filter-icon">
-                            <img src={FilterIcon} alt="filter"/>
-                        </div>
-                        <ul className={`filter-menu ${ storeFilter ? "open-filter-menu" : "" }`}>
-                            <li className="filter-menu-item">A-Z</li>
-                            <li className="filter-menu-item">Prices</li>
-                            <li className="filter-menu-item">Ratings</li>
-                        </ul>
-                    </div>
-                    <ProductMenu  category={ storeCategory } setCategory={ setStoreCategory } />
+                    {/*<div className="filter">*/}
+                    {/*<div onClick={ ()=>setStoreFilter(!storeFilter) } className="filter-icon">*/}
+                    {/*        <img src={FilterIcon} alt="filter"/>*/}
+                    {/*    </div>*/}
+                    {/*    <ul className={`filter-menu ${ storeFilter ? "open-filter-menu" : "" }`}>*/}
+                    {/*        <li className="filter-menu-item">A-Z</li>*/}
+                    {/*        <li className="filter-menu-item">Prices</li>*/}
+                    {/*        <li className="filter-menu-item">Ratings</li>*/}
+                    {/*    </ul>*/}
+                    {/*</div>*/}
+                    <ProductMenu category={ storeCategory } />
                 </section>
                 <section className="products-gallery">
                     { productListing() }
                 </section>
-                <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages} />
+                <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages} category={storeCategory} page={page} />
             </main>
             
             <Footer/>
