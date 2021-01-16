@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import queryString from "query-string";
 import Navigation from '../../components/Navigation/navigation';
 import ProductMenu from '../../components/ProductsMenu/productsMenu';
@@ -9,7 +9,7 @@ import Pagination from '../../components/Pagination/pagination';
 
 import {jumga} from "../../axios";
 
-import { gsap } from 'gsap';
+// import { gsap } from 'gsap';
 
 function ViewProducts(props) {
     const [ products, setProducts ] = useState([]);
@@ -20,7 +20,7 @@ function ViewProducts(props) {
     const [ numberOfPages, setNumberOfPages ] = useState(0);
     const [ page, setPage ] = useState(1);
 
-    let productGallery = useRef(null)
+    // let productGallery = useRef(null)
 
     useEffect(() => {
         const getProducts = async () => {
@@ -74,15 +74,15 @@ function ViewProducts(props) {
         })
     }
 
-    // GSAP
-    useEffect(()=>{
-        const products = productGallery.querySelectorAll('.product-card');
-        products.forEach(productAnimate);
-    },[])
+    // // GSAP
+    // useEffect(()=>{
+    //     const products = productGallery.querySelectorAll('.product-card');
+    //     products.forEach(productAnimate);
+    // },[])
 
-    const productAnimate = (product) =>{
-        gsap.fromTo(product,{y:-10},{duration: 0.7, opacity:1, y:0, stagger: 0.5});
-    }
+    // const productAnimate = (product) =>{
+    //     gsap.fromTo(product,{y:-10},{duration: 0.7, opacity:1, y:0, stagger: 0.5});
+    // }
 
     return (
         <div className="view-products-page">
@@ -106,7 +106,7 @@ function ViewProducts(props) {
                     </div> */}
                     <ProductMenu category={ category } />
                 </section>
-                <section className="products-gallery" ref={ el => productGallery = el }>
+                <section className="products-gallery">
                     { productListing() }
                 </section>
                 <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages} category={category} page={page} />

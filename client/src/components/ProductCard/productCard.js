@@ -17,7 +17,7 @@ const ProductCard = (props) =>{
             </div>
             <div className="product-details">
                 <h3 className="product-name">{ props.name }</h3>
-                <p className="product-price">$ { getPrice() } </p>
+                <p className="product-price">{"$"}{ getPrice() } </p>
             </div>
         </Link>
     )

@@ -23,7 +23,6 @@
   transition: 0.3s;
   background-position: center;
   background-size: cover;
-  opacity: 0;
 }
 
 .product-card:hover {

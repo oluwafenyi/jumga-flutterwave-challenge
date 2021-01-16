@@ -118,7 +118,7 @@ const ProductPreview = (props) =>{
         if (otherProducts.length > 0) {
 
             const productIcons = otherProducts.map(product => {
-                if (product.id === Number(productId)) return;
+                if (product.id === Number(productId)) return null;
                 return (
                     <ProductCard key={ product.id } productId={product.id} category={ product.category.name } name={ product.title } price={ product.price } imageLink={ product.display_image.link } />
                 )

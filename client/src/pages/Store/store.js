@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import queryString from "query-string";
 import Navigation from '../../components/Navigation/navigation';
-import FilterIcon from '../../assets/Filter Icon.svg';
+// import FilterIcon from '../../assets/Filter Icon.svg';
 import ProductMenu from '../../components/ProductsMenu/productsMenu';
 import ProductCard from '../../components/ProductCard/productCard';
 import Phone from '../../assets/phone.svg';
@@ -15,7 +15,7 @@ import {jumga} from "../../axios";
 
 const Store = (props) =>{
     const [ storeCategory, setStoreCategory ] = useState('all');
-    const [ storeFilter, setStoreFilter ] = useState(false);
+    // const [ storeFilter, setStoreFilter ] = useState(false);
     const [ storeData, setStoreData ] = useState({
         "business_name": "",
         "country": "",
