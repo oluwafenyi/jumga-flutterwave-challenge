@@ -1,1 +1,68 @@
-/* No CSS */
+.not-found-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: url("../../assets/Jumga Background.jpg") center center;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+  min-height: 70vh;
+}
+
+.not-found-page .error {
+  font-size: 100px;
+  color: #ffffff00;
+  -webkit-text-stroke: 3px black;
+}
+
+.not-found-page .subtitle {
+  padding: 0.4rem;
+  margin: 0.5rem 0;
+}
+
+.not-found-page .page-link {
+  text-decoration: none;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.74);
+  padding: 0.7rem;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.not-found-page .page-link::after {
+  content: '';
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  height: 2px;
+  width: 0;
+  color: rgba(0, 0, 0, 0.911);
+  background-color: rgba(0, 0, 0, 0.911);
+  border-radius: 40px;
+}
+
+.not-found-page .page-link:hover {
+  color: rgba(0, 0, 0, 0.849);
+}
+
+.not-found-page .page-link:hover::after {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}

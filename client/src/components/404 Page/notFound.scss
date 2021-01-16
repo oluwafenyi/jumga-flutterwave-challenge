@@ -1,0 +1,55 @@
+.not-found-page{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background: url("../../assets/Jumga\ Background.jpg") center center;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    min-height: 70vh;
+
+    .error{
+        font-size: 100px;
+        color: #ffffff00;
+        -webkit-text-stroke: 3px black;
+    }
+
+    .subtitle{
+        padding: 0.4rem;
+        margin: 0.5rem 0;
+    }
+
+    .page-link{
+        text-decoration: none;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.74);
+        padding:  0.7rem;
+        transition: 0.2s;
+        width: fit-content;
+        text-align: center;
+        align-self: center;
+        
+        &::after{
+            content: '';
+            transition: 0.2s;
+            height: 2px;
+            width: 0;
+            color: rgba(0, 0, 0, 0.911);
+            background-color: rgba(0, 0, 0, 0.911);
+            border-radius: 40px;
+        }
+
+        &:hover{
+            color: rgba(0, 0, 0, 0.849);
+
+            &::after{
+                display: block;
+                width: 100%;
+                margin: 0 auto;
+            }
+        }
+    }
+
+}

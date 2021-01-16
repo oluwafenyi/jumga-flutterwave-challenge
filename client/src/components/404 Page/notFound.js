@@ -6,9 +6,9 @@ const NotFound = () =>{
 
     return(
         <div className="not-found-page">
-            <h2 className="404-title">404</h2>
-            <p className="404-subtitle">Product not found</p>
-            <Link to="/products">Go to Products page</Link>
+            <h2 className="error">404</h2>
+            <p className="subtitle">Product not found</p>
+            <Link to="/products" className="page-link">Go to Products page</Link>
         </div>
     )
 }

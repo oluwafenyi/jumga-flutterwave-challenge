@@ -52,6 +52,8 @@ const MerchantUploadProduct = () =>{
 
         document.body.appendChild(script);
         // return () => document.removeChild(script);
+
+        // eslint-disable-next-line
     }, [])
 
     const handleFormChange = (e) => {
