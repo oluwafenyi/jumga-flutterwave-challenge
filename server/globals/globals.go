@@ -1,21 +1,22 @@
 package globals
 
 import (
+	"fmt"
 	"github.com/go-pg/pg/v10"
 	"log"
 	"os"
 )
 
-var FrontendUrl string
 var ClientUrl string
 var MerchantUrl string
 var Port string
 var DBOpts *pg.Options
+var FlutterWaveAPIKey string
+var TokenAuthSecret string
 
 func init() {
 	switch os.Getenv("ENV") {
 	case "staging":
-		FrontendUrl = "http://localhost:3000"
 		ClientUrl = "https://jumga-client.netlify.app"
 		MerchantUrl = "https://jumga-merchant.netlify.app"
 
@@ -23,7 +24,6 @@ func init() {
 		if Port == "" {
 			log.Fatalln("error: $PORT not set for staging environment")
 		}
-		Port = ":" + Port
 
 		dbUrl := os.Getenv("DATABASE_URL")
 		if dbUrl == "" {
@@ -37,10 +37,12 @@ func init() {
 		}
 
 	default:
-		FrontendUrl = "http://localhost:3000"
 		ClientUrl = "http://localhost:3000"
 		MerchantUrl = "http://localhost:8080"
-		Port = ":8000"
+		Port = os.Getenv("PORT")
+		if Port == "" {
+			Port = "8000"
+		}
 		DBOpts = &pg.Options{
 			User:     "postgres",
 			Password: "password",
@@ -48,4 +50,8 @@ func init() {
 			Addr:     "db:5432",
 		}
 	}
+
+	Port = fmt.Sprintf(":%s", Port)
+	TokenAuthSecret = os.Getenv("TOKEN_AUTH_SECRET")
+	FlutterWaveAPIKey = os.Getenv("FLUTTERWAVE_API_KEY")
 }

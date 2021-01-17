@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/oluwafenyi/jumga/server/globals"
 	"io"
 	"log"
 	"net/http"
@@ -61,7 +62,7 @@ func Request(method string, path string, body io.Reader) (*http.Response, error)
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Add("Authorization", "Bearer FLWSECK_TEST-2b200882a3871d5d4cb57e349ed5fe03-X")
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", globals.FlutterWaveAPIKey))
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Accept", "application/json")
 	resp, err := client.Do(req)

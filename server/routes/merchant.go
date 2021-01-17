@@ -87,7 +87,6 @@ func getMerchantDashboard(w http.ResponseWriter, r *http.Request) {
 	}
 
 	dashboard := db.GetMerchantDashboard(merchant)
-	log.Println(dashboard)
 	SuccessResponse(http.StatusOK, map[string]interface{}{"data": dashboard}, w)
 }
 

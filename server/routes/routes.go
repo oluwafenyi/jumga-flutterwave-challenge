@@ -2,14 +2,14 @@ package routes
 
 import (
 	"encoding/json"
-	"github.com/oluwafenyi/jumga/server/db"
-	"net/http"
-
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/cors"
 	"github.com/go-chi/jwtauth"
 	"github.com/go-playground/validator/v10"
+	"github.com/oluwafenyi/jumga/server/db"
+	"github.com/oluwafenyi/jumga/server/globals"
+	"net/http"
 
 	"github.com/oluwafenyi/jumga/server/flutterwave"
 )
@@ -40,7 +40,7 @@ func init() {
 	validate.RegisterStructValidation(BankDetailsStructLevelValidation, MerchantValidator{})
 	validate.RegisterStructValidation(BankDetailsStructLevelValidation, db.DispatchRider{})
 
-	tokenAuth = jwtauth.New("HS256", []byte("secret"), nil)
+	tokenAuth = jwtauth.New("HS256", []byte(globals.TokenAuthSecret), nil)
 }
 
 //func handleWebHook(w http.ResponseWriter, r *http.Request) {
