@@ -16,6 +16,9 @@ function MerchantLogin() {
     const history = useHistory();
 
     useEffect(() => {
+        if (jumgaState.isAuthenticated()) {
+            history.push("/")
+        }
         if (!notification.displayed() && notification.location === "login") {
             notification.display();
         }

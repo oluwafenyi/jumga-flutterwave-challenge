@@ -8,6 +8,7 @@ import (
 	"github.com/go-chi/jwtauth"
 	"github.com/oluwafenyi/jumga/server/globals"
 	"golang.org/x/net/context"
+	"log"
 	"net/http"
 	"strconv"
 	"time"
@@ -86,6 +87,7 @@ func getMerchantDashboard(w http.ResponseWriter, r *http.Request) {
 	}
 
 	dashboard := db.GetMerchantDashboard(merchant)
+	log.Println(dashboard)
 	SuccessResponse(http.StatusOK, map[string]interface{}{"data": dashboard}, w)
 }
 
