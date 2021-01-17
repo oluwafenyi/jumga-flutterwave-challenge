@@ -8,7 +8,6 @@ import (
 	"github.com/go-chi/jwtauth"
 	"github.com/oluwafenyi/jumga/server/globals"
 	"golang.org/x/net/context"
-	"log"
 	"net/http"
 	"strconv"
 	"time"
