@@ -115,15 +115,14 @@ const ProductPreview = (props) =>{
     }
 
     const displayOtherProducts = () => {
-        if (otherProducts.length > 0) {
+        const productIcons = otherProducts.map(product => {
+            if (product.id === Number(productId)) return null;
+            return (
+                <ProductCard key={ product.id } productId={product.id} category={ product.category.name } name={ product.title } price={ product.price } imageLink={ product.display_image.link } />
+            )
+        })
 
-            const productIcons = otherProducts.map(product => {
-                if (product.id === Number(productId)) return null;
-                return (
-                    <ProductCard key={ product.id } productId={product.id} category={ product.category.name } name={ product.title } price={ product.price } imageLink={ product.display_image.link } />
-                )
-            })
-
+        if (productIcons.length > 0) {
             return (
                 <section className="other-products">
                     <h3 className="other-products-title">More from { productData.store.business_name }</h3>
