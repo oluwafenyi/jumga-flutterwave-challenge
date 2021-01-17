@@ -135,6 +135,13 @@ const ProductPreview = (props) =>{
         }
     }
 
+    const getProductDataPrice = () => {
+        if (productData.price) {
+            return productData.price.toFixed(2);
+        }
+        return ""
+    }
+
     return(
         <div className="product-preview" ref={ el=>previewPage=el }>
             <nav>
@@ -160,7 +167,7 @@ const ProductPreview = (props) =>{
                             <div className="product-specifics">   
                                 <h3 className="product-source">{ productData.store.business_name }/<span>{ productData.category.name }</span></h3>
                                 <h1 className="product-name">{ productData.title }</h1>
-                                <h2 className="product-price">{ `$${productData.price}` }</h2>
+                                <h2 className="product-price">${ getProductDataPrice() }</h2>
                             </div>
                             <div className="product-description">
                                 <h4 className="description-title">Description</h4>
