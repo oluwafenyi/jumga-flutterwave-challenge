@@ -1,6 +1,5 @@
 # Flutterwave Developer Challenge: < Project Jumga >
 &nbsp;
-
   We've built this web application in line with the competition directives to show how easy it is to set up
 payments with the [Flutterwave v3 API](https://developer.flutterwave.com/docs). Jumga is an e-commerce platform
 that takes full advantage of Flutterwave's Subaccounts system to set up easy payments for merchants and their
@@ -18,7 +17,7 @@ project would take.
 A lot of things changed but this was a great method to set us on our way.
 
 &nbsp;
-##Technologies
+## Technologies
 The client-side of this application is built with React and configured as a PWA and the server-side is build with Go, both firsts for us
 as we looked to add a meta challenge. We use a PostgreSQL database to store application data and we used Docker
 as our local development environment to keep things consistent for collaboration purposes, starting this up locally is as 
