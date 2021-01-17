@@ -130,30 +130,30 @@ function LandingPage() {
                         <div className="categories-list">
                             <div className="category" >
                                 <div className="category-img">
-                                    <img src={"https://res.cloudinary.com/dkow6vfth/image/upload/v1609805149/jumga-images/mock%20images/2JrpkyZ2ruQ_qza1vc.png"} alt="Category"/>
+                                    <img src={"https://res.cloudinary.com/dkow6vfth/image/upload/v1610856974/jumga-images/mock%20images/compressed/gzeTjGu3b_k_iysav7.png"} alt="Category"/>
                                 </div>
                                 <div className="category-details">
-                                    <h3 className="category-title">Home Appliances</h3>
+                                    <h3 className="category-title">Fitness Equipment</h3>
                                     <p className="category-description">
-                                        Check out our wide range of electrical applicances from washing machines to . They are also affordable.
+                                        Check out our wide range of fitness equipments which can help you stay in shape even during this pandemic.
                                     </p>
-                                    <Link to="/products?category=electronics" className="btn shop-btn" >Shop Electronics</Link>
+                                    <Link to="/products?category=fitfam" className="btn shop-btn" >Shop Fitness</Link>
                                 </div>
                             </div>
                             <div className="category">
                                 <div className="category-img">
-                                    <img src={"https://res.cloudinary.com/dkow6vfth/image/upload/v1609805155/jumga-images/mock%20images/P3pI6xzovu0_h9fgrc.png"} alt="Category"/>
+                                    <img src={"https://res.cloudinary.com/dkow6vfth/image/upload/v1610856986/jumga-images/mock%20images/compressed/P3pI6xzovu0_cjd7vg.png"} alt="Category"/>
                                 </div>
                                 <div className="category-details">
-                                    <h3 className="category-title">Clothing</h3>
+                                    <h3 className="category-title">Fashion</h3>
                                     <p className="category-description">
                                         We have something for the kids, men and women. We also have different outfits for different occasions.</p>
-                                    <Link to="/products?category=fashion" className="btn shop-btn">Shop Clothing</Link>
+                                    <Link to="/products?category=fashion" className="btn shop-btn">Shop Fashion</Link>
                                 </div>
                             </div>
                             <div className="category">
                                 <div className="category-img">
-                                    <img src={"https://res.cloudinary.com/dkow6vfth/image/upload/v1609805150/jumga-images/mock%20images/2JrpkyZ2ruQ-1_uf4l1s.png"} alt="Category"/>
+                                    <img src={"https://res.cloudinary.com/dkow6vfth/image/upload/v1610856957/jumga-images/mock%20images/compressed/2JrpkyZ2ruQ-1_vre7q5.png"} alt="Category"/>
                                 </div>
                                 <div className="category-details">
                                     <h3 className="category-title">Phones and Accessories</h3>

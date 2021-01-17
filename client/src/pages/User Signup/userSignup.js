@@ -84,7 +84,7 @@ const UserSignup = () => {
                         </p>
                     </div>  
                     <div className="user-signup-img">
-                        <img alt="user signup" src={"https://res.cloudinary.com/dkow6vfth/image/upload/v1609805145/jumga-images/mock%20images/429_2_tjeqjc.png"} />
+                        <img alt="user signup" src={"https://res.cloudinary.com/dkow6vfth/image/upload/v1610856975/jumga-images/mock%20images/compressed/429_2_mwxiuu.png"} />
                     </div>
                 </section>
                 
