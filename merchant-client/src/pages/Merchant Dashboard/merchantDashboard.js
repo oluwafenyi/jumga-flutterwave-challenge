@@ -64,6 +64,8 @@ const MerchantDashboard = (props) =>{
                     notification.setValues({status: "success", message: `Merchant Approved`, location: "dashboard"})
                     notification.display()
                     jumgaState.setApprovalStatus(true);
+                    notification.setValues({ status: "info", message: "Product upload disabled until a rider is registered", location: "here" })
+                    notification.display()
                 }
             } catch (err) {
                 console.log(err)

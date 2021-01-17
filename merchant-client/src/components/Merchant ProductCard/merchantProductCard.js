@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import TestImg from '../../assets/test-img.png';
 import './merchantProductCard.css';
 import {jumga} from "../../axios";
-import {notification} from "../../store/store";
 import {clientLink} from "../../constants";
 
 const MerchantProductCard = ({imageLink,title,price, stock, productId, hasDeleteBtn}) =>{

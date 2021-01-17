@@ -6,6 +6,7 @@ import utils from "../../utils/utils";
 
 import { Power3 } from 'gsap';
 import { gsap } from 'gsap';
+import {jumgaState} from "../../store/store";
 
 const MerchantDispatchService = () =>{
     const [ rider, setRider ] = useState({name: ""});
@@ -117,6 +118,7 @@ const MerchantDispatchService = () =>{
                 setRider({
                     ...form
                 })
+                jumgaState.setRiderRegistered(true);
             }
         } catch (err) {
             console.log(err)
