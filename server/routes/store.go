@@ -35,7 +35,7 @@ func getStores(w http.ResponseWriter, r *http.Request) {
 	responseData["limit"] = pagination.limit
 	responseData["total"] = total
 	if next {
-		responseData["next"] = r.URL.String() + fmt.Sprintf("?startAt=%d&limit=%d&approved=%s", pagination.startAt+pagination.limit+1, pagination.limit, a)
+		responseData["next"] = r.URL.Path + fmt.Sprintf("?startAt=%d&limit=%d&approved=%s", pagination.startAt+pagination.limit+1, pagination.limit, a)
 	}
 	SuccessResponse(http.StatusOK, responseData, w)
 }
@@ -82,9 +82,9 @@ func getStoreProducts(w http.ResponseWriter, r *http.Request) {
 	responseData["total"] = total
 	if next {
 		if categorySlug == "all" {
-			responseData["next"] = r.URL.String() + fmt.Sprintf("?startAt=%d&limit=%d", pagination.startAt+pagination.limit+1, pagination.limit)
+			responseData["next"] = r.URL.Path + fmt.Sprintf("?startAt=%d&limit=%d", pagination.startAt+pagination.limit+1, pagination.limit)
 		} else {
-			responseData["next"] = r.URL.String() + fmt.Sprintf("?category=%s&startAt=%d&limit=%d", categorySlug, pagination.startAt+pagination.limit+1, pagination.limit)
+			responseData["next"] = r.URL.Path + fmt.Sprintf("?category=%s&startAt=%d&limit=%d", categorySlug, pagination.startAt+pagination.limit+1, pagination.limit)
 		}
 	}
 	SuccessResponse(http.StatusOK, responseData, w)

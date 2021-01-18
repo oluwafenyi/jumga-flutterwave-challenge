@@ -30,9 +30,9 @@ func getProducts(w http.ResponseWriter, r *http.Request) {
 	responseData["total"] = total
 	if next {
 		if categorySlug == "all" {
-			responseData["next"] = r.URL.String() + fmt.Sprintf("?startAt=%d&limit=%d", pagination.startAt+pagination.limit+1, pagination.limit)
+			responseData["next"] = r.URL.Path + fmt.Sprintf("?startAt=%d&limit=%d", pagination.startAt+pagination.limit, pagination.limit)
 		} else {
-			responseData["next"] = r.URL.String() + fmt.Sprintf("?category=%s&startAt=%d&limit=%d", categorySlug, pagination.startAt+pagination.limit+1, pagination.limit)
+			responseData["next"] = r.URL.Path + fmt.Sprintf("?category=%s&startAt=%d&limit=%d", categorySlug, pagination.startAt+pagination.limit, pagination.limit)
 		}
 	}
 

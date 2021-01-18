@@ -127,9 +127,9 @@ func GetStoreProductsPage(start, limit int, category string, storeID int64) ([]P
 
 	var next []Product
 	if category == "all" {
-		_ = DB.Model(&next).Where(`store_id = ?`, storeID).Order("id ASC").Offset(limit + start + 1).Limit(1).Select()
+		_ = DB.Model(&next).Where(`store_id = ?`, storeID).Order("id ASC").Offset(start + limit).Limit(1).Select()
 	} else {
-		_ = DB.Model(&next).Relation("Category").Where(`store_id = ? AND "category"."slug" = ?`, storeID, category).Order("id ASC").Offset(limit + start + 1).Limit(1).Select()
+		_ = DB.Model(&next).Relation("Category").Where(`store_id = ? AND "category"."slug" = ?`, storeID, category).Order("id ASC").Offset(start + limit).Limit(1).Select()
 	}
 
 	if category == "all" {
@@ -210,7 +210,7 @@ func GetMerchantsPage(start, limit int) ([]User, int, bool) {
 	_ = DB.Model(&merchants).Relation("Store").Relation("Store.Logo").Where(`"user"."store_id" IS NOT NULL`).Order("id ASC").Offset(start).Limit(limit).Select()
 
 	var next []User
-	_ = DB.Model(&next).Where(`"user"."store_id" IS NOT NULL`).Order("id ASC").Offset(limit + start + 1).Limit(1).Select()
+	_ = DB.Model(&next).Where(`"user"."store_id" IS NOT NULL`).Order("id ASC").Offset(start + limit).Limit(1).Select()
 	if len(merchants) == 0 {
 		return make([]User, 0), 0, false
 	}
@@ -224,7 +224,7 @@ func GetApprovedMerchantsPage(start, limit int) ([]User, int, bool) {
 	_ = DB.Model(&merchants).Relation("Store").Relation("Store.Logo").Where(`"user"."store_id" IS NOT NULL AND "store"."approved" is True`).Order("id ASC").Offset(start).Limit(limit).Select()
 
 	var next []User
-	_ = DB.Model(&next).Relation("Store").Where(`"user"."store_id" IS NOT NULL AND "store"."approved" is True`).Order("id ASC").Offset(limit + start + 1).Limit(1).Select()
+	_ = DB.Model(&next).Relation("Store").Where(`"user"."store_id" IS NOT NULL AND "store"."approved" is True`).Order("id ASC").Offset(start + limit).Limit(1).Select()
 	if len(merchants) == 0 {
 		return make([]User, 0), 0, false
 	}
@@ -382,9 +382,9 @@ func GetProductsPage(start, limit int, category string) ([]Product, int, bool) {
 
 	var next []Product
 	if category == "all" {
-		_ = DB.Model(&next).Order("id DESC").Offset(limit + start + 1).Limit(1).Select()
+		_ = DB.Model(&next).Order("id DESC").Offset(start + limit).Limit(1).Select()
 	} else {
-		_ = DB.Model(&next).Relation("Category").Where("category.slug = ?", category).Order("id DESC").Offset(limit + start + 1).Limit(1).Select()
+		_ = DB.Model(&next).Relation("Category").Where("category.slug = ?", category).Order("id DESC").Offset(start + limit).Limit(1).Select()
 	}
 
 	if category == "all" {

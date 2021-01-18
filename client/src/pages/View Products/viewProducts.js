@@ -46,13 +46,15 @@ function ViewProducts(props) {
                 setPrevPage(true);
             }
 
-            let limit = productsPP * pageNumber;
+            let startAt = (productsPP * pageNumber) - productsPP;
             try {
-                const response = await jumga.get(`/v1/product?startAt=${limit - productsPP}&limit=${limit}&category=${categoryParam}`);
+                const response = await jumga.get(`/v1/product?startAt=${startAt}&limit=${productsPP}&category=${categoryParam}`);
                 console.log(response.data);
                 setProducts(response.data.data);
                 if (response.data.next) {
                     setNextPage(true);
+                } else {
+                    setNextPage(false);
                 }
                 const pages = Math.ceil( response.data.total / productsPP);
                 setNumberOfPages(pages);

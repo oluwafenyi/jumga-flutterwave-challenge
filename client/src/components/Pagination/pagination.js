@@ -3,14 +3,21 @@ import { Link } from "react-router-dom";
 import './pagination.scss';
 
 function Pagination(props) {
+    const getCategoryParam = () => {
+        if (props.category) {
+            return `category=${props.category}&`
+        }
+        return ""
+    }
+
     const nextPage = () => {
         if (props.next) {
             return (
-                <h5 className="next-btn">
-                    <Link to={ `?category=${props.category}&page=${props.page + 1}` }>
+                <Link to={ `?${getCategoryParam()}page=${props.page + 1}` }>
+                    <h5 className="next-btn">
                         next
-                    </Link>
-                </h5>
+                    </h5>
+                </Link>
             )
         }
     }
@@ -18,11 +25,11 @@ function Pagination(props) {
     const prevPage = () => {
         if (props.prev) {
             return (
-                <h5 className="previous-btn">
-                    <Link to={ `?category=${props.category}&page=${props.page - 1}` }>
+                <Link to={ `?${getCategoryParam()}page=${props.page - 1}` }>
+                    <h5 className="previous-btn">
                         prev
-                    </Link>
-                </h5>
+                    </h5>
+                </Link>
             )
         }
     }
@@ -31,11 +38,11 @@ function Pagination(props) {
         console.log(props.numberOfPages)
         return Array.from(Array(props.numberOfPages).keys()).map(key => {
            return (
-               <h5 className="page-number" key={ key + 1 }>
-                   <Link to={ `?category=${props.category}&page=${ key + 1 }` }>
+               <Link to={ `?${getCategoryParam()}page=${ key + 1 }` }>
+                   <h5 className="page-number" key={ key + 1 }>
                        { key + 1 }
-                   </Link>
-               </h5>
+                   </h5>
+               </Link>
            )
         });
     }

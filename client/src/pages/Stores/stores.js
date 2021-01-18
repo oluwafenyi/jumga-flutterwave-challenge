@@ -13,6 +13,7 @@ const Stores = (props) =>{
     const [ prevPage, setPrevPage ] = useState(false);
     const [ nextPage, setNextPage ] = useState(false);
     const [ numberOfPages, setNumberOfPages ] = useState(0);
+    const [ page, setPage ] = useState(1);
 
     useEffect(() => {
         const getStores = async () => {
@@ -24,19 +25,23 @@ const Stores = (props) =>{
                 pageNumber = 1;
             }
 
+            setPage(pageNumber)
+
             if (pageNumber === 1) {
                 setPrevPage(false);
             } else {
                 setPrevPage(true);
             }
 
-            let limit = storesPP * pageNumber;
+            let startAt = (storesPP * pageNumber) - storesPP;
             try {
-                const response = await jumga.get(`/v1/store?approved=true&startAt=${limit - storesPP}&limit=${limit}`);
+                const response = await jumga.get(`/v1/store?approved=true&startAt=${startAt}&limit=${storesPP}`);
                 console.log(response.data);
                 setStores(response.data.data);
                 if (response.data.next) {
                     setNextPage(true);
+                } else {
+                    setNextPage(false);
                 }
                 const pages = Math.ceil( response.data.total / storesPP);
                 setNumberOfPages(pages);
@@ -71,7 +76,7 @@ const Stores = (props) =>{
                 <section className="stores-gallery">
                     { storeListing() }
                 </section>
-                <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages}/>
+                <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages} page={page}/>
             </main>
             <Footer/>
         </div>
