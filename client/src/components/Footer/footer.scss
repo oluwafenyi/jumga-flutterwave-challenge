@@ -16,11 +16,13 @@ footer{
     padding: 2rem 0;
 
     @include media("<phone"){
-        display: none;
+        flex-wrap: nowrap;
+        flex-direction: column;
     }
 
-    @include media(">=phone","<=custom-view-1"){
-        display: none;
+    @include media(">=phone","<=custom-view-3"){
+        flex-wrap: nowrap;
+        flex-direction: column;
     }
 
     &::before{
@@ -56,6 +58,16 @@ footer{
         font-weight: normal;
         font-size: 18px;
         line-height: 36px;
+
+        @include media("<phone"){
+            font-size: 16px;
+            text-align: center;
+        }
+    
+        @include media(">=phone","<=custom-view-3"){
+            font-size: 16px;
+            text-align: center;
+        }
     }
 
     ul{
@@ -76,6 +88,16 @@ footer{
             font-weight: 300;
             font-size: 14px;
             line-height: 27px;
+
+            @include media("<phone"){
+                text-align: center;
+                align-self: center;
+            }
+        
+            @include media(">=phone","<=custom-view-3"){
+                text-align: center;
+                align-self: center;
+            }
             a{
                 text-decoration: none;
                 transition: 0.2s;
@@ -107,40 +129,6 @@ footer{
     }
 
 
-}
-
-.mobile-footer{
-    display: none;
-    flex-direction: column;
-    padding: 1rem 0;
-
-    @include media("<phone"){
-        display: flex;
-    }
-
-    @include media(">=phone","<=custom-view-1"){
-        display: flex;
-    }
-
-    .footer-logo{
-        margin: 1rem auto;
-        max-width: 100px;
-
-        img{
-            width: 100%;
-        }
-    }
-
-    .socials{
-        align-self: center;
-        margin: 0 auto;
-
-        .social{
-            margin: 0 0.2rem;
-
-        }
-    }
-    
 }
 
 .alt-footer{

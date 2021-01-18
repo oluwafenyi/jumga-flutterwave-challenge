@@ -1,3 +1,8 @@
+/**
+*
+* Testing
+*
+**/
 .profile-dropdown {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -20,6 +25,26 @@
   opacity: 0;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+}
+
+@media (max-width: 359.5px) {
+  .profile-dropdown {
+    position: unset;
+    max-width: 290px;
+    z-index: 4;
+    padding: 0.3rem 0.5rem;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 870px) {
+  .profile-dropdown {
+    position: unset;
+    z-index: 4;
+    margin: auto;
+    padding: 0.3rem 0.5rem;
+    left: 5%;
+    right: 5%;
+  }
 }
 
 .profile-dropdown .close-btn {
@@ -46,6 +71,26 @@
       justify-content: space-around;
 }
 
+@media (max-width: 359.5px) {
+  .profile-dropdown .user-details {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 0 0.5rem;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 870px) {
+  .profile-dropdown .user-details {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 0 0.5rem;
+  }
+}
+
 .profile-dropdown .user-details .user-icon {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
@@ -65,10 +110,6 @@
   line-height: 19px;
   color: rgba(0, 0, 0, 0.65);
   margin: 0.25rem 0;
-}
-
-.profile-dropdown .user-details .user-info .user-country {
-  max-width: 13px;
 }
 
 .profile-dropdown .logout-btn {

@@ -70,8 +70,14 @@ function Navigation() {
 
             <div className="user-options">
                 {
-                    !jumgaState.isAuthenticated() ? <Link to="/login" className={`${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link> : <button className="user-icon-btn">{profileIcon()}</button> 
+                    jumgaState.isAuthenticated() ? <Link to="/login" className={`${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link> : <button className="user-icon-btn" onClick={ ()=> displayProfileDropdown(true) }>{profileIcon()}</button> 
                 }     
+            </div>
+            <div className="mobile-profile">
+                <ProfileDropdown 
+                    profileDropdown={ profileDropdown }  
+                    displayProfileDropdown ={ displayProfileDropdown } 
+                />
             </div>
 
             
@@ -214,7 +220,7 @@ export function AltNavigation() {
                 </ul>
                 <div className="user-options">
                     {
-                        !jumgaState.isAuthenticated() ? <Link to="/login" className={`${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link> : <button className="user-icon-btn">{profileIcon()}</button> 
+                        !jumgaState.isAuthenticated() ? <Link to="/login" className={`${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link> : <button className="user-icon-btn" onClick={ ()=> displayProfileDropdown(true) }>{profileIcon()}</button> 
                     }     
                 </div>
             </div>

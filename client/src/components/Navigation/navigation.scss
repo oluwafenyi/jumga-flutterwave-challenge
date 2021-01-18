@@ -281,6 +281,33 @@
 
     }
 
+    .mobile-profile{
+        display: none;
+        position: fixed;
+        z-index: 4;
+        align-content: center;
+        top: 80px;
+        max-width: 320px ;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 100%;
+
+        @include media("<phone"){
+            display: flex;
+            max-width: 290px ;
+        }
+    
+    
+        @include media(">=phone","<=custom-view-2"){
+            display: flex;
+        }
+
+        .profile-dropdown{
+            text-align: center;
+            align-content: center;
+        }
+    }
+
     .mobile-menu-container{
         display: none;
         flex-direction: column;

@@ -184,7 +184,7 @@
 @media (min-width: 360px) and (max-width: 870px) {
   .landing-page .landing-header .hero-text .shop-btn {
     font-size: 17px;
-    margin: 0.5rem 1.2rem;
+    margin: 0.5rem 1rem;
     padding: 0.5rem 1.5rem;
   }
 }
