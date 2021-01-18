@@ -66,14 +66,12 @@ function Navigation() {
             <div className="search-container">
                 <Search/>
             </div>
-            
-
             <div className="user-options">
                 {
-                    jumgaState.isAuthenticated() ? <Link to="/login" className={`${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link> : <button className="user-icon-btn" onClick={ ()=> displayProfileDropdown(true) }>{profileIcon()}</button> 
+                    !jumgaState.isAuthenticated() ? <Link to="/login" className={`${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link> : <button className="user-icon-btn" onClick={ ()=> displayProfileDropdown(true) }>{profileIcon()}</button> 
                 }     
             </div>
-            <div className="mobile-profile">
+            <div className={`mobile-profile ${profileDropdown ? "show-mobile-profile" : ""}`}>
                 <ProfileDropdown 
                     profileDropdown={ profileDropdown }  
                     displayProfileDropdown ={ displayProfileDropdown } 
@@ -222,6 +220,12 @@ export function AltNavigation() {
                     {
                         !jumgaState.isAuthenticated() ? <Link to="/login" className={`${location.pathname !== '/' ? 'dark' : '' }`}>Login</Link> : <button className="user-icon-btn" onClick={ ()=> displayProfileDropdown(true) }>{profileIcon()}</button> 
                     }     
+                </div>
+                <div className={`alt-mobile-profile ${profileDropdown ? "show-mobile-profile" : ""}`}>
+                    <ProfileDropdown 
+                        profileDropdown={ profileDropdown }  
+                        displayProfileDropdown ={ displayProfileDropdown } 
+                    />
                 </div>
             </div>
             <div className={`mobile-menu-container ${altMenu ? "show-mobile-menu" : ""}`}>
