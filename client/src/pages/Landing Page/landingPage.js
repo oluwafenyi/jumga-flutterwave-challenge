@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {Link, useHistory} from 'react-router-dom';
 import Navigation from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
-import './landingPage.css';
+import './landingPage.scss';
 import TopOffersPopup from '../../components/Top Offers/topOffersPopup';
 
 

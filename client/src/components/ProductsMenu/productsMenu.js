@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from "react-router-dom";
-import './productsMenu.css';
+import './productsMenu.scss';
 
 function ProductsMenu({ category }) {
+    let productMenu = useRef(null);
+
+    const handleScroll = (scrollOffset)=>{
+        productMenu.current.scrollLeft += scrollOffset   
+    }
+
+
     return (
         <div className="products-menu">
-            <ul className="products-list">
+            <button className="forward-btn" onClick={ ()=>handleScroll(-150) } >
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M31.25 37.5L18.75 25L31.25 12.5" stroke="black" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+            </button>
+            <ul className="products-list" ref={ el=>productMenu.current=el} >
                 <li className={`product ${category === 'all' ? "selected-category" : '' }`}>
                     <Link to="?category=all">
                         All Products
@@ -36,7 +48,12 @@ function ProductsMenu({ category }) {
                         Sports & Fitness
                     </Link>
                 </li>
-            </ul>
+            </ul>  
+            <button className="backward-btn" onClick={ ()=>handleScroll(150) }>
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.75 37.5L31.25 25L18.75 12.5" stroke="black" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+            </button>
         </div>
     )
 }

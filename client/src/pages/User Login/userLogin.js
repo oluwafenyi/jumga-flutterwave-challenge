@@ -7,7 +7,7 @@ import {AltNavigation} from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
 import { jumga } from "../../axios";
 import { jumgaState, notification } from "../../store/store";
-import './userLogin.css';
+import './userLogin.scss';
 
 
 const UserLogin = () => {

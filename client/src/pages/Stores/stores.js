@@ -4,7 +4,7 @@ import StoresSearch from '../../components/StoresSearch/storesSearch';
 import {AltNavigation} from '../../components/Navigation/navigation';
 import StoreCard from '../../components/StoreCard/storeCard';
 import Footer from '../../components/Footer/footer';
-import './stores.css'
+import './stores.scss'
 import Pagination from '../../components/Pagination/pagination';
 import {jumga} from "../../axios";
 

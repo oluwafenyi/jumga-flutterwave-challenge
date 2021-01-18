@@ -75,6 +75,24 @@ main{
   appearance: none;
 }
 
+@media (max-width: 359.5px) {
+  .form-input-select {
+    font-size: 16px;
+    line-height: 32px;
+    padding: 0.4rem 0.6rem;
+    margin: 0.7rem 0;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 550px) {
+  .form-input-select {
+    font-size: 17px;
+    line-height: 34px;
+    padding: 0.5rem 0.7rem;
+    margin: 0.8rem 0;
+  }
+}
+
 .form-input-select::-ms-expand {
   display: none;
 }

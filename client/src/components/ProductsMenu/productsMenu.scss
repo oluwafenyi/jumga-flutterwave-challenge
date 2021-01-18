@@ -1,14 +1,93 @@
+@import '../../utils/breakpoints.scss';
+
+
 .products-menu{
+    display: flex;
+    flex-direction: row;
+   justify-content: center;
     font-family: 'Poppins', sans-serif;
+    width: 100%;
+    margin: 0 0.5rem;
+    
+
+    @include media("<phone"){
+        width: 100%;
+        align-items: center;
+        margin: 0;
+    }
+
+
+    @include media(">=phone","<=custom-view-5"){
+        width: 100%;
+        align-items: center;
+        margin: 0;
+    }
+
+    .forward-btn,
+    .backward-btn{
+        display: none;
+        cursor: pointer;
+
+        @include media("<phone"){
+            display: block;
+        }
     
     
+        @include media(">=phone","<=custom-view-5"){
+            display: block;
+        }
+    }
+
+    .forward-btn{
+        background-image: linear-gradient(to left, rgba(255,255,255,0) 0%, white 50%);
+        background-color: transparent;
+        left: 0;
+        border-radius: 30px 0  0 30px;
+        border: none;
+        outline: 0.1px dotted rgba(0, 0, 0, 0.021);
+    }
+
+    .backward-btn{
+        background-image: linear-gradient(to right, rgba(255,255,255,0) 0%, white 50%);
+        background-color: transparent;
+        right: 0;
+        border-radius: 0 30px 30px 0;
+        border: none;
+        outline: 0.1px dotted rgba(0, 0, 0, 0.021);
+
+    }
+
     .products-list{
         display: flex;
         flex-direction: row;
-        // background: #f0f0f05b;
-        border-radius: 36px;
-        padding: 0.5rem;
+        align-self: center;
+        padding: 0.5rem 1.2rem;
         min-height: 70px;
+        scroll-behavior: smooth;
+        border-top: 1px solid #f3f3f4;
+
+        @include media("<phone"){
+            padding: 0.5rem 0;
+            overflow-x: scroll;
+            white-space: nowrap;
+            width: 100%;
+            min-height: unset;
+        }
+    
+    
+        @include media(">=phone","<=custom-view-5"){
+            padding: 0.5rem 0;
+            overflow-x: scroll;
+            white-space: nowrap;
+            width: 100%;
+            min-height: unset;
+        }
+
+        &::-webkit-scrollbar{
+            width: 0;
+            height: 0;
+        }
+
     }
 
     .product{
@@ -17,6 +96,20 @@
         cursor: pointer;
         font-size: 18px;
         line-height: 36px;
+        white-space: nowrap;
+
+        @include media("<phone"){
+            font-size: 16px;
+            line-height: 25px;
+            margin: 0 0.6rem ;
+        }
+    
+    
+        @include media(">=phone","<=custom-view-5"){
+            font-size: 17px;
+            line-height: 30px;
+            margin: 0 0.8rem ;
+        }
        
 
         &::after{
