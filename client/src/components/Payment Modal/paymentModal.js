@@ -14,6 +14,13 @@ const PaymentModal = ({ setPaymentModal, quantity, productPrice, deliveryFee, im
         return ((Number(productPrice) * Number(quantity)) + Number(deliveryFee)).toFixed(2);
     }
 
+    const price = (val) => {
+        if (val) {
+            return val.toFixed(2)
+        }
+        return ""
+    }
+
     const initiatePayment = async (e) => {
         e.preventDefault();
         if (!jumgaState.isAuthenticated()) {
@@ -41,11 +48,11 @@ const PaymentModal = ({ setPaymentModal, quantity, productPrice, deliveryFee, im
                         <div className="payment-details">
                             <div className="product-amount">
                                 <p className="product">Adidas Sneakers <span>x { quantity }</span>:</p>
-                                <p className="amount">${ productPrice }</p>
+                                <p className="amount">${ price(productPrice) }</p>
                             </div>
                             <div className="delivery-amount">
                                 <p className="delivery">Delivery :</p>
-                                <p className="amount">${ deliveryFee }</p>
+                                <p className="amount">${ price(deliveryFee)}</p>
                             </div>
                             <div className="total-amount">
                                 <p className="total">Total :</p>

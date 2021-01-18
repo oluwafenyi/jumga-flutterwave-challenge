@@ -178,7 +178,6 @@ func makeOrder(w http.ResponseWriter, r *http.Request) {
 		ErrorResponse(http.StatusUnprocessableEntity, "cannot process request", w)
 		return
 	}
-	// todo quantity
 
 	input := OrderValidator{}
 	err := decodeInput(&input, r)

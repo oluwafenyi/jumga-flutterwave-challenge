@@ -64,6 +64,8 @@ const MerchantDashboard = (props) =>{
                     notification.setValues({status: "success", message: `Merchant Approved`, location: "dashboard"})
                     notification.display()
                     jumgaState.setApprovalStatus(true);
+                    notification.setValues({ status: "info", message: "Product upload disabled until a rider is registered", location: "here" })
+                    notification.display()
                 }
             } catch (err) {
                 console.log(err)
@@ -79,13 +81,13 @@ const MerchantDashboard = (props) =>{
             return
         }
 
-        if (!jumgaState.riderRegistered && jumgaState.isAuthenticated()) {
-            notification.setValues({ status: "info", message: "Product upload disabled until a rider is registered", location: "here" })
+        if (!jumgaState.approved && jumgaState.isAuthenticated()) {
+            notification.setValues({ status: "info", message: "All actions are disabled until you process your approval", location: "here" })
             notification.display()
         }
 
-        if (!jumgaState.approved && jumgaState.isAuthenticated()) {
-            notification.setValues({ status: "info", message: "All actions are disabled until you process your approval", location: "here" })
+        if (!jumgaState.riderRegistered && jumgaState.isAuthenticated()) {
+            notification.setValues({ status: "info", message: "Product upload disabled until a rider is registered", location: "here" })
             notification.display()
         }
     },[history,props.location.search]);

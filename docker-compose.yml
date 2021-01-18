@@ -10,6 +10,10 @@ services:
       - ./server/:/usr/app/
     depends_on:
       - db
+    environment:
+      - "TOKEN_AUTH_SECRET=secret"
+      - "FLUTTERWAVE_API_KEY=FLWSECK_TEST-2b200882a3871d5d4cb57e349ed5fe03-X"
+      - "PORT=8000"
   client:
     build:
       context: ./client/

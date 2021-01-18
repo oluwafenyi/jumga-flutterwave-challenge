@@ -10,7 +10,7 @@ function getConfig() {
     } else {
         config["baseURL"] = "https://apex-jumga.herokuapp.com";
     }
-
+    // config["baseURL"] = "https://apex-jumga.herokuapp.com";
     return config;
 }
 
@@ -19,9 +19,6 @@ const jumga = axios.create(getConfig());
 jumga.interceptors.request.use(config => {
     if (jumgaState.isAuthenticated()) {
         config.headers["Authorization"] = "Bearer " + jumgaState.access_token;
-    }
-    if (!jumgaState.approved && jumgaState.isAuthenticated()) {
-        return false;
     }
     return config;
 }, err => {

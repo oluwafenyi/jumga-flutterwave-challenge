@@ -115,15 +115,14 @@ const ProductPreview = (props) =>{
     }
 
     const displayOtherProducts = () => {
-        if (otherProducts.length > 0) {
+        const productIcons = otherProducts.map(product => {
+            if (product.id === Number(productId)) return null;
+            return (
+                <ProductCard key={ product.id } productId={product.id} category={ product.category.name } name={ product.title } price={ product.price } imageLink={ product.display_image.link } />
+            )
+        })
 
-            const productIcons = otherProducts.map(product => {
-                if (product.id === Number(productId)) return null;
-                return (
-                    <ProductCard key={ product.id } productId={product.id} category={ product.category.name } name={ product.title } price={ product.price } imageLink={ product.display_image.link } />
-                )
-            })
-
+        if (productIcons.length > 0) {
             return (
                 <section className="other-products">
                     <h3 className="other-products-title">More from { productData.store.business_name }</h3>
@@ -133,6 +132,13 @@ const ProductPreview = (props) =>{
                 </section>
             )
         }
+    }
+
+    const getProductDataPrice = () => {
+        if (productData.price) {
+            return productData.price.toFixed(2);
+        }
+        return ""
     }
 
     return(
@@ -160,7 +166,7 @@ const ProductPreview = (props) =>{
                             <div className="product-specifics">   
                                 <h3 className="product-source">{ productData.store.business_name }/<span>{ productData.category.name }</span></h3>
                                 <h1 className="product-name">{ productData.title }</h1>
-                                <h2 className="product-price">{ `$${productData.price}` }</h2>
+                                <h2 className="product-price">${ getProductDataPrice() }</h2>
                             </div>
                             <div className="product-description">
                                 <h4 className="description-title">Description</h4>

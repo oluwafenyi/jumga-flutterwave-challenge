@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { AltNavigation } from '../../components/Navigation/navigation';
 import PlusSign from '../../assets/plus.svg';
 import { Link, useHistory } from 'react-router-dom';
@@ -28,6 +28,8 @@ function MerchantSignup() {
     const [ merchantLogoLink, setMerchantLogoLink ] = useState("");
     const history = useHistory();
     let uploadWidget = null;
+    const instance = useRef(null)
+
 
     const handleCountrySelection = (e) => {
         setCountry(e.target.value);
@@ -47,13 +49,6 @@ function MerchantSignup() {
     }
 
     const cloudinaryUpload = () => {
-      if (uploadWidget === null) {
-          return
-      }
-      uploadWidget.open();
-    };
-
-    const onLoadCloudinaryScript = () => {
         uploadWidget = window.cloudinary.createUploadWidget({
             cloudName: 'dkow6vfth',
             upload_preset: 'jumgapreset',
@@ -66,18 +61,18 @@ function MerchantSignup() {
             notification.display()
         }
         })
-    }
+      if (uploadWidget === null) {
+          return
+      }
+      uploadWidget.open();
+    };
 
     useEffect(() => {
         const script = document.createElement("script");
         script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
         script.type = "text/javascript";
         script.async = true;
-        
-        script.onload = () => onLoadCloudinaryScript();
-
-        document.body.appendChild(script);
-        // return () => document.removeChild(script);
+        instance.current.appendChild(script);
         // eslint-disable-next-line
     }, [])
 
@@ -140,6 +135,9 @@ function MerchantSignup() {
 
     return (
         <div className="merchant-sign-up">
+            <div ref={instance}>
+
+            </div>
             <nav>
                 <AltNavigation/>
             </nav>
@@ -179,7 +177,7 @@ function MerchantSignup() {
                                 </p>
                             </div>
                         </div>
-                        <input type="submit" disabled value="Register" className="register-btn" onClick={submitSignUpForm}/>
+                        <input type="submit" value="Register" className="register-btn" onClick={submitSignUpForm}/>
 
                         <p className="merchant-login-link">
                             Already have an account? 

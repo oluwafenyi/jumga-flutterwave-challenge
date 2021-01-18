@@ -31,6 +31,9 @@ func calculateAvgRating(m *User) float32 {
 	var products []Product
 	_ = DB.Model(&products).ColumnExpr("DISTINCT rating").Where("product.store_id = ?", m.StoreID).Select()
 	count := float32(len(products))
+	if count == 0 {
+		return 0
+	}
 	var total float32 = 0
 	for _, product := range products {
 		total += product.Rating
@@ -42,6 +45,9 @@ func calculateAvgPrice(m *User) float64 {
 	var products []Product
 	_ = DB.Model(&products).ColumnExpr("DISTINCT price").Where("product.store_id = ?", m.StoreID).Select()
 	count := float64(len(products))
+	if count == 0 {
+		return 0
+	}
 	var total float64 = 0
 	for _, product := range products {
 		total += product.Price

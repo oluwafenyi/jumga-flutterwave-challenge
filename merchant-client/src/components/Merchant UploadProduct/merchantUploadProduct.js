@@ -20,6 +20,7 @@ const MerchantUploadProduct = () =>{
     });
     let uploadWidget = null;
     let UploadPage = useRef(null);
+    const instance = useRef(null);
 
     const onLoadCloudinaryScript = () => {
         uploadWidget = window.cloudinary.createUploadWidget({
@@ -37,6 +38,18 @@ const MerchantUploadProduct = () =>{
     }
 
     const cloudinaryUpload = () => {
+        uploadWidget = window.cloudinary.createUploadWidget({
+            cloudName: 'dkow6vfth',
+            upload_preset: 'jumgapreset',
+            folder: 'jumga-images',
+            cropping: true,
+        }, (error, result) => { if (result.event === "success") {
+            // console.log(result.info)
+            setProductImageLink(result.info.secure_url);
+            notification.setValues({status: "success", message: "Image upload successful", location:"here"})
+            notification.display()
+        }
+        })
         if (uploadWidget === null) {
             return
         }
@@ -48,11 +61,7 @@ const MerchantUploadProduct = () =>{
         script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
         script.type = "text/javascript";
         script.async = true;
-        script.onload = () => onLoadCloudinaryScript();
-
-        document.body.appendChild(script);
-        // return () => document.removeChild(script);
-
+        instance.current.appendChild(script);
         // eslint-disable-next-line
     }, [])
 
@@ -101,6 +110,9 @@ const MerchantUploadProduct = () =>{
 
     return(
         <div className="merchant-upload-product" ref={ el=> UploadPage=el  }>
+            <div ref={instance}>
+
+            </div>
             <ToastContainer/>
             <div className="merchant-upload-product-header">
                 <h3 className="merchant-upload-product-title">Upload Product</h3>
