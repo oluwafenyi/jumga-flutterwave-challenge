@@ -1,6 +1,8 @@
+@import '../../utils/breakpoints.scss';
+
 .top-offers-popup{
     position: fixed;
-    z-index: 1;
+    z-index: 6;
     top: 0;
     transition: opacity 0.2s;
     opacity: 1;
@@ -10,13 +12,25 @@
         flex-direction: column;
         position: fixed;
         background: #fff;
-        z-index: 2;
+        z-index: 5;
         border-radius: 11px;
         padding: 0.5rem 1rem;
         width: 100%;
         max-width: 300px;
-        margin: 1rem 35%;
+        margin: 1rem;
         top: 30%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 100%;
+
+        @include media("<phone"){
+            max-width: 290px ;
+        }
+    
+    
+        @include media(">=phone","<=custom-view-2"){
+            max-width: 290px ;
+        }
 
         .close-btn{
             align-self: flex-end;

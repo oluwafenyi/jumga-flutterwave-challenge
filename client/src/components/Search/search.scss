@@ -1,8 +1,12 @@
+@import '../../utils/breakpoints.scss';
+
 .search{
     align-self: center;
     margin: 0 2rem;
     padding: 0.3rem;
     font-family: 'Poppins', sans-serif;
+
+    
 
     .desktop-search{
         display: flex;
@@ -30,6 +34,11 @@
             margin: 0 0.2rem 0 0.7rem;
             padding: 0.2rem;
 
+            @include media(">=tablet","<=custom-view"){
+                font-size: 16px;
+                margin: 0 0.1rem 0 0.5rem;
+            }
+
             &::placeholder{
                 font-family: 'Poppins', sans-serif;
             }
@@ -40,16 +49,5 @@
         }
     }
 
-    .mobile-search-icon{
-        display: none;
-        max-width: 27px;
-        
-        img{
-            width: 100%;
-        }
-    }
-
-    .mobile-search{
-        display: none;
-    }
+    
 }

@@ -48,7 +48,7 @@ const Stores = (props) =>{
         (async function() {
             await getStores();
         })();
-    }, [])
+    }, [props.location.search])
 
     const storeListing = () => {
         return stores.map(store => {

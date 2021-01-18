@@ -27,7 +27,7 @@ const MerchantDispatchService = () =>{
                 <div className="new-rider-header">
                     <div className="chevron">
                         <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13.5 27L22.5 18L13.5 9" stroke="#20263C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M13.5 27L22.5 18L13.5 9" stroke="#20263C" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                     </div>
                     <h3 className="new-rider-title">Register new dispatch rider</h3>

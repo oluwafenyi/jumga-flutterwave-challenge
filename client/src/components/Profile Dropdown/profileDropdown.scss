@@ -1,3 +1,5 @@
+@import '../../utils/breakpoints.scss';
+
 .profile-dropdown{
     display: flex;
     flex-direction: column;
@@ -14,6 +16,23 @@
     opacity: 0;
     transition: 0.3s;
 
+    @include media("<phone"){
+        position:unset;
+        max-width: 290px;
+        z-index: 4;
+        padding: 0.3rem 0.5rem;
+    }
+
+
+    @include media(">=phone","<=custom-view-2"){
+        position: unset;
+        z-index: 4;
+        margin: auto;
+        padding: 0.3rem 0.5rem;
+        left: 5%;
+        right: 5%;
+    }
+
 
     .close-btn{
         align-self: flex-end;
@@ -29,6 +48,17 @@
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+
+        @include media("<phone"){
+            flex-direction: column;
+            padding: 0 0.5rem;
+        }
+    
+    
+        @include media(">=phone","<=custom-view-2"){
+            flex-direction: column;
+            padding: 0 0.5rem;
+        }
 
         .user-icon{
             align-self: center;
@@ -51,9 +81,6 @@
                 margin: 0.25rem 0;
             }
 
-            .user-country{
-                max-width: 13px;
-            }
 
         }
     }
