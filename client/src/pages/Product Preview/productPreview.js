@@ -214,6 +214,7 @@ const ProductPreview = (props) =>{
                     deliveryFee = { productData.delivery_fee }
                     imageLink = { productData.display_image.link }
                     productId = { productId }
+                    productName={ productData.title }
                 /> 
                 : null 
             }

@@ -7,7 +7,7 @@ import './paymentModal.scss';
 import { jumga } from "../../axios";
 import {jumgaState} from "../../store/store";
 
-const PaymentModal = ({ setPaymentModal, quantity, productPrice, deliveryFee, imageLink, productId }) =>{
+const PaymentModal = ({ setPaymentModal, quantity, productPrice, deliveryFee, imageLink, productId, productName }) =>{
     const history = useHistory();
 
     const getTotal = () => {
@@ -47,7 +47,7 @@ const PaymentModal = ({ setPaymentModal, quantity, productPrice, deliveryFee, im
                     <div className="payment-summary">
                         <div className="payment-details">
                             <div className="product-amount">
-                                <p className="product">Adidas Sneakers <span>x { quantity }</span>:</p>
+                                <p className="product">{ productName } <span>x { quantity }</span>:</p>
                                 <p className="amount">${ price(productPrice) }</p>
                             </div>
                             <div className="delivery-amount">
