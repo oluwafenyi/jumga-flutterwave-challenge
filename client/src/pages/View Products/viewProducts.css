@@ -28,6 +28,7 @@
   border-radius: 36px;
   padding: 1rem 0;
   position: relative;
+  width: 100%;
 }
 
 .view-products-page .view-product-header .filter {

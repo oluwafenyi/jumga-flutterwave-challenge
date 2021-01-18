@@ -6,6 +6,7 @@ $breakpoints: (
   "custom-view-2": 870px,
   "custom-view-3":700px,
   "custom-view-4":610px,
+  "custom-view-5":925px,
   "desktop": 1200px,
   "LGdesktop": 1920px
 ) !default;
@@ -64,7 +65,7 @@ $media-expressions: (
 ///	 @media (min-width: 2.1rem) {}
 ///
 $unit-intervals: (
-  "px": 0.5,
+  "px": 1,
   "em": 0.01,
   "rem": 0.1
 ) !default;

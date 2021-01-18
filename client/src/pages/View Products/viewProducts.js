@@ -4,7 +4,7 @@ import Navigation from '../../components/Navigation/navigation';
 import ProductMenu from '../../components/ProductsMenu/productsMenu';
 import ProductCard from '../../components/ProductCard/productCard';
 import Footer from '../../components/Footer/footer';
-import './viewProducts.css';
+import './viewProducts.scss';
 import Pagination from '../../components/Pagination/pagination';
 
 import {jumga} from "../../axios";

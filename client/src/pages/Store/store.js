@@ -9,7 +9,7 @@ import Phone from '../../assets/phone.svg';
 import Email from '../../assets/email.svg';
 import Footer from '../../components/Footer/footer';
 import Pagination from '../../components/Pagination/pagination';
-import './store.css';
+import './store.scss';
 import {jumga} from "../../axios";
 // import {notification} from "../../store/store";
 

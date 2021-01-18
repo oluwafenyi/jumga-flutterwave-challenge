@@ -1,3 +1,5 @@
+@import '../../utils/breakpoints.scss';
+
 .stores-page{
     font-family: 'Poppins', sans-serif;
     .stores-header{
@@ -10,6 +12,16 @@
             font-weight: 500;
             font-size: 45px;
             line-height: 67px;
+
+            @include media("<phone"){
+                font-size: 35px;
+                line-height: 57px;
+            }
+        
+            @include media(">=phone","<=custom-view-2"){
+                font-size: 35px;
+                line-height: 57px;
+            }
         }
 
     }
@@ -18,10 +30,20 @@
         flex-direction: column;
         padding: 1rem;
         margin: 0 7% 30% 7%;
+
+        @include media("<phone"){
+            margin: 0 2% 15% 2%;
+            padding: 1rem 0.4rem;
+        }
+    
+        @include media(">=phone","<=custom-view-2"){
+            margin: 0 2% 15% 2%;
+            padding: 1rem 0.4rem;
+        }
         .stores-gallery{
             display: flex;
             flex-wrap: wrap;
-            padding: 0.5rem;
+            padding: 2rem 0.5rem;
         }
     }
     
