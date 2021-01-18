@@ -1,3 +1,5 @@
+@import '../../utils/breakpoints.scss';
+
 footer{
     background-color: #000;
     font-family: 'Poppins', sans-serif;
@@ -12,6 +14,14 @@ footer{
     justify-content: space-evenly;
     position: relative;
     padding: 2rem 0;
+
+    @include media("<phone"){
+        display: none;
+    }
+
+    @include media(">=phone","<=custom-view-1"){
+        display: none;
+    }
 
     &::before{
         content: '';
@@ -101,6 +111,36 @@ footer{
 
 .mobile-footer{
     display: none;
+    flex-direction: column;
+    padding: 1rem 0;
+
+    @include media("<phone"){
+        display: flex;
+    }
+
+    @include media(">=phone","<=custom-view-1"){
+        display: flex;
+    }
+
+    .footer-logo{
+        margin: 1rem auto;
+        max-width: 100px;
+
+        img{
+            width: 100%;
+        }
+    }
+
+    .socials{
+        align-self: center;
+        margin: 0 auto;
+
+        .social{
+            margin: 0 0.2rem;
+
+        }
+    }
+    
 }
 
 .alt-footer{

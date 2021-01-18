@@ -1,3 +1,8 @@
+/**
+*
+* Testing
+*
+**/
 .search {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
@@ -42,6 +47,13 @@
   padding: 0.2rem;
 }
 
+@media (min-width: 768px) and (max-width: 975px) {
+  .search .desktop-search .search-input {
+    font-size: 16px;
+    margin: 0 0.1rem 0 0.5rem;
+  }
+}
+
 .search .desktop-search .search-input::-webkit-input-placeholder {
   font-family: 'Poppins', sans-serif;
 }
@@ -60,17 +72,4 @@
 
 .search .desktop-search .search-input:focus {
   outline: 0.1px dotted rgba(0, 0, 0, 0.315);
-}
-
-.search .mobile-search-icon {
-  display: none;
-  max-width: 27px;
-}
-
-.search .mobile-search-icon img {
-  width: 100%;
-}
-
-.search .mobile-search {
-  display: none;
 }
