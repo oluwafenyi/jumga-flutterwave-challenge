@@ -5,6 +5,13 @@ import { toast } from 'react-toastify';
 
 class JumgaState {
     access_token = "";
+    userData = {
+        name: "",
+        address: "",
+        email: "",
+        mobile: "",
+        country: ""
+    }
 
     constructor() {
         makeAutoObservable(this);
@@ -15,8 +22,19 @@ class JumgaState {
         this.access_token = access_token;
     }
 
+    setUserData(data) {
+        this.userData = data;
+    }
+
     clearAccessToken() {
         this.access_token = "";
+        this.userData = {
+            name: "",
+            address: "",
+            email: "",
+            mobile: "",
+            country: ""
+        }
     }
 
     isAuthenticated() {

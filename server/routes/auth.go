@@ -54,6 +54,16 @@ func getAuthMerchant(w http.ResponseWriter, r *http.Request) {
 	SuccessResponse(http.StatusOK, map[string]interface{}{"data": merchant}, w)
 }
 
+func getAuthUser(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	user, ok := ctx.Value("user").(*db.User)
+	if !ok {
+		ErrorResponse(http.StatusUnprocessableEntity, "cannot process request", w)
+		return
+	}
+	SuccessResponse(http.StatusOK, map[string]interface{}{"data": user}, w)
+}
+
 func AuthRoutes() http.Handler {
 	r := chi.NewRouter()
 	r.Use(middleware.GetHead)
@@ -66,6 +76,14 @@ func AuthRoutes() http.Handler {
 		r.Use(MerchantCtx)
 
 		r.Get("/merchant", getAuthMerchant)
+	})
+
+	r.Group(func(r chi.Router) {
+		r.Use(jwtauth.Verifier(tokenAuth))
+		r.Use(jwtauth.Authenticator)
+		r.Use(UserCtx)
+
+		r.Get("/user", getAuthUser)
 	})
 
 	return r

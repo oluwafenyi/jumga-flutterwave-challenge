@@ -30,7 +30,7 @@ const Dashboard = ({dashboardOption,setDashboardOption, approved}) =>{
     const processApproval = async () => {
         try {
             const response = await jumga.post("/v1/merchant/process-approval")
-            window.open(response.data.payment_link)
+            window.open(response.data.payment_link, "_self")
         } catch (err) {
             console.log(err)
         }

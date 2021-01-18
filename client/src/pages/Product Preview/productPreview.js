@@ -177,14 +177,14 @@ const ProductPreview = (props) =>{
                                 </p>
                             </div>
                             <div className="product-size-quantity">
-                                <select className="form-input-select product-size">
-                                    <option>Size</option>
-                                    <option>S</option>
-                                    <option>M</option>
-                                    <option>L</option>
-                                    <option>XL</option>
-                                    <option>XXL</option>
-                                </select>
+                                {/*<select className="form-input-select product-size">*/}
+                                {/*    <option>Size</option>*/}
+                                {/*    <option>S</option>*/}
+                                {/*    <option>M</option>*/}
+                                {/*    <option>L</option>*/}
+                                {/*    <option>XL</option>*/}
+                                {/*    <option>XXL</option>*/}
+                                {/*</select>*/}
                                 <input type="number" className="form-input quantity-input" placeholder="Quantity" onChange={ (e) => { setQuantity(Number(e.target.value)) } } required/>
                             </div>
                             <div className="product-gallery">

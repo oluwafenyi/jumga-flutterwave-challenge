@@ -35,6 +35,9 @@ const UserLogin = () => {
             const response = await jumga.post("/auth/token", form);
             console.log(response.data);
             jumgaState.setAccessToken(response.data.access_token);
+            const profileResponse = await jumga.get("/auth/user");
+            const { name, email, country, address, mobile } = profileResponse.data.data;
+            jumgaState.setUserData({ name, email, country, address, mobile })
             history.push("/");
         } catch (err) {
             notification.setValues({ status: "failed", message: "Invalid login credentials", location: "login" })

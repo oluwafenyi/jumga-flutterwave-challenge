@@ -10,9 +10,22 @@ const ProfileDropdown = ({profileDropdown, displayProfileDropdown}) =>{
 
     const logoutUser = () => {
         jumgaState.clearAccessToken();
+        displayProfileDropdown(false);
         history.push("/");
     }
 
+    const getCountryIcon = () => {
+        switch (jumgaState.userData.country) {
+            case "NG":
+                return '🇳🇬';
+            case "GH":
+                return "🇬🇭";
+            case "KE":
+                return "🇰🇪";
+            default:
+                return "";
+        }
+    }
 
     return(
         <div style={ location.pathname !== "/" || location.pathname !== "/products"  ? {border:"1px solid #00000036",filter:"drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.25))",left:"125px",top:"60px"}: {border:"none"} } 
@@ -31,10 +44,11 @@ const ProfileDropdown = ({profileDropdown, displayProfileDropdown}) =>{
                     </svg>
                 </div>
                 <div className="user-info">
-                    <h3 className="user-name">Onwuka Stanley</h3>
-                    <p className="user-email">stanstyler25@gmail.com</p>
-                    <p className="user-mobile">08055051408</p>
-                    <div className="user-country">🇳🇬</div>
+                    <h3 className="user-name">{ jumgaState.userData.name }</h3>
+                    <p className="user-email">{ jumgaState.userData.email }</p>
+                    <p className="user-mobile">{ jumgaState.userData.mobile }</p>
+                    <p className="user-address">{ jumgaState.userData.address }</p>
+                    <div className="user-country">{ getCountryIcon() }</div>
                 </div>
             </div>
             <button className="logout-btn" onClick={ logoutUser }>Logout</button>
