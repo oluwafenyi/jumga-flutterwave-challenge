@@ -15,6 +15,7 @@ import Footer from '../../components/Footer/footer';
 import PaymentModal from '../../components/Payment Modal/paymentModal';
 import './productPreview.scss';
 import ProductCard from "../../components/ProductCard/productCard";
+import {productCategories} from "../../constants";
 
 
 const ProductPreview = (props) =>{
@@ -86,7 +87,7 @@ const ProductPreview = (props) =>{
         const getOtherProducts = async () => {
             if (!productData.store.id) return;
             try {
-                const response = await jumga.get(`/v1/store/${productData.store.id}/products?startAt=0&limit=5`)
+                const response = await jumga.get(`/v1/store/${productData.store.id}/products?startAt=0&limit=6`)
                 console.log(response)
                 setOtherProducts(response.data.data);
             } catch (err) {
@@ -115,8 +116,9 @@ const ProductPreview = (props) =>{
     }
 
     const displayOtherProducts = () => {
-        const productIcons = otherProducts.map(product => {
-            if (product.id === Number(productId)) return null;
+        const filteredProducts = otherProducts.filter(product => product.id !== Number(productId))
+
+        const productIcons = filteredProducts.map(product => {
             return (
                 <ProductCard key={ product.id } productId={product.id} category={ product.category.name } name={ product.title } price={ product.price } imageLink={ product.display_image.link } />
             )
