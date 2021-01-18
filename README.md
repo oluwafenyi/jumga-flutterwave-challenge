@@ -28,7 +28,7 @@ and the [backend](https://apex-jumga.herokuapp.com/) hosted with Heroku.
 
 &nbsp;
 ## API Documentation
-Click [here]() to see the documentation for the server-side endpoints.
+Click [here](https://documenter.getpostman.com/view/10335756/TVzXBaaC) to see the documentation for the server-side endpoints.
 
 &nbsp;
 ## Ways we used the Flutterwave V3 API
