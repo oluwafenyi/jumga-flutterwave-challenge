@@ -19,7 +19,7 @@ const Stores = (props) =>{
 
     useEffect(() => {
         const getStores = async () => {
-            const storesPP = 24;
+            const storesPP = 20;
             const params = queryString.parse(props.location.search);
             let pageNumber = Number(params.page);
 
