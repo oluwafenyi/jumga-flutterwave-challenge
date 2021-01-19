@@ -1,3 +1,5 @@
+@import '../../utils/breakpoints.scss';
+
 .merchant-overview{
     display: flex;
     flex-direction: column;
@@ -9,6 +11,19 @@
         font-weight: 500;
         font-size: 50px;
         line-height: 67px;
+
+        @include media("<=phone"){
+            font-size: 35px;
+            line-height: 45px;
+            text-align: center;
+        }
+
+        @include media(">=phone", "<=custom-view-4"){
+            font-size: 40px;
+            line-height: 55px;
+            text-align: center;
+        }
+
     }
 
     .overview-details{
@@ -16,10 +31,16 @@
         flex-direction:column;
         padding: 0.5rem;
         margin: 1rem 0;
+
+        
+        @include media("<phone"){
+            padding: 0;
+        }
     }
 
     .total-ratings,
     .total-statistics{
+        display: block;
         background: #F9F9F9;
         box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
         border-radius: 13px;
@@ -27,17 +48,47 @@
         margin: 1rem 2rem;
         min-width: 350px;
 
+        @include media("<phone"){
+            margin: 1rem auto;
+            min-width: unset;
+            padding: 0.9rem 0.6rem;
+            width: 100%;
+        }
+
+
+        @include media(">=phone", "<=custom-view-7"){
+            margin: 1rem auto;
+            min-width: unset;
+            padding: 0.9rem 0.6rem;
+            width: 100%;
+        }
+
+        @include media(">=custom-view-7", "<=custom-view-9"){
+          margin: 1rem auto ; 
+        }
+
         p{
             font-weight: 300;
             font-size: 16px;
             line-height: 30px;
             margin: 0.3rem 0;
+
+            @include media("<phone"){
+                font-size: 14px;
+                line-height: 25px;
+            }
+    
+            @include media(">=phone", "<=custom-view-7"){
+                font-size: 15px;
+                line-height: 27px;
+            }
+    
         }
     }
 
     .total-values{
         display: flex;
-        flex-direction:row ;
+        flex-wrap: wrap;
         max-width: 900px;
     }
 
@@ -50,6 +101,16 @@
             font-size: 25px;
             line-height: 45px;
             padding: 0.5rem;
+
+            @include media("<phone"){
+                font-size: 20px;
+                line-height: 30px;
+            }
+
+            @include media(">=phone", "<=custom-view-8"){
+                font-size: 23px;
+                line-height: 40px; 
+            }
         }
 
         .sales-statistics{
@@ -61,23 +122,68 @@
             background: #F9F9F9;
             box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
             border-radius: 13px;
+
+            @include media("<phone"){
+                flex-direction: column; 
+            }
+
+            @include media(">=phone", "<=custom-view-8"){
+              flex-direction: column;  
+            }
+
             .sales-graph-img{
-    
-                img{
-                    width: 100%;
-                    height: 100%;
+                width: 100%;
+                max-width: 600px;
+
+                @include media("<phone"){
+                    display: none;  
                 }
+        
+                @include media(">=phone", "<=450px"){
+                    display: none;
+                }
+    
+                @include media(">=450px", "<=custom-view-8"){
+                    max-width: unset;  
+                }
+                
             }
 
             .sales-values{
                 padding: 0.5rem;
                 align-self: center;
                 margin: 1rem 2rem;
+
+                @include media("<phone"){
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin: 1rem 0.5rem;
+                }
+    
+                @include media(">=phone", "<=custom-view-8"){
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin: 1rem;  
+                }
+
+
                 p{
                     font-weight: 300;
                     font-size: 16px;
                     line-height: 36px;
                     margin: 0.5rem 0;
+
+                    @include media("<phone"){
+                        margin: 0.5rem;
+                        font-size: 14px;
+                        line-height: 25px;
+                    }
+        
+                    @include media(">=phone", "<=custom-view-8"){
+                        margin: 0.5rem;
+                        font-size: 15px;
+                        line-height: 27px;  
+                    }
                 }
             }
         }
@@ -87,11 +193,29 @@
         padding: 0.5rem ;
         margin: 0 2rem;
 
+        @include media("<phone"){
+            margin: 0; 
+        }
+
+        @include media(">=phone", "<=450px"){
+            margin: 0;
+        }
+
         .top-sales-title{
             font-weight: normal;
             font-size: 25px;
             line-height: 45px;
             padding: 0.5rem;
+
+            @include media("<phone"){
+                font-size: 20px;
+                line-height: 30px;
+            }
+
+            @include media(">=phone", "<=custom-view-8"){
+                font-size: 23px;
+                line-height: 40px; 
+            }
         }
 
         .top-sales{
@@ -100,6 +224,14 @@
             max-height: 300px;
             overflow-y: scroll;
             max-width: 650px;
+
+            @include media("<phone"){
+                margin: 0.7rem 0;
+            }
+
+            @include media(">=phone", "<=custom-view-8"){
+                margin: 0.7rem 0;
+            }
 
             &::-webkit-scrollbar{
                 width: 10px;

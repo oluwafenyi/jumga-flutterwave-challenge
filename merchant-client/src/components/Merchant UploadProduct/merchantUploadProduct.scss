@@ -1,3 +1,5 @@
+@import '../../utils/breakpoints.scss';
+
 .merchant-upload-product{
     display: flex;
     flex-direction: column;
@@ -11,6 +13,18 @@
             font-weight: 500;
             font-size: 50px;
             line-height: 67px;
+
+            @include media("<=phone"){
+                font-size: 30px;
+                line-height: 45px;
+                text-align: center;
+            }
+    
+            @include media(">=phone", "<=custom-view-4"){
+                font-size: 40px;
+                line-height: 55px;
+                text-align: center;
+            }
         }
 
         .merchant-upload-product-subtitle{
@@ -18,6 +32,18 @@
             font-size: 20px;
             color: rgba(0, 0, 0, 0.753);
             line-height: 37px;
+
+            @include media("<=phone"){
+                font-size: 16px;
+                line-height: 25px;
+                text-align: center;
+            }
+    
+            @include media(">=phone", "<=custom-view-4"){
+                font-size: 18px;
+                line-height: 30px;
+                text-align: center;
+            }
         }
     }
 
@@ -28,6 +54,14 @@
         padding: 0.5rem;
         margin: 2rem 0;
         max-width: 900px;
+
+        @include media("<=phone"){
+            flex-direction: column-reverse;
+        }
+
+        @include media(">=phone", "<=custom-view-4"){
+            flex-direction: column-reverse;
+        }
 
         .product-img{
             display: flex;
@@ -41,16 +75,67 @@
             padding: 0.5rem;
             border-radius: 30px;
             box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+            
+            @include media("<=phone"){
+                max-width: 400px;
+                width: 100%;
+            }
+    
+            @include media(">=phone", "<=custom-view-4"){
+                max-width: 400px;
+                width: 100%;
+            }
 
             .product{
                 width: 100%;
-                cursor: pointer;
             }
+
+            label{
+                width: 100%;
+                @include media("<=phone"){
+                   display: flex;
+                   flex-direction: row;
+                   cursor: pointer;
+                }
+        
+                @include media(">=phone", "<=custom-view-4"){
+                    display: flex;
+                    flex-direction: row;
+                    cursor: pointer;
+                }
+            }
+
+            img{
+                @include media("<=phone"){
+                    max-width: 30px;
+                }
+        
+                @include media(">=phone", "<=custom-view-4"){
+                    max-width: 50px;
+                }
+            }
+
             p{
                 text-align: center;
+
+                @include media("<=phone"){
+                    align-self: center;
+                }
+        
+                @include media(">=phone", "<=custom-view-4"){
+                    align-self: center;
+                }
             }
             input{
                 opacity: 0;
+
+                @include media("<=phone"){
+                    height: 0;
+                }
+        
+                @include media(">=phone", "<=custom-view-4"){
+                    height: 0;
+                }
             }
         }
 
@@ -58,6 +143,15 @@
             display: flex;
             flex-direction: column;
             width: 60%;
+
+            @include media("<=phone"){
+                width: 100%;
+                
+            }
+    
+            @include media(">=phone", "<=custom-view-4"){
+                width: 100%;
+            }
         }
 
         .merchant-form-input{
@@ -71,6 +165,21 @@
             font-size: 18px;
             line-height: 36px;
             max-width: 400px;
+
+            @include media("<phone"){
+                font-size: 16px;
+                line-height: 32px;
+                padding: 0.4rem 0.6rem;
+                margin: 0.7rem 0;
+            }
+        
+            @include media(">=phone","<=custom-view-1"){
+                font-size: 17px;
+                line-height: 34px;
+                padding: 0.5rem 0.7rem;
+                margin: 0.8rem 0;
+            }
+
             &:focus{
                 outline: 0.1px dotted rgba(0, 0, 0, 0.315);
             }
@@ -111,6 +220,21 @@
             transition: 0.2s;
             appearance: none;
 
+            @include media("<phone"){
+                font-size: 16px;
+                line-height: 32px;
+                padding: 0.4rem 0.6rem;
+                margin: 0.7rem 0;
+            }
+        
+            @include media(">=phone","<=custom-view-1"){
+                font-size: 17px;
+                line-height: 34px;
+                padding: 0.5rem 0.7rem;
+                margin: 0.8rem 0;
+            }
+
+
 
               
             &::-ms-expand {
@@ -140,6 +264,23 @@
             font-weight: 300;
             cursor: pointer;
             transition: 0.2s;
+
+            @include media("<phone"){
+                padding: 0.5rem;
+                max-width: 200px;
+                font-size: 20px;
+                margin: 0.7rem 0;
+            }
+        
+            @include media(">=phone","<=custom-view-1"){
+                padding: 0.5rem 0.7rem;
+                max-width: 230px;
+                font-size: 21px;
+                line-height: 34px;
+                padding: 0.5rem 0.7rem;
+                margin: 0.8rem 0;
+            }
+
             
             &:hover{
             background: #3c632a;

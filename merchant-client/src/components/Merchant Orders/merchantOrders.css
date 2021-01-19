@@ -1,3 +1,8 @@
+/**
+*
+* Testing
+*
+**/
 .merchant-orders-page {
   font-family: 'Poppins', sans-serif;
   opacity: 0;
@@ -19,6 +24,22 @@
   line-height: 67px;
 }
 
+@media (max-width: 360px) {
+  .merchant-orders-page .merchant-orders-header .merchant-orders-title {
+    font-size: 35px;
+    line-height: 45px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 610px) {
+  .merchant-orders-page .merchant-orders-header .merchant-orders-title {
+    font-size: 40px;
+    line-height: 55px;
+    text-align: center;
+  }
+}
+
 .merchant-orders-page .merchant-orders-header .merchant-orders-subtitle {
   font-weight: 300;
   font-size: 20px;
@@ -26,15 +47,68 @@
   line-height: 37px;
 }
 
+@media (max-width: 360px) {
+  .merchant-orders-page .merchant-orders-header .merchant-orders-subtitle {
+    font-size: 16px;
+    line-height: 27px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 610px) {
+  .merchant-orders-page .merchant-orders-header .merchant-orders-subtitle {
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+  }
+}
+
 .merchant-orders-page .table-section {
-  margin: 3rem 0 2rem 0;
+  margin: 3rem 2rem;
   max-width: 1000px;
+}
+
+@media (max-width: 359.5px) {
+  .merchant-orders-page .table-section {
+    overflow-x: scroll;
+    width: calc(100%-20rem);
+    padding: 0 1rem;
+    display: block;
+    margin: 3rem auto;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 870px) {
+  .merchant-orders-page .table-section {
+    overflow-x: scroll;
+    width: calc(100%-20rem);
+    padding: 0 1rem;
+    display: block;
+    margin: 3rem auto;
+  }
+}
+
+.merchant-orders-page .table-section::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.merchant-orders-page .table-section::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.527);
+  border-radius: 10px;
+  -webkit-box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.003);
+          box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.003);
+}
+
+.merchant-orders-page .table-section::-webkit-scrollbar-track {
+  background: #ffffff4d;
 }
 
 .merchant-orders-page .orders-table {
   text-align: center;
   border-collapse: collapse;
   width: 100%;
+  margin: 0 1rem;
 }
 
 .merchant-orders-page .orders-table thead, .merchant-orders-page .orders-table tbody {
@@ -48,9 +122,9 @@
 .merchant-orders-page .orders-table thead th {
   text-align: center;
   color: #fff;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
   border: none;
-  margin: 0 0.3rem;
+  margin: 0 0.5rem;
 }
 
 .merchant-orders-page .orders-table td {

@@ -10,6 +10,7 @@ import MerchantDispatchService from '../../components/Merchant DispatchService/m
 import MerchantOrders from '../../components/Merchant Orders/merchantOrders';
 import Logo from '../../assets/test-logo.png';
 import ApprovedIcon from '../../assets/verified.svg';
+import MenuIcon from '../../assets/circle.svg';
 import './merchantDashboard.scss';
 import {jumgaState, notification} from "../../store/store";
 import queryString from "query-string";
@@ -21,6 +22,7 @@ import { gsap } from 'gsap';
 
 const MerchantDashboard = (props) =>{
     const [ dashboardOption, setDashboardOption ] = useState('overview');
+    const [ mobileDashboard, setMobileDashboard ] = useState(false);
     const [ store, setStore ] = useState({
         "business_name": "",
         "business_email": "",
@@ -104,11 +106,14 @@ const MerchantDashboard = (props) =>{
 
     return(
         <div className="merchant-dashboard-page">
-            <aside>
-                <Dashboard dashboardOption={ dashboardOption } setDashboardOption={ setDashboardOption } approved={ jumgaState.approved } />
+            <aside  className={`${ mobileDashboard ? "open-dashboard" : "" }`}>
+                <Dashboard dashboardOption={ dashboardOption } setDashboardOption={ setDashboardOption } approved={ jumgaState.approved } setMobileDashboard={ setMobileDashboard } />
             </aside>
             <main className="merchant-dashboard-main">
                 <ToastContainer/>
+                <div className={`mobile-menu ${ mobileDashboard ? "close-btn" : ""}`} onClick={ ()=>{ setMobileDashboard(!mobileDashboard) } }>
+                    <img src={ MenuIcon } alt="menu-icon"/>
+                </div>
                 <section className="merchant-summary" ref={ el=>MerchantSummary=el }>
                     <div className="store-logo">
                         <img src={ getLogo() } alt="Store Logo"/>

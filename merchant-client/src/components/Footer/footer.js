@@ -4,7 +4,7 @@ import FooterLogo from '../../assets/logos/Footer Logo.svg'
 import Facebook from '../../assets/socials/facebook.svg';
 import Instagram from '../../assets/socials/instagram.svg';
 import Twitter from '../../assets/socials/twitter.svg';
-import './footer.css';
+import './footer.scss';
 
 import { merchantLink } from "../../constants";
 

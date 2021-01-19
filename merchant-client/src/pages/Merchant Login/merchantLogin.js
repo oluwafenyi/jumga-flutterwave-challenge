@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import {AltNavigation} from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
 import Shopping from '../../assets/web_shopping.svg';
-import './merchantLogin.css';
+import './merchantLogin.scss';
 import { jumga } from "../../axios";
 
 import { jumgaState, notification } from "../../store/store";
@@ -22,7 +22,7 @@ function MerchantLogin() {
         if (!notification.displayed() && notification.location === "login") {
             notification.display();
         }
-    }, [])
+    }, [history])
 
     const handleFormChange = (e) => {
         updateForm(prev => {

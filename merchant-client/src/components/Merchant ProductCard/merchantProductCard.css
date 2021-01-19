@@ -1,3 +1,8 @@
+/**
+*
+* Testing
+*
+**/
 .merchant-product-card {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -15,7 +20,25 @@
           box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   margin: 1rem 0.4rem;
   border-radius: 15px;
-  min-width: 400px;
+  max-width: 400px;
+}
+
+@media (max-width: 360px) {
+  .merchant-product-card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 430px) {
+  .merchant-product-card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 .merchant-product-card a {
@@ -33,8 +56,24 @@
           flex-direction: row;
 }
 
+@media (max-width: 360px) {
+  .merchant-product-card .product-details {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .merchant-product-card .product-details .product-img {
   max-width: 100px;
+}
+
+@media (max-width: 360px) {
+  .merchant-product-card .product-details .product-img {
+    width: 100%;
+    max-width: unset;
+  }
 }
 
 .merchant-product-card .product-details .product-img img {
@@ -42,6 +81,12 @@
   border-radius: 15px 0px 0px 15px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+@media (max-width: 360px) {
+  .merchant-product-card .product-details .product-img img {
+    border-radius: 15px 15px 0px 0px;
+  }
 }
 
 .merchant-product-card .product-details .name-price {
@@ -84,8 +129,23 @@
   cursor: pointer;
 }
 
+@media (max-width: 360px) {
+  .merchant-product-card .delete-btn {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+}
+
 .merchant-product-card .delete-btn svg {
   width: 100%;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.merchant-product-card .delete-btn svg:hover {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
 }
 
 .merchant-product-card .hide-delete {

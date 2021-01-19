@@ -1,3 +1,8 @@
+/**
+*
+* Testing
+*
+**/
 .merchant-upload-product {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -26,11 +31,43 @@
   line-height: 67px;
 }
 
+@media (max-width: 360px) {
+  .merchant-upload-product .merchant-upload-product-header .merchant-upload-product-title {
+    font-size: 30px;
+    line-height: 45px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 610px) {
+  .merchant-upload-product .merchant-upload-product-header .merchant-upload-product-title {
+    font-size: 40px;
+    line-height: 55px;
+    text-align: center;
+  }
+}
+
 .merchant-upload-product .merchant-upload-product-header .merchant-upload-product-subtitle {
   font-weight: 300;
   font-size: 20px;
   color: rgba(0, 0, 0, 0.753);
   line-height: 37px;
+}
+
+@media (max-width: 360px) {
+  .merchant-upload-product .merchant-upload-product-header .merchant-upload-product-subtitle {
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 610px) {
+  .merchant-upload-product .merchant-upload-product-header .merchant-upload-product-subtitle {
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+  }
 }
 
 .merchant-upload-product .upload-form {
@@ -46,6 +83,24 @@
   padding: 0.5rem;
   margin: 2rem 0;
   max-width: 900px;
+}
+
+@media (max-width: 360px) {
+  .merchant-upload-product .upload-form {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 610px) {
+  .merchant-upload-product .upload-form {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
 }
 
 .merchant-upload-product .upload-form .product-img {
@@ -72,17 +127,100 @@
           box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+@media (max-width: 360px) {
+  .merchant-upload-product .upload-form .product-img {
+    max-width: 400px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 610px) {
+  .merchant-upload-product .upload-form .product-img {
+    max-width: 400px;
+    width: 100%;
+  }
+}
+
 .merchant-upload-product .upload-form .product-img .product {
   width: 100%;
-  cursor: pointer;
+}
+
+.merchant-upload-product .upload-form .product-img label {
+  width: 100%;
+}
+
+@media (max-width: 360px) {
+  .merchant-upload-product .upload-form .product-img label {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 610px) {
+  .merchant-upload-product .upload-form .product-img label {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 360px) {
+  .merchant-upload-product .upload-form .product-img img {
+    max-width: 30px;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 610px) {
+  .merchant-upload-product .upload-form .product-img img {
+    max-width: 50px;
+  }
 }
 
 .merchant-upload-product .upload-form .product-img p {
   text-align: center;
 }
 
+@media (max-width: 360px) {
+  .merchant-upload-product .upload-form .product-img p {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 610px) {
+  .merchant-upload-product .upload-form .product-img p {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+}
+
 .merchant-upload-product .upload-form .product-img input {
   opacity: 0;
+}
+
+@media (max-width: 360px) {
+  .merchant-upload-product .upload-form .product-img input {
+    height: 0;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 610px) {
+  .merchant-upload-product .upload-form .product-img input {
+    height: 0;
+  }
 }
 
 .merchant-upload-product .upload-form .product-details {
@@ -94,6 +232,18 @@
       -ms-flex-direction: column;
           flex-direction: column;
   width: 60%;
+}
+
+@media (max-width: 360px) {
+  .merchant-upload-product .upload-form .product-details {
+    width: 100%;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 610px) {
+  .merchant-upload-product .upload-form .product-details {
+    width: 100%;
+  }
 }
 
 .merchant-upload-product .upload-form .merchant-form-input {
@@ -108,6 +258,24 @@
   font-size: 18px;
   line-height: 36px;
   max-width: 400px;
+}
+
+@media (max-width: 359.5px) {
+  .merchant-upload-product .upload-form .merchant-form-input {
+    font-size: 16px;
+    line-height: 32px;
+    padding: 0.4rem 0.6rem;
+    margin: 0.7rem 0;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 550px) {
+  .merchant-upload-product .upload-form .merchant-form-input {
+    font-size: 17px;
+    line-height: 34px;
+    padding: 0.5rem 0.7rem;
+    margin: 0.8rem 0;
+  }
 }
 
 .merchant-upload-product .upload-form .merchant-form-input:focus {
@@ -155,6 +323,24 @@
           appearance: none;
 }
 
+@media (max-width: 359.5px) {
+  .merchant-upload-product .upload-form .merchant-form-select {
+    font-size: 16px;
+    line-height: 32px;
+    padding: 0.4rem 0.6rem;
+    margin: 0.7rem 0;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 550px) {
+  .merchant-upload-product .upload-form .merchant-form-select {
+    font-size: 17px;
+    line-height: 34px;
+    padding: 0.5rem 0.7rem;
+    margin: 0.8rem 0;
+  }
+}
+
 .merchant-upload-product .upload-form .merchant-form-select::-ms-expand {
   display: none;
 }
@@ -183,6 +369,26 @@
   cursor: pointer;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+}
+
+@media (max-width: 359.5px) {
+  .merchant-upload-product .upload-form .merchant-form-submit {
+    padding: 0.5rem;
+    max-width: 200px;
+    font-size: 20px;
+    margin: 0.7rem 0;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 550px) {
+  .merchant-upload-product .upload-form .merchant-form-submit {
+    padding: 0.5rem 0.7rem;
+    max-width: 230px;
+    font-size: 21px;
+    line-height: 34px;
+    padding: 0.5rem 0.7rem;
+    margin: 0.8rem 0;
+  }
 }
 
 .merchant-upload-product .upload-form .merchant-form-submit:hover {

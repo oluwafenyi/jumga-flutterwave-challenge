@@ -22,21 +22,6 @@ const MerchantUploadProduct = () =>{
     let UploadPage = useRef(null);
     const instance = useRef(null);
 
-    const onLoadCloudinaryScript = () => {
-        uploadWidget = window.cloudinary.createUploadWidget({
-            cloudName: 'dkow6vfth',
-            upload_preset: 'jumgapreset',
-            folder: 'jumga-images',
-            cropping: true,
-        }, (error, result) => { if (result.event === "success") {
-            // console.log(result.info)
-            setProductImageLink(result.info.secure_url);
-            notification.setValues({status: "success", message: "Image upload successful", location:"here"})
-            notification.display()
-        }
-        })
-    }
-
     const cloudinaryUpload = () => {
         uploadWidget = window.cloudinary.createUploadWidget({
             cloudName: 'dkow6vfth',
@@ -121,8 +106,8 @@ const MerchantUploadProduct = () =>{
             <form className="upload-form">
                 <div className='product-details'>
                     <input type="text" name="title" placeholder="Product Name" onChange={handleFormChange} className="merchant-form-input"/>
-                    <input type="number" step="0.01" name="price" placeholder="Product Price" onChange={handleFormChange} className="merchant-form-input"/>
-                    <input type="number" step="0.01" name="delivery_fee" placeholder="Product Delivery Fee" onChange={handleFormChange} className="merchant-form-input"/>
+                    <input type="currency" step="0.01" name="price" placeholder="Product Price" onChange={handleFormChange} className="merchant-form-input"/>
+                    <input type="currency" step="0.01" name="delivery_fee" placeholder="Product Delivery Fee" onChange={handleFormChange} className="merchant-form-input"/>
                     <textarea className="description" name="description" onChange={handleFormChange} placeholder="Give a brief description of the product"></textarea>
                     <select className="merchant-form-select" value={category} onChange={handleCategorySelection}>
                         <option className="merchant-form-select-item" value="" disabled>Select Category</option>
