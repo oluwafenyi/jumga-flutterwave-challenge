@@ -31,9 +31,6 @@ const MerchantDashboard = (props) =>{
     const history = useHistory();
     let MerchantSummary = useRef(null);
 
-    // The Approved bool
-    const approved = false;
-
     useEffect(() => {
         if (!jumgaState.isAuthenticated()) {
             history.replace("/login");
@@ -120,7 +117,7 @@ const MerchantDashboard = (props) =>{
                         <div className="approved-name">
                             <h3 className="store-name">{ store.business_name }</h3>
                             {
-                                approved ? <img src={ ApprovedIcon } alt="approved"/> : null
+                                jumgaState.approved ? <img src={ ApprovedIcon } alt="approved"/> : null
                             }
                         </div>
                         
