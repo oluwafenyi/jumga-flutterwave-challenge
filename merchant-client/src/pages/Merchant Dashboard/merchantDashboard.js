@@ -98,7 +98,7 @@ const MerchantDashboard = (props) =>{
     },[])
 
     const getLogo = () => {
-        if (store.logo.link) {
+        if (store.logo) {
             return store.logo.link;
         }
         return Logo
