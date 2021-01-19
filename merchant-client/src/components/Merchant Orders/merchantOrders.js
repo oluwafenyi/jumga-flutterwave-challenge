@@ -4,34 +4,27 @@ import { Power3 } from 'gsap';
 import { gsap } from 'gsap';
 
 import './merchantOrders.scss';
+import {jumga} from "../../axios";
 
 const MerchantOrders = () =>{
     let ordersPage = useRef(null);
 
-    const [ tableData, setTableData ] = useState([
-        {id:"1", product_name:"gloves", order_status:"processing", quantity:'10', delivery_mobile:'0802313679', delivery_location:"Ikeja,Lagos", date_initiated: "19/01/2021", transaction_status:"Completed"},
-        {id:"2", product_name:"gloves", order_status:"processing", quantity:'10', delivery_mobile:'0802313679', delivery_location:"Ikeja,Lagos", date_initiated: "19/01/2021", transaction_status:"Completed"},
-        {id:"3", product_name:"gloves", order_status:"processing", quantity:'10', delivery_mobile:'0802313679', delivery_location:"Ikeja,Lagos", date_initiated: "19/01/2021", transaction_status:"Completed"},
-        {id:"4", product_name:"gloves", order_status:"processing", quantity:'10', delivery_mobile:'0802313679', delivery_location:"Ikeja,Lagos", date_initiated: "19/01/2021", transaction_status:"Completed"},
-        {id:"5", product_name:"gloves", order_status:"processing", quantity:'10', delivery_mobile:'0802313679', delivery_location:"Ikeja,Lagos", date_initiated: "19/01/2021", transaction_status:"Completed"},
-        {id:"6", product_name:"gloves", order_status:"processing", quantity:'10', delivery_mobile:'0802313679', delivery_location:"Ikeja,Lagos", date_initiated: "19/01/2021", transaction_status:"Completed"},
-        {id:"7", product_name:"gloves", order_status:"processing", quantity:'10', delivery_mobile:'0802313679', delivery_location:"Ikeja,Lagos", date_initiated: "19/01/2021", transaction_status:"Completed"},
-        {id:"8", product_name:"gloves", order_status:"processing", quantity:'10', delivery_mobile:'0802313679', delivery_location:"Ikeja,Lagos", date_initiated: "19/01/2021", transaction_status:"Completed"},
-        {id:"9", product_name:"gloves", order_status:"processing", quantity:'10', delivery_mobile:'0802313679', delivery_location:"Ikeja,Lagos", date_initiated: "19/01/2021", transaction_status:"Completed"},
-        {id:"10", product_name:"gloves", order_status:"processing", quantity:'10', delivery_mobile:'0802313679', delivery_location:"Ikeja,Lagos", date_initiated: "19/01/2021", transaction_status:"Completed"},
-    ])
+    const [ tableData, setTableData ] = useState([])
 
     const tableListings =()=>{
-        tableData.map((product)=>{
-            const { id,product_name,order_status,quantity,delivery_location,delivery_mobile,date_initiated,transaction_status }= product
+        return tableData.map((product)=>{
+            const { transaction_id,order_id,product_title,order_status,quantity,delivery_location,delivery_mobile,date_initiated,transaction_status } = product
+            const dateFmt = new Date(date_initiated).toLocaleDateString("en-GB", {hour: "numeric", minute: "numeric", second: "numeric"})
             return(
-                <tr key={ id }>
-                    <td>{product_name}</td>
+                <tr key={ transaction_id }>
+                    <td>{ order_id }</td>
+                    <td>{ transaction_id }</td>
+                    <td>{product_title}</td>
                     <td>{order_status}</td>
                     <td>{quantity}</td>
-                    <td>{delivery_location}</td>
                     <td>{delivery_mobile}</td>
-                    <td>{date_initiated}</td>
+                    <td>{delivery_location}</td>
+                    <td>{dateFmt}</td>
                     <td>{transaction_status}</td>
                 </tr>
             )
@@ -43,6 +36,18 @@ const MerchantOrders = () =>{
         gsap.fromTo(ordersPage, {y:-50}, {opacity: 1, duration: 1, y:0, ease: Power3.easeOut,delay:0.4})
     },[])
 
+    useEffect(() => {
+        async function getOrders() {
+            const response = await jumga.get("/v1/merchant/orders");
+            if (response.status === 200) {
+                setTableData(response.data.data)
+            }
+        }
+
+        (async function(){
+            await getOrders()
+        })();
+    }, [])
 
     return(
         <div className="merchant-orders-page" ref={ el=>ordersPage=el }>
@@ -54,7 +59,8 @@ const MerchantOrders = () =>{
                 <table className="orders-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>Order ID</th>
+                            <th>Transaction ID</th>
                             <th>Product Name</th>
                             <th>Order status</th>
                             <th>Quantity</th>
@@ -65,21 +71,7 @@ const MerchantOrders = () =>{
                         </tr>
                     </thead>
                     <tbody>
-                        {tableData.map((product)=>{
-                            const { id,product_name,order_status,quantity,delivery_location,delivery_mobile,date_initiated,transaction_status }= product
-                            return(
-                                <tr key={ id }>
-                                    <td>{id}</td>
-                                    <td>{product_name}</td>
-                                    <td>{order_status}</td>
-                                    <td>{quantity}</td>
-                                    <td>{delivery_location}</td>
-                                    <td>{delivery_mobile}</td>
-                                    <td>{date_initiated}</td>
-                                    <td>{transaction_status}</td>
-                                </tr>
-                            )
-                        })}
+                        { tableListings() }
                     </tbody>
                 </table>
             </div>

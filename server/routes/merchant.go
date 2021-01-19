@@ -273,6 +273,17 @@ func updateMerchantLogo(w http.ResponseWriter, r *http.Request) {
 	SuccessResponse(http.StatusOK, map[string]interface{}{"message": "logo updated"}, w)
 }
 
+func getMerchantOrders(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	merchant, ok := ctx.Value("merchant").(*db.User)
+	if !ok {
+		ErrorResponse(http.StatusUnprocessableEntity, "cannot process request", w)
+		return
+	}
+	orders := db.GetMerchantOrders(merchant)
+	SuccessResponse(http.StatusOK, map[string]interface{}{"data": orders}, w)
+}
+
 func MerchantRoutes() http.Handler {
 	r := chi.NewRouter()
 	r.Use(middleware.GetHead)
@@ -290,6 +301,7 @@ func MerchantRoutes() http.Handler {
 			r.Put("/dispatch", updateDispatchRider)
 			r.Delete("/dispatch", deleteDispatchRider)
 			r.Put("/logo", updateMerchantLogo)
+			r.Get("/orders", getMerchantOrders)
 		})
 	})
 	return r
