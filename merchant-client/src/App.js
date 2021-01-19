@@ -5,6 +5,7 @@ import MerchantLogin from './pages/Merchant Login/merchantLogin';
 import MerchantDashboard from "./pages/Merchant Dashboard/merchantDashboard";
 import ScrollToTop from './components/ScrollToTop/scrollToTop';
 import './App.css';
+import NotFound from "./components/404 Page/notFound";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route path="/" exact component={ MerchantDashboard }/>
             <Route path="/signup" exact component={ MerchantSignup }/>
             <Route path="/login" exact component={ MerchantLogin }/>
+            <Route path="/" component={ () => <NotFound nav={true}/> }/>
         </Switch>
       </Router>
   );

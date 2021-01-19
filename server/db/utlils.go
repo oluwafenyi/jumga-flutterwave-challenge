@@ -20,6 +20,18 @@ type MerchantDashboard struct {
 	TopProducts              []Product `json:"top_products"`
 }
 
+type OrderDetail struct {
+	TransactionID     string    `json:"transaction_id"`
+	OrderID           int64     `json:"order_id"`
+	OrderStatus       string    `json:"order_status"`
+	ProductTitle      string    `json:"product_title"`
+	Quantity          int       `json:"quantity"`
+	DeliveryLocation  string    `json:"delivery_location"`
+	DeliveryMobile    string    `json:"delivery_mobile"`
+	DateInitiated     time.Time `json:"date_initiated"`
+	TransactionStatus string    `json:"transaction_status"`
+}
+
 func generateTransactionId() string {
 	nano := time.Now().UnixNano()
 	nanoStr := strconv.FormatInt(nano, 10)
@@ -55,9 +67,9 @@ func calculateAvgPrice(m *User) float64 {
 	return total / count
 }
 
-func getTopProducts() []Product {
+func getTopProducts(m *User) []Product {
 	var products []Product
-	_ = DB.Model(&products).Relation("DisplayImage").Relation("Category").Order("id ASC").Limit(3).Select()
+	_ = DB.Model(&products).Relation("DisplayImage").Relation("Category").Where(`"product"."store_id" = ?`, m.StoreID).Order("id ASC").Limit(3).Select()
 	if len(products) == 0 {
 		return make([]Product, 0)
 	}
@@ -81,7 +93,7 @@ func GetMerchantDashboard(m *User) MerchantDashboard {
 	shippedThisWeek, _ := DB.Model(&Transaction{}).Relation("Order").Where(`"order"."status" = 'shipped' AND "transaction"."store_id" = ? AND date_resolved between ? and ?`, m.StoreID, beganStamp, endStamp).Count()
 	awaitingShippingThisWeek, _ := DB.Model(&Transaction{}).Relation("Order").Where(`"order"."status" = 'awaiting delivery' AND "transaction"."store_id" = ? AND date_initiated between ? and ? `, m.StoreID, beganStamp, endStamp).Count()
 
-	top3Products := getTopProducts()
+	top3Products := getTopProducts(m)
 
 	return MerchantDashboard{
 		ProductCount:             productCount,
@@ -95,4 +107,28 @@ func GetMerchantDashboard(m *User) MerchantDashboard {
 		AwaitingShippingThisWeek: awaitingShippingThisWeek,
 		TopProducts:              top3Products,
 	}
+}
+
+func GetMerchantOrders(m *User) []OrderDetail {
+	store := m.Store
+	var transactions []Transaction
+	_ = DB.Model(&transactions).Relation("Order").Relation("Order.Product").Where(`"transaction"."store_id" = ?`, store.ID).Order("date_initiated DESC").Select()
+	var orders []OrderDetail
+	for _, t := range transactions {
+		orders = append(orders, OrderDetail{
+			TransactionID:     t.ID,
+			OrderID:           t.OrderID,
+			OrderStatus:       t.Order.Status,
+			ProductTitle:      t.Order.Product.Title,
+			Quantity:          t.Order.Quantity,
+			DeliveryLocation:  t.Order.DeliveryLocation,
+			DeliveryMobile:    t.Order.DeliveryMobile,
+			DateInitiated:     t.DateInitiated,
+			TransactionStatus: t.Status,
+		})
+	}
+	if len(orders) == 0 {
+		return make([]OrderDetail, 0)
+	}
+	return orders
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useLocation,useHistory } from 'react-router-dom';
 import Search from '../Search/search';
 import './navigation.scss';
@@ -7,14 +7,29 @@ import { jumgaState} from "../../store/store";
 import ProfileDropdown from '../Profile Dropdown/profileDropdown';
 import LogoutBtn from '../../assets/logout.svg';
 import {merchantLink} from "../../constants";
+import {jumga} from "../../axios";
 
 function Navigation() {
     const location = useLocation();
     const [ profileDropdown, displayProfileDropdown ] = useState(false);
     const [ showMobileMenu, setMobileMenu ] = useState(false);
-    
+    const [ allProducts, setAllProducts ] = useState([])
 
     const history = useHistory();
+
+    useEffect(() => {
+        async function getAllProducts() {
+            const response = await jumga.get("/v1/product/all")
+            if (response.status === 200) {
+                setAllProducts(response.data.data)
+            }
+        }
+
+        (async function() {
+           await getAllProducts();
+        })()
+
+    }, [])
 
     const logoutUser = () => {
         jumgaState.clearAccessToken();
@@ -75,7 +90,7 @@ function Navigation() {
             </Link>
             
             <div className="search-container">
-                <Search/>
+                <Search products={allProducts} />
             </div>
             <div className="user-options">
                 {
@@ -101,7 +116,7 @@ function Navigation() {
                     <h1>jumga.</h1>
                 </div>
                 <div className="mobile-search-container">
-                    <Search/>
+                    <Search products={allProducts} />
                 </div>
                 <ul className="mobile-menu">
                     <li><Link to="/" className="mobile-menu-item">

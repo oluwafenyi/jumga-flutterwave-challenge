@@ -6,7 +6,7 @@ import Instagram from '../../assets/socials/instagram.svg';
 import Twitter from '../../assets/socials/twitter.svg';
 import './footer.scss';
 
-import { merchantLink } from "../../constants";
+import {clientLink, merchantLink} from "../../constants";
 
 function Footer() {
     return (
@@ -22,9 +22,9 @@ function Footer() {
                         <li className="footer-menu-item"><a href={'google.com'}>+123-234566</a></li>
                         <li className="footer-menu-item"><a href={'google.com'}>+123-234566</a></li>
                         <li className="footer-menu-item socials">
-                            <a href={'google.com'} className="social"><img src={Facebook} alt="socials"/></a>
-                            <a href={'google.com'} className="social"><img src={Twitter} alt="socials"/></a>
-                            <a href={'google.com'} className="social"><img src={Instagram} alt="socials"/></a>
+                            <a href="https://facebook.com" className="social"><img src={Facebook} alt="socials"/></a>
+                            <a href="https://twitter.com" className="social"><img src={Twitter} alt="socials"/></a>
+                            <a href="https://instagram.com" className="social"><img src={Instagram} alt="socials"/></a>
                         </li>
                     </ul>
                 </div>
@@ -52,9 +52,9 @@ function Footer() {
                     <img src={FooterLogo} alt="footer logo"/>
                 </Link>
                 <div className="socials">
-                    <a href={'google.com'} className="social"><img src={Facebook} alt="socials"/></a>
-                    <a href={'google.com'} className="social"><img src={Twitter} alt="socials"/></a>
-                    <a href={'google.com'} className="social"><img src={Instagram} alt="socials"/></a>
+                    <a href="https://facebook.com" className="social"><img src={Facebook} alt="socials"/></a>
+                    <a href="https://twitter.com" className="social"><img src={Twitter} alt="socials"/></a>
+                    <a href="https://instagram.com" className="social"><img src={Instagram} alt="socials"/></a>
                 </div>
             </div>
             
@@ -66,7 +66,7 @@ export const AltFooter = () =>{
     return(
         <footer className="alt-footer">
             <p>© 2021 Jumga. All rights reserved.</p>
-            <a href="www.google.com">Jumga Shopping</a>
+            <a href={ clientLink + "/" }>Jumga Shopping</a>
         </footer>
     )
 }

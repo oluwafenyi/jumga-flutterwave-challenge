@@ -90,12 +90,28 @@ func getStoreProducts(w http.ResponseWriter, r *http.Request) {
 	SuccessResponse(http.StatusOK, responseData, w)
 }
 
+func getStoresMinimal(w http.ResponseWriter, r *http.Request) {
+	var stores []db.Store
+	_ = db.DB.Model(&stores).Column("id", "business_name", "approved").Where("approved = True").Select()
+
+	var minimal []StoreMinimal
+
+	for _, store := range stores {
+		minimal = append(minimal, StoreMinimal{
+			store.ID,
+			store.BusinessName,
+		})
+	}
+	SuccessResponse(http.StatusOK, map[string]interface{}{"data": minimal}, w)
+}
+
 func StoreRoutes() http.Handler {
 	r := chi.NewRouter()
 	r.Use(middleware.GetHead)
 
 	r.Route("/", func(r chi.Router) {
 		r.With(paginate).Get("/", getStores)
+		r.Get("/all", getStoresMinimal)
 		r.Get("/{id}", getStore)
 		r.With(paginate).Get("/{id}/products", getStoreProducts)
 	})

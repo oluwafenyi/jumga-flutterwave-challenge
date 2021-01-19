@@ -14,6 +14,7 @@ import { gsap } from 'gsap';
 function MerchantViewProducts() {
     window.scrollTo(0,0);
     const [ products, setProducts ] = useState([])
+    const [ searchFilter, setSearchFilter ] = useState("")
     const [ prevPage, setPrevPage ] = useState(false);
     const [ nextPage, setNextPage ] = useState(false);
     const [ numberOfPages, setNumberOfPages ] = useState(0);
@@ -59,8 +60,12 @@ function MerchantViewProducts() {
         })();
     }, [location.search])
 
+    const getFilteredProducts = () => {
+        return products.filter(product => product.title.includes(searchFilter));
+    }
+
     const productListing = () => {
-        return products.map(product => {
+        return getFilteredProducts().map(product => {
             return (
                 <MerchantProductCard key={ product.id } productId={product.id} stock={ product.stock } title={ product.title } price={ product.price } imageLink={ product.display_image } />
             )
@@ -76,7 +81,7 @@ function MerchantViewProducts() {
         <div className="merchant-view-products" ref={ el=> ViewProductsPage=el }>
             <h2 className="merchant-view-products-title">My Products</h2>
             <div className="view-products">
-                <StoresSearch/>
+                <StoresSearch setSearchFilter={setSearchFilter} />
                 <div className="products-list">
                     { productListing() }
                 </div>
