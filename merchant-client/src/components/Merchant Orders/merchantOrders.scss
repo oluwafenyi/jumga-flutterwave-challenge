@@ -1,3 +1,5 @@
+@import '../../utils/breakpoints.scss';
+
 .merchant-orders-page{
     font-family: 'Poppins', sans-serif;
     opacity: 0;
@@ -9,6 +11,18 @@
             font-weight: 500;
             font-size: 50px;
             line-height: 67px;
+
+            @include media("<=phone"){
+                font-size: 35px;
+                line-height: 45px;
+                text-align: center;
+            }
+    
+            @include media(">=phone", "<=custom-view-4"){
+                font-size: 40px;
+                line-height: 55px;
+                text-align: center;
+            }
         }
 
         .merchant-orders-subtitle{
@@ -16,18 +30,62 @@
             font-size: 20px;
             color: rgba(0, 0, 0, 0.753);
             line-height: 37px;
+
+            @include media("<=phone"){
+                font-size: 16px;
+                line-height: 27px;
+                text-align: center;
+            }
+    
+            @include media(">=phone", "<=custom-view-4"){
+                font-size: 18px;
+                line-height: 30px;
+                text-align: center;
+            }
         }
     }
 
     .table-section{
-        margin: 3rem 0 2rem 0;
+        margin:3rem 2rem ;
         max-width: 1000px;
+
+        @include media("<phone"){
+            overflow-x: scroll;
+            width: calc(100%-20rem);
+            padding: 0 1rem;
+            display: block;
+            margin:3rem auto;
+        }
+    
+        @include media(">=phone","<=custom-view-2"){
+            overflow-x: scroll;
+            width: calc(100%-20rem);
+            padding: 0 1rem;
+            display: block;
+            margin:3rem auto;
+        }
+
+        &::-webkit-scrollbar{
+            width: 10px;
+            height: 10px;
+        }
+        
+        &::-webkit-scrollbar-thumb{
+            background: rgba(0, 0, 0, 0.527);
+            border-radius: 10px;
+            box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.003);
+        }
+
+        &::-webkit-scrollbar-track{
+            background: #ffffff4d;
+        }
     }
 
     .orders-table{
         text-align: center;
         border-collapse: collapse;
         width: 100%;
+        margin: 0 1rem;
         
         thead,tbody{
             border: 1px solid rgba(0, 5, 23, 0.99); ;
@@ -38,9 +96,9 @@
             th{
                 text-align: center;
                 color: #fff;
-                padding: 0.5rem 0;
+                padding: 0.5rem;
                 border: none;
-                margin: 0 0.3rem;
+                margin: 0 0.5rem;
             }
         }
         td{

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import TestImg from '../../assets/test-img.png';
-import './merchantProductCard.css';
+import './merchantProductCard.scss';
 import {jumga} from "../../axios";
 import {clientLink} from "../../constants";
 
@@ -11,7 +11,6 @@ const MerchantProductCard = ({imageLink,title,price, stock, productId, hasDelete
     if (hasDeleteBtn === undefined) {
         hasDeleteBtn = true;
     }
-    const width = 500;
 
     const getImageLink = () => {
         if (imageLink) {
@@ -38,7 +37,7 @@ const MerchantProductCard = ({imageLink,title,price, stock, productId, hasDelete
     }
 
     return(
-        <div className="merchant-product-card" style={{maxWidth:`${width}px`}}>
+        <div className="merchant-product-card">
             <a href={ clientLink + `/products/${productId}` }>
                 <div className="product-details">
                     <div className="product-img">

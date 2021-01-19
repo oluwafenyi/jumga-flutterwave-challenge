@@ -1,3 +1,5 @@
+@import '../../utils/breakpoints.scss';
+
 .merchant-view-products{
     display: flex;
     flex-direction: column;
@@ -9,6 +11,18 @@
         font-weight: 500;
         font-size: 50px;
         line-height: 67px; 
+
+        @include media("<=phone"){
+            font-size: 35px;
+            line-height: 45px;
+            text-align: center;
+        }
+
+        @include media(">=phone", "<=custom-view-4"){
+            font-size: 40px;
+            line-height: 55px;
+            text-align: center;
+        }
     }
 
     .view-products{
@@ -16,11 +30,32 @@
         flex-direction: column;
         padding: 0.5rem;
         margin: 1rem;
+
+        @include media("<=phone"){
+            margin: 0;
+        }
+
+        @include media(">=phone", "<=custom-view-1"){
+            margin: 0;
+        }
     }
 
     .products-list{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+        grid-gap: 0.2rem;
+        align-items: center;
+        justify-content: center;
+        justify-items: stretch;
+        
+
+        @include media("<=phone"){
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        @include media(">=phone", "<=custom-view-1"){
+            display: flex;
+            flex-wrap: wrap;
+        }
     }
 }

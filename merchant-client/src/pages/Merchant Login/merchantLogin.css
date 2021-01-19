@@ -1,6 +1,12 @@
+/**
+*
+* Testing
+*
+**/
 .merchant-login-page {
   font-family: 'Poppins', sans-serif;
-  background: #f0f2f4;
+  background: url("../../assets/Jumga Background.png");
+  background-repeat: repeat;
 }
 
 .merchant-login-page main {
@@ -17,8 +23,38 @@
   margin: 3rem 0 3rem 0;
 }
 
+@media (max-width: 359.5px) {
+  .merchant-login-page main {
+    margin: 1rem 0 1rem 0;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 800px) {
+  .merchant-login-page main {
+    margin: 1rem 0 1rem 0;
+  }
+}
+
 .merchant-login-page .merchant-login-img {
   max-width: 490px;
+}
+
+@media (max-width: 359.5px) {
+  .merchant-login-page .merchant-login-img {
+    display: none;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 800px) {
+  .merchant-login-page .merchant-login-img {
+    display: none;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 925px) {
+  .merchant-login-page .merchant-login-img {
+    max-width: 380px;
+  }
 }
 
 .merchant-login-page .merchant-login-img img {
@@ -31,6 +67,18 @@
   padding: 1rem;
 }
 
+@media (max-width: 359.5px) {
+  .merchant-login-page .merchant-login .merchant-login-header {
+    padding: 0.5rem;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 800px) {
+  .merchant-login-page .merchant-login .merchant-login-header {
+    padding: 0.5rem;
+  }
+}
+
 .merchant-login-page .merchant-login .merchant-login-header .merchant-login-title {
   font-style: normal;
   font-weight: 500;
@@ -38,11 +86,39 @@
   line-height: 62px;
 }
 
+@media (max-width: 359.5px) {
+  .merchant-login-page .merchant-login .merchant-login-header .merchant-login-title {
+    font-size: 25px;
+    line-height: 42px;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 800px) {
+  .merchant-login-page .merchant-login .merchant-login-header .merchant-login-title {
+    font-size: 30px;
+    line-height: 52px;
+  }
+}
+
 .merchant-login-page .merchant-login .merchant-login-header .merchant-login-subtitle {
   font-style: normal;
   font-weight: 300;
   font-size: 18px;
   line-height: 50px;
+}
+
+@media (max-width: 359.5px) {
+  .merchant-login-page .merchant-login .merchant-login-header .merchant-login-subtitle {
+    font-size: 14px;
+    line-height: 25px;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 800px) {
+  .merchant-login-page .merchant-login .merchant-login-header .merchant-login-subtitle {
+    font-size: 15px;
+    line-height: 40px;
+  }
 }
 
 .merchant-login-page .merchant-login .merchant-login-form {
@@ -53,6 +129,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 100%;
 }
 
 .merchant-login-page .merchant-login .merchant-login-form .form-input {
@@ -67,6 +144,24 @@
   max-width: 400px;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+}
+
+@media (max-width: 359.5px) {
+  .merchant-login-page .merchant-login .merchant-login-form .form-input {
+    font-size: 16px;
+    line-height: 32px;
+    padding: 0.4rem 0.6rem;
+    margin: 0.7rem 0;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 550px) {
+  .merchant-login-page .merchant-login .merchant-login-form .form-input {
+    font-size: 17px;
+    line-height: 34px;
+    padding: 0.5rem 0.7rem;
+    margin: 0.8rem 0;
+  }
 }
 
 .merchant-login-page .merchant-login .merchant-login-form .form-input:hover {
@@ -95,6 +190,26 @@
   transition: 0.2s;
 }
 
+@media (max-width: 359.5px) {
+  .merchant-login-page .merchant-login .merchant-login-form .login-btn {
+    padding: 0.5rem;
+    max-width: 200px;
+    font-size: 20px;
+    margin: 0.7rem 0;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 550px) {
+  .merchant-login-page .merchant-login .merchant-login-form .login-btn {
+    padding: 0.5rem 0.7rem;
+    max-width: 230px;
+    font-size: 21px;
+    line-height: 34px;
+    padding: 0.5rem 0.7rem;
+    margin: 0.8rem 0;
+  }
+}
+
 .merchant-login-page .merchant-login .merchant-login-form .login-btn:hover {
   background: #3c632a;
 }
@@ -106,14 +221,44 @@
   margin: 1rem 0;
 }
 
+@media (max-width: 359.5px) {
+  .merchant-login-page .merchant-signup-link {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 550px) {
+  .merchant-login-page .merchant-signup-link {
+    font-size: 17px;
+    line-height: 25px;
+  }
+}
+
 .merchant-login-page .merchant-signup-link span {
   padding: 0 0.2rem;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.merchant-login-page .merchant-signup-link span:hover {
-  border-bottom: 1px solid #000;
+@media (max-width: 359.5px) {
+  .merchant-login-page .merchant-signup-link span {
+    display: block;
+    padding: 0;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 550px) {
+  .merchant-login-page .merchant-signup-link span {
+    display: block;
+    padding: 0;
+  }
+}
+
+@media (min-width: 550px) {
+  .merchant-login-page .merchant-signup-link span:hover {
+    border-bottom: 1px solid #000;
+  }
 }
 
 .merchant-login-page .merchant-signup-link span a {

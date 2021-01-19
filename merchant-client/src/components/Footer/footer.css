@@ -1,9 +1,13 @@
+/**
+*
+* Testing
+*
+**/
 footer {
   background-color: #000;
   font-family: 'Poppins', sans-serif;
   margin-top: 2rem;
   position: relative;
-  z-index: 3;
 }
 
 .desktop-footer {
@@ -141,6 +145,18 @@ footer {
           flex-direction: column;
   background: none;
   margin-top: 10rem;
+}
+
+@media (max-width: 359.5px) {
+  .alt-footer {
+    margin-top: 4rem;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 550px) {
+  .alt-footer {
+    margin-top: 4rem;
+  }
 }
 
 .alt-footer p, .alt-footer a {

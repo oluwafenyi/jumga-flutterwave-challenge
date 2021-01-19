@@ -1,3 +1,9 @@
+@import '../../utils/breakpoints.scss';
+
+*{
+    transition: 0.2s;
+}
+
 .merchant-dashboard-page{
     display: flex;
     flex-direction: row;
@@ -9,6 +15,23 @@
         position: fixed;
         top: 0;
         left: 0;
+        transition: 0.7s;
+
+        @include media("<=phone"){
+            width: 0;
+            overflow-x: hidden;
+            z-index: 2;
+        }
+
+        @include media(">=phone", "<=desktop"){
+            width: 0;
+            overflow-x: hidden;
+            z-index: 2;
+        }
+    }
+
+    .open-dashboard{
+        width: 100%;
     }
 
     .merchant-dashboard-main{
@@ -17,6 +40,62 @@
         margin-left: 300px;
         width: 100%;
 
+        @include media("<=phone"){
+            margin: 0;
+            position: relative;
+        }
+
+        @include media(">=phone", "<=custom-view-4"){
+            margin: 0;
+            position: relative;
+        }
+
+        @include media(">=custom-view-4", "<=desktop"){
+            margin: 1rem;
+            position: relative;
+        }
+
+        .mobile-menu{
+            display: none;
+            position: absolute;
+            top:20px;
+            left:-10px;
+            border-radius: 50%;
+            max-width: 50px;
+            z-index: 1;
+            cursor: pointer;
+            transition: 0.7s;
+
+            @include media("<=phone"){
+                display: block;
+            }
+    
+            @include media(">=phone", "<=desktop"){
+                display: block;
+            }
+
+            &:hover{
+                transform: translateX(10px);
+            }
+
+            img{
+                width: 100%;
+            }
+        }
+
+        .close-btn{
+            z-index: 3;
+            top: 0;
+            left: 30%;
+            position: fixed;
+
+
+            &:hover{
+                transform: unset;
+            }
+        }
+
+
         .merchant-summary{
             display: flex;
             flex-direction: row-reverse;
@@ -24,11 +103,28 @@
             margin: 0.5rem 1rem;
             padding: 0.5rem;
             opacity: 0;
+            
+
+            @include media("<=phone"){
+                margin: 0.3rem;
+            }
+    
+            @include media(">=phone", "<=custom-view-7"){
+                margin: 0.6rem;
+            }
 
             .store-logo{
                 max-width:60px;
                 margin:0.5rem;
                 align-self:center;
+
+                @include media("<=phone"){
+                    max-width: 40px;
+                }
+        
+                @include media(">=phone", "<=custom-view-7"){
+                    max-width: 50px;
+                }
                 img{
                     width:100%;
                     border-radius: 10px;
@@ -47,6 +143,14 @@
                 img{
                     max-width: 14px;
                     margin: 0 0.1rem;
+
+                    @include media("<=phone"){
+                        max-width: 10px;
+                    }
+            
+                    @include media(">=phone", "<=custom-view-7"){
+                        max-width: 12px;
+                    }
                 }
             }
 
@@ -55,11 +159,20 @@
                 font-weight: 500;
                 font-size: 18px;
                 line-height: 27px;
-
                 // The ellipsis
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+
+                @include media("<=phone"){
+                    font-size: 15px;
+                    line-height: 23px;
+                }
+        
+                @include media(">=phone", "<=custom-view-7"){
+                    font-size: 16px;
+                    line-height: 25px;
+                }
             }
 
             .store-email{
@@ -69,6 +182,22 @@
                 line-height: 27px;
                 color: rgba(0, 0, 0, 0.692);
                 margin: 0.2rem;
+
+                @include media("<=phone"){
+                    font-size: 12px;
+                    line-height: 23px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+        
+                @include media(">=phone", "<=custom-view-7"){
+                    font-size: 13px;
+                    line-height: 25px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
             }
         }
 
