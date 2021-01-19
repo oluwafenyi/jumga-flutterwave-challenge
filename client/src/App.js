@@ -31,7 +31,7 @@ function App() {
         <Route path="/products/:productId" exact component={ ProductPreview }/>
         <Route path="/stores" exact component={ Stores }/>
         <Route path="/stores/:storeId" exact component={ Store }/>
-        <Route path="/error" exact component={ NotFound }/>
+        <Route path="/" component={ () => <NotFound nav={true} /> } />
       </Switch>
     </Router>
   );

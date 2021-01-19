@@ -66,6 +66,13 @@ function Navigation() {
 
 export function AltNavigation() {
 
+    const getAuthButton = () => {
+        if (jumgaState.isAuthenticated()) {
+            return <li><Link to="/" className="menu-item">Dashboard</Link></li>
+        }
+        return <li><Link to="/login" className="menu-item">Login</Link></li>
+    }
+
     return(
         <div className="alt-navigation">
             <div className="desktop-menu-container">
@@ -84,7 +91,7 @@ export function AltNavigation() {
                 </Link>
                 <ul className="desktop-menu">
                     <li><a href={ clientLink + "/stores" } className="menu-item">Stores</a></li>
-                    <li><Link to="/login" className="menu-item">Login</Link></li>
+                    { getAuthButton() }
                 </ul>
             </div>
         </div>

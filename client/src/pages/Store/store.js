@@ -12,6 +12,7 @@ import Pagination from '../../components/Pagination/pagination';
 import Placeholders from 'loading-placeholders';
 import './store.scss';
 import {jumga} from "../../axios";
+import NotFound from "../../components/404 Page/notFound";
 // import {notification} from "../../store/store";
 
 const Store = (props) =>{
@@ -33,6 +34,7 @@ const Store = (props) =>{
     const [ numberOfPages, setNumberOfPages ] = useState(0);
     const [ page, setPage ] = useState(1);
     const [ loadingStatus, setLoadingStatus ] = useState('')
+    const [ pageExists, setPageExists ] = useState(true);
     const { storeId } = useParams();
 
     const getCountryIcon = () => {
@@ -60,6 +62,7 @@ const Store = (props) =>{
                     setLoadingStatus(response.data.status);
                 },2000)
             } catch (err) {
+                setPageExists(false)
                 console.log(err)
             }
         }
@@ -131,65 +134,82 @@ const Store = (props) =>{
         
     }
 
-    return(
-        <div className="store-page">
-            <nav>
-                <Navigation/>
-            </nav>
-
-            <div className="store-header">
-                <div className="store-icon">
-                    <img src={ storeData.logo.link } alt="Store Icon" />
+    const mainView = () => {
+        if (!pageExists) {
+            return (
+                <div className="store-page">
+                    <nav>
+                        <Navigation/>
+                    </nav>
+                    <NotFound/>
                 </div>
-                <div className="merchant-details">
-                    <h3 className="store-name">{ storeData.business_name }</h3>
-                    <p className="store-owner">Owned by { storeData.business_contact }</p>
-                    <div className="contact-details">
-                        <a href={`tel: ${storeData.business_mobile}`} target="_blank" rel="noreferrer" className="contact-link"><img src={Phone} alt="Mobile Number"/></a>
-                        <a href={`mailto: ${storeData.business_email}`} target="_blank" rel="noreferrer" className="contact-link"><img src={Email} alt="E-mail"/></a>
+            )
+        }
+        if (storeData.business_name === "") {
+            return <div/>
+        }
+        return (
+            <div className="store-page">
+                <nav>
+                    <Navigation/>
+                </nav>
+
+                <div className="store-header">
+                    <div className="store-icon">
+                        <img src={ storeData.logo.link } alt="Store Icon" />
                     </div>
-                    <div className="location-icon">{ getCountryIcon() }</div>
+                    <div className="merchant-details">
+                        <h3 className="store-name">{ storeData.business_name }</h3>
+                        <p className="store-owner">Owned by { storeData.business_contact }</p>
+                        <div className="contact-details">
+                            <a href={`tel: ${storeData.business_mobile}`} target="_blank" rel="noreferrer" className="contact-link"><img src={Phone} alt="Mobile Number"/></a>
+                            <a href={`mailto: ${storeData.business_email}`} target="_blank" rel="noreferrer" className="contact-link"><img src={Email} alt="E-mail"/></a>
+                        </div>
+                        <div className="location-icon">{ getCountryIcon() }</div>
+                    </div>
                 </div>
-            </div>
-            
-            <main>
-                <section className="view-product-header">
-                    {/*<div className="filter">*/}
-                    {/*<div onClick={ ()=>setStoreFilter(!storeFilter) } className="filter-icon">*/}
-                    {/*        <img src={FilterIcon} alt="filter"/>*/}
-                    {/*    </div>*/}
-                    {/*    <ul className={`filter-menu ${ storeFilter ? "open-filter-menu" : "" }`}>*/}
-                    {/*        <li className="filter-menu-item">A-Z</li>*/}
-                    {/*        <li className="filter-menu-item">Prices</li>*/}
-                    {/*        <li className="filter-menu-item">Ratings</li>*/}
-                    {/*    </ul>*/}
-                    {/*</div>*/}
-                    <ProductMenu category={ storeCategory } />
-                </section>
 
-                {
-                    loadingStatus !== 'success'
-                    ?
-                        <Placeholders 
-                            height="280px"
-                            width="300.5px"
-                            br="36px"
-                            n="6"
-                            margin="0.4rem"
+                <main>
+                    <section className="view-product-header">
+                        {/*<div className="filter">*/}
+                        {/*<div onClick={ ()=>setStoreFilter(!storeFilter) } className="filter-icon">*/}
+                        {/*        <img src={FilterIcon} alt="filter"/>*/}
+                        {/*    </div>*/}
+                        {/*    <ul className={`filter-menu ${ storeFilter ? "open-filter-menu" : "" }`}>*/}
+                        {/*        <li className="filter-menu-item">A-Z</li>*/}
+                        {/*        <li className="filter-menu-item">Prices</li>*/}
+                        {/*        <li className="filter-menu-item">Ratings</li>*/}
+                        {/*    </ul>*/}
+                        {/*</div>*/}
+                        <ProductMenu category={ storeCategory } />
+                    </section>
 
-                        />
-                    :
-                        <section className="products-gallery" >
-                            {productListing()}
-                        </section>
-                         
+                    {
+                        loadingStatus !== 'success'
+                            ?
+                            <Placeholders
+                                height="280px"
+                                width="300.5px"
+                                br="36px"
+                                n="6"
+                                margin="0.4rem"
+
+                            />
+                            :
+                            <section className="products-gallery" >
+                                {productListing()}
+                            </section>
+
                     }
-                <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages} category={storeCategory} page={page} />
-            </main>
-            
-            <Footer/>
-        </div>
-    )
+                    <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages} category={storeCategory} page={page} />
+                </main>
+
+                <Footer/>
+            </div>
+        )
+    }
+
+    return mainView()
 }
 
 export default Store;
