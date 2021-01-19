@@ -10,7 +10,7 @@ const StoresSearch = ({ setSearchFilter }) =>{
             <input type="text" placeholder="Search" className="search-input" onInput={(e) => {setSearchFilter(e.target.value)}} />
         </div>
     )
-        
+
 }
 
 export default StoresSearch;

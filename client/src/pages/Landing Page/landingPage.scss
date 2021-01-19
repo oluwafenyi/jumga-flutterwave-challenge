@@ -5,13 +5,10 @@
     font-family: 'Poppins', sans-serif;
     width: 100%;
     transition: 0.3s;
-    // background: url('../../assets/Jumga\ Background.png');
-    // background-repeat: repeat;
 
     .landing-header{
         display: flex;
         flex-direction: column;
-        // background: linear-gradient(0deg, rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.74)), url('https://res.cloudinary.com/dkow6vfth/image/upload/v1609805142/jumga-images/mock%20images/BojAdpN4n1M_iegwqs.png');
         background-image: url("https://res.cloudinary.com/dkow6vfth/image/upload/f_auto,q_auto,e_colorize:80,co_rgb:000/v1610856962/jumga-images/mock%20images/compressed/BojAdpN4n1M_vtpx4j.png");
         background-position: center;
         background-size: cover;

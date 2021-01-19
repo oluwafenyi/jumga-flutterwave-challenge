@@ -7,6 +7,7 @@ import OrderIcon from '../../assets/dashboard-icons/order.svg';
 import AddProductIcon from '../../assets/dashboard-icons/add-product.svg';
 import ProductsIcon from '../../assets/dashboard-icons/your_products.svg'; 
 import Logo from '../../assets/logos/Footer Logo.svg';
+import CloseBtn from '../../assets/close.svg';
 import './dashboard.css';
 
 import { jumga } from "../../axios";
@@ -54,6 +55,7 @@ const Dashboard = ({dashboardOption,setDashboardOption, approved, setMobileDashb
 
     return(
         <div className="dashboard" ref={ el=> Dashboard=el }>
+            <img src={ CloseBtn } alt="Close" className="close-btn" onClick={()=>setMobileDashboard(false)} />
             <div className="dashboard-logo">
                 <img src={ Logo } alt="Logo" />
                 <p>Merchant</p>

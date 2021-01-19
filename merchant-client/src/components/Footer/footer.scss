@@ -15,6 +15,16 @@ footer{
     position: relative;
     padding: 2rem 0;
 
+    @include media("<phone"){
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+
+    @include media(">=phone","<=custom-view-3"){
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+
     &::before{
         content: '';
         position: absolute;
@@ -48,6 +58,17 @@ footer{
         font-weight: normal;
         font-size: 18px;
         line-height: 36px;
+
+        
+        @include media("<phone"){
+            font-size: 16px;
+            text-align: center;
+        }
+    
+        @include media(">=phone","<=custom-view-3"){
+            font-size: 16px;
+            text-align: center;
+        }
     }
 
     ul{
@@ -68,6 +89,17 @@ footer{
             font-weight: 300;
             font-size: 14px;
             line-height: 27px;
+
+            @include media("<phone"){
+                text-align: center;
+                align-self: center;
+            }
+        
+            @include media(">=phone","<=custom-view-3"){
+                text-align: center;
+                align-self: center;
+            }
+            
             a{
                 text-decoration: none;
                 transition: 0.2s;
