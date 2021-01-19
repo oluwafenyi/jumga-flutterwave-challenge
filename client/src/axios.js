@@ -6,7 +6,7 @@ function getConfig() {
     const config = { headers: {"Content-Type":"application/json"} };
 
     if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-        config["baseURL"] = "https://apex-jumga.herokuapp.com";
+        config["baseURL"] = "http://localhost:8000";
     } else {
         config["baseURL"] = "https://apex-jumga.herokuapp.com";
     }

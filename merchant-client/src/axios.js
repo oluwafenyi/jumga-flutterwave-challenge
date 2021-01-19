@@ -10,7 +10,6 @@ function getConfig() {
     } else {
         config["baseURL"] = "https://apex-jumga.herokuapp.com";
     }
-    // config["baseURL"] = "https://apex-jumga.herokuapp.com";
     return config;
 }
 

@@ -269,10 +269,6 @@ func (t *Transaction) Update() error {
 	return err
 }
 
-//type ProductReview struct {
-//
-//}
-
 type ProductCategory struct {
 	ID   int32  `json:"id"`
 	Name string `pg:",type:varchar(255)" json:"name"`
