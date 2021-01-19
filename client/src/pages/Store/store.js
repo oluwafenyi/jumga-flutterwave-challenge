@@ -71,7 +71,7 @@ const Store = (props) =>{
 
     useEffect(() => {
         const getProducts = async () => {
-            const productsPP = 24;
+            const productsPP = 20;
             const params = queryString.parse(props.location.search);
             let pageNumber = Number(params.page);
             let categoryParam = params.category;
