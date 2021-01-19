@@ -58,6 +58,8 @@ and run ```docker-compose up``` in the root directory of the cloned repository.
 If you don't have docker installed you may proceed running the client, merchant-client and server applications in different shells.
 You would need to have ```Golang >=v15``` installed, a postgres server running, as well as ```node.js```.
 
+When you have everything running, the client app should be visible on port :3000, the merchant on :8080 and the server on :8000
+
 ### Database Setup
 Set up your database and replace these lines in the /server/globals/globals.go file with your database credentials.
 
