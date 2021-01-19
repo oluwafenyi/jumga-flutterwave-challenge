@@ -61,7 +61,7 @@ function MerchantViewProducts() {
     }, [location.search])
 
     const getFilteredProducts = () => {
-        return products.filter(product => product.title.includes(searchFilter));
+        return products.filter(product => product.title.toLowerCase().includes(searchFilter.toLowerCase()));
     }
 
     const productListing = () => {

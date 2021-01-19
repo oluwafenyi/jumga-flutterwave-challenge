@@ -23,7 +23,7 @@ const StoresSearch = () =>{
     }, [])
 
     const filteredStoreList = () => {
-        return allStores.filter(store => store.name.includes(searchFilter)).map(store => {
+        return allStores.filter(store => store.name.toLowerCase().includes(searchFilter.toLowerCase())).map(store => {
             return (
                 <Link to={`stores/${store.id}`}>
                     <p>{ store.name }</p>
