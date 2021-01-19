@@ -126,6 +126,7 @@
 
     .search-container{
         align-self: center;
+
         @include media("<phone"){
             display: none;
         }
@@ -138,6 +139,10 @@
             @include media(">=tablet","<=desktop"){
                 margin: 0 0.5rem;
                 padding: 0.15rem 0.3rem;
+            }
+
+            .search-results{
+                max-width: 290.33px;
             }
         }
     }
@@ -326,6 +331,11 @@
         overflow-x: hidden;
         transition: 0.4s;
 
+        @include media(">=custom-view-2"){
+            width: 0;
+            overflow-x: hidden;
+        }
+
         .close-menu-btn{
             align-self: flex-end;
             margin: 1rem;
@@ -374,6 +384,10 @@
             }
             .search-input{
                 width: 100%;
+            }
+
+            .search-results{
+                width: calc(100% - 9.8px);
             }
         }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import TestImg from '../../assets/test-img.png';
-import './merchantProductCard.css';
+import './merchantProductCard.scss';
 
 const MerchantProductCard = ({hasDeleteBtn,width}) =>{
 

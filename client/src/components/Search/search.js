@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SearchIcon from '../../assets/search.svg';
-import './search.css';
+import './search.scss';
 import {Link} from "react-router-dom";
 
 function Search({ products }) {
@@ -9,7 +9,7 @@ function Search({ products }) {
     const filteredProductList = () => {
         return products.filter(product => product.title.includes(searchFilter)).map(product => {
             return (
-                <Link to={`products/${product.id}`}>
+                <Link to={`products/${product.id}`} className="search-result" key={ product.id } >
                     <p>{ product.title }</p>
                 </Link>
             )
@@ -19,12 +19,12 @@ function Search({ products }) {
 
     return (
         <div className="search">
-            <div className="desktop-search">
+            <div className={`desktop-search ${ searchFilter !== "" ? "search-mode": ""}`}>
                 <img src={SearchIcon} alt="search icon"/>
                 <input type="text" placeholder="Search for a product" className="search-input" onInput={(e) => setSearchFilter(e.target.value)} />
-                <div id="myDropdown" className="dropdown-content">
-                    { searchFilter !== "" ? filteredProductList() : null }
-                </div>
+            </div>
+            <div id="myDropdown" className="search-results">
+                { searchFilter !== "" ? filteredProductList() : null }
             </div>        
         </div>
     )

@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { Power2 } from 'gsap';
+import { gsap } from 'gsap';
 
 import {AltNavigation} from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
@@ -14,6 +17,7 @@ import './userLogin.scss';
 const UserLogin = () => {
     const [ form, updateForm ] = useState({ "email": "", "password": "" });
     const history = useHistory();
+    let LoginPage = useRef(null);
 
     useEffect(() => {
         if (!notification.displayed() && notification.location === "login") {
@@ -47,8 +51,13 @@ const UserLogin = () => {
         }
     }
 
+
+    useEffect(()=>{
+        gsap.fromTo(LoginPage, {y:-50}, {opacity: 1, duration: 0.7, y:0, ease: Power2.easeOut,delay:0.3})
+    },[])
+
     return(
-        <div className="user-login-page">
+        <div className="user-login-page" ref={ el => LoginPage=el }>
           <nav>
                 <AltNavigation/>
             </nav>

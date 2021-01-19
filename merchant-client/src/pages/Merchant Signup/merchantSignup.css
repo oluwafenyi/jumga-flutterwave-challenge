@@ -393,15 +393,15 @@
 
 @media (max-width: 359.5px) {
   .merchant-sign-up .merchant-sign-up-form .business-logo {
-    max-width: 200px;
-    margin: 0 auto;
+    max-width: unset;
+    margin: 0.5rem 0;
   }
 }
 
 @media (min-width: 360px) and (max-width: 800px) {
   .merchant-sign-up .merchant-sign-up-form .business-logo {
-    max-width: 250px;
-    margin: 0 auto;
+    max-width: unset;
+    margin: 0.5rem 0;
   }
 }
 

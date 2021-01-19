@@ -10,6 +10,8 @@ import { jumga } from "../../axios";
 import utils from "../../utils/utils";
 import {notification} from "../../store/store";
 
+import LoadingScreen from '../../components/Loading Screen/loadingScreen';
+
 function MerchantSignup() {
     const [ country, setCountry ] = useState("");
     const [ banks, setBanks ] = useState([]);
@@ -29,6 +31,7 @@ function MerchantSignup() {
     const history = useHistory();
     let uploadWidget = null;
     const instance = useRef(null)
+    const [ loader, setLoader ] = useState(false);
 
 
     const handleCountrySelection = (e) => {
@@ -105,9 +108,11 @@ function MerchantSignup() {
 
     const submitSignUpForm = async (e) => {
         e.preventDefault();
+        setLoader(true);
         if (merchantLogoLink === "") {
             notification.setValues({ status: "failed", message: "Please upload your logo", location: "here" });
             notification.display()
+            setLoader(false);
             return
         }
         const payload = {
@@ -124,10 +129,12 @@ function MerchantSignup() {
                 const token = authResponse.data.access_token;
                 await jumga.put("/v1/merchant/logo", {link: merchantLogoLink}, {headers: {Authorization: `Bearer ${token}`}});
                 notification.setValues({ status: "success", message: "Sign up successful! Login to your account.", location: "login" });
+                setLoader(false);
                 history.push("/login")
             }
         } catch (err) {
             notification.setValues({ status: "failed", message: await err.response.data.message, location: "merchant-sign-up" })
+            setLoader(false);
             notification.display()
         }
     }
@@ -195,6 +202,7 @@ function MerchantSignup() {
                     </div>
                 </form>
             </main>
+            <LoadingScreen loading_text={"Creating account"} loadingStatus={ loader } />
             <Footer/>
         </div>
     )

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './notFound.css';
+import './notFound.scss';
 import Navigation from "../Navigation/navigation";
 
 const NotFound = ({nav}) =>{

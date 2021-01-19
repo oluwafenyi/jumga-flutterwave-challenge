@@ -5,6 +5,7 @@
     margin: 0 2rem;
     padding: 0.3rem;
     font-family: 'Poppins', sans-serif;
+    position: relative;
 
     
 
@@ -33,6 +34,7 @@
             font-size: 18px;
             margin: 0 0.2rem 0 0.7rem;
             padding: 0.2rem;
+            background: transparent;
 
             @include media(">=tablet","<=custom-view"){
                 font-size: 16px;
@@ -44,9 +46,42 @@
             }
 
             &:focus{
-                outline: 0.1px dotted rgba(0, 0, 0, 0.315);
+                outline: 0.1px dotted rgba(0, 0, 0, 0.082);
             }
         }
+    }
+
+    .search-mode{
+        border-radius: 75px 75px 0 0;
+    }
+
+    .search-results{
+        display: block;
+        position: absolute;
+        background-color: #fff;
+        z-index: 3;
+        width: 100%;
+        
+
+        .search-result{
+            text-decoration: none;
+            background: #fff;
+            color: #000;
+            transition: 0.3s;
+
+            &:hover{
+                p{
+                    background-color: #000;
+                    color: #fff;
+                }
+                
+            }
+            p{
+                padding: 0.3rem 0.5rem;
+            }
+
+        }
+        
     }
 
     

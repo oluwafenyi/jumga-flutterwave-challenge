@@ -4,6 +4,7 @@ import './merchantUploadProduct.scss';
 import { ToastContainer } from 'react-toastify';
 import {jumgaState, notification} from "../../store/store";
 import {jumga} from "../../axios";
+import LoadingScreen from '../Loading Screen/loadingScreen';
 
 import { Power3 } from 'gsap';
 import { gsap } from 'gsap';
@@ -21,6 +22,7 @@ const MerchantUploadProduct = () =>{
     let uploadWidget = null;
     let UploadPage = useRef(null);
     const instance = useRef(null);
+    const [ loader,setLoader ] = useState(false);
 
     const cloudinaryUpload = () => {
         uploadWidget = window.cloudinary.createUploadWidget({
@@ -65,13 +67,16 @@ const MerchantUploadProduct = () =>{
 
     const createProduct = async (e) => {
         e.preventDefault();
+        setLoader(true);
         if (!jumgaState.riderRegistered) {
             notification.setValues({ status: "info", message: "Product upload disabled until a rider is registered", location: "here" })
+            setLoader(false);
             notification.display()
             return
         }
         if (productImageLink === "") {
             notification.setValues({ status: "failed", message: "Please upload product image", location: "here" });
+            setLoader(false);
             notification.display()
             return
         }
@@ -81,9 +86,11 @@ const MerchantUploadProduct = () =>{
                 const id = response.data.data.id
                 await jumga.put(`/v1/product/${id}/image`, { link: productImageLink })
                 notification.setValues({ status: "success", message: "Product listing successful", location: "here" });
+                setLoader(false);
                 notification.display();
             }
         } catch (err) {
+            setLoader(false);
             console.log(err)
         }
     }
@@ -129,7 +136,7 @@ const MerchantUploadProduct = () =>{
                 </div>
                 
             </form>
-
+            <LoadingScreen loading_text={"Adding Product"} loadingStatus={ loader }/>
         </div>
     )
 }

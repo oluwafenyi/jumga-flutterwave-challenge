@@ -326,6 +326,13 @@ ul {
   overflow-x: hidden;
 }
 
+@media (min-width: 800px) {
+  .alt-navigation .mobile-menu-container {
+    width: 0;
+    overflow-x: hidden;
+  }
+}
+
 .alt-navigation .mobile-menu-container .close-menu-btn {
   -ms-flex-item-align: end;
       align-self: flex-end;

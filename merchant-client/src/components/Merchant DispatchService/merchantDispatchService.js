@@ -3,6 +3,7 @@ import DispatchRider from '../../assets/test-dispatch.png';
 import './merchantDispatchService.scss';
 import {jumga} from "../../axios";
 import utils from "../../utils/utils";
+import LoadingScreen from '../Loading Screen/loadingScreen';
 
 import { Power3 } from 'gsap';
 import { gsap } from 'gsap';
@@ -19,6 +20,7 @@ const MerchantDispatchService = () =>{
     const [ country, setCountry ] = useState("");
     const [ banks, setBanks ] = useState([]);
     const [ bank, setBank ] = useState("");
+    const [ loader, setLoader ] = useState(false);
     let DispatchPage = useRef(null); 
 
     const currentRider = () => {
@@ -104,6 +106,7 @@ const MerchantDispatchService = () =>{
 
     const updateRider = async (e) => {
         e.preventDefault();
+        setLoader(true)
         console.log({ ...form, "account_bank": bank, country })
         try {
             await jumga.delete("/v1/merchant/dispatch");
@@ -119,8 +122,10 @@ const MerchantDispatchService = () =>{
                     ...form
                 })
                 jumgaState.setRiderRegistered(true);
+                setLoader(false);
             }
         } catch (err) {
+            setLoader(false)
             console.log(err)
         }
     }
@@ -163,6 +168,7 @@ const MerchantDispatchService = () =>{
                     </form>
                 </div>
             </div>
+            <LoadingScreen loading_text={"Updating Rider"} loadingStatus={ loader }/>
         </div>
     )
 }
