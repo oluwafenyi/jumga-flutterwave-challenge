@@ -39,6 +39,27 @@ func getProducts(w http.ResponseWriter, r *http.Request) {
 	SuccessResponse(http.StatusOK, responseData, w)
 }
 
+type ProductMinimal struct {
+	ID    int64  `json:"id"`
+	Title string `json:"title"`
+}
+
+func getProductsMinimal(w http.ResponseWriter, r *http.Request) {
+	var products []db.Product
+	_ = db.DB.Model(&products).Column("id", "title").Select()
+
+	var minimal []ProductMinimal
+
+	for _, product := range products {
+		minimal = append(minimal, ProductMinimal{
+			product.ID,
+			product.Title,
+		})
+	}
+
+	SuccessResponse(http.StatusOK, map[string]interface{}{"data": minimal}, w)
+}
+
 func createProduct(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	merchant, ok := ctx.Value("merchant").(*db.User)
@@ -143,6 +164,7 @@ func ProductRoutes() http.Handler {
 
 	r.Route("/", func(r chi.Router) {
 		r.With(paginate).Get("/", getProducts)
+		r.Get("/all", getProductsMinimal)
 		r.Route("/", func(r chi.Router) {
 			r.Use(jwtauth.Verifier(tokenAuth))
 			r.Use(jwtauth.Authenticator)
