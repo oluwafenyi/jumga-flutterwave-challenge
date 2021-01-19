@@ -39,11 +39,6 @@ func getProducts(w http.ResponseWriter, r *http.Request) {
 	SuccessResponse(http.StatusOK, responseData, w)
 }
 
-type ProductMinimal struct {
-	ID    int64  `json:"id"`
-	Title string `json:"title"`
-}
-
 func getProductsMinimal(w http.ResponseWriter, r *http.Request) {
 	var products []db.Product
 	_ = db.DB.Model(&products).Column("id", "title").Select()

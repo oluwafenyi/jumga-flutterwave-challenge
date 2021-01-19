@@ -31,6 +31,16 @@ type StoreOut struct {
 	Categories      []string  `json:"categories"`
 }
 
+type ProductMinimal struct {
+	ID    int64  `json:"id"`
+	Title string `json:"title"`
+}
+
+type StoreMinimal struct {
+	ID   int64  `json:"id"`
+	Name string `json:"name"`
+}
+
 func serializeStore(merchant db.User, categories []string) StoreOut {
 	if len(categories) == 0 {
 		categories = make([]string, 0)
