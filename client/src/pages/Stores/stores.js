@@ -16,6 +16,8 @@ const Stores = (props) =>{
     const [ numberOfPages, setNumberOfPages ] = useState(0);
     const [ page, setPage ] = useState(1);
     const [ storeLoadingStatus, setStoreLoadingStatus ] = useState('')
+    const [ searchFilter, setSearchFilter ] = useState("");
+
 
     useEffect(() => {
         const getStores = async () => {
@@ -62,8 +64,12 @@ const Stores = (props) =>{
         })();
     }, [props.location.search])
 
+    const filteredStoreList = () => {
+        return stores.filter(store => store.business_name.toLowerCase().includes(searchFilter.toLowerCase()))
+    }
+
     const storeListing = () => {
-        return stores.map(store => {
+        return filteredStoreList().map(store => {
             return (
                 <StoreCard key={ store.id } storeId={store.id} businessName={store.business_name} country={store.country} imageLink={store.logo} businessContact={store.business_contact} categories={store.categories} />
             )
@@ -78,7 +84,7 @@ const Stores = (props) =>{
             <main>
                 <div className="stores-header">
                     <h2 className="stores-page-title">Stores</h2>
-                    <StoresSearch/>
+                    <StoresSearch setSearchFilter={setSearchFilter} />
                 </div>
                 {
                     storeLoadingStatus !=="success"
