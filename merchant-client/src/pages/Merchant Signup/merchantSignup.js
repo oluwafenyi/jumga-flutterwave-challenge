@@ -133,7 +133,7 @@ function MerchantSignup() {
                 history.push("/login")
             }
         } catch (err) {
-            notification.setValues({ status: "failed", message: await err.response.data.message, location: "merchant-sign-up" })
+            notification.setValues({ status: "failed", message: "invalid account details", location: "merchant-sign-up" })
             setLoader(false);
             notification.display()
         }
