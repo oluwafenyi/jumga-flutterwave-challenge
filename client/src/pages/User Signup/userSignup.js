@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { AltNavigation } from '../../components/Navigation/navigation';
 import Footer from '../../components/Footer/footer';
 import './userSignup.scss';
-
+import { Power2 } from 'gsap';
+import { gsap } from 'gsap';
 import { jumga } from "../../axios";
 import { notification } from "../../store/store";
 
@@ -19,6 +20,7 @@ const UserSignup = () => {
         "confirm_password": "",
     });
     const history = useHistory();
+    let SignupPage = useRef(null);
 
     const handleCountrySelection = (e) => {
         setCountry(e.target.value);
@@ -49,8 +51,12 @@ const UserSignup = () => {
         }
     }
 
+    useEffect(()=>{
+        gsap.fromTo(SignupPage, {y:-50}, {opacity: 1, duration: 0.4, y:0, ease: Power2.easeOut,delay:0.1})
+    },[])
+
     return(
-        <div className="user-signup-page">
+        <div className="user-signup-page" ref={ el=>SignupPage=el }>
             <nav>
                 <AltNavigation/>
             </nav>

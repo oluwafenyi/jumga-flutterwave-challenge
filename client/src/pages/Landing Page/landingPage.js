@@ -177,7 +177,6 @@ function LandingPage() {
                 </main>
             </div>
             <TopOffersPopup setPopupStatus={ setPopup } popupStatus={ popup }  />
-            {/* <ProfileDropdown/> */}
             <Footer/>
         </div>
     )
