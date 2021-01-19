@@ -7,7 +7,6 @@ import { notification } from "../../store/store";
 import queryString from "query-string";
 
 import { TweenMax, Power3 } from 'gsap';
-// import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {useHistory} from 'react-router-dom';
 
 import Navigation from '../../components/Navigation/navigation';
@@ -15,7 +14,7 @@ import Footer from '../../components/Footer/footer';
 import PaymentModal from '../../components/Payment Modal/paymentModal';
 import './productPreview.scss';
 import ProductCard from "../../components/ProductCard/productCard";
-import {productCategories} from "../../constants";
+// import {productCategories} from "../../constants";
 
 
 const ProductPreview = (props) =>{

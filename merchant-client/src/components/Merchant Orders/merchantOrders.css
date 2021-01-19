@@ -1,0 +1,68 @@
+.merchant-orders-page {
+  font-family: 'Poppins', sans-serif;
+  opacity: 0;
+}
+
+.merchant-orders-page .merchant-orders-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.merchant-orders-page .merchant-orders-header .merchant-orders-title {
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 67px;
+}
+
+.merchant-orders-page .merchant-orders-header .merchant-orders-subtitle {
+  font-weight: 300;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.753);
+  line-height: 37px;
+}
+
+.merchant-orders-page .table-section {
+  margin: 3rem 0 2rem 0;
+  max-width: 1000px;
+}
+
+.merchant-orders-page .orders-table {
+  text-align: center;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.merchant-orders-page .orders-table thead, .merchant-orders-page .orders-table tbody {
+  border: 1px solid rgba(0, 5, 23, 0.99);
+}
+
+.merchant-orders-page .orders-table thead {
+  background: rgba(0, 5, 23, 0.904);
+}
+
+.merchant-orders-page .orders-table thead th {
+  text-align: center;
+  color: #fff;
+  padding: 0.5rem 0;
+  border: none;
+  margin: 0 0.3rem;
+}
+
+.merchant-orders-page .orders-table td {
+  padding: 0.4rem;
+}
+
+.merchant-orders-page .orders-table tr:nth-child(even) {
+  background-color: #ddd;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.merchant-orders-page .orders-table tr:nth-child(even) td {
+  background-color: #ddd;
+}

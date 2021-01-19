@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import { useHistory } from "react-router-dom";
 import OverviewIcon from '../../assets/dashboard-icons/overview.svg';
 import DispatchIcon from '../../assets/dashboard-icons/dispatch.svg';
+import OrderIcon from '../../assets/dashboard-icons/order.svg';
 import AddProductIcon from '../../assets/dashboard-icons/add-product.svg';
 import ProductsIcon from '../../assets/dashboard-icons/your_products.svg'; 
 import Logo from '../../assets/logos/Footer Logo.svg';
@@ -57,6 +58,7 @@ const Dashboard = ({dashboardOption,setDashboardOption, approved}) =>{
                 <li onClick={ ()=>setDashboardOption('myProducts') } className="dashboard-menu-item"><img src={ ProductsIcon } alt="Your products" /><span>Your Products</span></li>
                 <li onClick={ ()=>setDashboardOption('upload') } className="dashboard-menu-item"><img src={ AddProductIcon } alt="Add products" /><span>Add Product</span></li>
                 <li onClick={ ()=>setDashboardOption('dispatch') } className="dashboard-menu-item"><img src={ DispatchIcon } alt="Dispatch" /><span>Dispatch Service</span></li>
+                <li onClick={ ()=>setDashboardOption('orders') } className="dashboard-menu-item"><img src={ OrderIcon } alt="Orders" /><span>Orders</span></li>
             </ul>
             <ApprovalButtonView state={ jumgaState } />
             <button className="logout-btn" onClick={logout}>Logout</button>

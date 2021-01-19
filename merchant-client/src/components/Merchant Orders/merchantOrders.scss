@@ -1,0 +1,60 @@
+.merchant-orders-page{
+    font-family: 'Poppins', sans-serif;
+    opacity: 0;
+    .merchant-orders-header{
+        display: flex;
+        flex-direction: column;
+
+        .merchant-orders-title{
+            font-weight: 500;
+            font-size: 50px;
+            line-height: 67px;
+        }
+
+        .merchant-orders-subtitle{
+            font-weight: 300;
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.753);
+            line-height: 37px;
+        }
+    }
+
+    .table-section{
+        margin: 3rem 0 2rem 0;
+        max-width: 1000px;
+    }
+
+    .orders-table{
+        text-align: center;
+        border-collapse: collapse;
+        width: 100%;
+        
+        thead,tbody{
+            border: 1px solid rgba(0, 5, 23, 0.99); ;
+        }
+
+        thead{
+            background: rgba(0, 5, 23, 0.904);
+            th{
+                text-align: center;
+                color: #fff;
+                padding: 0.5rem 0;
+                border: none;
+                margin: 0 0.3rem;
+            }
+        }
+        td{
+            padding: 0.4rem;
+        }
+        
+        tr{
+            &:nth-child(even){
+                td{
+                    background-color: #ddd;
+                }
+                background-color: #ddd;
+                transition: 0.2s;
+            }
+        }
+    }
+}

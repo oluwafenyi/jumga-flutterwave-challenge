@@ -7,6 +7,7 @@ import MerchantOverview from '../../components/Merchant Overview/merchantOvervie
 import MerchantUploadProduct from '../../components/Merchant UploadProduct/merchantUploadProduct';
 import MerchantViewProducts from '../../components/Merchant ViewProducts/merchantViewProducts';
 import MerchantDispatchService from '../../components/Merchant DispatchService/merchantDispatchService';
+import MerchantOrders from '../../components/Merchant Orders/merchantOrders';
 import Logo from '../../assets/test-logo.png';
 import ApprovedIcon from '../../assets/verified.svg';
 import './merchantDashboard.scss';
@@ -131,6 +132,7 @@ const MerchantDashboard = (props) =>{
                     { dashboardOption === 'myProducts' ? <MerchantViewProducts/> : null }
                     { dashboardOption === 'upload' ? <MerchantUploadProduct/> : null}
                     { dashboardOption === 'dispatch' ? <MerchantDispatchService/> : null}
+                    { dashboardOption === 'orders' ? <MerchantOrders/> : null}
                 </section>
                 <AltFooter/>
             </main>
