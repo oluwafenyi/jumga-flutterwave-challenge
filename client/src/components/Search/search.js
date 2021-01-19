@@ -7,7 +7,7 @@ function Search({ products }) {
     const [ searchFilter, setSearchFilter ] = useState("");
 
     const filteredProductList = () => {
-        return products.filter(product => product.title.includes(searchFilter)).map(product => {
+        return products.filter(product => product.title.toLowerCase().includes(searchFilter.toLowerCase())).map(product => {
             return (
                 <Link to={`products/${product.id}`}>
                     <p>{ product.title }</p>
