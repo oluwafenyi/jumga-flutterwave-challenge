@@ -6,6 +6,7 @@ import StoreCard from '../../components/StoreCard/storeCard';
 import Footer from '../../components/Footer/footer';
 import './stores.scss'
 import Pagination from '../../components/Pagination/pagination';
+import Placeholders from 'loading-placeholders';
 import {jumga} from "../../axios";
 
 const Stores = (props) =>{
@@ -14,6 +15,7 @@ const Stores = (props) =>{
     const [ nextPage, setNextPage ] = useState(false);
     const [ numberOfPages, setNumberOfPages ] = useState(0);
     const [ page, setPage ] = useState(1);
+    const [ storeLoadingStatus, setStoreLoadingStatus ] = useState('')
 
     useEffect(() => {
         const getStores = async () => {
@@ -45,6 +47,11 @@ const Stores = (props) =>{
                 }
                 const pages = Math.ceil( response.data.total / storesPP);
                 setNumberOfPages(pages);
+
+                // For loading
+                setTimeout(()=>{
+                    setStoreLoadingStatus(response.data.status);
+                },2000)
             } catch (err) {
                 console.log(err)
             }
@@ -73,9 +80,22 @@ const Stores = (props) =>{
                     <h2 className="stores-page-title">Stores</h2>
                     <StoresSearch/>
                 </div>
-                <section className="stores-gallery">
-                    { storeListing() }
-                </section>
+                {
+                    storeLoadingStatus !=="success"
+
+                    ?
+                    <Placeholders 
+                        height="180px"
+                        width="270px"
+                        br="15px"
+                        n="5"
+                        margin="0.4rem"
+                    />
+                    :
+                    <section className="stores-gallery">
+                        { storeListing() }
+                    </section>
+                }
                 <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages} page={page}/>
             </main>
             <Footer/>

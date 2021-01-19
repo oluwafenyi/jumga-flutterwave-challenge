@@ -155,7 +155,7 @@ function LandingPage() {
                             </div>
                             <div className="category">
                                 <div className="category-img">
-                                    <img src={"https://res.cloudinary.com/dkow6vfth/image/upload/v1610856957/jumga-images/mock%20images/compressed/2JrpkyZ2ruQ-1_vre7q5.png"} alt="Category"/>
+                                    <img src={"https://res.cloudinary.com/dkow6vfth/image/upload/v1610989562/jumga-images/mock%20images/compressed/2JrpkyZ2ruQ_jumyot.png"} alt="Category"/>
                                 </div>
                                 <div className="category-details">
                                     <h3 className="category-title">Phones and Accessories</h3>

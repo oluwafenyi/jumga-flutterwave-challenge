@@ -1,3 +1,9 @@
+@import '../../utils//breakpoints.scss';
+
+*{
+    transition: 0.2s;
+}
+
 .payment-modal-page{
     position: fixed;
     z-index: 1;
@@ -13,10 +19,20 @@
         border-radius:25px;
         padding: 0.8rem;
         top: 20%;
-        left: 30%;
-        right: 30%;
+        left: 50%;
+        transform: translate(-50%, 0);
         width: 100%;
         max-width: 500px;
+
+        @include media("<phone"){
+            top: 10px;
+            max-width: 250px;
+        }
+    
+        @include media(">=phone","<=custom-view-1"){
+            top: 10px;
+            max-width: 300px;
+        }
 
         .close-btn{
             cursor: pointer;
@@ -31,12 +47,48 @@
             display: flex;
             flex-direction: row;
             padding: 0.6rem;
+            transition: 0.2s;
+
+            @include media("<phone"){
+                flex-direction: column-reverse;
+                height: 200px;
+                overflow-y: scroll;
+            }
+        
+            @include media(">=phone","<=custom-view-1"){
+                flex-direction: column-reverse;
+                height: 300px;
+                overflow-y: scroll;
+            }
+
+            &::-webkit-scrollbar{
+                width: 5px;
+                height: 5px;
+            }
+            
+            &::-webkit-scrollbar-thumb{
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 10px;
+                box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, .25%);
+            }
+
+            &::-webkit-scrollbar-track{
+                background: #ffffff4d;
+            }
             
 
             .payment-summary{
                 margin: 0 1rem;
                 padding: 0.5rem;
                 max-width: 280px;
+
+                @include media("<phone"){
+                    align-self: center;
+                }
+            
+                @include media(">=phone","<=custom-view-1"){
+                    align-self: center;
+                }
             }
 
             .payment-details{
@@ -81,6 +133,12 @@
                 margin: 1rem 0;
                 transition: 0.2s;
 
+                @include media("<=phone"){
+                    font-size: 15px;
+                    line-height: 25px;
+                    padding: 0.3rem 0.6rem;
+                }
+
                 &:hover{
                     background: #bd801d;
                 }
@@ -102,6 +160,16 @@
 
             .product-img{
                 max-width: 200px;
+
+                @include media("<phone"){
+                    align-self: center;
+                    max-width: 100px;
+                }
+            
+                @include media(">=phone","<=custom-view-1"){
+                    align-self: center;
+                    max-width: 150px;
+                }
 
                 img{
                     width: 100%;

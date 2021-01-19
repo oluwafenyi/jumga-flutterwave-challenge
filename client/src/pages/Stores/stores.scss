@@ -29,21 +29,31 @@
         display: flex;
         flex-direction: column;
         padding: 1rem;
-        margin: 0 7% 30% 7%;
+        margin: 0 5% 25% 5%;
 
         @include media("<phone"){
-            margin: 0 2% 15% 2%;
+            margin: 0 2% 10% 2%;
             padding: 1rem 0.4rem;
         }
     
         @include media(">=phone","<=custom-view-2"){
-            margin: 0 2% 15% 2%;
+            margin: 0 2% 10% 2%;
             padding: 1rem 0.4rem;
         }
         .stores-gallery{
             display: flex;
             flex-wrap: wrap;
             padding: 2rem 0.5rem;
+
+            @include media("<phone"){
+                flex-direction: row;
+                width: 100%;
+            }
+        
+            @include media(">=phone","<=custom-view-7"){
+                flex-direction: row;
+                width: 100%;
+            }
         }
     }
     

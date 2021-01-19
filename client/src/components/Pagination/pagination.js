@@ -38,7 +38,7 @@ function Pagination(props) {
         console.log(props.numberOfPages)
         return Array.from(Array(props.numberOfPages).keys()).map(key => {
            return (
-               <Link to={ `?${getCategoryParam()}page=${ key + 1 }` }>
+               <Link to={ `?${getCategoryParam()}page=${ key + 1 }` } key={ key } >
                    <h5 className="page-number" key={ key + 1 }>
                        { key + 1 }
                    </h5>

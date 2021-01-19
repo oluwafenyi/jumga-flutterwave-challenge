@@ -9,6 +9,7 @@ import Phone from '../../assets/phone.svg';
 import Email from '../../assets/email.svg';
 import Footer from '../../components/Footer/footer';
 import Pagination from '../../components/Pagination/pagination';
+import Placeholders from 'loading-placeholders';
 import './store.scss';
 import {jumga} from "../../axios";
 // import {notification} from "../../store/store";
@@ -31,6 +32,7 @@ const Store = (props) =>{
     const [ products, setProducts ] = useState([]);
     const [ numberOfPages, setNumberOfPages ] = useState(0);
     const [ page, setPage ] = useState(1);
+    const [ loadingStatus, setLoadingStatus ] = useState('')
     const { storeId } = useParams();
 
     const getCountryIcon = () => {
@@ -51,7 +53,12 @@ const Store = (props) =>{
             try {
                 const response = await jumga.get(`/v1/store/${storeId}`);
                 console.log(response.data);
+
                 setStoreData(response.data.data);
+
+                setTimeout(()=>{
+                    setLoadingStatus(response.data.status);
+                },2000)
             } catch (err) {
                 console.log(err)
             }
@@ -110,11 +117,18 @@ const Store = (props) =>{
     }, [ props.location.search, storeCategory,storeId])
 
     const productListing = () => {
-        return products.map(product => {
+        if(products.length > 0){
+            return products.map(product => {
+                return (
+                    <ProductCard key={ product.id } productId={product.id} category={ product.category.name } name={ product.title } price={ product.price } imageLink={ product.display_image.link } />
+                )
+            })
+        }else{
             return (
-                <ProductCard key={ product.id } productId={product.id} category={ product.category.name } name={ product.title } price={ product.price } imageLink={ product.display_image.link } />
+                <i className="empty-listing">Nothing to see here...yet</i>
             )
-        })
+        }
+        
     }
 
     return(
@@ -152,9 +166,24 @@ const Store = (props) =>{
                     {/*</div>*/}
                     <ProductMenu category={ storeCategory } />
                 </section>
-                <section className="products-gallery">
-                    { productListing() }
-                </section>
+
+                {
+                    loadingStatus !== 'success'
+                    ?
+                        <Placeholders 
+                            height="280px"
+                            width="300.5px"
+                            br="36px"
+                            n="6"
+                            margin="0.4rem"
+
+                        />
+                    :
+                        <section className="products-gallery" >
+                            {productListing()}
+                        </section>
+                         
+                    }
                 <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages} category={storeCategory} page={page} />
             </main>
             

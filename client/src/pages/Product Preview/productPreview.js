@@ -131,6 +131,8 @@ const ProductPreview = (props) =>{
                     </div>
                 </section>
             )
+        }else{
+            <i className="empty-listing">Items not available yet</i>
         }
     }
 

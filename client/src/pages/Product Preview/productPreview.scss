@@ -1,3 +1,5 @@
+@import '../../utils/breakpoints.scss';
+
 .product-preview{
     font-family: 'Poppins', sans-serif;
 
@@ -10,6 +12,15 @@
         .back-option{
             margin: 0 4rem;
             padding: 0.5rem;
+
+            @include media("<phone"){
+                margin: 0 ;
+            }
+        
+            @include media(">=phone","<=custom-view-6"){
+                margin: 0;
+            }
+            
             .back-option-btn{
                 display: flex;
                 flex-direction: row;
@@ -22,6 +33,18 @@
                 color: #000;
                 text-decoration: none;
                 width: fit-content;
+
+                @include media("<phone"){
+                    font-weight: 300;
+                    font-size: 18px;
+                    line-height: 30px;
+                }
+            
+                @include media(">=phone","<=custom-view-6"){
+                    font-weight: 300;
+                    font-size: 20px;
+                    line-height: 34px;
+                }
         
                 &:hover{
                     p{
@@ -44,6 +67,14 @@
                     margin: 0.5rem 0.3rem;
                     padding: 0.4rem 0.6rem;
                     border-radius: 50%;
+
+                    @include media("<phone"){
+                        padding: 0.3rem;
+                    }
+                
+                    @include media(">=phone","<=custom-view-6"){
+                        padding: 0.3rem 0.4rem;
+                    }
                     
                     svg{
                         transition: 0.2s;
@@ -56,7 +87,16 @@
             display: flex;
             flex-direction: row;
             justify-content: space-around;
-            margin: 3rem 0;
+            margin: 3rem auto;
+            max-width: 1150px;
+
+            @include media("<phone"){
+                flex-direction: column-reverse;
+            }
+        
+            @include media(">=phone","<=custom-view-6"){
+                flex-direction: column-reverse;
+            }
             
 
             .product-details{
@@ -64,6 +104,19 @@
                 flex-direction: column;
                 justify-content: space-evenly;
                 width: 40%;
+
+                @include media("<phone"){
+                    width: 100%;
+                    margin: 0.5rem;
+                    text-align: center;
+                }
+            
+                @include media(">=phone","<=custom-view-6"){
+                    width: 100%;
+                    margin: 0.5rem;
+                    text-align: center;
+                }
+                
             }
 
             .product-specifics{
@@ -85,12 +138,32 @@
                     font-weight: 300;
                     font-size: 36px;
                     line-height: 54px;
+
+                    @include media("<phone"){
+                        font-size: 20px;
+                        line-height: 30px;
+                    }
+                
+                    @include media(">=phone","<=custom-view-6"){
+                        font-size: 30px;
+                        line-height: 40px;
+                    }
                 }
                 .product-price{
                     font-weight: bold;
                     font-size: 48px;
                     line-height: 72px;
                     color: #000000;
+
+                    @include media("<phone"){
+                        font-size: 25px;
+                        line-height: 35px;
+                    }
+                
+                    @include media(">=phone","<=custom-view-6"){
+                        font-size: 35px;
+                        line-height: 55px;
+                    }
                 }
             }
 
@@ -103,6 +176,24 @@
                     padding: 0.2rem;
                     border-bottom: 1px solid #000;
                     width: fit-content;
+
+                    @include media("<phone"){
+                        width: 100%;
+                        max-width: 150px;
+                        text-align: center;
+                        margin: 0 auto;
+                        font-size: 16px;
+                        line-height: 25px;
+                    }
+                
+                    @include media(">=phone","<=custom-view-6"){
+                        width: 100%;
+                        max-width: 150px;
+                        text-align: center;
+                        margin: 0 auto;
+                        font-size: 18px;
+                        line-height: 30px;
+                    }
                 }
 
                 .description{
@@ -113,6 +204,20 @@
                     padding: 0.2rem;
                     max-width: 360px;
                     margin: 0.2rem 0;
+
+                    @include media("<phone"){
+                        width: 100%;
+                        max-width: unset;
+                        text-align: center;
+                        font-size: 15px;
+                    }
+                
+                    @include media(">=phone","<=custom-view-6"){
+                        width: 100%;
+                        max-width: unset;
+                        text-align: center;
+                        font-size: 16px;
+                    }
                 }
             }
 
@@ -121,6 +226,15 @@
                 flex-direction: row;
                 width: auto;
                 margin: 2rem 0;
+
+                @include media("<phone"){
+                   align-self: center;
+                }
+            
+                @include media(">=phone","<=custom-view-6"){
+                    align-self: center;
+                }
+                
 
                 .product-size,.quantity-input
                 {
@@ -154,7 +268,24 @@
                 cursor: pointer;
                 transition:0.2s;
                 border: 2px solid #000;
-        
+
+                
+                @include media("<phone"){
+                    align-self: center;
+                    padding: 0.3rem 0.6rem;
+                    max-width: 250px;
+                    font-size: 16px;
+                    line-height: 30px;
+                }
+            
+                @include media(">=phone","<=custom-view-6"){
+                    align-self: center;
+                    padding: 0.4rem 0.8rem;
+                    max-width: 250px;
+                    font-size: 18px;
+                    line-height: 40px;
+                }
+    
                 &:hover{
                     color: #000;
                     background-color: #fff;
@@ -172,6 +303,10 @@
             max-width: 360px;
             padding: 0.5rem;
             object-fit: cover;
+
+            @include media("<phone"){
+                width: 200px;
+            }
             
 
             img{
@@ -182,18 +317,34 @@
 
 
         .other-products{
-            margin: 4% 8%;
+            margin: 2rem 8%;
             padding: 1rem;
+
+            @include media("<phone"){
+                margin: 0;
+                padding: 0;
+            }
+        
+            @include media(">=phone","<=custom-view-6"){
+                margin: 1.5rem 0.5%;
+                padding: 0.4rem;
+            }
             .other-products-title{
                 font-weight: 600;
                 font-size: 24px;
                 line-height: 36px;
             }
             .products{
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px,0.7fr));
+                grid-gap: 0.4rem;
                 padding: 1rem;
+
+                @include media("<phone"){
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0.5rem;
+                }
 
             }
         }

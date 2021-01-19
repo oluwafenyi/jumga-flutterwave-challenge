@@ -1,15 +1,40 @@
+@import '../../utils/breakpoints.scss';
+
 .store-page{
     font-family: 'Poppins', sans-serif;
 
     .store-header{
         display: flex;
         flex-direction: row;
-        margin-left: 5% ;
         padding: 1.5rem 0;
+        border-bottom: 1px solid #f3f3f4;
+
+        @include media("<phone"){
+            flex-direction: column;
+        }
+    
+        @include media(">=phone","<=custom-view-4"){
+            flex-direction: column;
+        }
+        
 
         .store-icon{
             margin: 0 0.5rem;
             max-width: 150px;
+           
+            margin-left: 5% ;
+
+            @include media("<phone"){
+                align-self: center;
+                width: 90px;
+                margin-left: 0 ;
+            }
+        
+            @include media(">=phone","<=custom-view-4"){
+                align-self: center;
+                margin-left: 0 ;
+                width: 120px;
+            }
 
             img{
                 width: 100%;
@@ -19,6 +44,18 @@
         .merchant-details{
             display: flex;
             flex-direction: column;
+            margin: 0 1rem;
+
+            @include media("<phone"){
+                text-align: center;
+                margin: 0;
+            }
+        
+            @include media(">=phone","<=custom-view-4"){
+                text-align: center;
+                margin: 0;
+            }
+            
             .store-name{
                 font-style: normal;
                 font-weight: 500;
@@ -30,6 +67,14 @@
                 display: flex;
                 flex-direction: row;
                 max-width: 100px;
+
+                @include media("<phone"){
+                    align-self: center;
+                }
+            
+                @include media(">=phone","<=custom-view-4"){
+                    align-self: center;
+                }
 
                 a{
                     max-width: 30px;
@@ -52,7 +97,7 @@
     main{
         display: flex;
         flex-direction: column;
-        margin: 1rem 0.5rem 6rem 0.5rem;
+        margin: 1rem 1rem 6rem 1rem;
         .view-product-header{
             display: flex;
             flex-direction: row;
@@ -107,8 +152,34 @@
         .products-gallery{
             margin: 1rem ;
             padding: 1rem;
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+            grid-gap: 0.2rem;
+            align-items: center;
+            justify-content: center;
+            justify-items: stretch;
+        }
+
+        .empty-listing{
+            margin: 2rem auto;
+            text-align: center;
+            width: 100%;
+            grid-column: 2;
+
+            @include media("<phone"){
+                grid-column: 2;
+                font-size: 14px;
+            }
+        
+            @include media(">=phone","<=custom-view-4"){
+                grid-column: span 3;
+                font-size: 18px;
+            }
+
+            @include media(">=custom-view-4"){
+                grid-column: span 4;
+                font-size: 22px;
+            }
         }
     }
 }

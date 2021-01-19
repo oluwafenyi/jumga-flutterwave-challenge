@@ -50,6 +50,7 @@
 
         .bar-1{
             width: 100%;
+            min-width: 34px;
         }
 
 
@@ -57,11 +58,13 @@
             margin: 0.4rem 0;
             width: 75%;
             transition: 0.3s;
+            min-width: 23px;
         }
 
         .bar-3{
             width: 50%;
             transition: 0.3s;
+            min-width: 15px;
         }
 
         @include media("<phone"){
@@ -309,17 +312,19 @@
     }
 
     .mobile-menu-container{
-        display: none;
+        display: flex;
         flex-direction: column;
+        width: 0;
         position: fixed;
         background: rgba(0, 0, 0, 0.97);
         top: 0;
         left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        // height: 100%;
+        // bottom: 0;
+        // right: 0;
+        height: 100%;
         z-index: 4;
+        overflow-x: hidden;
+        transition: 0.4s;
 
         .close-menu-btn{
             align-self: flex-end;
@@ -411,7 +416,7 @@
     }
 
     .show-mobile-menu{
-        display: flex;
+        width: 100%;
     }
 }
 
@@ -421,6 +426,34 @@ ul{
 
 .show-mobile-profile{
     z-index: 4 !important;
+}
+
+.logout-btn{
+    display: flex;
+    flex-direction: row;
+    padding: 0.4rem;
+    text-decoration: none;
+    transition: 0.3s;
+    outline: none;
+    background: none;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+
+    &:hover{
+        transform: scale(1.1);
+    }
+
+    img{
+        max-width: 30px;
+    }
+
+    p{
+        margin: 0 0.5rem;
+        color: #fff;
+        align-self: center;
+        font-weight: 400;
+        font-size: 16px;
+    }
 }
 
 
@@ -702,17 +735,19 @@ ul{
     
 
     .mobile-menu-container{
-        display: none;
+        display: flex;
         flex-direction: column;
         position: fixed;
         background: rgba(0, 0, 0, 0.97);
         top: 0;
         left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        // height: 100%;
+        // bottom: 0;
+        // right: 0;
+        height: 100%;
         z-index: 4;
+        width: 0;
+        transition: 0.4s;
+        overflow-x: hidden;
 
         .close-menu-btn{
             align-self: flex-end;
@@ -759,8 +794,10 @@ ul{
         }
 
         .mobile-search-container{
+            width: 100%;
             .search{
                 margin: 0 1rem;
+                width: 100%;
             }
             .search-input{
                 width: 100%;
@@ -806,6 +843,6 @@ ul{
     }
 
     .show-mobile-menu{
-        display: flex;
+       width: 100%;
     }
 }

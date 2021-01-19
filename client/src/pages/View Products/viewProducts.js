@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import queryString from "query-string";
+import Placeholders from 'loading-placeholders'
 import Navigation from '../../components/Navigation/navigation';
 import ProductMenu from '../../components/ProductsMenu/productsMenu';
 import ProductCard from '../../components/ProductCard/productCard';
@@ -9,7 +10,6 @@ import Pagination from '../../components/Pagination/pagination';
 
 import {jumga} from "../../axios";
 
-// import { gsap } from 'gsap';
 
 function ViewProducts(props) {
     const [ products, setProducts ] = useState([]);
@@ -19,8 +19,7 @@ function ViewProducts(props) {
     const [ category, setCategory ] = useState('all');
     const [ numberOfPages, setNumberOfPages ] = useState(0);
     const [ page, setPage ] = useState(1);
-
-    // let productGallery = useRef(null)
+    const [ loadingStatus, setLoadingStatus ] = useState('')
 
     useEffect(() => {
         const getProducts = async () => {
@@ -58,6 +57,11 @@ function ViewProducts(props) {
                 }
                 const pages = Math.ceil( response.data.total / productsPP);
                 setNumberOfPages(pages);
+
+                setTimeout(()=>{
+                    setLoadingStatus(response.data.status);
+                },2000)
+                
             } catch (err) {
                 console.log(err)
             }
@@ -76,15 +80,6 @@ function ViewProducts(props) {
         })
     }
 
-    // // GSAP
-    // useEffect(()=>{
-    //     const products = productGallery.querySelectorAll('.product-card');
-    //     products.forEach(productAnimate);
-    // },[])
-
-    // const productAnimate = (product) =>{
-    //     gsap.fromTo(product,{y:-10},{duration: 0.7, opacity:1, y:0, stagger: 0.5});
-    // }
 
     return (
         <div className="view-products-page">
@@ -108,9 +103,23 @@ function ViewProducts(props) {
                     </div> */}
                     <ProductMenu category={ category } />
                 </section>
-                <section className="products-gallery">
-                    { productListing() }
-                </section>
+                    {
+                        loadingStatus !== 'success'
+                        ?
+                            <Placeholders 
+                                height="280px"
+                                width="300.5px"
+                                br="36px"
+                                n="8"
+                                margin="0.4rem"
+
+                            />
+                        :
+                        <section className="products-gallery" >
+                            {productListing()}
+                        </section>
+                         
+                    }
                 <Pagination prev={prevPage} next={nextPage} numberOfPages={numberOfPages} category={category} page={page} />
             </main>
             <Footer/>

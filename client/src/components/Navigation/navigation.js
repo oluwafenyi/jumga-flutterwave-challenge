@@ -1,15 +1,25 @@
 import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation,useHistory } from 'react-router-dom';
 import Search from '../Search/search';
 import './navigation.scss';
 // import { merchantLink } from "../../constants";
 import { jumgaState} from "../../store/store";
 import ProfileDropdown from '../Profile Dropdown/profileDropdown';
+import LogoutBtn from '../../assets/logout.svg';
 
 function Navigation() {
     const location = useLocation();
     const [ profileDropdown, displayProfileDropdown ] = useState(false);
-    const [ showMobileMenu, setMobileMenu ] =useState(false);
+    const [ showMobileMenu, setMobileMenu ] = useState(false);
+    
+
+    const history = useHistory();
+
+    const logoutUser = () => {
+        jumgaState.clearAccessToken();
+        history.push("/");
+    }
+    
 
     const getAuthStatusButton = () => {
         if (!jumgaState.isAuthenticated()) {
@@ -136,19 +146,29 @@ function Navigation() {
                         <p>Become a Merchant</p>
                         </Link>
                     </li>
-                    <li><Link to="/login" className="mobile-menu-item">
-                        <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clipPath="url(#clip0)">
-                            <path d="M16.3596 28.117H24.5185C26.0666 28.117 27.3636 27.573 28.3678 26.527C29.372 25.5228 29.9996 24.184 29.9996 22.6777V6.3181C29.9996 4.81184 29.372 3.47295 28.3678 2.46878C27.3636 1.46461 26.0247 0.878845 24.5185 0.878845H16.3596V4.30976H24.5185C25.69 4.30976 26.5687 5.18841 26.5687 6.3181V22.6777C26.5687 23.8074 25.69 24.7279 24.5185 24.7279H16.3596V28.117ZM0 11.2553V17.7824C0 18.5355 0.627606 19.1631 1.38073 19.1631H8.99569V24.3095C8.99569 24.7697 9.20489 25.1463 9.6233 25.3555C9.79066 25.3973 9.99986 25.3973 10.0835 25.3973C10.3764 25.3973 10.6275 25.3136 10.8367 25.1044L20.6692 15.2719C21.0457 14.8954 21.0039 14.1423 20.6692 13.7239L10.8367 3.9332C10.5019 3.59847 10.0835 3.55663 9.6233 3.68215C9.20489 3.89136 8.99569 4.22608 8.99569 4.68632V9.87453H1.38073C0.627606 9.87453 0 10.5021 0 11.2553Z" fill="white"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0">
-                            <rect width="30" height="28.1168" fill="white"/>
-                            </clipPath>
-                            </defs>
-                        </svg>
-                        <p>Login</p>
+                    <li>
+                    {
+                        !jumgaState.isAuthenticated()
+                        ?
+                        <Link to="/login" className="mobile-menu-item">
+                            <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clipPath="url(#clip0)">
+                                <path d="M16.3596 28.117H24.5185C26.0666 28.117 27.3636 27.573 28.3678 26.527C29.372 25.5228 29.9996 24.184 29.9996 22.6777V6.3181C29.9996 4.81184 29.372 3.47295 28.3678 2.46878C27.3636 1.46461 26.0247 0.878845 24.5185 0.878845H16.3596V4.30976H24.5185C25.69 4.30976 26.5687 5.18841 26.5687 6.3181V22.6777C26.5687 23.8074 25.69 24.7279 24.5185 24.7279H16.3596V28.117ZM0 11.2553V17.7824C0 18.5355 0.627606 19.1631 1.38073 19.1631H8.99569V24.3095C8.99569 24.7697 9.20489 25.1463 9.6233 25.3555C9.79066 25.3973 9.99986 25.3973 10.0835 25.3973C10.3764 25.3973 10.6275 25.3136 10.8367 25.1044L20.6692 15.2719C21.0457 14.8954 21.0039 14.1423 20.6692 13.7239L10.8367 3.9332C10.5019 3.59847 10.0835 3.55663 9.6233 3.68215C9.20489 3.89136 8.99569 4.22608 8.99569 4.68632V9.87453H1.38073C0.627606 9.87453 0 10.5021 0 11.2553Z" fill="white"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0">
+                                <rect width="30" height="28.1168" fill="white"/>
+                                </clipPath>
+                                </defs>
+                            </svg>
+                            <p>Login</p>
                         </Link>
+                        :
+                        <button className="logout-btn" onClick={ logoutUser }>
+                            <img src={ LogoutBtn } alt="Logout"/>
+                            <p>Logout</p>
+                        </button>
+                    }
                     </li>
                 </ul>
                 <p className='copyright'>© 2021 Jumga. All rights reserved.</p>
@@ -162,6 +182,12 @@ export function AltNavigation() {
     const location = useLocation();
     const [ profileDropdown, displayProfileDropdown ] = useState(false);
     const [ altMenu, setAltMenu ] = useState(false);
+    const history = useHistory();
+
+    const logoutUser = () => {
+        jumgaState.clearAccessToken();
+        history.push("/");
+    }
 
     const getAuthStatusButton = () => {
         if (!jumgaState.isAuthenticated()) {
@@ -282,19 +308,30 @@ export function AltNavigation() {
                         <p>Become a Merchant</p>
                         </Link>
                     </li>
-                    <li><Link to="/login" className="mobile-menu-item">
-                        <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clipPath="url(#clip0)">
-                            <path d="M16.3596 28.117H24.5185C26.0666 28.117 27.3636 27.573 28.3678 26.527C29.372 25.5228 29.9996 24.184 29.9996 22.6777V6.3181C29.9996 4.81184 29.372 3.47295 28.3678 2.46878C27.3636 1.46461 26.0247 0.878845 24.5185 0.878845H16.3596V4.30976H24.5185C25.69 4.30976 26.5687 5.18841 26.5687 6.3181V22.6777C26.5687 23.8074 25.69 24.7279 24.5185 24.7279H16.3596V28.117ZM0 11.2553V17.7824C0 18.5355 0.627606 19.1631 1.38073 19.1631H8.99569V24.3095C8.99569 24.7697 9.20489 25.1463 9.6233 25.3555C9.79066 25.3973 9.99986 25.3973 10.0835 25.3973C10.3764 25.3973 10.6275 25.3136 10.8367 25.1044L20.6692 15.2719C21.0457 14.8954 21.0039 14.1423 20.6692 13.7239L10.8367 3.9332C10.5019 3.59847 10.0835 3.55663 9.6233 3.68215C9.20489 3.89136 8.99569 4.22608 8.99569 4.68632V9.87453H1.38073C0.627606 9.87453 0 10.5021 0 11.2553Z" fill="white"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0">
-                            <rect width="30" height="28.1168" fill="white"/>
-                            </clipPath>
-                            </defs>
-                        </svg>
-                        <p>Login</p>
+                    <li>
+                    {
+                        !jumgaState.isAuthenticated()
+                        ?
+                        <Link to="/login" className="mobile-menu-item">
+                            <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clipPath="url(#clip0)">
+                                <path d="M16.3596 28.117H24.5185C26.0666 28.117 27.3636 27.573 28.3678 26.527C29.372 25.5228 29.9996 24.184 29.9996 22.6777V6.3181C29.9996 4.81184 29.372 3.47295 28.3678 2.46878C27.3636 1.46461 26.0247 0.878845 24.5185 0.878845H16.3596V4.30976H24.5185C25.69 4.30976 26.5687 5.18841 26.5687 6.3181V22.6777C26.5687 23.8074 25.69 24.7279 24.5185 24.7279H16.3596V28.117ZM0 11.2553V17.7824C0 18.5355 0.627606 19.1631 1.38073 19.1631H8.99569V24.3095C8.99569 24.7697 9.20489 25.1463 9.6233 25.3555C9.79066 25.3973 9.99986 25.3973 10.0835 25.3973C10.3764 25.3973 10.6275 25.3136 10.8367 25.1044L20.6692 15.2719C21.0457 14.8954 21.0039 14.1423 20.6692 13.7239L10.8367 3.9332C10.5019 3.59847 10.0835 3.55663 9.6233 3.68215C9.20489 3.89136 8.99569 4.22608 8.99569 4.68632V9.87453H1.38073C0.627606 9.87453 0 10.5021 0 11.2553Z" fill="white"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0">
+                                <rect width="30" height="28.1168" fill="white"/>
+                                </clipPath>
+                                </defs>
+                            </svg>
+                            <p>Login</p>
                         </Link>
+                        :
+                        <button className="logout-btn" onClick={ logoutUser }>
+                            <img src={ LogoutBtn } alt="Logout"/>
+                            <p>Logout</p>
+                        </button>
+                    }
+                        
                     </li>
                 </ul>
                 <p className='copyright'>© 2021 Jumga. All rights reserved.</p>

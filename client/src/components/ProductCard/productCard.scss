@@ -1,3 +1,5 @@
+@import '../../utils/breakpoints.scss';
+
 .product-card{
     font-family: 'Poppins', sans-serif;
     display: flex;
@@ -7,23 +9,28 @@
     background: #cfcfcfcb;
     border: 1px solid #00000036;
     border-radius: 36px;
-    margin: 1rem;
-    min-width: 225px;
+    margin: 0.2rem;
+    // max-width: 250px;
     min-height: 280px;
     text-decoration: none;
     color: #000000;
     transition: 0.3s;
-    background-position: center;
-    background-size: cover;
+    opacity: 0;
 
     &:hover{
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.116);
         border-color: #000000;
         
         .product-name{
-            text-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
-            transform: translateY(-2px);
+            text-shadow: 0px 6px 10px rgba(0, 0, 0, 0.425);
+            transform: translateY(-4px);
         }
+
+        .product-type{
+    
+            &::after{
+                width: 100%;
+        }   }
     
     }
 
@@ -33,11 +40,12 @@
         &::after{
             display: block;
             content: '';
-            width: 35px;
+            width: 35%;
             height: 2px;
-            background: #000000;
+            background: #fff;
             border-radius: 40px;
             margin: 0 auto;
+            transition: 0.3s;
 
         }
         
@@ -45,8 +53,17 @@
         p{
             font-size: 14px;
             line-height: 18px;
-            color: rgba(0, 0, 0, 0.64);
+            color: rgba(255, 255, 255, 0.64);
             
+            @include media("<phone"){
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        
+            @include media(">=phone","<=custom-view-1"){
+                font-size: 14px;
+                line-height: 16px;
+            }
         }
     }
 
@@ -56,13 +73,35 @@
             font-size: 18px;
             line-height: 27px;
             transition: 0.25s;
+            color: #fff;
+
+            @include media("<phone"){
+                font-size: 16px;
+                line-height: 23px;
+            }
+        
+            @include media(">=phone","<=custom-view-1"){
+                font-size: 17px;
+                line-height: 25px;
+            }
         }
 
         .product-price{
             font-weight: normal;
             font-size: 16px;
             line-height: 24px;
-            color: #000000;
+            color: #fff;
+            transition: 0.1s;
+            
+            @include media("<phone"){
+                font-size: 14px;
+                line-height: 22px;
+            }
+        
+            @include media(">=phone","<=custom-view-1"){
+                font-size: 15px;
+                line-height: 23px;
+            }
 
         }
        
