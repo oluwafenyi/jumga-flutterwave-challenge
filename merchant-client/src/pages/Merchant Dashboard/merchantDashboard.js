@@ -111,7 +111,7 @@ const MerchantDashboard = (props) =>{
             </aside>
             <main className="merchant-dashboard-main">
                 <ToastContainer/>
-                <div className={`mobile-menu ${ mobileDashboard ? "close-btn" : ""}`} onClick={ ()=>{ setMobileDashboard(!mobileDashboard) } }>
+                <div className="mobile-menu"  onClick={ ()=>{ setMobileDashboard(true) } }>
                     <img src={ MenuIcon } alt="menu-icon"/>
                 </div>
                 <section className="merchant-summary" ref={ el=>MerchantSummary=el }>

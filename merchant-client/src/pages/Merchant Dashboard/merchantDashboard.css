@@ -117,18 +117,6 @@
   width: 100%;
 }
 
-.merchant-dashboard-page .merchant-dashboard-main .close-btn {
-  z-index: 3;
-  top: 0;
-  left: 30%;
-  position: fixed;
-}
-
-.merchant-dashboard-page .merchant-dashboard-main .close-btn:hover {
-  -webkit-transform: unset;
-          transform: unset;
-}
-
 .merchant-dashboard-page .merchant-dashboard-main .merchant-summary {
   display: -webkit-box;
   display: -ms-flexbox;
