@@ -112,10 +112,10 @@ func validateTransaction(w http.ResponseWriter, r *http.Request) {
 	txRef := data["tx_ref"].(string)
 	currency := data["currency"].(string)
 	chargedAmount := data["charged_amount"].(float64)
-	meta := data["meta"].(map[string]interface{})
-	storeID := meta["store_id"].(string)
+	//meta := data["meta"].(map[string]interface{})
+	sID := transaction.Customer.StoreID
 
-	sID, _ := strconv.ParseInt(storeID, 10, 64)
+	//sID, _ := strconv.ParseInt(storeID, 10, 64)
 
 	if txRef != transaction.ID {
 		ErrorResponse(http.StatusBadRequest, "unable to verify transaction", w)

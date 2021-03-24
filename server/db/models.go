@@ -260,7 +260,7 @@ func (t *Transaction) Insert() error {
 }
 
 func (t *Transaction) GetByID(id string) error {
-	err := DB.Model(t).Relation("Order").Where(`"transaction"."id" = ?`, id).Select()
+	err := DB.Model(t).Relation("Order").Relation("Customer").Relation("Customer.Store").Where(`"transaction"."id" = ?`, id).Select()
 	return err
 }
 

@@ -71,7 +71,9 @@ func Request(method string, path string, body io.Reader) (*http.Response, error)
 	}
 
 	if resp.StatusCode != 200 {
-		err = errors.New("flutterRequestError: resource does not exist")
+		var dict = make(map[string]interface{})
+		json.NewDecoder(resp.Body).Decode(&dict)
+		err = errors.New(fmt.Sprintf("flutterRequestError: %d : %v", resp.StatusCode, dict))
 		return nil, err
 	}
 	return resp, nil
@@ -117,10 +119,12 @@ func CreateSubAccount(account *SubAccount) (map[string]interface{}, error) {
 	resp, err := Request("POST", "subaccounts", bytes.NewBuffer(data))
 	if err != nil {
 		log.Printf("error: problem creating subaccount for <Store %s>", account.BusinessName)
+		log.Println(err)
 		return nil, err
 	}
 	if resp.StatusCode != 200 {
 		log.Printf("error: problem creating subaccount for <Store %s>", account.BusinessName)
+		log.Println(err)
 		return nil, err
 	}
 	var respObj map[string]interface{}
