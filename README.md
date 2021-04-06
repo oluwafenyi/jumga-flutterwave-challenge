@@ -18,7 +18,7 @@ A lot of things changed but this was a great method to set us on our way.
 
 &nbsp;
 ## Technologies
-The client-side of this application is built with React and configured as a PWA and the server-side is build with Go, both firsts for us
+The client-side of this application is built with React and configured as a PWA and the server-side is built with Go, both firsts for us
 as we looked to add a meta challenge. We use a PostgreSQL database to store application data and we used Docker
 as our local development environment to keep things consistent for collaboration purposes, starting this up locally is as 
 easy as running ```docker-compose up``` in the root directory.
@@ -89,3 +89,8 @@ be sure to run client on port ```:3000``` and merchant-client on port ```:8080``
 
 server runs on port ```:8000```
 
+&nbsp;
+## Demo Links
+Presentation: http://bit.ly/apexflw
+
+Demo: http://bit.ly/apexflwdemo
