@@ -1,4 +1,4 @@
-# Flutterwave Developer Challenge: < Project Jumga >
+# Flutterwave Developer Challenge: < Project Jumga > 🥉
 &nbsp;
   We've built this web application in line with the competition directives to show how easy it is to set up
 payments with the [Flutterwave v3 API](https://developer.flutterwave.com/docs). Jumga is an e-commerce platform
